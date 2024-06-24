@@ -14,12 +14,12 @@ module.exports = {
       },
       colors: {
        
-        "Primary-900": "#231b32",
-        "Primary-800": "#322748",
-        "Primary-600": "#513f75",
-        "Primary-500": "#614B8B",
-        "Primary-100": "#C6BED5" ,
-        "Primary-50": "#E3DAF3",
+        "primary-900": "#231b32",
+        "primary-800": "#322748",
+        "primary-600": "#513f75",
+        "primary-500": "#614B8B",
+        "primary-100": "#C6BED5" ,
+        "primary-50": "#E3DAF3",
       },
       fontFamily: {
         sans: ['DM Sans', 'sans-serif'],
