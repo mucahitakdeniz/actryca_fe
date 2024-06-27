@@ -6,8 +6,15 @@ body {
   padding: 0;
   margin: 0;
 }
+
 .padding {
-  padding-inline: 50px;
+  padding-inline: 30px;
+}
+
+@media (min-width: 768px) {
+  .padding {
+    padding-inline: 50px; /* Orta ekranlar (768px ve üstü) */
+  }
 }
 
 .background {

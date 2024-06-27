@@ -14,6 +14,7 @@ module.exports = {
         "primary-500": "#614B8B",
         "primary-100": "#C6BED5",
         "primary-50": "#E3DAF3",
+        "star-color": "#FF7A00",
       },
       fontFamily: {
         sans: ["DM Sans", "sans-serif"],
