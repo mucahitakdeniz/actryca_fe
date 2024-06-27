@@ -10,8 +10,8 @@ const FooterForm = () => {
         </p>
         <div className="flex">
           <TextField
-            placeholder="E-posta"
-            size="small"
+            label="E-posta"
+            type="email"
             sx={{
               "& .MuiOutlinedInput-root": {
                 borderTopRightRadius: 0,

@@ -3,6 +3,7 @@ import "./globals.css";
 import Footer from "@/components/home/footer/Footer";
 import { ThemeProvider } from "@mui/material";
 import { theme } from "@/utils/theme";
+import { icons } from "lucide-react";
 
 const inter = Inter({ subsets: ["latin"] });
 
