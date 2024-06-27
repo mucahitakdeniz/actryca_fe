@@ -42,26 +42,22 @@ export default function Example() {
 
   return (
     <>
-      <AppBar position="static" sx={{ backgroundColor: 'white', display: 'flex', width: '1440px', padding: '24px 72px', justifyContent: 'space-between', alignItems: 'center', flexDirection: 'row', boxShadow: 'none' }}>
+      <AppBar position="static" sx={{ backgroundColor: 'white', display: 'flex', width: '100vw', padding: { xs: '8px 16px', sm: '24px 72px' }, justifyContent: 'space-between', alignItems: 'center', flexDirection: 'row', boxShadow: 'none'}}>
+        <Logo />
         
-          <Logo />
           <Nav_item />
           <Section3 />
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerOpen}
-            className="sm:hidden"
-          >
-            <MenuIcon />
-          </IconButton>
-
-          
-
-       
+        
+        <IconButton
+          color="inherit"
+          aria-label="open drawer"
+          edge="start"
+          onClick={handleDrawerOpen}
+          className="sm:hidden"
+        >
+          <MenuIcon />
+        </IconButton>
       </AppBar>
-
       <Drawer
         variant="temporary"
         open={drawerOpen}

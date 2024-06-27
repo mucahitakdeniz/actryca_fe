@@ -3,7 +3,7 @@ import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import Button from '@mui/material/Button'
 import { ChevronDown } from 'lucide-react'
-import { Stack } from '@mui/material'
+import { Stack, useMediaQuery } from '@mui/material'
 import navigation from '@/components/home/navbar/(nav-item)/navigation'
 import Image from 'next/image'
 
@@ -27,10 +27,13 @@ const NavItem = () => {
     setHoveredItem(null)
   }
 
+  // Define the breakpoint for hiding the NavItem
+  const isMobile = useMediaQuery((theme) => theme.breakpoints.down('sm'))
+
   return (
     <Stack
       sx={{
-        display: 'flex',
+        display: { xs: 'none', sm: 'flex' }, // Hide on mobile (xs), show on larger screens
         gap: '32px',
         alignItems: 'center',
         flexDirection: 'row',
