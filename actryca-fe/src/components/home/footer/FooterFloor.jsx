@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -8,7 +8,9 @@ const FooterFloor = () => {
     <div className="bg-gray-200 h-[300px] padding flex justify-between items-center">
       <div className="flex flex-col gap-6">
         <div className="flex flex-col">
-          <h2 className="text-xl font-semibold">Kariyer Fırsatları</h2>
+          <Typography variant="h2" className="text-xl font-semibold">
+            Kariyer Fırsatları
+          </Typography>
           <span className="bg-primary-600 w-10 h-[1px]"></span>
         </div>
         <p className="leading-7 w-[555px]">
@@ -28,7 +30,7 @@ const FooterFloor = () => {
         <div className="flex gap-3">
           <Link href="#">
             <Image
-              src="/tiktok.png"
+              src="/images/tiktok.png"
               width={32}
               height={32}
               className="hover:scale-105 transition-all"
@@ -36,7 +38,7 @@ const FooterFloor = () => {
           </Link>
           <Link href="#">
             <Image
-              src="/instagram.png"
+              src="/images/instagram.png"
               width={32}
               height={32}
               className="hover:scale-105 transition-all"
@@ -44,7 +46,7 @@ const FooterFloor = () => {
           </Link>
           <Link href="#">
             <Image
-              src="/x.png"
+              src="/images/x.png"
               width={32}
               height={32}
               className="hover:scale-105 transition-all"
@@ -52,7 +54,7 @@ const FooterFloor = () => {
           </Link>
           <Link href="#">
             <Image
-              src="/facebook.png"
+              src="/images/facebook.png"
               width={32}
               height={32}
               className="hover:scale-105 transition-all"
@@ -60,7 +62,7 @@ const FooterFloor = () => {
           </Link>
           <Link href="#">
             <Image
-              src="/whatsapp.png"
+              src="/images/whatsapp.png"
               width={32}
               height={32}
               className="hover:scale-105 transition-all"

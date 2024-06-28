@@ -15,5 +15,8 @@ export const theme = createTheme({
       dark: "#ba000d",
       contrastText: "#000",
     },
+    typography: {
+      fontFamily: "DM Sans, sans-serif",
+    },
   },
 });

@@ -8,7 +8,7 @@ const ReviewCard = ({ img, name, star, desc }) => {
     <div className="center-col gap-2 lg:gap-4 border border-primary-100 rounded-2xl h-[300px] lg:h-[432px] bg-white hover:border-2 hover:shadow-lg transition-all">
       <Avatar
         alt="Remy Sharp"
-        src={img || "/avatar1.jfif"}
+        src={img || "/images/artists/avatar1.jfif"}
         sx={{
           width: { xs: 100, sm: 120, md: 170 },
           height: { xs: 100, sm: 120, md: 170 },
