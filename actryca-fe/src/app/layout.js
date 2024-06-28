@@ -1,10 +1,28 @@
-import { Inter } from "next/font/google";
+import { DM_Sans } from "next/font/google";
 import "./globals.css";
+import Footer from "@/components/home/footer/Footer";
+import Navbar from "@/components/home/navbar/Navbar";
 import { ThemeProvider } from "@mui/material";
 import { theme } from "@/utils/theme";
 import { icons } from "lucide-react";
 
-const inter = Inter({ subsets: ["latin"] });
+const dmSans = DM_Sans({
+  weight: [
+    "100",
+    "200",
+    "300",
+    "400",
+    "500",
+    "600",
+    "700",
+    "800",
+    "900",
+    "1000",
+  ],
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
 
 export const metadata = {
   title: "Create Next App",
@@ -13,11 +31,12 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className={dmSans.className}>
       <body>
         <ThemeProvider theme={theme}>
+          <Navbar />
           {children}
-         
+          <Footer />
         </ThemeProvider>
       </body>
     </html>
