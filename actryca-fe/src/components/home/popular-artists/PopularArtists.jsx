@@ -5,12 +5,8 @@ import {
   Tab,
   Grid,
   Typography,
-  Card,
-  CardContent,
-  CardMedia,
 } from "@mui/material";
 import Image from "next/image";
-import ReviewCard from "../reviews/ReviewCard";
 import ArtistItem from "./ArtistItem";
 
 const PopularArtists = () => {
@@ -55,7 +51,7 @@ const PopularArtists = () => {
 
       {selectedTab === 0 && (
         <>
-          <Typography variant="h4" className="text-left text-xs md:text-xl">
+          <Typography variant="h4" className="text-left text-xs lg:text-base">
             <span className="font-bold">En İyi Oyuncular: </span>Haftanın
             Parlayanları
           </Typography>
@@ -71,7 +67,7 @@ const PopularArtists = () => {
         <>
           <Typography
             variant="h4"
-            className="text-left text-xs md:text-xl  font-sans"
+            className="text-left text-xs lg:text-base  font-sans"
           >
             <span className="font-bold">Kalem Kahramanları: </span>Yaratıcı
             Hikayeler
