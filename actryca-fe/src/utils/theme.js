@@ -1,5 +1,24 @@
 "use client";
 import { createTheme } from "@mui/material/styles";
+import { DM_Sans } from "next/font/google";
+
+const dmSans = DM_Sans({
+  weight: [
+    "100",
+    "200",
+    "300",
+    "400",
+    "500",
+    "600",
+    "700",
+    "800",
+    "900",
+    "1000",
+  ],
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
 
 export const theme = createTheme({
   palette: {
@@ -17,6 +36,15 @@ export const theme = createTheme({
     },
     typography: {
       fontFamily: "DM Sans, sans-serif",
+    },
+    components: {
+      MuiButton: {
+        styleOverrides: {
+          root: {
+            borderRadius: 8,
+          },
+        },
+      },
     },
   },
 });
