@@ -20,12 +20,12 @@ const ReviewCard = ({ img, name, star, desc }) => {
       </h2>
       <div className="center gap-1 md:gap-2">
         {[...Array(5)].map((_, index) => {
-          let starType = "/star.png"; 
+          let starType = "/images/star.png";
 
           if (index < Math.floor(star)) {
-            starType = "/star-fill.png";
+            starType = "/images/star-fill.png";
           } else if (index < star) {
-            starType = "/star-half.png";
+            starType = "/images/star-half.png";
           }
 
           return (
