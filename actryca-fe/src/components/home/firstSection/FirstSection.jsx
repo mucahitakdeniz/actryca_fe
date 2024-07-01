@@ -4,7 +4,6 @@ import Image from 'next/image';
 import {
     Box,
     Button,
-    Container,
     Typography,
     Avatar
 } from '@mui/material';
@@ -12,7 +11,7 @@ import {
 const FirstSection = () => {
     return (    
         <Box sx={{ display: "inline-flex", width: "100vw", flexDirection: { xs: "column", lg: "row" }, alignItems: "center", gap: "42px"}}>
-            <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', gap: "88px", ml: { xs: 0, lg: "120px" } }}>
+            <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', gap: "88px", padding: "180px 72px" }}>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: "40px", alignItems: "flex-start"}}>
                     <Box sx={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "32px",  }}>
                         <Typography variant="h2" sx={{ color: 'primary.main', fontFamily: 'DM Serif Text', fontSize: { xs: 32, lg: 88 }, fontWeight: 400, lineHeight: { xs: "40px", lg: "78px" }, letterSpacing: '1.76px' }}>

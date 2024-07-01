@@ -5,6 +5,7 @@ import {
   Tab,
   Grid,
   Typography,
+  Box,
 } from "@mui/material";
 import Image from "next/image";
 import ArtistItem from "./ArtistItem";
@@ -31,11 +32,14 @@ const PopularArtists = () => {
   ];
 
   return (
-    <section className="padding center-col gap-8 relative h-[1000px] lg:h-[700px] ">
+    <section className="padding center-col gap-8 relative h-[1000px] lg:h-[700px]">
       <div>
         <Typography
           variant="h1"
           className="font-dm-serif-text text-2xl md:text-5xl font-bold text-center"
+          sx={{
+            color: "primary.main",
+          }}
         >
           Popüler Sanatçılar
         </Typography>
@@ -43,41 +47,78 @@ const PopularArtists = () => {
 
       {/** Tab Section */}
       <div>
-        <Tabs value={selectedTab} onChange={handleTabChange} centered>
+        <Tabs value={selectedTab} onChange={handleTabChange} centered
+          sx={{
+            color: "primary.main",
+            fontFamily: "Rethink Sans",
+            fontSize: "26px",
+            fontStyle: "normal", fontWeight: "500px", lineHeight: "32px"
+          }}>
           <Tab label="Oyuncular" />
           <Tab label="Senaristler" />
         </Tabs>
       </div>
 
       {selectedTab === 0 && (
-        <>
-          <Typography variant="h4" className="text-left text-xs lg:text-base">
-            <span className="font-bold">En İyi Oyuncular: </span>Haftanın
-            Parlayanları
+        <Box sx={{ items: "left" }}>
+          <Typography variant="h4" className="text-left text-xs lg:text-base"
+            sx={{
+              color: "var(--Primary-800, #322748)",
+              fontFamily: "DM Sans",
+              fontSize: "24px",
+              fontStyle: "normal",
+              fontWeight: "700",
+              lineHeight: "24px"
+            }}>
+            <span>En İyi Oyuncular: </span>
+            <span
+              sx={{
+                color: "var(--Primary-800, #322748)",
+                fontFamily: "DM Sans",
+                fontSize: "24px",
+                fontStyle: "normal",
+                fontWeight: "500",
+                lineHeight: "24px"
+              }}
+            >Haftanın Parlayanları</span>
           </Typography>
           <Grid container spacing={2} justifyContent="center">
             {artists.map((item, index) => (
               <ArtistItem item={item} key={index} />
             ))}
           </Grid>
-        </>
+        </Box>
       )}
 
       {selectedTab === 1 && (
-        <>
-          <Typography
-            variant="h4"
-            className="text-left text-xs lg:text-base  font-sans"
-          >
-            <span className="font-bold">Kalem Kahramanları: </span>Yaratıcı
-            Hikayeler
+        <Box sx={{ items: "left" }}>
+          <Typography variant="h4" className="text-left text-xs lg:text-base"
+            sx={{
+              color: "var(--Primary-800, #322748)",
+              fontFamily: "DM Sans",
+              fontSize: "24px",
+              fontStyle: "normal",
+              fontWeight: "700",
+              lineHeight: "24px"
+            }}>
+            <span>Kalem Kahramanları: </span>
+            <span
+              sx={{
+                color: "var(--Primary-800, #322748)",
+                fontFamily: "DM Sans",
+                fontSize: "24px",
+                fontStyle: "normal",
+                fontWeight: "500",
+                lineHeight: "24px"
+              }}
+            >Yaratıcı Hikayeler</span>
           </Typography>
           <Grid container spacing={2} justifyContent="center">
             {writers.map((item, index) => (
               <ArtistItem item={item} key={index} />
             ))}
           </Grid>
-        </>
+        </Box>
       )}
 
       <div className="absolute left-0 -z-50">

@@ -12,7 +12,6 @@ const Logo = () => {
         width: '128,625', 
         height: '32px',
         flexDirection: 'col',
-        padding: '24px 72px', 
         justifyContent: 'center' ,
         gap: "2px"
       }}

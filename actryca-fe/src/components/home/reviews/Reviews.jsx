@@ -10,6 +10,9 @@ const Reviews = () => {
         <Typography
           variant="h1"
           className="font-dm-serif-text text-2xl md:text-5xl font-bold text-center"
+          sx={{
+            color: "primary.main",
+          }}
         >
           Görüşler ve Deneyimler
         </Typography>

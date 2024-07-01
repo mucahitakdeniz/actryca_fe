@@ -5,7 +5,7 @@ const FooterForm = () => {
   return (
     <div className="background h-[320px] center padding">
       <div className="center-col gap-14">
-        <p className="text-center font-dm-serif-text font-bold text-3xl">
+        <p className="text-center font-dm-serif-text font-bold text-3xl text-primary-900">
           Son haberlerimizden haberdar olmak için e-posta adresinizi girin:
         </p>
         <div className="flex">

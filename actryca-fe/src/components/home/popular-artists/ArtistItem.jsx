@@ -18,7 +18,8 @@ const ArtistItem = ({ item }) => {
           className="w-full h-full"
         />
       </Card>
-      <Typography variant="h6" className="text-base mt-4">
+      <Typography variant="h6" className="text-base mt-4"
+      sx={{color: "primary.light", textDecoration: "underline"}}>
         {item.name}
       </Typography>
     </Grid>
