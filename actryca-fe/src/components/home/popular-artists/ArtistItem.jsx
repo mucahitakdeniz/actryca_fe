@@ -3,7 +3,7 @@ import React from "react";
 
 const ArtistItem = ({ item }) => {
   return (
-    <Grid item xs={12} sm={6} md={3}>
+    <Grid item xs={12} sm={6} md={3} sx={{gap: "16px"}}>
       <Card
         sx={{
           width: { xs: 150, sm: 200, lg: 297 },
@@ -18,8 +18,8 @@ const ArtistItem = ({ item }) => {
           className="w-full h-full"
         />
       </Card>
-      <Typography variant="h6" className="text-base mt-4"
-      sx={{color: "primary.light", textDecoration: "underline"}}>
+      <Typography variant="h6" className="text-base mt-4 underline-offset"
+      sx={{color: "primary.main", textDecoration: "underline", fontSize: "20px", fontStyle: "normal", fontWeight: "500", lineHeight: "28px"}}>
         {item.name}
       </Typography>
     </Grid>

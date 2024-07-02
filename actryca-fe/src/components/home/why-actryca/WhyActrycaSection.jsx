@@ -6,11 +6,12 @@ import { Drama, Globe, Trophy, UsersRound } from "lucide-react";
 
 const WhyActrycaSection = () => {
   return (
-    <Box sx={{ position: "relative", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: "64px" }}>
+    <Box sx={{ position: "relative",width: "100vw", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: "64px" }}>
 
       <Typography
         variant="h1"
-        className="font-dm-serif-text text-[44px] md:text-5xl font-[400px] leading-6  text-primary-900"
+        className="font-dm-serif-text text-[44px] md:text-5xl font-[400px] leading-6"
+        sx={{color: "primary.main"}}
       >
         Neden Actryca?
       </Typography>
