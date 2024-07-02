@@ -33,54 +33,44 @@ const PopularArtists = () => {
 
   return (
     <section className="padding center-col gap-8 relative h-[1000px] lg:h-[700px]">
-      <div>
-        <Typography
-          variant="h1"
-          className="font-dm-serif-text text-2xl md:text-5xl font-bold text-center"
-          sx={{
-            color: "primary.main",
-          }}
-        >
-          Popüler Sanatçılar
-        </Typography>
-      </div>
+      <Typography
+        variant="h1"
+        className="font-dm-serif-text text-[44px] font-[400px] text-center"
+        sx={{
+          color: "primary.main",
+        }}
+      >
+        Popüler Sanatçılar
+      </Typography>
 
       {/** Tab Section */}
-      <div>
+      <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "64px" }}>
         <Tabs value={selectedTab} onChange={handleTabChange} centered
           sx={{
-            color: "primary.main",
-            fontFamily: "Rethink Sans",
-            fontSize: "26px",
-            fontStyle: "normal", fontWeight: "500px", lineHeight: "32px"
+            display: "flex",
+            alignItems: "center",
+            gap: "16px"
           }}>
-          <Tab label="Oyuncular" />
-          <Tab label="Senaristler" />
+          <Tab sx={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "4px", textTransform: "capitalize" }}
+            label="Oyuncular" />
+          <Tab sx={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "4px", textTransform: "capitalize" }}
+            label="Senaristler" />
         </Tabs>
-      </div>
+      </Box>
 
       {selectedTab === 0 && (
-        <Box sx={{ items: "left" }}>
+        <Box sx={{ items: "left", display: "flex", flexDirection: "column", gap: "32px" }}>
           <Typography variant="h4" className="text-left text-xs lg:text-base"
             sx={{
-              color: "var(--Primary-800, #322748)",
+              color: "primary.dark",
               fontFamily: "DM Sans",
               fontSize: "24px",
               fontStyle: "normal",
               fontWeight: "700",
               lineHeight: "24px"
             }}>
-            <span>En İyi Oyuncular: </span>
-            <span
-              sx={{
-                color: "var(--Primary-800, #322748)",
-                fontFamily: "DM Sans",
-                fontSize: "24px",
-                fontStyle: "normal",
-                fontWeight: "500",
-                lineHeight: "24px"
-              }}
-            >Haftanın Parlayanları</span>
+            <span className="text-primary-dark font-bold">En İyi Oyuncular: </span>
+            <span className="text-primary-dark font-normal">Haftanın Parlayanları</span>
           </Typography>
           <Grid container spacing={2} justifyContent="center">
             {artists.map((item, index) => (
@@ -91,33 +81,24 @@ const PopularArtists = () => {
       )}
 
       {selectedTab === 1 && (
-        <Box sx={{ items: "left" }}>
+        <Box sx={{ items: "left", display: "flex", flexDirection: "column", gap: "32px" }}>
           <Typography variant="h4" className="text-left text-xs lg:text-base"
             sx={{
-              color: "var(--Primary-800, #322748)",
+              color: "primary.dark",
               fontFamily: "DM Sans",
               fontSize: "24px",
               fontStyle: "normal",
               fontWeight: "700",
               lineHeight: "24px"
             }}>
-            <span>Kalem Kahramanları: </span>
-            <span
-              sx={{
-                color: "var(--Primary-800, #322748)",
-                fontFamily: "DM Sans",
-                fontSize: "24px",
-                fontStyle: "normal",
-                fontWeight: "500",
-                lineHeight: "24px"
-              }}
-            >Yaratıcı Hikayeler</span>
+            <span className="text-primary-dark font-bold">Kalem Kahramanları: </span>
+            <span className="text-primary-dark font-normal">Yaratıcı Hikayeler</span>
           </Typography>
-          <Grid container spacing={2} justifyContent="center">
+          <Box sx={{display: "flex", alignItems: "flex-start", gap: "36px"}}>
             {writers.map((item, index) => (
               <ArtistItem item={item} key={index} />
             ))}
-          </Grid>
+          </Box>
         </Box>
       )}
 
