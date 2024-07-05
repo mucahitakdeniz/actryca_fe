@@ -31,7 +31,6 @@ const Section3 = () => {
               borderRadius: '8px',
               textTransform: 'none',
               fontWeight: 'bold',
-              ':hover': { transform: 'scale(1.05)', transition: 'transform 0.2s' }
             }}
           >
             Giriş Yap
@@ -48,7 +47,6 @@ const Section3 = () => {
               textTransform: 'none',
               color: 'white',
               gap: "10px",
-              ':hover': { transform: 'scale(1.05)', transition: 'transform 0.2s' }
             }}
           >
             Üye Ol

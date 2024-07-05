@@ -113,21 +113,7 @@ const NavItem = () => {
             }}
           >
             {item.name}
-            {item.current && (
-              <span
-                style={{
-                  content: '""',
-                  position: 'absolute',
-                  left: '50%',
-                  transform: 'translateX(-50%)',
-                  bottom: '-2px',
-                  width: '108px',
-                  height: '2px',
-                  backgroundColor: 'var(--Primary-500, #614B8B)',
-                  transition: 'width 0.3s',
-                }}
-              />
-            )}
+           
           </a>
         )
       )}

@@ -1,21 +1,10 @@
-import React from 'react'
-import Image from 'next/image'
-import { Box } from '@mui/material'
+import React from "react";
+import Image from "next/image";
+import { Box } from "@mui/material";
 
 const Logo = () => {
   return (
-    <Box 
-      sx={{ 
-        display: 'flex', 
-        flexShrink: 0, 
-        alignItems: 'center', 
-        width: '128,625', 
-        height: '32px',
-        flexDirection: 'col',
-        justifyContent: 'center' ,
-        gap: "2px"
-      }}
-    >
+    <Box>
       <Image
         src="/images/logo.svg"
         alt="Your Company"
@@ -23,7 +12,7 @@ const Logo = () => {
         width={128}
       />
     </Box>
-  )
-}
+  );
+};
 
-export default Logo
+export default Logo;
