@@ -27,7 +27,7 @@ const MobileSection = () => {
       </div>
 
       <div className="h-full flex flex-col justify-end ">
-        <Image src="/mobile-phone.png" width={420} height={420} />
+        <Image src="/images/mobile-phone.png" width={420} height={420} />
       </div>
     </div>
   );
