@@ -1,5 +1,5 @@
-import { Box, Typography } from '@mui/material'
-import React from 'react'
+import { Box, Typography } from '@mui/material';
+import React from 'react';
 import ServiceCardItem from './ServiceCardItem';
 
 const ServiceSection = () => {
@@ -9,12 +9,14 @@ const ServiceSection = () => {
         <Typography
           variant="h1"
           className="text-center font-dm-serif-text text-base lg:text-5xl font-bold"
+          sx={{ color: "primary.main" }}
         >
           Hizmetlerimiz
         </Typography>
         <Typography
           variant="h6"
           className="text-center text-xs lg:text-base mt-4"
+          sx={{ color: "primary.main" }}
         >
           Actryca olarak sunduğumuz hizmetler ile kariyerinize yön verin.
         </Typography>
@@ -52,4 +54,4 @@ const ServiceSection = () => {
   );
 }
 
-export default ServiceSection
+export default ServiceSection;

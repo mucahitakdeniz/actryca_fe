@@ -1,56 +1,92 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
+import { Box, Button, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import React from "react";
 import WhyArctrycaCardItem from "./WhyActrycaCardItem";
-import { CircleCheck, Drama, Globe, Trophy, UsersRound } from "lucide-react";
+import { Drama, Globe, Trophy, UsersRound } from "lucide-react";
 
 const WhyActrycaSection = () => {
   return (
-    <section className="relative h-[1000px] lg:h-[600px] w-screen">
-      <Box className="h-full w-full padding center-col gap-8">
-        <Typography
-          variant="h1"
-          className="font-dm-serif-text text-2xl md:text-5xl font-bold text-center"
-        >
-          Görüşler ve Deneyimler
-        </Typography>
-        <Grid container spacing={4} className="padding">
-          <Grid item xs={12} md={3}>
-            <WhyArctrycaCardItem
-              icon={Drama}
-              title="Geniş Yeteneğe Erişim"
-              desc="En yetenekli oyuncular ve yazarlarla çalışarak projelerinizi hayata geçirin."
-            />
-          </Grid>
-          <Grid item xs={12} md={3}>
-            <WhyArctrycaCardItem
-              icon={UsersRound}
-              title="Menajerlik Desteği"
-              desc="Kariyerinizi bir üst seviyeye taşıyacak menajerlik desteğimizle yanındayız."
-            />
-          </Grid>
-          <Grid item xs={12} md={3}>
-            <WhyArctrycaCardItem
-              icon={Trophy}
-              title="Başarı Hikayeleri"
-              desc="Başarımızı, hayallerini gerçekleştiren oyuncularımız ve yazarlarımızla ölçüyoruz."
-            />
-          </Grid>
-          <Grid item xs={12} md={3}>
-            <WhyArctrycaCardItem
-              icon={Globe}
-              title="Global Fırsatlar"
-              desc="Evrensel öyküleri yurtdışı yapım şirketlerinize sunarak küresel fırsatlar sunuyoruz."
-            />
-          </Grid>
-        </Grid>
-        <Button variant="contained">Bizimle Çalışmak İster misiniz?</Button>
-      </Box>
+    <Box sx={{ position: "relative",width: "100vw", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: "64px" }}>
 
-      <div className="absolute top-0 -z-50 w-full center">
-        <Image src="/images/shape.png" width={1000} height={800} />
-      </div>
-    </section>
+      <Typography
+        variant="h1"
+        className="font-dm-serif-text text-[44px] md:text-5xl font-[400px] leading-6"
+        sx={{color: "primary.main"}}
+      >
+        Neden Actryca?
+      </Typography>
+
+      <Box className="flex items-center gap-9 py-0 px-[72px]">
+        <Box sx={{ display: "flex", width: "294px", flexDirection: "column", alignItems: "flex-start" }}>
+          <WhyArctrycaCardItem
+            icon={Drama}
+            title="Geniş Yeteneğe Erişim"
+            desc="En yetenekli oyuncular ve yazarlarla çalışarak projelerinizi hayata geçirin."
+          />
+        </Box>
+        <Box sx={{ display: "flex", width: "294px", flexDirection: "column", alignItems: "flex-start" }}>
+          <WhyArctrycaCardItem
+            icon={UsersRound}
+            title="Menajerlik Desteği"
+            desc="Kariyerinizi bir üst seviyeye taşıyacak menajerlik desteğimizle yanındayız."
+          />
+        </Box>
+        <Box sx={{ display: "flex", width: "294px", flexDirection: "column", alignItems: "flex-start" }}>
+          <WhyArctrycaCardItem
+            icon={Trophy}
+            title="Başarı Hikayeleri"
+            desc="Başarımızı, hayallerini gerçekleştiren oyuncularımız ve yazarlarımızla ölçüyoruz."
+          />
+        </Box>
+        <Box sx={{ display: "flex", width: "294px", flexDirection: "column", alignItems: "flex-start" }}>
+          <WhyArctrycaCardItem
+            icon={Globe}
+            title="Global Fırsatlar"
+            desc="Evrensel öyküleri yurtdışı yapım şirketlerinize sunarak küresel fırsatlar sunuyoruz."
+          />
+        </Box>
+      </Box>
+      <Button
+        variant="contained"
+        sx={{
+          display: "inline-flex",
+          height: "48px",
+          padding: "16px 24px",
+          justifyContent: "center",
+          alignItems: "center",
+          borderRadius: "8px",
+          backgroundColor: "#primary.main",
+          border: "1px solid #primary.main",
+          gap: "10px",
+          flexShrink: "0px",
+          mt: "94px",
+          mb: "105px"
+        }}>
+        <Typography
+          variant="h4"
+          sx={{
+            fontFamily: "DM Sans, sans-serif",
+            color: "#fff",
+            fontSize: "16px",
+            fontWeight: "700px",
+            lineHeight: "16px"
+          }}>
+          Bizimle Çalışmak İster misiniz?
+        </Typography>
+      </Button>
+
+      <Stack sx={{
+        position: "absolute",
+        width: "496px",
+        height: "552px",
+        transform: "rotate(69.143deg)",
+        flexShrink: 0,
+        zIndex: "-2"
+      }}>
+        <Image src="/images/shape.png" width={496} height={552} />
+      </Stack>
+
+    </Box>
   );
 };
 

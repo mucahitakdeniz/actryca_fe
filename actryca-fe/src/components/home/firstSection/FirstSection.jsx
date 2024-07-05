@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-
 import { Box, Button, Typography, Avatar } from "@mui/material";
 
 const FirstSection = () => {
@@ -119,6 +118,7 @@ const FirstSection = () => {
             </Button>
           </Box>
         </Box>
+
 
         <Box
           sx={{
