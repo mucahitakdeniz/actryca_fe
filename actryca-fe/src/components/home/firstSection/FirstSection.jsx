@@ -36,6 +36,7 @@ const FirstSection = () => {
               flexDirection: "column",
               alignItems: "flex-start",
               gap: "32px",
+              width: "624px"
             }}
           >
             <Typography
@@ -91,6 +92,7 @@ const FirstSection = () => {
                   fontStyle: "normal",
                   lineHeight: "16px",
                   fontFamily: "DM Serif Text",
+                  textTransform: 'capitalize',
                 }}
               >
                 Profil Oluştur
@@ -111,14 +113,13 @@ const FirstSection = () => {
             >
               <Typography
                 variant="button"
-                sx={{ color: "primary.main", fontSize: 16, fontWeight: 700 }}
+                sx={{ color: "primary.main", fontSize: 16, fontWeight: 700, textTransform: 'capitalize' }}
               >
                 Actryca Menajeriniz Olsun
               </Typography>
             </Button>
           </Box>
         </Box>
-
 
         <Box
           sx={{

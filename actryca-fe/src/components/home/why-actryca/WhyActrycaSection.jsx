@@ -69,9 +69,11 @@ const WhyActrycaSection = () => {
             color: "#fff",
             fontSize: "16px",
             fontWeight: "700px",
-            lineHeight: "16px"
+            lineHeight: "16px",
+            textTransform: "capitalize",
           }}>
-          Bizimle Çalışmak İster misiniz?
+          Bizimle Çalışmak İster 
+          <span className="lowercase"> misiniz?</span> 
         </Typography>
       </Button>
 
