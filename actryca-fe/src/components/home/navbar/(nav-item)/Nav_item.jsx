@@ -10,7 +10,7 @@ import { Icon1, Icon2 } from './Icons';
 
 const NavItem = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [hoveredItem, setHoveredItem] = React.useState('Anasayfa'); // 
+  const [hoveredItem, setHoveredItem] = React.useState('Anasayfa');
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -64,6 +64,9 @@ const NavItem = () => {
                 color: 'var(--Primary-900, #614B8B)',
                 position: 'relative',
                 padding: '5px 0',
+                fontFamily: "DM Sans",
+                lineHeight: '150%',
+                letterSpacing: '0.32px',
               }}
             >
               {itemName}
@@ -71,9 +74,8 @@ const NavItem = () => {
                 style={{
                   content: '""',
                   position: 'absolute',
-                  left: '0',
                   bottom: '0',
-                  width: '100%',
+                  width: '120%',
                   height: '2px',
                   backgroundColor: 'var(--Primary-500, #614B8B)',
                   transform: hoveredItem === 'Sanatçılar' ? 'scaleX(1)' : 'scaleX(0)',
@@ -89,7 +91,7 @@ const NavItem = () => {
               onClose={handleClose}
               PaperProps={{
                 style: {
-                  display: 'inline-flex',
+                  display: 'flex',
                   padding: '24px',
                   flexDirection: 'column',
                   alignItems: 'flex-start',
@@ -97,21 +99,24 @@ const NavItem = () => {
                   borderRadius: '16px',
                   background: '#FFF',
                   boxShadow: '0px 0px 11px 0px rgba(0, 0, 0, 0.10)',
+                  marginTop: '10px',
+                  marginLeft: '-60px', 
                 },
               }}
             >
               {item.children.map((child) => (
+                <Stack key={child.name} sx={{display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "8px"}}>
                 <MenuItem
-                  key={child.name}
                   onClick={handleClose}
                   onMouseEnter={() => setHoveredItem(child.name)}
                   onMouseLeave={() => setHoveredItem('Sanatçılar')}
                   style={{
                     display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'flex-start',
-                    gap: '8px',
+                    padding: "12px 16px",
+                    alignItems: 'center',
+                    gap: '32px',
                     backgroundColor: hoveredItem === child.name ? '#f0f0f0' : 'transparent',
+                    borderRadius: '8px',
                   }}
                 >
                   <a
@@ -121,8 +126,13 @@ const NavItem = () => {
                       flexDirection: 'row',
                       alignItems: 'start',
                       gap: '10px',
-                      color: 'var(--Primary-900, #614B8B)',
+                      color: '#000',
                       textDecoration: 'none',
+                      fontFamily: "DM Sans",
+                      fontSize: '14px',
+                      fontStyle: 'normal',
+                      fontWeight: '500',
+                      lineHeight: 'normal',
                     }}
                   >
                     {child.name === 'Senaristler' ? <Icon1 /> : <Icon2 />}
@@ -135,6 +145,7 @@ const NavItem = () => {
                     />
                   </a>
                 </MenuItem>
+                </Stack>
               ))}
             </Menu>
           </Stack>
@@ -149,8 +160,8 @@ const NavItem = () => {
               position: 'relative',
               display: 'inline-block',
               textDecoration: 'none',
-              color: item.current ? 'var(--Primary-900, #614B8B)' : 'var(--Primary-500, #614B8B)',
-              fontFamily: 'dm-sans',
+              color: 'var(--Primary-900, #231B32)',
+              fontFamily: "DM Sans",
               fontSize: '16px',
               fontStyle: 'normal',
               fontWeight: '500',
@@ -163,9 +174,9 @@ const NavItem = () => {
               style={{
                 content: '""',
                 position: 'absolute',
-                left: '0',
+                left: '-10px',
                 bottom: '0',
-                width: '100%',
+                width: '120%',
                 height: '2px',
                 backgroundColor: 'var(--Primary-500, #614B8B)',
                 transform: (hoveredItem === item.name || item.name === 'Anasayfa') ? 'scaleX(1)' : 'scaleX(0)',

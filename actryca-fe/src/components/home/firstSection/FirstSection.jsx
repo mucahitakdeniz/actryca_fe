@@ -87,11 +87,11 @@ const FirstSection = () => {
                 variant="button"
                 sx={{
                   color: "white",
-                  fontWeight: 700,
+                  fontWeight: "700px",
                   fontSize: "16px",
                   fontStyle: "normal",
                   lineHeight: "16px",
-                  fontFamily: "DM Serif Text",
+                  fontFamily: "DM Sans-serif",
                   textTransform: 'capitalize',
                 }}
               >
@@ -113,7 +113,7 @@ const FirstSection = () => {
             >
               <Typography
                 variant="button"
-                sx={{ color: "primary.main", fontSize: 16, fontWeight: 700, textTransform: 'capitalize' }}
+                sx={{ color: "#231b32", fontSize: "16px", fontWeight: "700px", textTransform: 'capitalize', }}
               >
                 Actryca Menajeriniz Olsun
               </Typography>
@@ -174,14 +174,16 @@ const FirstSection = () => {
           <Typography
             variant="body2"
             sx={{
-              color: "primary.main",
+              color: "var(--Primary-900, #231B32)",
+              fontFamily: "DM Sans",
               fontSize: "16px",
-              fontWeight: 500,
-              lineHeight: "24px",
-              fontFamily: "DM Serif Text",
+              fontStyle: "normal",
+              fontWeight: 700,
+              lineHeight: "24px"
             }}
           >
-            100.000+ yetenekli oyuncu ve yazar bize katıldı.
+            100.000+ <span class="text-[#231B32] font-dm-sans text-[16px] font-normal font-semibold leading-[24px]">yetenekli oyuncu ve yazar bize katıldı.</span>
+
           </Typography>
         </Box>
       </Box>
