@@ -27,7 +27,7 @@ const WhyActrycaCardItem = ({ icon: Icon, title, desc }) => {
       }}
       className="hover:shadow-md"
     >
-      <Icon className="text-primary-600" size={36} strokeWidth={1.5} />
+      <Icon className="text-primary-600" size={44} strokeWidth={1} width={44} height={44} />
       <Box
         sx={{
           display: "flex",
@@ -41,7 +41,7 @@ const WhyActrycaCardItem = ({ icon: Icon, title, desc }) => {
           variant="h4"
           className="title"
           sx={{
-            color: "primary.main",
+            color: "primary.darkest",
             fontSize: "22px",
             fontWeight: "bold",
             fontStyle: "normal",
@@ -55,7 +55,7 @@ const WhyActrycaCardItem = ({ icon: Icon, title, desc }) => {
           variant="h4"
           className="desc"
           sx={{
-            color: "primary.dark",
+            color: "#322748",
             fontFamily: "typography.fontFamily",
             fontSize: "18px",
             fontStyle: "normal",

@@ -15,7 +15,7 @@ const ReviewCard = ({ img, name, star, desc }) => {
         }}
         className="shadow-md"
       />
-      <h2 className="font-semibold text-base md:text-2xl text-primary-600">
+      <h2 className="font-[500px] text-base text-[24px] leading-8 text-primary-600">
         {name}
       </h2>
       <div className="center gap-1 md:gap-2">
@@ -39,7 +39,7 @@ const ReviewCard = ({ img, name, star, desc }) => {
           );
         })}
       </div>
-      <p className="leading-7 text-center text-xs md:text-base px-8">
+      <p className="leading-[26px] text-[16px] text-center font-normal md:text-base px-8">
         {desc ||
           "Actryca sayesinde yeteneklerimi sergileme ve doğru projelerde yer alma şansı yakaladım. Kariyerim için harika bir platform!"}
       </p>

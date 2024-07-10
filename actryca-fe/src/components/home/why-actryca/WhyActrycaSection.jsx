@@ -6,12 +6,12 @@ import { Drama, Globe, Trophy, UsersRound } from "lucide-react";
 
 const WhyActrycaSection = () => {
   return (
-    <Box sx={{ position: "relative",width: "100vw", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: "64px" }}>
+    <Box sx={{ position: "relative", width: "100vw", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: "64px" }}>
 
       <Typography
         variant="h1"
-        className="font-dm-serif-text text-[44px] md:text-5xl font-[400px] leading-6"
-        sx={{color: "primary.main"}}
+        className="font-bold"
+        sx={{ color: "primary.darkest", fontSize: "44px", fontFamily: "DM Serif Text", lineHeight: "32px", fontWeight: 400 }}
       >
         Neden Actryca?
       </Typography>
@@ -59,7 +59,7 @@ const WhyActrycaSection = () => {
           border: "1px solid #primary.main",
           gap: "10px",
           flexShrink: "0px",
-          mt: "94px",
+          mt: "64px",
           mb: "105px"
         }}>
         <Typography
@@ -72,8 +72,8 @@ const WhyActrycaSection = () => {
             lineHeight: "16px",
             textTransform: "capitalize",
           }}>
-          Bizimle Çalışmak İster 
-          <span className="lowercase"> misiniz?</span> 
+          Bizimle Çalışmak İster
+          <span className="lowercase"> misiniz?</span>
         </Typography>
       </Button>
 

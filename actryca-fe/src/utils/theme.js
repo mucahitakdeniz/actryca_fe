@@ -1,7 +1,7 @@
-// utils/theme.js
+
 "use client";
 import { createTheme } from "@mui/material/styles";
-import { DM_Sans } from "next/font/google";
+import { DM_Sans, DM_Serif_Text } from "next/font/google";
 
 const dmSans = DM_Sans({
   weight: [
@@ -21,9 +21,22 @@ const dmSans = DM_Sans({
   display: "swap",
 });
 
+const dmSerifText = DM_Serif_Text({
+  weight: [
+    "400",
+  ],
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
+
 export const theme = createTheme({
   typography: {
     fontFamily: `${dmSans.style.fontFamily}, sans-serif`,
+    button: {
+      textTransform: "capitalize",
+    },
+    fontFamily2: `${dmSerifText.style.fontFamily}, sans-serif`,
     button: {
       textTransform: "capitalize",
     },
@@ -34,6 +47,7 @@ export const theme = createTheme({
       main: "#513F75",
       dark: "#322748",
       contrastText: "#fff",
+      darkest: "#231b32"
     },
     secondary: {
       light: "#ff7961",

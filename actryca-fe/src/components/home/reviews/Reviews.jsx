@@ -5,13 +5,13 @@ import { Grid, Typography } from "@mui/material";
 
 const Reviews = () => {
   return (
-    <section className="center-col gap-8 relative h-[1300px] lg:h-[800px] ">
+    <section className="center-col gap-16 relative h-[1300px] lg:h-[800px] ">
       <div>
         <Typography
           variant="h1"
           className="font-dm-serif-text text-2xl md:text-5xl font-bold text-center"
           sx={{
-            color: "primary.main",
+            color: "primary.darkest",
           }}
         >
           Görüşler ve Deneyimler

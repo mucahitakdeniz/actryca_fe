@@ -33,7 +33,7 @@ const Section3 = () => {
           <Link href="/login">
             <Typography
               color="primary.dark"
-              className="border p-3 rounded-lg hover:bg-primary-50 transition-all"
+              className="p-3 rounded-lg font-bold hover:bg-primary-50 transition-all"
             >
               Giriş Yap
             </Typography>
@@ -50,6 +50,8 @@ const Section3 = () => {
               textTransform: "none",
               color: "white",
               gap: "10px",
+              fontWeight: "bold",
+
             }}
           >
             Üye Ol
