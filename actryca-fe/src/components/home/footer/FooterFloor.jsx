@@ -13,7 +13,7 @@ const FooterFloor = () => {
           </Typography>
           <span className="bg-primary-600 w-10 h-[1px]"></span>
         </div>
-        <p className="leading-7 w-[555px]">
+        <p className="leading-7 w-[555px] text-primary-900">
           Actryca ailesine katılın! Yetenekli ve yaratıcı bir ekiple çalışarak
           kariyerinizi geliştirin. Tutkulu, yenilikçi ve motivasyonluysanız,
           sizinle tanışmak isteriz.
@@ -24,7 +24,7 @@ const FooterFloor = () => {
       </div>
       <div className="flex flex-col gap-6">
         <div className="flex flex-col">
-          <h2 className="text-xl font-semibold">Bizi Takip Edin</h2>
+          <h2 className="text-xl font-semibold text-primary-900">Bizi Takip Edin</h2>
           <span className="bg-primary-600 w-10 h-[1px]"></span>
         </div>
         <div className="flex gap-3">
@@ -69,7 +69,7 @@ const FooterFloor = () => {
             />
           </Link>
         </div>
-        <span className="text-sm">© 2024 Actryca. Tüm hakları saklıdır.</span>
+        <span className="text-sm text-primary-900">© 2024 Actryca. Tüm hakları saklıdır.</span>
       </div>
     </div>
   );

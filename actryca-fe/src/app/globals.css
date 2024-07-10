@@ -27,3 +27,8 @@ body {
 .center-col {
   @apply flex flex-col justify-center items-center;
 }
+
+.underline-offset {
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
