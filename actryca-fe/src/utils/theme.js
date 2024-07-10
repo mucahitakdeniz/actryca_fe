@@ -1,3 +1,4 @@
+// utils/theme.js
 "use client";
 import { createTheme } from "@mui/material/styles";
 import { DM_Sans } from "next/font/google";
@@ -21,6 +22,12 @@ const dmSans = DM_Sans({
 });
 
 export const theme = createTheme({
+  typography: {
+    fontFamily: `${dmSans.style.fontFamily}, sans-serif`,
+    button: {
+      textTransform: "capitalize",
+    },
+  },
   palette: {
     primary: {
       light: "#614B8B",
@@ -34,15 +41,12 @@ export const theme = createTheme({
       dark: "#ba000d",
       contrastText: "#000",
     },
-    typography: {
-      fontFamily: "DM Sans, sans-serif",
-    },
-    components: {
-      MuiButton: {
-        styleOverrides: {
-          root: {
-            borderRadius: 8,
-          },
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: 8,
         },
       },
     },
