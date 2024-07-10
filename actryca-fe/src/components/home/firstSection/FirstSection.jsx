@@ -44,9 +44,10 @@ const FirstSection = () => {
               sx={{
                 color: "primary.dark",
                 fontFamily: "DM Serif Text",
-                fontSize: { xs: 32, lg: 88 },
-                fontWeight: 400,
-                lineHeight: { xs: "40px", lg: "78px" },
+                fontSize: { xs: "44px", lg: "88px" },
+                fontWeight: "normal",
+                fontStyle: "normal",
+                lineHeight: { xs: "40px", lg: "79.2px" },
                 letterSpacing: "1.76px",
               }}
             >
@@ -54,10 +55,10 @@ const FirstSection = () => {
             </Typography>
             <Typography
               sx={{
-                color: "primary.dark",
-                fontFamily:"DM Sans",
+                color: "primary.darkest",
+                fontFamily: "DM Sans",
                 fontSize: "18px",
-                fontWeight: 500,
+                fontWeight: "500px",
                 lineHeight: "28px",
               }}
             >
@@ -73,12 +74,27 @@ const FirstSection = () => {
               variant="contained"
               sx={{
                 display: "flex",
-                alignItems: "center",
+                height: "48px",
+                padding: "16px 24px",
                 justifyContent: "center",
-                fontWeight: "bold",
+                alignItems: "center",
+                gap: "10px",
+                borderRadius: "8px",
+                border: "1px solid var(--Primary-600, #513F75)",
+                background: "var(--Primary-600, #513F75)",
               }}
             >
-              Profil Oluştur
+              <Typography
+                sx={{
+                  color: "var(--Primary-100, #FFFFFF)",
+                  fontFamily: "typography.fontFamily",
+                  fontSize: "16px",
+                  fontWeight: "bold",
+                  lineHeight: "16px",
+                }}>
+                Profil Oluştur
+              </Typography>
+
 
             </Button>
             <Button
@@ -86,14 +102,30 @@ const FirstSection = () => {
               variant="outlined"
               sx={{
                 display: "flex",
+                alignItems: "flex-start",
+                height: "48px",
+                padding: "16px 24px",
+                justifyContent: "center",
                 alignItems: "center",
-                fontWeight: "bold",
+                gap: "10px",
+                borderRadius: "8px",
               }}
             >
+              <Typography
+              sx={{
+                color: "primary.darkest",
+                fontFamily:" typography.fontFamily",
+                fontSize: "16px",
+                fontStyle: "normal",
+                fontWeight: "bold",
+                lineHeight: "16px"
+              }}>
+                Actryca Menajeriniz Olsun
+              </Typography>
 
-              Actryca Menajeriniz Olsun
 
-            
+
+
             </Button>
           </Box>
         </Box>

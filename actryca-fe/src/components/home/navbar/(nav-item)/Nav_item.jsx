@@ -59,14 +59,15 @@ const NavItem = () => {
                 alignItems: 'center',
                 borderRadius: '4px',
                 fontSize: '16px',
-                fontWeight: 500,
+                fontWeight: "500px",
                 textTransform: 'none',
-                color: 'var(--Primary-900, #614B8B)',
+                color: 'var(--Primary-900, #231b32)',
                 position: 'relative',
                 padding: '5px 0',
                 fontFamily: "DM Sans",
                 lineHeight: '150%',
                 letterSpacing: '0.32px',
+                textAlign: "right"
               }}
             >
               {itemName}
@@ -131,7 +132,7 @@ const NavItem = () => {
                       fontFamily: "DM Sans",
                       fontSize: '14px',
                       fontStyle: 'normal',
-                      fontWeight: '500',
+                      fontWeight: '500px',
                       lineHeight: 'normal',
                     }}
                   >

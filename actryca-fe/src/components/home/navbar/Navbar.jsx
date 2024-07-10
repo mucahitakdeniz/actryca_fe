@@ -50,10 +50,8 @@ export default function Example() {
         className="padding flex-row justify-between items-center py-4 bg-white static shadow-none"
       >
         <Logo />
-
         <Nav_item />
         <Section3 />
-
         <IconButton
           color="inherit"
           aria-label="open drawer"

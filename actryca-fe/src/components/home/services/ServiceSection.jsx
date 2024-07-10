@@ -8,15 +8,15 @@ const ServiceSection = () => {
       <Box className="background h-[320px] pt-12 padding">
         <Typography
           variant="h1"
-          className="text-center font-dm-serif-text text-base lg:text-5xl font-bold"
-          sx={{ color: "primary.main" }}
+          className="text-center font-dm-serif-text font-bold"
+          sx={{ color: "primary.darkest", fontSize:"44px",  lineHeight: "32px" }}
         >
           Hizmetlerimiz
         </Typography>
         <Typography
           variant="h6"
-          className="text-center text-xs lg:text-base mt-4"
-          sx={{ color: "primary.main" }}
+          className="text-center  "
+          sx={{ color: "primary.darkest", fontSize:"20px", fontWeight: "500px", lineHeight: "normal", mt: "23px" }}
         >
           Actryca olarak sunduğumuz hizmetler ile kariyerinize yön verin.
         </Typography>
