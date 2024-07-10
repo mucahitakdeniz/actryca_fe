@@ -2,7 +2,7 @@ import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/home/footer/Footer";
 import Navbar from "@/components/home/navbar/Navbar";
-import { ThemeProvider } from "@mui/material";
+import { CssBaseline, ThemeProvider } from "@mui/material";
 import { theme } from "@/utils/theme";
 
 const dmSans = DM_Sans({
@@ -30,9 +30,10 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={dmSans.className}>
+    <html lang="en">
       <body>
         <ThemeProvider theme={theme}>
+          <CssBaseline />
           <Navbar />
           {children}
           <Footer />

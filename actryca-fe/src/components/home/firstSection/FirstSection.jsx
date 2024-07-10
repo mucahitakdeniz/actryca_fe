@@ -53,10 +53,9 @@ const FirstSection = () => {
               Yeteneklerinizi Sergileyin
             </Typography>
             <Typography
-              variant="body1"
               sx={{
-                color: "primary.main",
-                fontFamily: "DM Serif Text",
+                color: "primary.dark",
+                fontFamily:"DM Sans",
                 fontSize: "18px",
                 fontWeight: 500,
                 lineHeight: "28px",
@@ -73,50 +72,28 @@ const FirstSection = () => {
               href="#"
               variant="contained"
               sx={{
-                borderRadius: 1,
-                backgroundColor: "primary.main",
-                px: "24px",
-                py: "14px",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                gap: "10px",
+                fontWeight: "bold",
               }}
             >
-              <Typography
-                variant="button"
-                sx={{
-                  color: "white",
-                  fontWeight: "700px",
-                  fontSize: "16px",
-                  fontStyle: "normal",
-                  lineHeight: "16px",
-                  fontFamily: "DM Sans-serif",
-                  textTransform: 'capitalize',
-                }}
-              >
-                Profil Oluştur
-              </Typography>
+              Profil Oluştur
+
             </Button>
             <Button
               href="#"
               variant="outlined"
               sx={{
-                borderRadius: 1,
-                borderColor: "primary.main",
-                px: 3,
-                py: 1,
                 display: "flex",
                 alignItems: "center",
-                gap: 1,
+                fontWeight: "bold",
               }}
             >
-              <Typography
-                variant="button"
-                sx={{ color: "#231b32", fontSize: "16px", fontWeight: "700px", textTransform: 'capitalize', }}
-              >
-                Actryca Menajeriniz Olsun
-              </Typography>
+
+              Actryca Menajeriniz Olsun
+
+            
             </Button>
           </Box>
         </Box>

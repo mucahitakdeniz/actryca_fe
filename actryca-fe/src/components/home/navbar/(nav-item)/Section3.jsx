@@ -1,6 +1,14 @@
-import React, { useState } from 'react';
-import { Box, Button, Modal, TextField, Typography, useMediaQuery } from '@mui/material';
-import { Search } from 'lucide-react';
+import React, { useState } from "react";
+import {
+  Box,
+  Button,
+  Modal,
+  TextField,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
+import { Search } from "lucide-react";
+import Link from "next/link";
 
 const Section3 = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -13,39 +21,34 @@ const Section3 = () => {
     setIsModalOpen(false);
   };
 
-  const isMobile = useMediaQuery((theme) => theme.breakpoints.down('sm'));
+  const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
 
   return (
     !isMobile && (
       <Box display="flex" alignItems="center" gap={2}>
-        <Box onClick={handleSearchClick} sx={{ cursor: 'pointer' }}>
+        <Box onClick={handleSearchClick} sx={{ cursor: "pointer" }}>
           <Search width={20} height={20} strokeWidth={1.5} color="#231b32" />
         </Box>
         <Box display="flex" alignItems="center" gap={2}>
-          <Button
-            color="primary"
-            sx={{
-              height: '3rem',
-              px: 2,
-              py: 1,
-              borderRadius: '8px',
-              textTransform: 'none',
-              fontWeight: 'bold',
-            }}
-          >
-            Giriş Yap
-          </Button>
+          <Link href="/login">
+            <Typography
+              color="primary.dark"
+              className="border p-3 rounded-lg hover:bg-primary-50 transition-all"
+            >
+              Giriş Yap
+            </Typography>
+          </Link>
           <Button
             variant="contained"
             color="primary"
             sx={{
-              display: 'flex',
-              height: '3rem',
+              display: "flex",
+              height: "3rem",
               backgroundColor: "primary-900",
               padding: "16px 32px",
-              borderRadius: '8px',
-              textTransform: 'none',
-              color: 'white',
+              borderRadius: "8px",
+              textTransform: "none",
+              color: "white",
               gap: "10px",
             }}
           >
@@ -60,11 +63,11 @@ const Section3 = () => {
             alignItems="center"
             justifyContent="center"
             sx={{
-              position: 'fixed',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-              bgcolor: 'background.paper',
+              position: "fixed",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              bgcolor: "background.paper",
               p: 4,
               borderRadius: 1,
               boxShadow: 24,
@@ -83,7 +86,7 @@ const Section3 = () => {
               onClick={handleCloseModal}
               variant="contained"
               color="secondary"
-              sx={{ alignSelf: 'flex-end' }}
+              sx={{ alignSelf: "flex-end" }}
             >
               Kapat
             </Button>
