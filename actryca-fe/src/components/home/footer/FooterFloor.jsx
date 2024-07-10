@@ -22,8 +22,8 @@ const FooterFloor = () => {
           <Button variant="contained">BİZE KATILIN</Button>
         </div>
       </div>
-      <div className="flex flex-col gap-6">
-        <div className="flex flex-col">
+      <div className="flex flex-col justify-between items-start shrink-0 w-[239px] h-[204px]">
+        <div className="flex flex-col items-start ">
           <h2 className="text-xl font-semibold text-primary-900">Bizi Takip Edin</h2>
           <span className="bg-primary-600 w-10 h-[1px]"></span>
         </div>

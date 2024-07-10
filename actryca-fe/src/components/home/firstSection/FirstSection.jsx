@@ -36,6 +36,7 @@ const FirstSection = () => {
               flexDirection: "column",
               alignItems: "flex-start",
               gap: "32px",
+              width: "624px"
             }}
           >
             <Typography
@@ -78,6 +79,7 @@ const FirstSection = () => {
               }}
             >
               Profil Oluştur
+
             </Button>
             <Button
               href="#"
@@ -88,11 +90,13 @@ const FirstSection = () => {
                 fontWeight: "bold",
               }}
             >
+
               Actryca Menajeriniz Olsun
+
+            
             </Button>
           </Box>
         </Box>
-
 
         <Box
           sx={{
@@ -147,14 +151,16 @@ const FirstSection = () => {
           <Typography
             variant="body2"
             sx={{
-              color: "primary.main",
+              color: "var(--Primary-900, #231B32)",
+              fontFamily: "DM Sans",
               fontSize: "16px",
-              fontWeight: 500,
-              lineHeight: "24px",
-              fontFamily: "DM Serif Text",
+              fontStyle: "normal",
+              fontWeight: 700,
+              lineHeight: "24px"
             }}
           >
-            100.000+ yetenekli oyuncu ve yazar bize katıldı.
+            100.000+ <span class="text-[#231B32] font-dm-sans text-[16px] font-normal font-semibold leading-[24px]">yetenekli oyuncu ve yazar bize katıldı.</span>
+
           </Typography>
         </Box>
       </Box>
