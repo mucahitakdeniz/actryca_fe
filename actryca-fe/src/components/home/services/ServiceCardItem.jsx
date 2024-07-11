@@ -23,8 +23,8 @@ const ServiceCardItem = ({
       <CardContent className="h-full flex flex-col justify-between">
         <Typography
           variant="h4"
-          className="font-dm-serif-text text-2xl font-bold"
-          sx={{ color: "primary.main" }}
+          className="font-dm-serif-text text-[32px] font-normal"
+          sx={{ color: "primary.darkest" }}
         >
           {title}
         </Typography>
@@ -65,9 +65,9 @@ const ServiceCardItem = ({
         </Box>
 
         <CardActions>
-          <Button size="small" variant="contained" sx={{ background: "primary.light", padding: "16px 24px" }}>
-            <Typography variant="h6" className="text-sm"
-            sx={{ color: "white", fontFamily: "typography.fontFamily", fontSize: "16px", fontStyle: "normal", fontWeight: "bold",lineHeight: "16px", textTransform: "capitalize" }}>
+          <Button size="small" variant="contained" sx={{ background: "primary.main", padding: "16px 24px" }}>
+            <Typography variant="h6" 
+            sx={{ color: "white", fontFamily: "typography.fontFamily ", fontSize: "16px", fontStyle: "normal", fontWeight: "bold",lineHeight: "16px", textTransform: "capitalize" }}>
               {btnText}
             </Typography>
 

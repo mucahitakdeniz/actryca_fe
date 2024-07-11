@@ -33,6 +33,7 @@ const Section3 = () => {
           <Button>
             <Link href="/login">Giriş Yap</Link>
           </Button>
+
           <Button
             variant="contained"
             color="primary"
@@ -43,6 +44,8 @@ const Section3 = () => {
               textTransform: "none",
               color: "white",
               gap: "10px",
+              fontWeight: "bold",
+
             }}
           >
             Üye Ol

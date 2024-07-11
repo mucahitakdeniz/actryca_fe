@@ -7,7 +7,7 @@ const WhyActrycaCardItem = ({ icon: Icon, title, desc }) => {
       sx={{ display: "flex", width: "294px", flexDirection: "column", alignItems: "flex-start", gap: "32px", padding: "36px 24px" }}
       className="rounded-2xl border p-4 hover:shadow-md hover:scale-[1.01] transition-all"
     >
-      <Icon className="text-primary-600" size={36} strokeWidth={1.5} />
+      <Icon className="text-primary-600" size={44} strokeWidth={1} width={44} height={44} />
       <Box
         sx={{
           display: "flex",
@@ -21,7 +21,7 @@ const WhyActrycaCardItem = ({ icon: Icon, title, desc }) => {
           variant="h4"
           className="title"
           sx={{
-            color: "primary.main",
+            color: "primary.darkest",
             fontSize: "22px",
             fontWeight: "bold",
             fontStyle: "normal",
@@ -32,6 +32,7 @@ const WhyActrycaCardItem = ({ icon: Icon, title, desc }) => {
           {title}
         </Typography>
         <Typography variant="subtitle1" sx={{ color: "primary.dark", fontFamily: "typography.fontFamily", lineHeight: "24px" }}>
+
           {desc}
         </Typography>
       </Box>

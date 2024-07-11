@@ -56,6 +56,7 @@ const NavItem = () => {
               onClick={handleClick}
               endIcon={<ChevronDown size={20} strokeWidth={1.5} />}
               className="flex items-center rounded-md  text-primary-500"
+
             >
               {item.name}
             </Button>
@@ -85,6 +86,7 @@ const NavItem = () => {
                   <a
                     href={child.href}
                     className="flex flex-row items-start gap-[10px]  text-sm text-primary-900 "
+
                   >
                     {child.name}
                     <Image

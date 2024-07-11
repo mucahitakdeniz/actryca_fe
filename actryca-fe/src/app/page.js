@@ -7,7 +7,7 @@ import WhyActrycaSection from "@/components/home/why-actryca/WhyActrycaSection";
 
 export default function Home() {
   return (
-    <div className="">
+    <div className="flex flex-col gap-32">
       <FirstSection />
       <WhyActrycaSection />
       <ServiceSection />
