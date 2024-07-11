@@ -35,7 +35,7 @@ const PopularArtists = () => {
     <section className="padding center-col gap-8 relative h-[1000px] lg:h-[700px]">
       <Typography
         variant="h1"
-        className="font-dm-serif-text text-[44px] font-[400px] text-center"
+        className="font-dm-serif-text text-[44px] font-bold text-center"
         sx={{
           color: "primary.main",
         }}

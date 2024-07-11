@@ -30,22 +30,15 @@ const Section3 = () => {
           <Search width={20} height={20} strokeWidth={1.5} color="#231b32" />
         </Box>
         <Box display="flex" alignItems="center" gap={2}>
-          <Link href="/login">
-            <Typography
-              color="primary.dark"
-              className="border p-3 rounded-lg hover:bg-primary-50 transition-all"
-            >
-              Giriş Yap
-            </Typography>
-          </Link>
+          <Button>
+            <Link href="/login">Giriş Yap</Link>
+          </Button>
           <Button
             variant="contained"
             color="primary"
             sx={{
               display: "flex",
-              height: "3rem",
               backgroundColor: "primary-900",
-              padding: "16px 32px",
               borderRadius: "8px",
               textTransform: "none",
               color: "white",

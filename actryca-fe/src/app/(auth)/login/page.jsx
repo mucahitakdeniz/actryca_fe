@@ -1,8 +1,6 @@
 "use client";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -23,9 +21,9 @@ export default function Page() {
     <Grid
       container
       component="main"
-      className="h-screen background px-32 center mb-24"
+      className=" background px-32 center mb-24"
     >
-      <Grid item xs={false} sm={4} md={7} className="py-12 h-full ">
+      <Grid item xs={false} sm={4} md={7} className="py-12 h-full">
         <Box className="flex justify-center">
           <Image src="/images/woman-in-shape.png" width={500} height={500} />
         </Box>
@@ -57,7 +55,6 @@ export default function Page() {
                 name="email"
                 autoComplete="email"
                 autoFocus
-                className="bg-white"
               />
             </Box>
 
@@ -75,7 +72,6 @@ export default function Page() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
-                className="bg-white"
               />
             </Box>
 
@@ -103,19 +99,19 @@ export default function Page() {
               <Box flex="1" height="1px" bgcolor="info.main" ml={2} />
             </Box>
             <Box className="center !justify-between mt-4">
-              <Link href="#">
+              <Link href="#" className="hover:scale-[1.05] transition-all">
                 <Image src="/images/facebook2.png" width={40} height={40} />
               </Link>
-              <Link href="#">
+              <Link href="#" className="hover:scale-[1.05] transition-all">
                 <Image src="/images/google.png" width={40} height={40} />
               </Link>
-              <Link href="#">
+              <Link href="#" className="hover:scale-[1.05] transition-all">
                 <Image src="/images/apple.png" width={40} height={40} />
               </Link>
             </Box>
             <Typography color="primary.dark" className="flex mt-8">
               Hesabım Yok.{" "}
-              <Link color="primary" className="cursor-pointer ml-1">
+              <Link href="/register" color="primary" className="cursor-pointer ml-1">
                 Üye Ol!
               </Link>
             </Typography>

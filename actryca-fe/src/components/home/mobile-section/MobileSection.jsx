@@ -10,20 +10,22 @@ const MobileSection = () => {
           <div className="flex flex-col">
             <Typography
               variant="h2"
-              sx={{color: "primary.main", fontFamily: "typography.fontFamily", fontSize: "44px", fontWeight: "400", lineHeight: "32px"}}
+              sx={{ color: "primary.main", lineHeight: "32px" }}
+              className="font-dm-serif-text font-bold"
             >
               Sanat ve İşbirliği Cebinizde
             </Typography>
           </div>
-          <Typography variant="inherit" className="leading-7 text-sm font-[500px] lg:text-base w-8/12">
-            Actryca mobil uygulamasıyla kariyerini her yerden yönetip projeleri takip edebilir ve fırsatları kaçırmaz.
+          <Typography
+            variant="inherit"
+            className="leading-7 text-sm font-[500px] lg:text-base w-8/12"
+          >
+            Actryca mobil uygulamasıyla kariyerini her yerden yönetip projeleri
+            takip edebilir ve fırsatları kaçırmaz.
           </Typography>
           <div className="flex mt-10">
-            <Button variant="contained" size="large" sx={{padding: "16px 24px", borderRadius: "8px", backgroundColor: "primary.light"}}>
-            <Typography sx={{fontFamily: "typography.fontFamily", fontSize: "16px", fontWeight: "700", lineHeight: "16px", textTransform: "capitalize"}}>
-            UYGULAMAYI İNDİR
-            </Typography>
-              
+            <Button variant="contained" size="large">
+              uygulamayı İndir
             </Button>
           </div>
         </div>

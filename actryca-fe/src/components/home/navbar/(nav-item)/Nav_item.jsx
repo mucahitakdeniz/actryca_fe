@@ -33,7 +33,7 @@ const NavItem = () => {
   return (
     <Stack
       sx={{
-        display: { xs: 'none', sm: 'flex' }, // Hide on mobile (xs), show on larger screens
+        display: { xs: 'none', sm: 'flex' },
         gap: '32px',
         alignItems: 'center',
         flexDirection: 'row',
@@ -48,7 +48,7 @@ const NavItem = () => {
               aria-expanded={anchorEl ? 'true' : undefined}
               onClick={handleClick}
               endIcon={<ChevronDown size={20} strokeWidth={1.5} />}
-              className="flex items-center rounded-md px-3 py-2 text-sm  text-primary-500"
+              className="flex items-center rounded-md  text-primary-500"
             >
               {item.name}
             </Button>
@@ -61,7 +61,7 @@ const NavItem = () => {
               PaperProps={{
                 style: {
                   display: 'inline-flex',
-                  padding: '24px',
+                  padding: '12px',
                   flexDirection: 'column',
                   alignItems: 'flex-start',
                   gap: '10px',
@@ -73,10 +73,10 @@ const NavItem = () => {
             >
               {item.children.map((child) => (
                 <MenuItem key={child.name} onClick={handleClose}
-                sx={{display: 'flex', flexDirection: 'column', alignItems: "flex-start", gap: '8px'}}>
+                className='center hover:bg-primary-50 rounded-lg'>
                   <a
                     href={child.href}
-                    className="flex flex-row items-start gap-[10px]  text-sm text-primary-900"
+                    className="flex flex-row items-start gap-[10px]  text-sm text-primary-900 "
                   >
                     {child.name}
                     <Image
@@ -103,7 +103,7 @@ const NavItem = () => {
               display: 'inline-block',
               textDecoration: 'none',
               color: item.current ? 'var(--Primary-900, #614B8B)' : 'var(--Primary-500, #614B8B)',
-              fontFamily: 'dm-sans',
+
               fontSize: '16px',
               fontStyle: 'normal',
               fontWeight: '700',
