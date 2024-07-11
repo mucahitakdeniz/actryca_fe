@@ -55,12 +55,36 @@ export const theme = createTheme({
       dark: "#ba000d",
       contrastText: "#000",
     },
+    info: {
+      light: "#dededf",
+      main: "#a4a5a8",
+      dark: "#656568",
+      contrastText: "#000",
+    },
   },
   components: {
     MuiButton: {
       styleOverrides: {
         root: {
           borderRadius: 8,
+          fontWeight: "bold",
+        },
+      },
+    },
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          height: 48,
+          marginTop: "4px",
+          "& .MuiInputBase-root": {
+            height: "100%",
+            padding: "10px 12px",
+            borderRadius: 8,
+            backgroundColor: "white",
+          },
+          "& .MuiOutlinedInput-notchedOutline": {
+            borderColor: "#E3DAF3",
+          },
         },
       },
     },

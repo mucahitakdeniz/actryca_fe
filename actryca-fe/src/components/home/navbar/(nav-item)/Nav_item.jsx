@@ -34,6 +34,7 @@ const NavItem = () => {
     <Stack
       sx={{
         display: { xs: 'none', sm: 'flex' },
+        display: { xs: 'none', sm: 'flex' },
         gap: '32px',
         alignItems: 'center',
         flexDirection: 'row',
@@ -54,36 +55,10 @@ const NavItem = () => {
               aria-expanded={anchorEl ? 'true' : undefined}
               onClick={handleClick}
               endIcon={<ChevronDown size={20} strokeWidth={1.5} />}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                borderRadius: '4px',
-                fontSize: '16px',
-                fontWeight: "500px",
-                textTransform: 'none',
-                color: 'var(--Primary-900, #231b32)',
-                position: 'relative',
-                padding: '5px 0',
-                fontFamily: "DM Sans",
-                lineHeight: '150%',
-                letterSpacing: '0.32px',
-                textAlign: "right"
-              }}
+              className="flex items-center rounded-md  text-primary-500"
+
             >
-              {itemName}
-              <span
-                style={{
-                  content: '""',
-                  position: 'absolute',
-                  bottom: '0',
-                  width: '120%',
-                  height: '2px',
-                  backgroundColor: 'var(--Primary-500, #614B8B)',
-                  transform: hoveredItem === 'Sanatçılar' ? 'scaleX(1)' : 'scaleX(0)',
-                  transformOrigin: 'left',
-                  transition: 'transform 0.3s ease-in-out',
-                }}
-              />
+              {item.name}
             </Button>
             <Menu
               id="menu-list"
@@ -92,8 +67,8 @@ const NavItem = () => {
               onClose={handleClose}
               PaperProps={{
                 style: {
-                  display: 'flex',
-                  padding: '24px',
+                  display: 'inline-flex',
+                  padding: '12px',
                   flexDirection: 'column',
                   alignItems: 'flex-start',
                   gap: '10px',
@@ -106,37 +81,13 @@ const NavItem = () => {
               }}
             >
               {item.children.map((child) => (
-                <Stack key={child.name} sx={{display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "8px"}}>
-                <MenuItem
-                  onClick={handleClose}
-                  onMouseEnter={() => setHoveredItem(child.name)}
-                  onMouseLeave={() => setHoveredItem('Sanatçılar')}
-                  style={{
-                    display: 'flex',
-                    padding: "12px 16px",
-                    alignItems: 'center',
-                    gap: '32px',
-                    backgroundColor: hoveredItem === child.name ? '#f0f0f0' : 'transparent',
-                    borderRadius: '8px',
-                  }}
-                >
+                <MenuItem key={child.name} onClick={handleClose}
+                className='center hover:bg-primary-50 rounded-lg'>
                   <a
                     href={child.href}
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'row',
-                      alignItems: 'start',
-                      gap: '10px',
-                      color: '#000',
-                      textDecoration: 'none',
-                      fontFamily: "DM Sans",
-                      fontSize: '14px',
-                      fontStyle: 'normal',
-                      fontWeight: '500px',
-                      lineHeight: 'normal',
-                    }}
+                    className="flex flex-row items-start gap-[10px]  text-sm text-primary-900 "
+
                   >
-                    {child.name === 'Senaristler' ? <Icon1 /> : <Icon2 />}
                     {child.name}
                     <Image
                       src="/images/dropdownsvg/arrow.svg"
@@ -161,8 +112,8 @@ const NavItem = () => {
               position: 'relative',
               display: 'inline-block',
               textDecoration: 'none',
-              color: 'var(--Primary-900, #231B32)',
-              fontFamily: "DM Sans",
+              color: item.current ? 'var(--Primary-900, #614B8B)' : 'var(--Primary-500, #614B8B)',
+
               fontSize: '16px',
               fontStyle: 'normal',
               fontWeight: '500',
