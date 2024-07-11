@@ -1,47 +1,54 @@
-import React from 'react'
-import Menu from '@mui/material/Menu'
-import MenuItem from '@mui/material/MenuItem'
-import Button from '@mui/material/Button'
-import { ChevronDown } from 'lucide-react'
-import { Stack, useMediaQuery } from '@mui/material'
-import navigation from '@/components/home/navbar/(nav-item)/navigation'
-import Image from 'next/image'
+import React from 'react';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import Button from '@mui/material/Button';
+import { ChevronDown } from 'lucide-react';
+import { Stack, useMediaQuery } from '@mui/material';
+import navigation from '@/components/home/navbar/(nav-item)/navigation';
+import Image from 'next/image';
+import { Icon1, Icon2 } from './Icons';
 
 const NavItem = () => {
-  const [anchorEl, setAnchorEl] = React.useState(null)
-  const [hoveredItem, setHoveredItem] = React.useState(null)
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [hoveredItem, setHoveredItem] = React.useState('Anasayfa');
 
   const handleClick = (event) => {
-    setAnchorEl(event.currentTarget)
-  }
+    setAnchorEl(event.currentTarget);
+  };
 
   const handleClose = () => {
-    setAnchorEl(null)
-  }
+    setAnchorEl(null);
+  };
 
   const handleMouseEnter = (itemName) => {
-    setHoveredItem(itemName)
-  }
+    setHoveredItem(itemName);
+  };
 
   const handleMouseLeave = () => {
-    setHoveredItem(null)
-  }
+    setHoveredItem(null);
+  };
 
-  // Define the breakpoint for hiding the NavItem
-  const isMobile = useMediaQuery((theme) => theme.breakpoints.down('sm'))
+  const isMobile = useMediaQuery((theme) => theme.breakpoints.down('sm'));
 
   return (
     <Stack
       sx={{
+        display: { xs: 'none', sm: 'flex' },
         display: { xs: 'none', sm: 'flex' },
         gap: '32px',
         alignItems: 'center',
         flexDirection: 'row',
       }}
     >
-      {navigation.map((item) =>
-        item.children ? (
-          <Stack key={item.name} sx={{ position: 'relative' }}>
+      {navigation.map((item) => {
+        const itemName = item.name === 'Sanatçılar' ? 'Sanatçılar' : item.name;
+        return item.children ? (
+          <Stack 
+            key={item.name} 
+            sx={{ position: 'relative' }}
+            onMouseEnter={() => handleMouseEnter('Sanatçılar')}
+            onMouseLeave={handleMouseLeave}
+          >
             <Button
               aria-controls={anchorEl ? 'menu-list' : undefined}
               aria-haspopup="true"
@@ -57,7 +64,6 @@ const NavItem = () => {
               anchorEl={anchorEl}
               open={Boolean(anchorEl)}
               onClose={handleClose}
-              className="mt-2"
               PaperProps={{
                 style: {
                   display: 'inline-flex',
@@ -68,6 +74,8 @@ const NavItem = () => {
                   borderRadius: '16px',
                   background: '#FFF',
                   boxShadow: '0px 0px 11px 0px rgba(0, 0, 0, 0.10)',
+                  marginTop: '10px',
+                  marginLeft: '-60px', 
                 },
               }}
             >
@@ -87,6 +95,7 @@ const NavItem = () => {
                     />
                   </a>
                 </MenuItem>
+                </Stack>
               ))}
             </Menu>
           </Stack>
@@ -94,7 +103,6 @@ const NavItem = () => {
           <a
             key={item.name}
             href={item.href}
-            className={`nav-item ${item.current ? 'current' : ''}`}
             aria-current={item.current ? 'page' : undefined}
             onMouseEnter={() => handleMouseEnter(item.name)}
             onMouseLeave={handleMouseLeave}
@@ -106,19 +114,31 @@ const NavItem = () => {
 
               fontSize: '16px',
               fontStyle: 'normal',
-              fontWeight: '700',
+              fontWeight: '500',
               lineHeight: '150%',
-              letterSpacing: '0.32px',
-              borderBottom: (item.current || hoveredItem === item.name) ? '2px solid var(--Primary-500, #614B8B)' : 'none',
+              padding: '5px 0',
             }}
           >
-            {item.name}
-           
+            {itemName}
+            <span
+              style={{
+                content: '""',
+                position: 'absolute',
+                left: '-10px',
+                bottom: '0',
+                width: '120%',
+                height: '2px',
+                backgroundColor: 'var(--Primary-500, #614B8B)',
+                transform: (hoveredItem === item.name || item.name === 'Anasayfa') ? 'scaleX(1)' : 'scaleX(0)',
+                transformOrigin: 'left',
+                transition: 'transform 0.3s ease-in-out',
+              }}
+            />
           </a>
-        )
-      )}
+        );
+      })}
     </Stack>
-  )
-}
+  );
+};
 
-export default NavItem
+export default NavItem;

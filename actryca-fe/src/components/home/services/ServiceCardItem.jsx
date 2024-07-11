@@ -65,9 +65,9 @@ const ServiceCardItem = ({
         </Box>
 
         <CardActions>
-          <Button size="small" variant="contained" sx={{ background: "primary.light" }}>
+          <Button size="small" variant="contained" sx={{ background: "primary.light", padding: "16px 24px" }}>
             <Typography variant="h6" className="text-sm"
-            sx={{ color: "white", fontFamily: "typography.fontFamily", fontSize: "16px", fontStyle: "normal", fontWeight: "bold",lineHeight: "16px" }}>
+            sx={{ color: "white", fontFamily: "typography.fontFamily", fontSize: "16px", fontStyle: "normal", fontWeight: "bold",lineHeight: "16px", textTransform: "capitalize" }}>
               {btnText}
             </Typography>
 
