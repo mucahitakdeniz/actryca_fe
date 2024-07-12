@@ -6,16 +6,19 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
+  const router = useRouter();
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
+    //const data = new FormData(event.currentTarget);
+    /*     console.log({
       email: data.get("email"),
       password: data.get("password"),
       username: data.get("username"),
-    });
+    }); */
+    router.push("/user-register");
   };
 
   return (
@@ -99,6 +102,7 @@ export default function Page() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              onClick={handleSubmit}
             >
               üye ol
             </Button>

@@ -1,8 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Box } from "@mui/material";
-import Link from "next/link";
 
 const Logo = () => {
   return (
