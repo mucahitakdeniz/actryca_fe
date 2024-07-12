@@ -45,10 +45,9 @@ const Section3 = () => {
               color: "white",
               gap: "10px",
               fontWeight: "bold",
-
             }}
           >
-            Üye Ol
+            <Link href="/register">Üye Ol</Link>
           </Button>
         </Box>
 
