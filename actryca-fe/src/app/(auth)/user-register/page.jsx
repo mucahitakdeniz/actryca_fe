@@ -1,4 +1,4 @@
-import { Box, Button, Card, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import React from "react";
 import { Drama, Globe, Trophy, UsersRound,PenLine, Star } from "lucide-react";
 const Page = () => {
@@ -187,6 +187,7 @@ const Page = () => {
                    backgroundColor:"grey",
                  width:"400px" 
         }}  >devam et </Button>
+
       </Box>
     </Box>
   );
