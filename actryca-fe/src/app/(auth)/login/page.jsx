@@ -6,8 +6,21 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
+import { useState } from "react";
+import ForgetPasswordDialog from "@/components/forgetpassword/ForgetPasswordDialog";
+
 
 export default function Page() {
+  const [dialogOpen, setDialogOpen] = useState(false);
+
+  const handleDialogOpen = () => {
+    setDialogOpen(true);
+  };
+
+  const handleDialogClose = () => {
+    setDialogOpen(false);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -18,11 +31,7 @@ export default function Page() {
   };
 
   return (
-    <Grid
-      container
-      component="main"
-      className=" background px-32 center mb-24"
-    >
+    <Grid container component="main" className=" background px-32 center mb-24">
       <Grid item xs={false} sm={4} md={7} className="py-12 h-full">
         <Box className="flex justify-center">
           <Image src="/images/woman-in-shape.png" width={500} height={500} />
@@ -34,11 +43,8 @@ export default function Page() {
       </Grid>
 
       <Grid item xs={12} sm={8} md={5} className=" pr-24 pt-8 h-full ">
-        <Box className="">
-          <Typography
-            variant="h4"
-            className="font-dm-serif-text"
-          >
+        <Box>
+          <Typography variant="h4" className="font-dm-serif-text">
             Tekrar Hoşgeldiniz!
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit}>
@@ -75,22 +81,13 @@ export default function Page() {
               />
             </Box>
 
-            <Button>
-              <Typography
-                variant="subtitle2"
-                color="primary.dark"
-                className="font-bold"
-              >
+            <Button onClick={handleDialogOpen}>
+              <Typography variant="subtitle2" color="primary.dark" className="font-bold">
                 Şifremi Unuttum!
               </Typography>
             </Button>
 
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
+            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
               giriş yap
             </Button>
             <Box display="flex" alignItems="center">
@@ -118,6 +115,8 @@ export default function Page() {
           </Box>
         </Box>
       </Grid>
+
+      <ForgetPasswordDialog open={dialogOpen} onClose={handleDialogClose} />
     </Grid>
   );
 }
