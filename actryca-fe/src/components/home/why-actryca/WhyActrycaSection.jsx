@@ -20,7 +20,7 @@ const WhyActrycaSection = () => {
       <Typography
         variant="h1"
         className="font-dm-serif-text text-[44px] md:text-5xl font-bold leading-6"
-        sx={{ color: "primary.main" }}
+        sx={{ color: "primary.darkest" }}
 
       >
         Neden Actryca?

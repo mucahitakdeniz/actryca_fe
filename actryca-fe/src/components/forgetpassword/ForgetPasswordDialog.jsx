@@ -66,7 +66,7 @@ export default function ForgetPasswordDialog({ open, onClose }) {
               required
               fullWidth
               id="email"
-              label="555 55 55 veya example@gmail.com"
+              label="Telefon ya da E-posta Giriniz"
               name="email"
               autoComplete="email"
               autoFocus
