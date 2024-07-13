@@ -63,7 +63,7 @@ const PopularArtists = () => {
         <Box sx={{ items: "left", display: "flex", flexDirection: "column", gap: "32px" }}>
           <Typography variant="h4" className="text-left text-xs lg:text-base"
             sx={{
-              color: "primary.dark",
+              color: "primary.darkest",
               fontFamily: "DM Sans",
               fontSize: "24px",
               fontStyle: "normal",
@@ -85,7 +85,7 @@ const PopularArtists = () => {
         <Box sx={{ items: "left", display: "flex", flexDirection: "column", gap: "32px" }}>
           <Typography variant="h4" className="text-left text-xs lg:text-base"
             sx={{
-              color: "primary.dark",
+              color: "primary.darkest",
               fontFamily: "DM Sans",
               fontSize: "24px",
               fontStyle: "normal",

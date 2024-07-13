@@ -16,11 +16,14 @@ const FooterForm = () => {
               "& .MuiOutlinedInput-root": {
                 borderTopRightRadius: 0,
                 borderBottomRightRadius: 0,
-                "& fieldset": {
-                  borderRight: "none",
-                },
+                borderTopLeftRadius: "8px",
+                borderBottomLeftRadius: "8px",
+                height: "48px",
               },
-              backgroundColor: "white",
+              "& .MuiOutlinedInput-notchedOutline": {
+                borderRight: "none",
+              },
+             
               width: "320px",
             }}
           />
@@ -30,6 +33,8 @@ const FooterForm = () => {
               borderTopLeftRadius: 0,
               borderBottomLeftRadius: 0,
               width: "110px",
+              height: "48px",
+              mt: "4px"
             }}
           >
             Gönder

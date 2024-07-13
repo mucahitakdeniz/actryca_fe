@@ -11,7 +11,7 @@ const MobileSection = () => {
             <Typography
               variant="h2"
 
-              sx={{ color: "primary.main", lineHeight: "32px" }}
+              sx={{ color: "primary.darkest", lineHeight: "32px" }}
               className="font-dm-serif-text font-bold"
 
             >
