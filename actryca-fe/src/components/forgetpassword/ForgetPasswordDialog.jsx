@@ -1,17 +1,16 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
-import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { Stack, TextField } from '@mui/material';
 import Image from 'next/image';
-import lock from './lock.svg';
-import close from "./close.svg";
+import lock from './svg/lock.svg';
+import close from "./svg/close.svg";
 
-export default function ForgetPasswordDialog({ open, onClose }) {
+export default function ForgetPasswordDialog({ open, onClose, onContinue }) {
   return (
     <Dialog
       onClose={onClose}
@@ -24,10 +23,12 @@ export default function ForgetPasswordDialog({ open, onClose }) {
           height: '768px',
           borderRadius: '16px',
           overflow: 'hidden',
+          padding: "12px",
+
         },
       }}
     >
-      <div className="w-full h-full bg-white relative border-red-800">
+      <div className="w-full h-full bg-white relative ">
         <IconButton
           aria-label="close"
           onClick={onClose}
@@ -35,7 +36,7 @@ export default function ForgetPasswordDialog({ open, onClose }) {
         >
           <Image src={close} alt="Close Icon" width={24} height={24} />
         </IconButton>
-        <DialogContent className="flex flex-col items-center gap-12 mt-[60px]">
+        <DialogContent className="flex flex-col w-[747px] items-center mx-auto gap-12 mt-[60px] ">
           <Stack className="flex flex-col items-center gap-8 w-full">
             <Image src={lock} alt="Lock Icon" width={100} height={100} />
           </Stack>
@@ -56,8 +57,8 @@ export default function ForgetPasswordDialog({ open, onClose }) {
             </Stack>
           </Stack>
         </DialogContent>
-        <DialogActions className="flex w-full justify-center items-center pb-[200px]">
-          <Stack className="flex flex-col items-start gap-[6px] w-full max-w-md pt-12">
+        <DialogActions className="flex w-full justify-center items-center">
+          <Stack className="flex flex-col items-start gap-[6px] w-full max-w-md">
             <Typography variant="subtitle2" className='text-primary-900 font-sans text-[14px] font-[500px] leading-6'>
               Telefon ya da E-posta*
             </Typography>
@@ -72,7 +73,13 @@ export default function ForgetPasswordDialog({ open, onClose }) {
               autoFocus
             />
             <Stack className='w-full pt-6'>
-              <Button autoFocus onClick={onClose} className="w-full h-12 rounded-lg bg-primary-600 text-white font-sans text-[14px] font-[500px] leading-6">
+              <Button onClick={onContinue}
+                className="w-full h-12 rounded-lg bg-primary-600 text-white font-sans text-[14px] font-[500px] leading-6"
+                sx={{
+                  '&:hover': {
+                    backgroundColor: 'primary.main',
+                  },
+                }}>
                 Devam Et
               </Button>
             </Stack>

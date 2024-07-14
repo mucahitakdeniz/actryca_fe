@@ -7,11 +7,12 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
 import { useState } from "react";
-import ForgetPasswordDialog from "@/components/forgetpassword/ForgetPasswordDialog";
-
+import ForgetPasswordDialog from "../../../components/forgetpassword/ForgetPasswordDialog";
+import VerificationCodeDialog from "../../../components/forgetpassword/VerificationCode";
 
 export default function Page() {
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [verificationDialogOpen, setVerificationDialogOpen] = useState(false);
 
   const handleDialogOpen = () => {
     setDialogOpen(true);
@@ -19,6 +20,17 @@ export default function Page() {
 
   const handleDialogClose = () => {
     setDialogOpen(false);
+    setVerificationDialogOpen(false);
+  };
+
+  const handleContinue = () => {
+    setDialogOpen(false);
+    setVerificationDialogOpen(true);
+  };
+
+  const handleBack = () => {
+    setDialogOpen(true);
+    setVerificationDialogOpen(false);
   };
 
   const handleSubmit = (event) => {
@@ -31,7 +43,7 @@ export default function Page() {
   };
 
   return (
-    <Grid container component="main" className=" background px-32 center mb-24">
+    <Grid container component="main" className="background px-32 center mb-24">
       <Grid item xs={false} sm={4} md={7} className="py-12 h-full">
         <Box className="flex justify-center">
           <Image src="/images/woman-in-shape.png" width={500} height={500} />
@@ -42,7 +54,7 @@ export default function Page() {
         </Typography>
       </Grid>
 
-      <Grid item xs={12} sm={8} md={5} className=" pr-24 pt-8 h-full ">
+      <Grid item xs={12} sm={8} md={5} className="pr-24 pt-8 h-full">
         <Box>
           <Typography variant="h4" className="font-dm-serif-text">
             Tekrar Hoşgeldiniz!
@@ -116,7 +128,8 @@ export default function Page() {
         </Box>
       </Grid>
 
-      <ForgetPasswordDialog open={dialogOpen} onClose={handleDialogClose} />
+      <ForgetPasswordDialog open={dialogOpen} onClose={handleDialogClose} onContinue={handleContinue} />
+      <VerificationCodeDialog open={verificationDialogOpen} onClose={handleDialogClose} onBack={handleBack} />
     </Grid>
   );
 }
