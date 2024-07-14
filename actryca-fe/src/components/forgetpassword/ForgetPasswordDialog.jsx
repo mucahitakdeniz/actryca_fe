@@ -43,7 +43,7 @@ export default function ForgetPasswordDialog({ open, onClose, onContinue }) {
           <Stack className="flex flex-col items-center gap-6 self-stretch">
             <Typography
               gutterBottom
-              className="color: #000 text-center font-dm-serif-text text-[30px] font-normal leading-9"
+              className="text-primary-900 text-center font-dm-serif-text text-[30px] font-normal leading-9"
             >
               Şifrenizi mi Unuttunuz?
             </Typography>

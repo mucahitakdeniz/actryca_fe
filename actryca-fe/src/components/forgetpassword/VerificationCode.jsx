@@ -10,7 +10,7 @@ import back from "./svg/back.svg";
 import letter1 from "./svg/letter1.svg";
 import letter2 from "./svg/letter2.svg";
 
-export default function VerificationCode({ open, onClose, onBack }) {
+export default function VerificationCode({ open, onClose, onBack, onContinue }) {
     const [code, setCode] = React.useState(["", "", "", ""]);
 
     const handleChange = (index) => (event) => {
@@ -71,16 +71,19 @@ export default function VerificationCode({ open, onClose, onBack }) {
                     <Stack className="flex flex-col items-center gap-6 self-stretch">
                         <Typography
                             gutterBottom
-                            className="color: #000 text-center font-dm-serif-text text-[30px] font-normal leading-9 font-normal"
+                            className="text-primary-900] text-center font-dm-serif-text text-[30px] font-bold leading-9"
                         >
                             Doğrulama Kodu
                         </Typography>
-                        <Typography className="text-primary-900 font-sans text-[18px] font-normal leading-[26px] text-center">
-                            Lütfen e-posta adresinize gönderilen <span className='text-primary-600'> doğrulama kodunu</span> girin.
-                        </Typography>
-                        <Typography className="text-primary-900 font-sans text-[16px] font-[500px] leading-6 text-center">
-                            Lütfen gelen kutunuzu kontrol edin ve kodu girin.
-                        </Typography>
+                        <Stack className='gap-2'>
+                            <Typography className="text-primary-900 font-sans text-[18px] font-[500px] leading-[26px] text-center">
+                                Lütfen e-posta adresinize gönderilen <span className='text-primary-600'> doğrulama kodunu</span> girin.
+                            </Typography>
+                            <Typography className="text-primary-900 font-sans text-[16px] font-[500px] leading-6 text-center">
+                                Lütfen gelen kutunuzu kontrol edin ve kodu girin.
+                            </Typography>
+                        </Stack>
+                        
                     </Stack>
                 </DialogContent>
                 <DialogActions className="flex flex-col w-full justify-center gap-6 items-center pb-[200px]">
@@ -101,7 +104,7 @@ export default function VerificationCode({ open, onClose, onBack }) {
                                         width: '60px',
                                         height: '60px',
                                         fontSize: '24px',
-                                        borderRadius: 0,
+                                        borderRadius: "8px",
                                         display: 'flex',
                                         alignItems: 'center',
                                         justifyContent: 'center',
@@ -112,7 +115,7 @@ export default function VerificationCode({ open, onClose, onBack }) {
                         ))}
                     </Stack>
                     <Stack className='flex flex-col items-center gap-6 self-stretch'>
-                        <Button onClick={onClose} className="h-12 w-[280px] rounded-lg bg-primary-600 text-white font-sans text-[14px] font-[500px] leading-6"
+                        <Button onClick={onContinue} className="h-12 w-[280px] rounded-lg bg-primary-600 text-white font-sans text-[14px] font-[500px] leading-6"
                             sx={{
                                 '&:hover': {
                                     backgroundColor: 'primary.main',
@@ -121,7 +124,7 @@ export default function VerificationCode({ open, onClose, onBack }) {
                             Doğrula
                         </Button>
                     </Stack>
-                    <Typography className='text-[#000] text-center font-sans text-[14px] font-normal leading-normal'>
+                    <Typography className='text-primary-900 text-center font-sans text-[14px] font-normal leading-normal'>
                         Doğrulama kodunu henüz almadınız mı?<span> </span>
                         <span className='text-primary-600 font-[500px] underline'>Tekrar Gönder</span>
                     </Typography>

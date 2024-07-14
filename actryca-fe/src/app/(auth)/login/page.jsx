@@ -9,10 +9,12 @@ import Image from "next/image";
 import { useState } from "react";
 import ForgetPasswordDialog from "../../../components/forgetpassword/ForgetPasswordDialog";
 import VerificationCodeDialog from "../../../components/forgetpassword/VerificationCode";
+import NewPasswordDialog from "../../../components/forgetpassword/NewPasswordDialog";
 
 export default function Page() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [verificationDialogOpen, setVerificationDialogOpen] = useState(false);
+  const [newPasswordDialogOpen, setNewPasswordDialogOpen] = useState(false);
 
   const handleDialogOpen = () => {
     setDialogOpen(true);
@@ -21,6 +23,7 @@ export default function Page() {
   const handleDialogClose = () => {
     setDialogOpen(false);
     setVerificationDialogOpen(false);
+    setNewPasswordDialogOpen(false);
   };
 
   const handleContinue = () => {
@@ -31,6 +34,17 @@ export default function Page() {
   const handleBack = () => {
     setDialogOpen(true);
     setVerificationDialogOpen(false);
+    setNewPasswordDialogOpen(false);
+  };
+
+  const handleVerificationContinue = () => {
+    setVerificationDialogOpen(false);
+    setNewPasswordDialogOpen(true);
+  };
+
+  const handleNewPasswordBack = () => {
+    setNewPasswordDialogOpen(false);
+    setVerificationDialogOpen(true);
   };
 
   const handleSubmit = (event) => {
@@ -129,7 +143,8 @@ export default function Page() {
       </Grid>
 
       <ForgetPasswordDialog open={dialogOpen} onClose={handleDialogClose} onContinue={handleContinue} />
-      <VerificationCodeDialog open={verificationDialogOpen} onClose={handleDialogClose} onBack={handleBack} />
+      <VerificationCodeDialog open={verificationDialogOpen} onClose={handleDialogClose} onBack={handleBack} onContinue={handleVerificationContinue} />
+      <NewPasswordDialog open={newPasswordDialogOpen} onClose={handleDialogClose} onBack={handleNewPasswordBack} onContinue={handleContinue} />
     </Grid>
   );
 }
