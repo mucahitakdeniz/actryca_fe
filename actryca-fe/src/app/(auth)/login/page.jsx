@@ -7,14 +7,16 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
 import { useState } from "react";
-import ForgetPasswordDialog from "../../../components/forgetpassword/ForgetPasswordDialog";
-import VerificationCodeDialog from "../../../components/forgetpassword/VerificationCode";
-import NewPasswordDialog from "../../../components/forgetpassword/NewPasswordDialog";
+import ForgetPasswordDialog from "../../../components/auth/forgetpassword/ForgetPasswordDialog";
+import VerificationCodeDialog from "../../../components/auth/forgetpassword/VerificationCode";
+import NewPasswordDialog from "../../../components/auth/forgetpassword/NewPasswordDialog";
+import UpdatedPasswordDialog from "../../../components/auth/forgetpassword/UpdatedPasswordDialog"; // import updated password dialog
 
 export default function Page() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [verificationDialogOpen, setVerificationDialogOpen] = useState(false);
   const [newPasswordDialogOpen, setNewPasswordDialogOpen] = useState(false);
+  const [updatedPasswordDialogOpen, setUpdatedPasswordDialogOpen] = useState(false);
 
   const handleDialogOpen = () => {
     setDialogOpen(true);
@@ -24,6 +26,7 @@ export default function Page() {
     setDialogOpen(false);
     setVerificationDialogOpen(false);
     setNewPasswordDialogOpen(false);
+    setUpdatedPasswordDialogOpen(false);
   };
 
   const handleContinue = () => {
@@ -35,6 +38,7 @@ export default function Page() {
     setDialogOpen(true);
     setVerificationDialogOpen(false);
     setNewPasswordDialogOpen(false);
+    setUpdatedPasswordDialogOpen(false);
   };
 
   const handleVerificationContinue = () => {
@@ -45,6 +49,21 @@ export default function Page() {
   const handleNewPasswordBack = () => {
     setNewPasswordDialogOpen(false);
     setVerificationDialogOpen(true);
+  };
+
+  const handleNewPasswordContinue = () => {
+    setNewPasswordDialogOpen(false);
+    setUpdatedPasswordDialogOpen(true);
+  };
+
+  const handleUpdatedPasswordBack = () => {
+    setUpdatedPasswordDialogOpen(false);
+    setNewPasswordDialogOpen(true);
+  };
+
+  const handleUpdatedPasswordContinue = () => {
+    setUpdatedPasswordDialogOpen(false);
+    // Redirect to login page or perform any necessary action
   };
 
   const handleSubmit = (event) => {
@@ -144,7 +163,8 @@ export default function Page() {
 
       <ForgetPasswordDialog open={dialogOpen} onClose={handleDialogClose} onContinue={handleContinue} />
       <VerificationCodeDialog open={verificationDialogOpen} onClose={handleDialogClose} onBack={handleBack} onContinue={handleVerificationContinue} />
-      <NewPasswordDialog open={newPasswordDialogOpen} onClose={handleDialogClose} onBack={handleNewPasswordBack} onContinue={handleContinue} />
+      <NewPasswordDialog open={newPasswordDialogOpen} onClose={handleDialogClose} onBack={handleNewPasswordBack} onContinue={handleNewPasswordContinue} />
+      <UpdatedPasswordDialog open={updatedPasswordDialogOpen} onClose={handleDialogClose} onBack={handleUpdatedPasswordBack} onContinue={handleUpdatedPasswordContinue} /> {/* add updated password dialog */}
     </Grid>
   );
 }
