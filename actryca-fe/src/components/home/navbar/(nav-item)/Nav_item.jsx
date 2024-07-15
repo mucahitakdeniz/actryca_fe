@@ -1,16 +1,17 @@
-import React from 'react';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import Button from '@mui/material/Button';
-import { ChevronDown } from 'lucide-react';
-import { Stack, useMediaQuery } from '@mui/material';
-import navigation from '@/components/home/navbar/(nav-item)/navigation';
-import Image from 'next/image';
-import { Icon1, Icon2 } from './Icons';
+import React from "react";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import { ChevronDown } from "lucide-react";
+import { Stack, useMediaQuery } from "@mui/material";
+import navigation from "@/components/home/navbar/(nav-item)/navigation";
+import Image from "next/image";
+import { Icon1, Icon2 } from "./Icons";
+import Link from "next/link";
+
+const activeStyle = "border-b-2 border-b-primary-800";
 
 const NavItem = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [hoveredItem, setHoveredItem] = React.useState(null);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -20,48 +21,24 @@ const NavItem = () => {
     setAnchorEl(null);
   };
 
-  const handleMouseEnter = (itemName) => {
-    setHoveredItem(itemName);
-  };
-
-  const handleMouseLeave = () => {
-    setHoveredItem(null);
-  };
-
-  const isMobile = useMediaQuery((theme) => theme.breakpoints.down('sm'));
-
   return (
-    <Stack
-      sx={{
-        display: { xs: 'none', sm: 'flex' },
-        gap: '32px',
-        alignItems: 'center',
-        flexDirection: 'row',
-      }}
-    >
+    <Stack className="center gap-8 ">
       {navigation.map((item) => {
-        const itemName = item.name === 'Sanatçılar' ? 'Sanatçılar' : item.name;
         return item.children ? (
-          <Stack key={item.name} sx={{ position: 'relative' }}>
-            <Button
-              aria-controls={anchorEl ? 'menu-list' : undefined}
+          <Stack key={item.name}>
+            <Link
+              href="#"
+              aria-controls={anchorEl ? "menu-list" : undefined}
               aria-haspopup="true"
-              aria-expanded={anchorEl ? 'true' : undefined}
+              aria-expanded={anchorEl ? "true" : undefined}
               onClick={handleClick}
-              endIcon={<ChevronDown size={20} strokeWidth={1.5} />}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                borderRadius: '4px',
-                padding: '8px 16px',
-                fontSize: '16px',
-                fontWeight: 500,
-                textTransform: 'none',
-                color: 'var(--Primary-900, #614B8B)',
-              }}
+              className={`${
+                item.current ? activeStyle : ""
+              } text-primary-800 hover:border-b-2 hover:border-b-primary-800 h-8 center gap-x-2`}
             >
-              {itemName}
-            </Button>
+              {item.name}
+              <ChevronDown size={20} strokeWidth={1.5} />
+            </Link>
             <Menu
               id="menu-list"
               anchorEl={anchorEl}
@@ -69,60 +46,37 @@ const NavItem = () => {
               onClose={handleClose}
               PaperProps={{
                 style: {
-                  display: 'inline-flex',
-                  padding: '24px',
-                  flexDirection: 'column',
-                  alignItems: 'flex-start',
-                  gap: '10px',
-                  borderRadius: '16px',
-                  background: '#FFF',
-                  boxShadow: '0px 0px 11px 0px rgba(0, 0, 0, 0.10)',
-                  transformOrigin: 'top center', 
-                  
+                  display: "inline-flex",
+                  padding: "12px",
+                  flexDirection: "column",
+                  alignItems: "flex-start",
+                  gap: "10px",
+                  borderRadius: "16px",
+                  boxShadow: "0px 0px 11px 0px rgba(0, 0, 0, 0.10)",
+                  transformOrigin: "top center",
                 },
               }}
               anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'center',
+                vertical: "bottom",
+                horizontal: "center",
               }}
               transformOrigin={{
-                vertical: 'top',
-                horizontal: 'center',
+                vertical: "top",
+                horizontal: "center",
               }}
             >
               {item.children.map((child) => (
                 <MenuItem
                   key={child.name}
                   onClick={handleClose}
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'flex-start',
-                    gap: '8px',
-                    borderRadius: '8px', 
-                    transition: 'background-color 0.3s',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = '#f2eef9';
-                    e.currentTarget.style.borderRadius = '8px'; 
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = 'transparent'; 
-                    e.currentTarget.style.borderRadius = '8px';
-                  }}
+                  className="hover:bg-primary-50 rounded-lg mb-2"
                 >
-                  <a
+                  <Link
                     href={child.href}
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'row',
-                      alignItems: 'start',
-                      gap: '10px',
-                      color: 'var(--Primary-900, #614B8B)',
-                      textDecoration: 'none',
-                    }}
+                    className=" center gap-4 !justify-between text-primary-600 "
+                    style={{}}
                   >
-                    {child.name === 'Senaristler' ? <Icon1 /> : <Icon2 />}
+                    {child.name === "Senaristler" ? <Icon1 /> : <Icon2 />}
                     {child.name}
                     <Image
                       src="/images/dropdownsvg/arrow.svg"
@@ -130,34 +84,22 @@ const NavItem = () => {
                       height={16}
                       width={16}
                     />
-                  </a>
+                  </Link>
                 </MenuItem>
               ))}
             </Menu>
           </Stack>
         ) : (
-          <a
+          <Link
             key={item.name}
             href={item.href}
-            aria-current={item.current ? 'page' : undefined}
-            onMouseEnter={() => handleMouseEnter(item.name)}
-            onMouseLeave={handleMouseLeave}
-            style={{
-              position: 'relative',
-              display: 'inline-block',
-              textDecoration: 'none',
-              color: item.current ? 'var(--Primary-900, #614B8B)' : 'var(--Primary-500, #614B8B)',
-              fontFamily: 'dm-sans',
-              fontSize: '16px',
-              fontStyle: 'normal',
-              fontWeight: '700',
-              lineHeight: '150%',
-              letterSpacing: '0.32px',
-              borderBottom: (item.current || hoveredItem === item.name) ? '2px solid var(--Primary-500, #614B8B)' : 'none',
-            }}
+            aria-current={item.current ? "page" : undefined}
+            className={`${
+              item.current ? activeStyle : ""
+            } text-primary-800 hover:border-b-2 hover:border-b-primary-800 h-8`}
           >
-            {itemName}
-          </a>
+            {item.name}
+          </Link>
         );
       })}
     </Stack>

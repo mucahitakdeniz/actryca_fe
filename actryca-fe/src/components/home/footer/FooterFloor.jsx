@@ -19,7 +19,7 @@ const FooterFloor = () => {
           sizinle tanışmak isteriz.
         </p>
         <div className="flex">
-          <Button variant="contained">BİZE KATILIN</Button>
+          <Button variant="contained">bize katılın</Button>
         </div>
       </div>
       <div className="flex flex-col justify-between items-start shrink-0 w-[239px] h-[204px]">

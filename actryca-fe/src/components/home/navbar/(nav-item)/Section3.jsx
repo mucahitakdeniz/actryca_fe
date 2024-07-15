@@ -59,6 +59,7 @@ const Section3 = () => {
             justifyContent="center"
             sx={{
               position: "fixed",
+              width:500,
               top: "50%",
               left: "50%",
               transform: "translate(-50%, -50%)",
