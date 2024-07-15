@@ -36,7 +36,7 @@ const FirstSection = () => {
               flexDirection: "column",
               alignItems: "flex-start",
               gap: "32px",
-              width: "624px"
+              width: "624px",
             }}
           >
             <Typography
@@ -69,63 +69,11 @@ const FirstSection = () => {
             </Typography>
           </Box>
           <Box sx={{ display: "flex", gap: "16px", alignItems: "flex-start" }}>
-            <Button
-              href="#"
-              variant="contained"
-              sx={{
-                display: "flex",
-                height: "48px",
-                padding: "16px 24px",
-                justifyContent: "center",
-                alignItems: "center",
-                gap: "10px",
-                borderRadius: "8px",
-                border: "1px solid var(--Primary-600, #513F75)",
-                background: "var(--Primary-600, #513F75)",
-              }}
-            >
-              <Typography
-                sx={{
-                  color: "var(--Primary-100, #FFFFFF)",
-                  fontFamily: "typography.fontFamily",
-                  fontSize: "16px",
-                  fontWeight: "bold",
-                  lineHeight: "16px",
-                }}>
-                Profil Oluştur
-              </Typography>
-
-
+            <Button href="#" variant="contained">
+              Profil Oluştur
             </Button>
-            <Button
-              href="#"
-              variant="outlined"
-              sx={{
-                display: "flex",
-                alignItems: "flex-start",
-                height: "48px",
-                padding: "16px 24px",
-                justifyContent: "center",
-                alignItems: "center",
-                gap: "10px",
-                borderRadius: "8px",
-              }}
-            >
-              <Typography
-              sx={{
-                color: "primary.darkest",
-                fontFamily:" typography.fontFamily",
-                fontSize: "16px",
-                fontStyle: "normal",
-                fontWeight: "bold",
-                lineHeight: "16px"
-              }}>
-                Actryca Menajeriniz Olsun
-              </Typography>
-
-
-
-
+            <Button href="#" variant="outlined">
+              Actryca Menajeriniz Olsun
             </Button>
           </Box>
         </Box>
@@ -188,11 +136,13 @@ const FirstSection = () => {
               fontSize: "16px",
               fontStyle: "normal",
               fontWeight: 700,
-              lineHeight: "24px"
+              lineHeight: "24px",
             }}
           >
-            100.000+ <span class="text-[#231B32] font-dm-sans text-[16px] font-normal font-semibold leading-[24px]">yetenekli oyuncu ve yazar bize katıldı.</span>
-
+            100.000+{" "}
+            <span class="text-primary-900 font-dm-sans text-[16px] font-normal font-semibold leading-[24px]">
+              yetenekli oyuncu ve yazar bize katıldı.
+            </span>
           </Typography>
         </Box>
       </Box>

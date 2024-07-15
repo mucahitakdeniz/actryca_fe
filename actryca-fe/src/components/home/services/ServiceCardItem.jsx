@@ -19,7 +19,10 @@ const ServiceCardItem = ({
   btnText,
 }) => {
   return (
-    <Card sx={{ width: 350, height: 450 }} className="rounded-2xl border p-4 hover:shadow-md transition-all">
+    <Card
+      sx={{ width: 350, height: 450 }}
+      className="rounded-2xl border p-4 hover:shadow-md transition-all"
+    >
       <CardContent className="h-full flex flex-col justify-between">
         <Typography
           variant="h4"
@@ -28,35 +31,49 @@ const ServiceCardItem = ({
         >
           {title}
         </Typography>
-        <Typography variant="h6" className="text-sm"
-          sx={{ color: "primary.dark" }}>
+        <Typography
+          variant="h6"
+          className="text-sm"
+          sx={{ color: "primary.dark" }}
+        >
           {desc}
         </Typography>
         <Box className="center-col !items-start gap-2">
           <div className="center !justify-start gap-2">
             <CircleCheck className="text-primary-600" size={18} />
-            <Typography variant="body2" className="font-bold"
-              sx={{ color: "primary.dark" }}>
+            <Typography
+              variant="body2"
+              className="font-bold"
+              sx={{ color: "primary.dark" }}
+            >
               {check1}
             </Typography>
           </div>
           <div className="center !justify-start gap-2">
             <CircleCheck className="text-primary-600" size={18} />
-            <Typography variant="body2" className="font-bold"
-              sx={{ color: "primary.dark" }}>
+            <Typography
+              variant="body2"
+              className="font-bold"
+              sx={{ color: "primary.dark" }}
+            >
               {check2}
             </Typography>
           </div>
           <div className="center !justify-start gap-2">
             <CircleCheck className="text-primary-600" size={18} />
-            <Typography variant="body2" className="font-bold"
-              sx={{ color: "primary.dark" }}>
+            <Typography
+              variant="body2"
+              className="font-bold"
+              sx={{ color: "primary.dark" }}
+            >
               {check3}
             </Typography>
           </div>
           <div className="center !justify-start gap-2">
             <CircleCheck className="text-primary-600" size={18} />
-            <Typography variant="body2" className="font-bold"
+            <Typography
+              variant="body2"
+              className="font-bold"
               sx={{ color: "primary.dark" }}
             >
               {check4}
@@ -65,13 +82,7 @@ const ServiceCardItem = ({
         </Box>
 
         <CardActions>
-          <Button size="small" variant="contained" sx={{ background: "primary.main", padding: "16px 24px" }}>
-            <Typography variant="h6" 
-            sx={{ color: "white", fontFamily: "typography.fontFamily ", fontSize: "16px", fontStyle: "normal", fontWeight: "bold",lineHeight: "16px", textTransform: "capitalize" }}>
-              {btnText}
-            </Typography>
-
-          </Button>
+          <Button variant="contained">{btnText}</Button>
         </CardActions>
       </CardContent>
     </Card>
