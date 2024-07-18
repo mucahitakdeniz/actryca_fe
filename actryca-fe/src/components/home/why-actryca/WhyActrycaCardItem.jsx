@@ -22,7 +22,7 @@ const WhyActrycaCardItem = ({ icon: Icon, title, desc }) => {
       }}
       className="rounded-2xl border p-4 transition-all"
     >
-      <Icon className="icon" size={44} strokeWidth={1} width={44} height={44} />
+      <Icon className="icon text-primary-500" size={44} strokeWidth={1} width={44} height={44} />
       <Box
         sx={{
           display: "flex",

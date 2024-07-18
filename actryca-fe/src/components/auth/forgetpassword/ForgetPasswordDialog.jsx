@@ -24,6 +24,7 @@ export default function ForgetPasswordDialog({ open, onClose, onContinue }) {
           borderRadius: "16px",
           overflow: "hidden",
           padding: "12px",
+
         },
       }}
     >
@@ -48,11 +49,8 @@ export default function ForgetPasswordDialog({ open, onClose, onContinue }) {
             </Typography>
             <Stack className="flex flex-col items-center gap-2 self-stretch">
               <Typography className="text-primary-900 font-sans text-[18px] font-normal leading-[26px] text-center">
-                Lütfen şifrenizi sıfırlamak için{" "}
-                <span className="text-primary-600"> telefon numaranızı </span>{" "}
-                veya{" "}
-                <span className="text-primary-600">e-posta adresinizi </span>{" "}
-                girin.
+
+                Lütfen şifrenizi sıfırlamak için <span className='text-primary-600'> telefon numaranızı </span> veya <span className='text-primary-600'>e-posta adresinizi </span> girin.
               </Typography>
               <Typography className="text-primary-900 font-sans text-[18px] font-normal leading-[26px] text-center">
                 Size bir sıfırlama bağlantısı göndereceğiz.
@@ -62,10 +60,8 @@ export default function ForgetPasswordDialog({ open, onClose, onContinue }) {
         </DialogContent>
         <DialogActions className="flex w-full justify-center items-center">
           <Stack className="flex flex-col items-start gap-[6px] w-full max-w-md">
-            <Typography
-              variant="subtitle2"
-              className="text-primary-900 font-sans text-[14px] font-[500px] leading-6"
-            >
+
+            <Typography variant="subtitle2" className='text-primary-900 font-sans text-[14px] font-[500px] leading-6'>
               Telefon ya da E-posta*
             </Typography>
             <TextField
@@ -80,6 +76,7 @@ export default function ForgetPasswordDialog({ open, onClose, onContinue }) {
             />
             <Stack className="w-full pt-6">
               <Button onClick={onContinue} variant="contained" className="w-full">
+
                 Devam Et
               </Button>
             </Stack>

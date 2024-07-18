@@ -1,3 +1,4 @@
+
 import * as React from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -14,6 +15,7 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 import { Eye, EyeOff } from "lucide-react";
+
 import close from "./svg/close.svg";
 import back from "./svg/back.svg";
 import openlock from "./svg/openlock.svg";
@@ -231,4 +233,5 @@ export default function NewPassword({ open, onClose, onBack, onContinue }) {
       </div>
     </Dialog>
   );
+
 }

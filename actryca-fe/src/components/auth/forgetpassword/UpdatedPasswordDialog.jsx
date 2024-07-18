@@ -5,6 +5,7 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { Stack, Button, DialogContent } from "@mui/material";
 import Image from "next/image";
+
 import close from "./svg/close.svg";
 import back from "./svg/back.svg";
 import success from "./svg/success.svg";
@@ -87,4 +88,5 @@ export default function UpdatedPasswordDialog({
       </div>
     </Dialog>
   );
+
 }
