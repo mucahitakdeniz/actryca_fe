@@ -7,7 +7,7 @@ const Page = () => {
     <Box className="bg-white  top-0 left-0 w-screen h-screen z-50 fixed padding center">
       <Box className="center-col">
         <Box>
-          <Typography variant="h4" className="font-dm-serif-text text-center">
+          <Typography variant="h4" className="font-dm-serif-text text-center font-bold">
             Siz Hangi Kullanıcı Grubundasınız?
           </Typography>
           <Typography

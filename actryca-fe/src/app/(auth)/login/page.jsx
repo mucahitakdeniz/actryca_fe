@@ -7,9 +7,9 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
 import { useState } from "react";
-import ForgetPasswordDialog from "../../../components/forgetpassword/ForgetPasswordDialog";
-import VerificationCodeDialog from "../../../components/forgetpassword/VerificationCode";
-import NewPasswordDialog from "../../../components/forgetpassword/NewPasswordDialog";
+import ForgetPasswordDialog from "../../../components/auth/forgetpassword/ForgetPasswordDialog";
+import VerificationCodeDialog from "../../../components/auth/forgetpassword/VerificationCode";
+import NewPasswordDialog from "../../../components/auth/forgetpassword/NewPasswordDialog";
 
 export default function Page() {
   const [dialogOpen, setDialogOpen] = useState(false);
