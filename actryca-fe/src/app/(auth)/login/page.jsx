@@ -12,6 +12,7 @@ import VerificationCodeDialog from "../../../components/auth/forgetpassword/Veri
 import NewPasswordDialog from "../../../components/auth/forgetpassword/NewPasswordDialog";
 import UpdatedPasswordDialog from "../../../components/auth/forgetpassword/UpdatedPasswordDialog"; // import updated password dialog
 
+
 export default function Page() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [verificationDialogOpen, setVerificationDialogOpen] = useState(false);

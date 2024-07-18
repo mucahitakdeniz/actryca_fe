@@ -1,13 +1,13 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogContent from '@mui/material/DialogContent';
-import DialogActions from '@mui/material/DialogActions';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import { Stack, TextField } from '@mui/material';
-import Image from 'next/image';
-import lock from './svg/lock.svg';
+import * as React from "react";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogContent from "@mui/material/DialogContent";
+import DialogActions from "@mui/material/DialogActions";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import { Stack, TextField } from "@mui/material";
+import Image from "next/image";
+import lock from "./svg/lock.svg";
 import close from "./svg/close.svg";
 
 export default function ForgetPasswordDialog({ open, onClose, onContinue }) {
@@ -19,10 +19,10 @@ export default function ForgetPasswordDialog({ open, onClose, onContinue }) {
       maxWidth={false}
       PaperProps={{
         style: {
-          width: '1080px',
-          height: '768px',
-          borderRadius: '16px',
-          overflow: 'hidden',
+          width: "1080px",
+          height: "768px",
+          borderRadius: "16px",
+          overflow: "hidden",
           padding: "12px",
 
         },
@@ -49,6 +49,7 @@ export default function ForgetPasswordDialog({ open, onClose, onContinue }) {
             </Typography>
             <Stack className="flex flex-col items-center gap-2 self-stretch">
               <Typography className="text-primary-900 font-sans text-[18px] font-normal leading-[26px] text-center">
+
                 Lütfen şifrenizi sıfırlamak için <span className='text-primary-600'> telefon numaranızı </span> veya <span className='text-primary-600'>e-posta adresinizi </span> girin.
               </Typography>
               <Typography className="text-primary-900 font-sans text-[18px] font-normal leading-[26px] text-center">
@@ -59,6 +60,7 @@ export default function ForgetPasswordDialog({ open, onClose, onContinue }) {
         </DialogContent>
         <DialogActions className="flex w-full justify-center items-center">
           <Stack className="flex flex-col items-start gap-[6px] w-full max-w-md">
+
             <Typography variant="subtitle2" className='text-primary-900 font-sans text-[14px] font-[500px] leading-6'>
               Telefon ya da E-posta*
             </Typography>
@@ -72,14 +74,9 @@ export default function ForgetPasswordDialog({ open, onClose, onContinue }) {
               autoComplete="email"
               autoFocus
             />
-            <Stack className='w-full pt-6'>
-              <Button onClick={onContinue}
-                className="w-full h-12 rounded-lg bg-primary-600 text-white font-sans text-[14px] font-[500px] leading-6"
-                sx={{
-                  '&:hover': {
-                    backgroundColor: 'primary.main',
-                  },
-                }}>
+            <Stack className="w-full pt-6">
+              <Button onClick={onContinue} variant="contained" className="w-full">
+
                 Devam Et
               </Button>
             </Stack>
