@@ -1,6 +1,14 @@
-"use client"
+"use client";
 import React, { useState } from "react";
-import { Box, Button, Typography, Stack, Step, StepLabel, Stepper } from "@mui/material";
+import {
+  Box,
+  Button,
+  Typography,
+  Stack,
+  Step,
+  StepLabel,
+  Stepper,
+} from "@mui/material";
 import Kisisel from "./step1/Kisisel";
 import Fiziksel from "./step1/Fiziksel";
 import step1 from "./svg/step1.svg";
@@ -17,13 +25,17 @@ const steps = [
 const StepIconComponent = (props) => {
   const { icon, completed } = props;
   return (
-    <div className={`flex items-center justify-center w-10 h-10 rounded-full ${completed ? 'bg-primary-600' : ''}`}>
+    <div
+      className={`flex items-center justify-center w-10 h-10 rounded-full ${
+        completed ? "bg-primary-600" : ""
+      }`}
+    >
       <Image
         src={icon}
         alt="Step icon"
         width={24}
         height={24}
-        style={{ filter: completed ? 'brightness(0) invert(1)' : 'none' }}
+        style={{ filter: completed ? "brightness(0) invert(1)" : "none" }}
       />
     </div>
   );
@@ -45,7 +57,7 @@ export default function ActorRegister() {
   };
 
   return (
-    <Stack className="w-full h-full">
+    <Stack className="w-4/5 h-full mx-auto mb-24">
       <Typography
         id="page-title"
         variant="h4"
@@ -58,13 +70,23 @@ export default function ActorRegister() {
         <Stepper activeStep={activeStep}>
           {steps.map((step, index) => (
             <Step key={step.label}>
-              <StepLabel StepIconComponent={() => <StepIconComponent icon={step.icon} completed={index <= activeStep} />}>
+              <StepLabel
+                StepIconComponent={() => (
+                  <StepIconComponent
+                    icon={step.icon}
+                    completed={index <= activeStep}
+                  />
+                )}
+              >
                 {step.label}
               </StepLabel>
             </Step>
           ))}
         </Stepper>
-        <Box className="flex flex-row items-start gap-9 pt-12 " style={{ alignItems: 'stretch' }}>
+        <Box
+          className="flex flex-row items-start gap-9 pt-12 "
+          style={{ alignItems: "stretch" }}
+        >
           <Kisisel />
           <Fiziksel />
         </Box>
@@ -79,22 +101,20 @@ export default function ActorRegister() {
             </Box>
           </>
         ) : (
-          <>
-            <Typography sx={{ mt: 2, mb: 1 }}>Adım {activeStep + 1}</Typography>
-            <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
-              <Button
-                color="inherit"
-                disabled={activeStep === 0}
-                onClick={handleBack}
-                sx={{ mr: 1 }}
-              >
-                Geri
-              </Button>
-              <Button onClick={handleNext}>
-                {activeStep === steps.length - 1 ? "Bitir" : "İleri"}
-              </Button>
-            </Box>
-          </>
+          <Box className="mt-8 flex justify-end gap-4">
+            <Button
+              color="inherit"
+              disabled={activeStep === 0}
+              onClick={handleBack}
+              variant="contained"
+              className="px-16"
+            >
+              Geri
+            </Button>
+            <Button onClick={handleNext} variant="contained" className="px-16">
+              {activeStep === steps.length - 1 ? "Bitir" : "Devam Et"}
+            </Button>
+          </Box>
         )}
       </Box>
     </Stack>

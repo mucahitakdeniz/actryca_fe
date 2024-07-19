@@ -1,7 +1,7 @@
 import { Box, Button, Typography } from "@mui/material";
 import React from "react";
 import { Drama, PenLine, Star } from "lucide-react";
-import ActorRegister from "@/components/auth/actor-register/actor-register";
+
 const Page = () => {
   return (
     <Box className="bg-white  top-0 left-0 w-screen h-screen z-50 fixed padding center">
