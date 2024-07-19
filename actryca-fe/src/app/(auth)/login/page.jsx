@@ -12,12 +12,12 @@ import VerificationCodeDialog from "../../../components/auth/forgetpassword/Veri
 import NewPasswordDialog from "../../../components/auth/forgetpassword/NewPasswordDialog";
 import UpdatedPasswordDialog from "../../../components/auth/forgetpassword/UpdatedPasswordDialog"; // import updated password dialog
 
-
 export default function Page() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [verificationDialogOpen, setVerificationDialogOpen] = useState(false);
   const [newPasswordDialogOpen, setNewPasswordDialogOpen] = useState(false);
-  const [updatedPasswordDialogOpen, setUpdatedPasswordDialogOpen] = useState(false);
+  const [updatedPasswordDialogOpen, setUpdatedPasswordDialogOpen] =
+    useState(false);
 
   const handleDialogOpen = () => {
     setDialogOpen(true);
@@ -87,7 +87,6 @@ export default function Page() {
           Topluluğumuza Katılın ve Parlayın.
         </Typography>
       </Grid>
-
       <Grid item xs={12} sm={8} md={5} className="pr-24 pt-8 h-full">
         <Box>
           <Typography variant="h4" className="font-dm-serif-text">
@@ -103,7 +102,7 @@ export default function Page() {
                 required
                 fullWidth
                 id="email"
-                label="Telefon yada E-posta giriniz!"
+                placeholder="555 55 55 veya example@gmail.com"
                 name="email"
                 autoComplete="email"
                 autoFocus
@@ -120,7 +119,7 @@ export default function Page() {
                 required
                 fullWidth
                 name="password"
-                label="Şifrenizi Giriniz!"
+                placeholder="********"
                 type="password"
                 id="password"
                 autoComplete="current-password"
@@ -128,12 +127,21 @@ export default function Page() {
             </Box>
 
             <Button onClick={handleDialogOpen}>
-              <Typography variant="subtitle2" color="primary.dark" className="font-bold">
+              <Typography
+                variant="subtitle2"
+                color="primary.dark"
+                className="font-bold"
+              >
                 Şifremi Unuttum!
               </Typography>
             </Button>
 
-            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
               giriş yap
             </Button>
             <Box display="flex" alignItems="center">
@@ -154,18 +162,41 @@ export default function Page() {
             </Box>
             <Typography color="primary.dark" className="flex mt-8">
               Hesabım Yok.{" "}
-              <Link href="/register" color="primary" className="cursor-pointer ml-1">
+              <Link
+                href="/register"
+                color="primary"
+                className="cursor-pointer ml-1"
+              >
                 Üye Ol!
               </Link>
             </Typography>
           </Box>
         </Box>
       </Grid>
-
-      <ForgetPasswordDialog open={dialogOpen} onClose={handleDialogClose} onContinue={handleContinue} />
-      <VerificationCodeDialog open={verificationDialogOpen} onClose={handleDialogClose} onBack={handleBack} onContinue={handleVerificationContinue} />
-      <NewPasswordDialog open={newPasswordDialogOpen} onClose={handleDialogClose} onBack={handleNewPasswordBack} onContinue={handleNewPasswordContinue} />
-      <UpdatedPasswordDialog open={updatedPasswordDialogOpen} onClose={handleDialogClose} onBack={handleUpdatedPasswordBack} onContinue={handleUpdatedPasswordContinue} /> {/* add updated password dialog */}
+      <ForgetPasswordDialog
+        open={dialogOpen}
+        onClose={handleDialogClose}
+        onContinue={handleContinue}
+      />
+      <VerificationCodeDialog
+        open={verificationDialogOpen}
+        onClose={handleDialogClose}
+        onBack={handleBack}
+        onContinue={handleVerificationContinue}
+      />
+      <NewPasswordDialog
+        open={newPasswordDialogOpen}
+        onClose={handleDialogClose}
+        onBack={handleNewPasswordBack}
+        onContinue={handleNewPasswordContinue}
+      />
+      <UpdatedPasswordDialog
+        open={updatedPasswordDialogOpen}
+        onClose={handleDialogClose}
+        onBack={handleUpdatedPasswordBack}
+        onContinue={handleUpdatedPasswordContinue}
+      />{" "}
+      {/* add updated password dialog */}
     </Grid>
   );
 }

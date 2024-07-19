@@ -48,7 +48,7 @@ export default function Page() {
                 required
                 fullWidth
                 id="username"
-                label="Kullanıcı Adınızı giriniz!"
+                placeholder="Elif ÖZTÜRK"
                 name="username"
                 autoComplete="username"
                 autoFocus
@@ -63,7 +63,7 @@ export default function Page() {
                 required
                 fullWidth
                 id="email"
-                label="Telefon yada E-posta giriniz!"
+                placeholder="555 55 55 veya example@gmail.com"
                 name="email"
                 autoComplete="email"
                 autoFocus
@@ -80,7 +80,7 @@ export default function Page() {
                 required
                 fullWidth
                 name="password"
-                label="Şifrenizi Giriniz!"
+                placeholder="********"
                 type="password"
                 id="password"
                 autoComplete="current-password"
