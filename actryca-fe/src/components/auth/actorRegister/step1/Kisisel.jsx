@@ -10,7 +10,7 @@ import {
   FormControl,
 } from "@mui/material";
 import React from "react";
-import { countries } from "../../actorspecial";
+import { countries } from "../actorspecial";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
 const placeholderStyles = {
@@ -56,7 +56,7 @@ const Kisisel = () => {
   const phoneCodes = countries.map((country) => country.phoneCode);
 
   return (
-    <Box className="w-full flex flex-col items-start gap-2" component="form">
+    <Box className="w-full flex flex-col items-start gap-" component="form">
       <Typography variant="h6" className=" font-dm-serif-display font-bold">
         Temel Bilgiler:
       </Typography>

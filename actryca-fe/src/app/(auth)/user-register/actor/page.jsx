@@ -9,12 +9,13 @@ import {
   StepLabel,
   Stepper,
 } from "@mui/material";
-import Kisisel from "./step1/Kisisel";
-import Fiziksel from "./step1/Fiziksel";
-import step1 from "./svg/step1.svg";
-import step2 from "./svg/step2.svg";
-import step3 from "./svg/step3.svg";
+import Kisisel from "../../../../components/auth/actorRegister/step1/Kisisel";
+import Fiziksel from "../../../../components/auth/actorRegister/step1/Fiziksel";
+import step1 from "../../../../components/auth/actorRegister/svg/step1.svg";
+import step2 from "../../../../components/auth/actorRegister/svg/step2.svg";
+import step3 from "../../../../components/auth/actorRegister/svg/step3.svg";
 import Image from "next/image";
+import EducationSkills from "../../../../components/auth/actorRegister/step2/EducationSkills";
 
 const steps = [
   { label: "Kişisel Bilgiler", icon: step1 },
@@ -56,6 +57,28 @@ export default function ActorRegister() {
     setActiveStep(0);
   };
 
+  const renderStepContent = (step) => {
+    switch (step) {
+      case 0:
+        return (
+          <Box className="flex flex-row items-start gap-9 pt-12" style={{ alignItems: "stretch" }}>
+            <Kisisel />
+            <Fiziksel />
+          </Box>
+        );
+      case 1:
+        return (
+          <Box className="flex flex-row items-start gap-9 pt-12" style={{ alignItems: "stretch" }}>
+            <EducationSkills />
+          </Box>
+        );
+      case 2:
+        // return <ProfessionalInfo />; // Diğer bileşeni burada tanımlayabilirsiniz
+      default:
+        return "Bilinmeyen Adım";
+    }
+  };
+
   return (
     <Stack className="w-4/5 h-full mx-auto mb-24">
       <Typography
@@ -83,13 +106,7 @@ export default function ActorRegister() {
             </Step>
           ))}
         </Stepper>
-        <Box
-          className="flex flex-row items-start gap-9 pt-12 "
-          style={{ alignItems: "stretch" }}
-        >
-          <Kisisel />
-          <Fiziksel />
-        </Box>
+        {renderStepContent(activeStep)}
         {activeStep === steps.length ? (
           <>
             <Typography sx={{ mt: 2, mb: 1 }}>
