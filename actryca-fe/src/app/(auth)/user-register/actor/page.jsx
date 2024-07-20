@@ -16,6 +16,7 @@ import step2 from "../../../../components/auth/actorRegister/svg/step2.svg";
 import step3 from "../../../../components/auth/actorRegister/svg/step3.svg";
 import Image from "next/image";
 import EducationSkills from "../../../../components/auth/actorRegister/step2/EducationSkills";
+import { LocalizationProvider, DatePicker, AdapterDateFns } from '@mui/x-date-pickers';
 
 const steps = [
   { label: "Kişisel Bilgiler", icon: step1 },
@@ -27,9 +28,8 @@ const StepIconComponent = (props) => {
   const { icon, completed } = props;
   return (
     <div
-      className={`flex items-center justify-center w-10 h-10 rounded-full ${
-        completed ? "bg-primary-600" : ""
-      }`}
+      className={`flex items-center justify-center w-10 h-10 rounded-full ${completed ? "bg-primary-600" : ""
+        }`}
     >
       <Image
         src={icon}
@@ -68,12 +68,19 @@ export default function ActorRegister() {
         );
       case 1:
         return (
-          <Box className="flex flex-row items-start gap-9 pt-12" style={{ alignItems: "stretch" }}>
+          <Box className="flex flex-row justify-between items-start gap-9 pt-12 w-full" style={{ alignItems: "stretch" }}>
+            <Box className="flex flex-col w-1/2">
+              <EducationSkills />
+              <EducationSkills />
+            </Box>
+            <Box className="w-1/2">
             <EducationSkills />
+            </Box>
+
           </Box>
         );
       case 2:
-        // return <ProfessionalInfo />; // Diğer bileşeni burada tanımlayabilirsiniz
+      // return <ProfessionalInfo />; // Diğer bileşeni burada tanımlayabilirsiniz
       default:
         return "Bilinmeyen Adım";
     }
