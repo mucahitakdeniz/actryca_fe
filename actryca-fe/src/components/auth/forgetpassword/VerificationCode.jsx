@@ -94,12 +94,12 @@ export default function VerificationCode({
               Doğrulama Kodu
             </Typography>
             <Stack className="gap-2">
-              <Typography className="text-primary-900 font-sans text-[18px] font-[500px] leading-[26px] text-center">
+              <Typography className="text-primary-900 font-sans text-[18px] font-medium leading-[26px] text-center">
                 Lütfen e-posta adresinize gönderilen{" "}
                 <span className="text-primary-600"> doğrulama kodunu</span>{" "}
                 girin.
               </Typography>
-              <Typography className="text-primary-900 font-sans text-[16px] font-[500px] leading-6 text-center">
+              <Typography className="text-primary-900 font-sans text-[16px] font-medium leading-6 text-center">
                 Lütfen gelen kutunuzu kontrol edin ve kodu girin.
               </Typography>
             </Stack>
@@ -143,7 +143,7 @@ export default function VerificationCode({
 
           <Typography className="text-primary-900 text-center font-sans text-[14px] font-normal leading-normal">
             Doğrulama kodunu henüz almadınız mı?<span> </span>
-            <span className="text-primary-600 font-[500px] underline">
+            <span className="text-primary-600 font-medium underline">
               Tekrar Gönder
             </span>
           </Typography>

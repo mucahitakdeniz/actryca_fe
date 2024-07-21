@@ -9,6 +9,7 @@ import {
   StepLabel,
   Stepper,
 } from "@mui/material";
+import { ArrowBack, ArrowForward } from '@mui/icons-material';
 import Kisisel from "../../../../components/auth/actorRegister/step1/Kisisel";
 import Fiziksel from "../../../../components/auth/actorRegister/step1/Fiziksel";
 import step1 from "../../../../components/auth/actorRegister/svg/step1.svg";
@@ -17,6 +18,8 @@ import step3 from "../../../../components/auth/actorRegister/svg/step3.svg";
 import Image from "next/image";
 import EducationSkills from "../../../../components/auth/actorRegister/step2/EducationSkills";
 import { LocalizationProvider, DatePicker, AdapterDateFns } from '@mui/x-date-pickers';
+import SpokenLanguage from "@/components/auth/actorRegister/step2/SpokenLanguage";
+import SpecialAbilities from "@/components/auth/actorRegister/step2/SpecialAbilities";
 
 const steps = [
   { label: "Kişisel Bilgiler", icon: step1 },
@@ -28,8 +31,7 @@ const StepIconComponent = (props) => {
   const { icon, completed } = props;
   return (
     <div
-      className={`flex items-center justify-center w-10 h-10 rounded-full ${completed ? "bg-primary-600" : ""
-        }`}
+      className={`flex items-center justify-center w-10 h-10 rounded-full ${completed ? "bg-primary-600" : ""}`}
     >
       <Image
         src={icon}
@@ -68,19 +70,18 @@ export default function ActorRegister() {
         );
       case 1:
         return (
-          <Box className="flex flex-row justify-between items-start gap-9 pt-12 w-full" style={{ alignItems: "stretch" }}>
-            <Box className="flex flex-col w-1/2">
+          <Box className="flex flex-row gap-9 pt-12" style={{ alignItems: 'stretch', height: '100%' }}>
+            <Box className="flex flex-col w-1/2 gap-9" style={{ height: '100%' }}>
               <EducationSkills />
-              <EducationSkills />
+              <SpokenLanguage />
             </Box>
-            <Box className="w-1/2">
-            <EducationSkills />
+            <Box className="w-1/2" style={{ height: '100%' }}>
+              <SpecialAbilities />
             </Box>
-
           </Box>
         );
       case 2:
-      // return <ProfessionalInfo />; // Diğer bileşeni burada tanımlayabilirsiniz
+        // return <ProfessionalInfo />; // Diğer bileşeni burada tanımlayabilirsiniz
       default:
         return "Bilinmeyen Adım";
     }
@@ -125,17 +126,23 @@ export default function ActorRegister() {
             </Box>
           </>
         ) : (
-          <Box className="mt-8 flex justify-end gap-4">
+          <Box className="mt-8 flex justify-between gap-4">
             <Button
               color="inherit"
               disabled={activeStep === 0}
               onClick={handleBack}
               variant="contained"
               className="px-16"
+              startIcon={<ArrowBack />}
             >
-              Geri
+              Geri Dön
             </Button>
-            <Button onClick={handleNext} variant="contained" className="px-16">
+            <Button
+              onClick={handleNext}
+              variant="contained"
+              className="px-16"
+              endIcon={<ArrowForward />}
+            >
               {activeStep === steps.length - 1 ? "Bitir" : "Devam Et"}
             </Button>
           </Box>

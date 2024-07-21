@@ -61,7 +61,7 @@ export default function ForgetPasswordDialog({ open, onClose, onContinue }) {
         <DialogActions className="flex w-full justify-center items-center">
           <Stack className="flex flex-col items-start gap-[6px] w-full max-w-md">
 
-            <Typography variant="subtitle2" className='text-primary-900 font-sans text-[14px] font-[500px] leading-6'>
+            <Typography variant="subtitle2" className='text-primary-900 font-sans text-[14px] font-medium leading-6'>
               Telefon ya da E-posta*
             </Typography>
             <TextField

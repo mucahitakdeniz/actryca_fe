@@ -21,7 +21,7 @@ const MobileSection = () => {
 
           <Typography
             variant="inherit"
-            className="leading-7 text-sm font-[500px] lg:text-base w-8/12"
+            className="leading-7 text-sm font-medium lg:text-base w-8/12"
           >
             Actryca mobil uygulamasıyla kariyerini her yerden yönetip projeleri
             takip edebilir ve fırsatları kaçırmaz.
