@@ -15,7 +15,7 @@ const ReviewCard = ({ img, name, star, desc }) => {
         }}
         className="shadow-md"
       />
-      <h2 className="font-[500px] text-base text-[24px] leading-8 text-primary-600">
+      <h2 className="font-medium text-base text-[24px] leading-8 text-primary-600">
         {name}
       </h2>
       <div className="center gap-1 md:gap-2">

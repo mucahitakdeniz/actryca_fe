@@ -60,7 +60,7 @@ const Fiziksel = () => {
       <Box className="w-full flex flex-col items-center self-stretch border border-primary-100 rounded-2xl px-8 py-10">
         <Box className="flex flex-col items-start gap-6 self-stretch">
           <Box className="flex flex-row items-center gap-2 w-full">
-            <Typography className="text-primary-900 font-sans text-[14px] font-[500px] leading-normal w-1/4">
+            <Typography className="text-primary-900 font-sans text-[14px] font-medium leading-normal w-1/4">
               Cinsiyet:
             </Typography>
             <TextField
@@ -81,7 +81,7 @@ const Fiziksel = () => {
           </Box>
           <Box className="flex flex-row justify-between items-center gap-2 w-full">
             <Box className="flex flex-row items-center gap-2 w-1/2">
-              <Typography className="text-primary-900 font-sans text-[14px] font-[500px] text-center leading-normal w-1/2">
+              <Typography className="text-primary-900 font-sans text-[14px] font-medium text-center leading-normal w-1/2">
                 Boy:
               </Typography>
               <TextField
@@ -104,7 +104,7 @@ const Fiziksel = () => {
               </TextField>
             </Box>
             <Box className="flex flex-row items-center gap-2 w-1/2">
-              <Typography className="text-primary-900 font-sans text-[14px] font-[500px] leading-normal w-1/2 text-right">
+              <Typography className="text-primary-900 font-sans text-[14px] font-medium leading-normal w-1/2 text-right">
                 Kilo:
               </Typography>
               <TextField
@@ -129,7 +129,7 @@ const Fiziksel = () => {
           </Box>
           <Box className="flex flex-row justify-between items-center gap-2 w-full">
             <Box className="flex flex-row items-center gap-2 w-1/2">
-              <Typography className="text-primary-900 font-sans text-[14px] font-[500px] text-center leading-normal w-1/2">
+              <Typography className="text-primary-900 font-sans text-[14px] font-medium text-center leading-normal w-1/2">
                 Saç Rengi:
               </Typography>
               <TextField
@@ -150,7 +150,7 @@ const Fiziksel = () => {
               </TextField>
             </Box>
             <Box className="flex flex-row items-center gap-2 w-1/2">
-              <Typography className="text-primary-900 font-sans text-[14px] font-[500px] leading-normal w-1/2 text-right">
+              <Typography className="text-primary-900 font-sans text-[14px] font-medium leading-normal w-1/2 text-right">
                 Göz Rengi:
               </Typography>
               <TextField

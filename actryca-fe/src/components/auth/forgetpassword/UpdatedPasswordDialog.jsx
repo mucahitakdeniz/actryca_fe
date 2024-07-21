@@ -68,7 +68,7 @@ export default function UpdatedPasswordDialog({
             </Typography>
             <Typography
               gutterBottom
-              className="text-primary-900 text-center font-sans text-[18px] font-[500px] leading-[26px"
+              className="text-primary-900 text-center font-sans text-[18px] font-medium leading-[26px"
             >
               Artık yeni şifrenizi kullanarak hesabınıza{" "}
               <span className="text-primary-600">giriş yap</span>abilirsiniz.
