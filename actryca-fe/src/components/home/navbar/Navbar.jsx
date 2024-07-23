@@ -2,7 +2,6 @@
 import { useState } from "react";
 import {
   AppBar,
-  Toolbar,
   IconButton,
   Drawer,
   List,
@@ -47,7 +46,14 @@ export default function Example() {
   return (
     <>
       <AppBar
-        className="padding flex-row justify-between items-center py-4 bg-white static shadow-none"
+        className="padding py-4 static shadow-sm"
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+          backgroundColor: "white",
+        }}
       >
         <Logo />
         <Nav_item />

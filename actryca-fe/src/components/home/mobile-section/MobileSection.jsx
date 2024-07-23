@@ -27,7 +27,7 @@ const MobileSection = () => {
             takip edebilir ve fırsatları kaçırmaz.
           </Typography>
           <div className="flex mt-10">
-            <Button variant="contained" size="large">
+            <Button variant="contained" >
               uygulamayı İndir
 
             </Button>

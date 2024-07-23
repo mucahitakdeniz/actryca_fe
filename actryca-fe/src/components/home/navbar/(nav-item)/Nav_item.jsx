@@ -22,12 +22,20 @@ const NavItem = () => {
   };
 
   return (
-    <Stack className="center gap-8 ">
+    <Stack
+      sx={{
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        gap: "20px",
+      }}
+    >
       {navigation.map((item) => {
         return item.children ? (
           <Stack key={item.name}>
             <Link
-              href="#"
+              href={item.href}
               aria-controls={anchorEl ? "menu-list" : undefined}
               aria-haspopup="true"
               aria-expanded={anchorEl ? "true" : undefined}
@@ -56,14 +64,6 @@ const NavItem = () => {
                   transformOrigin: "top center",
                 },
               }}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "center",
-              }}
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "center",
-              }}
             >
               {item.children.map((child) => (
                 <MenuItem
@@ -73,8 +73,7 @@ const NavItem = () => {
                 >
                   <Link
                     href={child.href}
-                    className=" center gap-4 !justify-between text-primary-600 "
-                    style={{}}
+                    className="center gap-4 !justify-between text-primary-600 "
                   >
                     {child.name === "Senaristler" ? <Icon1 /> : <Icon2 />}
                     {child.name}

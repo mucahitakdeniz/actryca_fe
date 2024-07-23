@@ -1,12 +1,6 @@
 "use client";
 import { useState } from "react";
-import {
-  Tabs,
-  Tab,
-  Grid,
-  Typography,
-  Box,
-} from "@mui/material";
+import { Tabs, Tab, Grid, Typography, Box } from "@mui/material";
 import Image from "next/image";
 import ArtistItem from "./ArtistItem";
 
@@ -32,11 +26,13 @@ const PopularArtists = () => {
   ];
 
   return (
-    <section className="padding center-col gap-8 relative h-[1000px] lg:h-[700px]">
+    <section
+      id="actors"
+      className="padding center-col gap-8 relative h-[1000px] lg:h-[700px]"
+    >
       <Typography
         variant="h1"
         className="font-dm-serif-text text-[44px] font-bold text-center"
-
         sx={{
           color: "primary.darkest",
         }}
@@ -45,33 +41,86 @@ const PopularArtists = () => {
       </Typography>
 
       {/** Tab Section */}
-      <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "64px" }}>
-        <Tabs value={selectedTab} onChange={handleTabChange} centered
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "64px",
+        }}
+      >
+        <Tabs
+          value={selectedTab}
+          onChange={handleTabChange}
+          centered
           sx={{
             display: "flex",
             alignItems: "center",
-            gap: "16px"
-          }}>
-          <Tab sx={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "4px", textTransform: "capitalize", color: "primary.darkest", fontWeight: "500px", lineHeight: "32px", fontFamily: "Rethink Sans" , fontSize: "26px"}}
-            label="Oyuncular" />
-          <Tab sx={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "4px", textTransform: "capitalize", color: "primary.darkest", fontWeight: "500px", lineHeight: "32px", fontFamily: "Rethink Sans" , fontSize: "26px" }}
-            label="Senaristler" />
+            gap: "16px",
+          }}
+        >
+          <Tab
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "4px",
+              textTransform: "capitalize",
+              color: "primary.darkest",
+              fontWeight: "500px",
+              lineHeight: "32px",
+              fontFamily: "Rethink Sans",
+              fontSize: "26px",
+            }}
+            label="Oyuncular"
+          />
+          <Tab
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "4px",
+              textTransform: "capitalize",
+              color: "primary.darkest",
+              fontWeight: "500px",
+              lineHeight: "32px",
+              fontFamily: "Rethink Sans",
+              fontSize: "26px",
+            }}
+            label="Senaristler"
+          />
         </Tabs>
       </Box>
 
       {selectedTab === 0 && (
-        <Box sx={{ items: "left", display: "flex", flexDirection: "column", gap: "32px" }}>
-          <Typography variant="h4" className="text-left text-xs lg:text-base"
+        <Box
+          sx={{
+            items: "left",
+            display: "flex",
+            flexDirection: "column",
+            gap: "32px",
+          }}
+        >
+          <Typography
+            variant="h4"
+            className="text-left text-xs lg:text-base"
             sx={{
               color: "primary.darkest",
               fontFamily: "DM Sans",
               fontSize: "24px",
               fontStyle: "normal",
               fontWeight: "700",
-              lineHeight: "24px"
-            }}>
-            <span className="text-primary-dark font-bold">En İyi Oyuncular: </span>
-            <span className="text-primary-dark font-normal">Haftanın Parlayanları</span>
+              lineHeight: "24px",
+            }}
+          >
+            <span className="text-primary-dark font-bold">
+              En İyi Oyuncular:{" "}
+            </span>
+            <span className="text-primary-dark font-normal">
+              Haftanın Parlayanları
+            </span>
           </Typography>
           <Grid container spacing={2} justifyContent="center">
             {artists.map((item, index) => (
@@ -82,20 +131,34 @@ const PopularArtists = () => {
       )}
 
       {selectedTab === 1 && (
-        <Box sx={{ items: "left", display: "flex", flexDirection: "column", gap: "32px" }}>
-          <Typography variant="h4" className="text-left text-xs lg:text-base"
+        <Box
+          sx={{
+            items: "left",
+            display: "flex",
+            flexDirection: "column",
+            gap: "32px",
+          }}
+        >
+          <Typography
+            variant="h4"
+            className="text-left text-xs lg:text-base"
             sx={{
               color: "primary.darkest",
               fontFamily: "DM Sans",
               fontSize: "24px",
               fontStyle: "normal",
               fontWeight: "700",
-              lineHeight: "24px"
-            }}>
-            <span className="text-primary-dark font-bold">Kalem Kahramanları: </span>
-            <span className="text-primary-dark font-normal">Yaratıcı Hikayeler</span>
+              lineHeight: "24px",
+            }}
+          >
+            <span className="text-primary-dark font-bold">
+              Kalem Kahramanları:{" "}
+            </span>
+            <span className="text-primary-dark font-normal">
+              Yaratıcı Hikayeler
+            </span>
           </Typography>
-          <Box sx={{display: "flex", alignItems: "flex-start", gap: "36px"}}>
+          <Box sx={{ display: "flex", alignItems: "flex-start", gap: "36px" }}>
             {writers.map((item, index) => (
               <ArtistItem item={item} key={index} />
             ))}
