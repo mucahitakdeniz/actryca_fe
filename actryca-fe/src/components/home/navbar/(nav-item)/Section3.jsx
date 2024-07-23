@@ -27,7 +27,12 @@ const Section3 = () => {
     !isMobile && (
       <Box display="flex" alignItems="center" gap={2}>
         <Box onClick={handleSearchClick} sx={{ cursor: "pointer" }}>
-          <Search width={20} height={20} strokeWidth={1.5} color="#231b32" />
+          <Search
+            width={20}
+            height={20}
+            strokeWidth={1.5}
+            className="text-primary-800"
+          />
         </Box>
         <Box display="flex" alignItems="center" gap={2}>
           <Button>
@@ -59,7 +64,7 @@ const Section3 = () => {
             justifyContent="center"
             sx={{
               position: "fixed",
-              width:500,
+              width: 500,
               top: "50%",
               left: "50%",
               transform: "translate(-50%, -50%)",

@@ -8,7 +8,7 @@ import FooterFloor from "./FooterFloor";
 
 const Footer = () => {
   return (
-    <footer className="font-sans">
+    <footer className="font-sans" id="footer">
       <FooterForm />
       <Box sx={{ flexGrow: 1 }}>
         <Grid container rowGap={2} height="340px" className="padding">

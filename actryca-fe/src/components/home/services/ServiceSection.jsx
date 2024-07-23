@@ -1,22 +1,32 @@
-import { Box, Typography } from '@mui/material';
-import React from 'react';
-import ServiceCardItem from './ServiceCardItem';
+import { Box, Typography } from "@mui/material";
+import React from "react";
+import ServiceCardItem from "./ServiceCardItem";
 
 const ServiceSection = () => {
   return (
-    <Box className=" h-[700px] ">
+    <Box className=" h-[700px] " id="services">
       <Box className="background h-[320px] pt-12 padding">
         <Typography
           variant="h1"
           className="text-center font-dm-serif-text font-bold"
-          sx={{ color: "primary.darkest", fontSize:"44px",  lineHeight: "32px" }}
+          sx={{
+            color: "primary.darkest",
+            fontSize: "44px",
+            lineHeight: "32px",
+          }}
         >
           Hizmetlerimiz
         </Typography>
         <Typography
           variant="h6"
           className="text-center  "
-          sx={{ color: "primary.darkest", fontSize:"20px", fontWeight: "500px", lineHeight: "normal", mt: "23px" }}
+          sx={{
+            color: "primary.darkest",
+            fontSize: "20px",
+            fontWeight: "500px",
+            lineHeight: "normal",
+            mt: "23px",
+          }}
         >
           Actryca olarak sunduğumuz hizmetler ile kariyerinize yön verin.
         </Typography>
@@ -52,6 +62,6 @@ const ServiceSection = () => {
       </Box>
     </Box>
   );
-}
+};
 
 export default ServiceSection;

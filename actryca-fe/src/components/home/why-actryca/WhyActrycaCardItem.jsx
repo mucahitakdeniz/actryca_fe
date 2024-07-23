@@ -3,26 +3,14 @@ import React from "react";
 
 const WhyActrycaCardItem = ({ icon: Icon, title, desc }) => {
   return (
-    <Card
-      sx={{
-        display: "flex",
-        width: "294px",
-        flexDirection: "column",
-        alignItems: "flex-start",
-        gap: "32px",
-        padding: "36px 24px",
-        transition: "all 0.3s ease",
-        "&:hover": {
-          backgroundColor: "primary.main",
-          boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.1)",
-          "& .icon, & .title, & .desc": {
-            color: "#fff",
-          },
-        },
-      }}
-      className="rounded-2xl border p-4 transition-all"
-    >
-      <Icon className="icon text-primary-500" size={44} strokeWidth={1} width={44} height={44} />
+    <Card className="w-[250px] h-[300px] hover:scale-[1.01] hover:shadow-md rounded-2xl border p-8 transition-all">
+      <Icon
+        className="icon text-primary-500"
+        size={44}
+        strokeWidth={1}
+        width={44}
+        height={44}
+      />
       <Box
         sx={{
           display: "flex",
@@ -49,7 +37,11 @@ const WhyActrycaCardItem = ({ icon: Icon, title, desc }) => {
         <Typography
           variant="subtitle1"
           className="desc"
-          sx={{ color: "primary.dark", fontFamily: "typography.fontFamily", lineHeight: "24px" }}
+          sx={{
+            color: "primary.dark",
+            fontFamily: "typography.fontFamily",
+            lineHeight: "24px",
+          }}
         >
           {desc}
         </Typography>

@@ -1,13 +1,33 @@
+"use client";
+import { useState } from "react";
 import { Box, Button, Typography } from "@mui/material";
-import React from "react";
 import { Drama, PenLine, Star } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const Page = () => {
+  const [selectedOption, setSelectedOption] = useState(null);
+  const router = useRouter();
+  const handleOptionClick = (option) => {
+    setSelectedOption(option);
+  };
+  const handleContinue = () => {
+    if (selectedOption === "actor") {
+      router.push("/user-register/actor");
+    } else if (selectedOption === "writer") {
+      router.push("/user-register/writer");
+    } else if (selectedOption === "others") {
+      router.push("/user-register/others");
+    }
+  };
+
   return (
-    <Box className="bg-white  top-0 left-0 w-screen h-screen z-50 fixed padding center">
+    <Box className="bg-white top-0 left-0 w-screen h-screen z-50 fixed padding center">
       <Box className="center-col">
         <Box>
-          <Typography variant="h4" className="font-dm-serif-text text-center font-bold">
+          <Typography
+            variant="h4"
+            className="font-dm-serif-text text-center font-bold"
+          >
             Siz Hangi Kullanıcı Grubundasınız?
           </Typography>
           <Typography
@@ -17,8 +37,9 @@ const Page = () => {
             Yaratıcı topluluğumuza katılarak kendinize uygun bir rol bulun.
           </Typography>
         </Box>
-        <Box className="flex  gap-24 p-16">
+        <Box className="flex gap-24 p-16">
           <Button
+            onClick={() => handleOptionClick("actor")}
             sx={{
               display: "flex",
               width: "300px",
@@ -27,12 +48,19 @@ const Page = () => {
               alignItems: "flex-start",
               gap: "32px",
               padding: "36px 24px",
-              border: "1px  solid grey",
+              border: "1px solid grey",
+              backgroundColor:
+                selectedOption === "actor" ? "primary.main" : "grey.200",
+              color: selectedOption === "actor" ? "white" : "black",
             }}
-            className="rounded-2xl border-2 border-primary-500 p-4 hover:shadow-md hover:scale-[1.01] transition-all "
+            className="rounded-2xl border-2 p-4 hover:bg-primary-500 hover:shadow-md hover:scale-[1.01] transition-all"
           >
             <Drama
-              className="text-primary-600"
+              className={`${
+                selectedOption === "actor"
+                  ? "text-gray-200"
+                  : "text-primary-600"
+              }`}
               size={44}
               strokeWidth={1}
               width={44}
@@ -51,22 +79,16 @@ const Page = () => {
                 variant="h4"
                 className="title"
                 sx={{
-                  color: "primary.darkest",
                   fontSize: "22px",
                   fontWeight: "bold",
-                  fontStyle: "normal",
                   lineHeight: "24px",
-                  fontFamily: "typography.fontFamily",
                 }}
               >
                 Oyuncu
               </Typography>
               <Typography
                 variant="subtitle1"
-                sx={{
-                  color: "primary.dark",
-                  lineHeight: "24px",
-                }}
+                sx={{ lineHeight: "24px" }}
                 className="text-left"
               >
                 Yeteneklerinizi sergileyin ve projelerde yer alın.
@@ -74,6 +96,7 @@ const Page = () => {
             </Box>
           </Button>
           <Button
+            onClick={() => handleOptionClick("writer")}
             sx={{
               display: "flex",
               width: "300px",
@@ -82,12 +105,19 @@ const Page = () => {
               alignItems: "flex-start",
               gap: "32px",
               padding: "36px 24px",
-              border: "1px  solid purple",
+              border: "1px solid grey",
+              backgroundColor:
+                selectedOption === "writer" ? "primary.main" : "grey.200",
+              color: selectedOption === "writer" ? "white" : "black",
             }}
-            className="rounded-2xl border-2 border-primary-500 p-4 hover:shadow-md hover:scale-[1.01] transition-all "
+            className="rounded-2xl border-2 p-4 hover:bg-primary-500 hover:shadow-md hover:scale-[1.01] transition-all"
           >
             <PenLine
-              className="text-primary-600"
+              className={`${
+                selectedOption === "writer"
+                  ? "text-gray-200"
+                  : "text-primary-600"
+              }`}
               size={44}
               strokeWidth={1}
               width={44}
@@ -106,22 +136,16 @@ const Page = () => {
                 variant="h4"
                 className="title"
                 sx={{
-                  color: "primary.darkest",
                   fontSize: "22px",
                   fontWeight: "bold",
-                  fontStyle: "normal",
                   lineHeight: "24px",
-                  fontFamily: "typography.fontFamily",
                 }}
               >
                 Yazar
               </Typography>
               <Typography
                 variant="subtitle1"
-                sx={{
-                  color: "primary.dark",
-                  lineHeight: "24px",
-                }}
+                sx={{ lineHeight: "24px" }}
                 className="text-left"
               >
                 Yeteneklerinizi sergileyin ve projelerde yer alın.
@@ -129,6 +153,7 @@ const Page = () => {
             </Box>
           </Button>
           <Button
+            onClick={() => handleOptionClick("others")}
             sx={{
               display: "flex",
               width: "300px",
@@ -137,12 +162,19 @@ const Page = () => {
               alignItems: "flex-start",
               gap: "32px",
               padding: "36px 24px",
-              border: "1px  solid purple",
+              border: "1px solid grey",
+              backgroundColor:
+                selectedOption === "others" ? "primary.main" : "grey.200",
+              color: selectedOption === "others" ? "white" : "black",
             }}
-            className="rounded-2xl border-2 border-primary-500 p-4 hover:shadow-md hover:scale-[1.01] transition-all "
+            className="rounded-2xl border-2 p-4 hover:bg-primary-500 hover:shadow-md hover:scale-[1.01] transition-all"
           >
             <Star
-              className="text-primary-600"
+              className={`${
+                selectedOption === "others"
+                  ? "text-gray-200"
+                  : "text-primary-600"
+              }`}
               size={44}
               strokeWidth={1}
               width={44}
@@ -161,22 +193,16 @@ const Page = () => {
                 variant="h4"
                 className="title"
                 sx={{
-                  color: "primary.darkest",
                   fontSize: "22px",
                   fontWeight: "bold",
-                  fontStyle: "normal",
                   lineHeight: "24px",
-                  fontFamily: "typography.fontFamily",
                 }}
               >
                 Diğerleri
               </Typography>
               <Typography
                 variant="subtitle1"
-                sx={{
-                  color: "primary.dark",
-                  lineHeight: "24px",
-                }}
+                sx={{ lineHeight: "24px" }}
                 className="text-left"
               >
                 Yeteneklerinizi sergileyin ve projelerde yer alın.
@@ -187,11 +213,13 @@ const Page = () => {
         <Button
           variant="contained"
           sx={{
-            backgroundColor: "grey",
+            backgroundColor: selectedOption ? "primary.main" : "grey",
             width: "400px",
           }}
+          disabled={!selectedOption}
+          onClick={handleContinue}
         >
-          devam et{" "}
+          devam et
         </Button>
       </Box>
     </Box>

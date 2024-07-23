@@ -6,8 +6,7 @@ const FirstSection = () => {
   return (
     <Box
       sx={{
-        display: "inline-flex",
-        width: "100vw",
+        display: "flex",
         flexDirection: { xs: "column", lg: "row" },
         alignItems: "center",
         gap: "42px",
@@ -147,19 +146,13 @@ const FirstSection = () => {
         </Box>
       </Box>
 
-      <Box
-        sx={{
-          flex: 1,
-          width: "687px",
-          height: "653px",
-          position: "relative",
-          borderRadius: 1,
-        }}
-      >
+      <Box>
         <Image
           src="/images/firstSectionAssets/man-in-shape.png"
           alt="Your Company"
-          fill
+          width={600}
+          height={600}
+          className=""
         />
       </Box>
     </Box>
