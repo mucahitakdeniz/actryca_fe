@@ -10,7 +10,7 @@ import { useState } from "react";
 import ForgetPasswordDialog from "../../../components/auth/forgetpassword/ForgetPasswordDialog";
 import VerificationCodeDialog from "../../../components/auth/forgetpassword/VerificationCode";
 import NewPasswordDialog from "../../../components/auth/forgetpassword/NewPasswordDialog";
-import UpdatedPasswordDialog from "../../../components/auth/forgetpassword/UpdatedPasswordDialog"; // import updated password dialog
+import UpdatedPasswordDialog from "../../../components/auth/forgetpassword/UpdatedPasswordDialog";
 
 export default function Page() {
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -64,7 +64,6 @@ export default function Page() {
 
   const handleUpdatedPasswordContinue = () => {
     setUpdatedPasswordDialogOpen(false);
-    // Redirect to login page or perform any necessary action
   };
 
   const handleSubmit = (event) => {
