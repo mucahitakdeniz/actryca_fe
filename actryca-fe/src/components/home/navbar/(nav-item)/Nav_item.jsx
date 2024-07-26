@@ -35,7 +35,7 @@ const NavItem = () => {
         return item.children ? (
           <Stack key={item.name}>
             <Link
-              href={item.href}
+              href=""
               aria-controls={anchorEl ? "menu-list" : undefined}
               aria-haspopup="true"
               aria-expanded={anchorEl ? "true" : undefined}

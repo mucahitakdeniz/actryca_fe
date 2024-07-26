@@ -3,9 +3,28 @@ import React from "react";
 
 const WhyActrycaCardItem = ({ icon: Icon, title, desc }) => {
   return (
-    <Card className="w-[250px] h-[300px] hover:scale-[1.01] hover:shadow-md rounded-2xl border p-8 transition-all">
+    <Card
+      className="w-[250px] h-[300px]  rounded-2xl border p-8 transition-all"
+      sx={{
+        "&:hover": {
+          backgroundColor: "primary.main",
+          transform: "scale(1.01)",
+          boxShadow: 3,
+          color: "grey.100",
+          transition: "color 0.3s ease, background-color 0.3s ease",
+          "& .icon": {
+            color: "grey.100",
+            transition: "color 0.3s ease", 
+          },
+          "& .title, & .desc": {
+            color: "grey.100",
+            transition: "color 0.3s ease", 
+          },
+        },
+      }}
+    >
       <Icon
-        className="icon text-primary-500"
+        className="icon text-primary-600"
         size={44}
         strokeWidth={1}
         width={44}
@@ -22,9 +41,8 @@ const WhyActrycaCardItem = ({ icon: Icon, title, desc }) => {
       >
         <Typography
           variant="h4"
-          className="title"
+          className="title text-primary-800"
           sx={{
-            color: "primary.darkest",
             fontSize: "22px",
             fontWeight: "bold",
             fontStyle: "normal",
@@ -36,9 +54,8 @@ const WhyActrycaCardItem = ({ icon: Icon, title, desc }) => {
         </Typography>
         <Typography
           variant="subtitle1"
-          className="desc"
+          className="desc text-primary-800"
           sx={{
-            color: "primary.dark",
             fontFamily: "typography.fontFamily",
             lineHeight: "24px",
           }}
