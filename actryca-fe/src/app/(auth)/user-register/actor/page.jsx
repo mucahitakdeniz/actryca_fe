@@ -20,6 +20,7 @@ import EducationSkills from "../../../../components/auth/actorRegister/step2/Edu
 import { LocalizationProvider, DatePicker, AdapterDateFns } from '@mui/x-date-pickers';
 import SpokenLanguage from "@/components/auth/actorRegister/step2/SpokenLanguage";
 import SpecialAbilities from "@/components/auth/actorRegister/step2/SpecialAbilities";
+import ProfessionalInfo from "@/components/auth/actorRegister/step3/ProfessionalInfo";
 
 const steps = [
   { label: "Kişisel Bilgiler", icon: step1 },
@@ -81,7 +82,13 @@ export default function ActorRegister() {
           </Box>
         );
       case 2:
-        // return <ProfessionalInfo />; // Diğer bileşeni burada tanımlayabilirsiniz
+        return (
+          <Box>
+            <ProfessionalInfo />
+          </Box>
+        )
+
+
       default:
         return "Bilinmeyen Adım";
     }
