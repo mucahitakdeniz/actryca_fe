@@ -50,7 +50,7 @@ const ProfilePhotos = () => {
             <Typography className='text-primary-900 font-dm-serif-text text-[18px] font-normal leading-6'>
                 Profil Fotoğrafı:
             </Typography>
-            <Box className="flex flex-row  justify-center items-center gap-[54px] border border-primary-100 rounded-2xl">
+            <Box className="flex flex-row  justify-center items-center gap-[54px] px-8 py-10 border border-primary-100 rounded-2xl">
                 <Box className="flex flex-col justify-center items-center h-[182px]  px-20 py-4 gap-[21px] border border-primary-100 rounded-2xl relative overflow-hidden">
                     {selectedImage ? (
                         <>
