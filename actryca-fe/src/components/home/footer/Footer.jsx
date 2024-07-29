@@ -15,7 +15,7 @@ const Footer = () => {
           {/* Logo Section */}
           <Grid item xs={4} className="pt-12 flex flex-col gap-4">
             <div>
-              <Image src="/images/logo.png" width={166} height={42} />
+              <Image src="/images/logo.png" width={166} height={42} alt="Logo footer"/>
             </div>
             <div>
               <p className="w-[310px] leading-7" style={{ fontWeight: 500 }}>

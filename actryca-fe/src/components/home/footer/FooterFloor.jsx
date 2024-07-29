@@ -24,7 +24,9 @@ const FooterFloor = () => {
       </div>
       <div className="flex flex-col justify-between items-start shrink-0 w-[239px] h-[204px]">
         <div className="flex flex-col items-start ">
-          <h2 className="text-xl font-semibold text-primary-900">Bizi Takip Edin</h2>
+          <h2 className="text-xl font-semibold text-primary-900">
+            Bizi Takip Edin
+          </h2>
           <span className="bg-primary-600 w-10 h-[1px]"></span>
         </div>
         <div className="flex gap-3">
@@ -34,6 +36,7 @@ const FooterFloor = () => {
               width={32}
               height={32}
               className="hover:scale-105 transition-all"
+              alt="Logo Social media"
             />
           </Link>
           <Link href="#">
@@ -42,6 +45,7 @@ const FooterFloor = () => {
               width={32}
               height={32}
               className="hover:scale-105 transition-all"
+              alt="Logo Social media"
             />
           </Link>
           <Link href="#">
@@ -50,6 +54,7 @@ const FooterFloor = () => {
               width={32}
               height={32}
               className="hover:scale-105 transition-all"
+              alt="Logo Social media"
             />
           </Link>
           <Link href="#">
@@ -58,6 +63,7 @@ const FooterFloor = () => {
               width={32}
               height={32}
               className="hover:scale-105 transition-all"
+              alt="Logo Social media"
             />
           </Link>
           <Link href="#">
@@ -66,10 +72,13 @@ const FooterFloor = () => {
               width={32}
               height={32}
               className="hover:scale-105 transition-all"
+              alt="Logo Social media"
             />
           </Link>
         </div>
-        <span className="text-sm text-primary-900">© 2024 Actryca. Tüm hakları saklıdır.</span>
+        <span className="text-sm text-primary-900">
+          © 2024 Actryca. Tüm hakları saklıdır.
+        </span>
       </div>
     </div>
   );

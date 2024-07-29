@@ -15,10 +15,10 @@ module.exports = {
         "primary-100": "#C6BED5",
         "primary-50": "#E3DAF3",
         "star-color": "#FF7A00",
+        "star-color-100": "#FFE6CF",
         "grey-100": "#F1F0F4",
         "name-200": "#a4a5a8",
         "name-300": "#88898d",
-
       },
       fontFamily: {
         sans: ["DM Sans", "sans-serif"],
