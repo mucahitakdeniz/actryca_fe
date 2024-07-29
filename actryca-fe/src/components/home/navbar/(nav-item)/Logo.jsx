@@ -10,6 +10,7 @@ const Logo = () => {
         alt="Your Company"
         height={32}
         width={128}
+        className="w-32 h-auto"
       />
     </Link>
   );

@@ -5,7 +5,7 @@ const navigation = [
     href: "#actors",
     current: false,
     children: [
-      { name: "Oyuncular", href: "#actors" },
+      { name: "Oyuncular", href: "/actors" },
       { name: "Senaristler", href: "#writers" },
     ],
   },
