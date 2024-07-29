@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Box, Typography, Radio, RadioGroup, FormControlLabel } from '@mui/material';
-import SelectedNo from "./experiencsSelect/SelectedNo";
-import SelectedYes from "./experiencsSelect/SelectedYes";
+import ManagementYes from "./managementSelect/ManagementYes";
+import ManagementNo from "./managementSelect/ManagementNo";
 
-const Experiences = () => {
+const ManagementInformation = () => {
   const [selectedOption, setSelectedOption] = useState('');
 
   const handleOptionChange = (event) => {
@@ -13,7 +13,7 @@ const Experiences = () => {
   return (
     <Box className="flex flex-col items-start gap-4 p-4">
       <Typography className="mb-4 text-primary-900 font-serif text-[18px] font-normal leading-6">
-        Deneyimler:
+        Menajerlik Bilgileri:
       </Typography>
       <Box className="flex flex-col w-[519px] px-8 py-10 justify-start items-start gap-[26px] border border-primary-100 rounded-2xl">
         <Box className="flex flex-col justify-center items-start gap-4">
@@ -39,10 +39,10 @@ const Experiences = () => {
           </RadioGroup>
         </Box>
       </Box>
-      {selectedOption === 'hayir' && <SelectedNo />}
-      {selectedOption === 'evet' && <SelectedYes />}
+      {selectedOption === 'hayir' && <ManagementNo />}
+      {selectedOption === 'evet' && <ManagementYes />}
     </Box>
   );
 };
 
-export default Experiences;
+export default ManagementInformation;
