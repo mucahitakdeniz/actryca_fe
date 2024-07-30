@@ -7,6 +7,7 @@ import navigation from "@/components/home/navbar/(nav-item)/navigation";
 import Image from "next/image";
 import { Icon1, Icon2 } from "./Icons";
 import Link from "next/link";
+import { handleScroll } from "@/utils/utils";
 
 const activeStyle = "border-b-2 border-b-primary-800";
 
@@ -20,6 +21,7 @@ const NavItem = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
 
   return (
     <Stack
@@ -92,6 +94,7 @@ const NavItem = () => {
           <Link
             key={item.name}
             href={item.href}
+            onClick={(e) => handleScroll(e, item.href)}
             aria-current={item.current ? "page" : undefined}
             className={`${
               item.current ? activeStyle : ""
