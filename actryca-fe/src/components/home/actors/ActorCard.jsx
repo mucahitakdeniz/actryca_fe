@@ -1,5 +1,6 @@
 import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
-import { Bookmark } from "lucide-react";
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
@@ -20,18 +21,36 @@ const ActorCard = ({ actor }) => {
         <Typography className="center bg-primary-100 w-16 h-7 rounded-lg text-primary-800">
           YENİ
         </Typography>
-        <Bookmark
-          className="bg-primary-100 rounded-full p-1 text-primary-800"
-          size={32}
-        />
+        {actor.isBookmarked ? (
+          <BookmarkIcon
+            className="bg-primary-100 rounded-full p-1 text-primary-600"
+            fontSize="large"
+          />
+        ) : (
+          <BookmarkBorderIcon
+            className="bg-primary-100 rounded-full p-1 text-primary-600"
+            fontSize="large"
+          />
+        )}
       </Box>
       <Box className="absolute bottom-16 w-full flex justify-end p-3">
         <Typography className="center p-3 bg-star-color-100 w-16 h-8 rounded-lg text-primary-800 text-sm">
-          <Image src="/images/star-fill.png" width={20} height={20} alt="actor image" className="w-5 h-auto"/>
+          <Image
+            src="/images/star-fill.png"
+            width={20}
+            height={20}
+            alt="actor image"
+            className="w-5 h-auto"
+          />
           &nbsp;{actor?.score}
         </Typography>
       </Box>
-      <CardMedia sx={{ height: 358 }} image={actor?.img} title="" alt="actor image" />
+      <CardMedia
+        sx={{ height: 358 }}
+        image={actor?.img}
+        title=""
+        alt="actor image"
+      />
       <CardContent className="flex justify-start border-none">
         <Typography variant="subtitle1" component="div" className="font-bold ">
           {actor?.name}

@@ -85,6 +85,16 @@ export const theme = createTheme({
         },
       },
     },
+    MuiSelect: {
+      styleOverrides: {
+        root: {
+          height: "48px",
+          "& .MuiOutlinedInput-notchedOutline": {
+            borderColor: "primary.light",
+          },
+        },
+      },
+    },
     MuiPickersDay: {
       styleOverrides: {
         root: {

@@ -4,7 +4,7 @@ import React from "react";
 const WhyActrycaCardItem = ({ icon: Icon, title, desc }) => {
   return (
     <Card
-      className="w-[250px] h-[300px]  rounded-2xl border p-8 transition-all"
+      className="w-[250px] h-[300px] flex flex-col gap-8 rounded-2xl border p-8 transition-all"
       sx={{
         "&:hover": {
           backgroundColor: "primary.main",
@@ -25,10 +25,8 @@ const WhyActrycaCardItem = ({ icon: Icon, title, desc }) => {
     >
       <Icon
         className="icon text-primary-600"
-        size={44}
+        size={60}
         strokeWidth={1}
-        width={44}
-        height={44}
       />
       <Box
         sx={{
@@ -53,7 +51,7 @@ const WhyActrycaCardItem = ({ icon: Icon, title, desc }) => {
           {title}
         </Typography>
         <Typography
-          variant="subtitle1"
+          variant="subtitle2"
           className="desc text-primary-800"
           sx={{
             fontFamily: "typography.fontFamily",
