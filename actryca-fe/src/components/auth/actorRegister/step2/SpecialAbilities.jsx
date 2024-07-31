@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Typography, Button, IconButton } from '@mui/material';
+import { Box, Typography, Button, IconButton, MenuItem, Select, FormControl, InputLabel } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
 const specialAbilitiesData = {
@@ -10,16 +10,31 @@ const specialAbilitiesData = {
 };
 
 const SpecialAbilities = () => {
-  const [selectedAbilities, setSelectedAbilities] = useState([]);
+  const [selectedAbilities, setSelectedAbilities] = useState({});
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedOption, setSelectedOption] = useState('');
 
-  const handleSelect = (ability) => {
-    if (!selectedAbilities.includes(ability)) {
-      setSelectedAbilities([...selectedAbilities, ability]);
-    }
+  const handleSelectCategory = (event) => {
+    setSelectedCategory(event.target.value);
+    setSelectedOption(''); // Her kategori değiştiğinde seçimi sıfırla
   };
 
-  const handleDelete = (ability) => {
-    setSelectedAbilities(selectedAbilities.filter((item) => item !== ability));
+  const handleSelectOption = (event) => {
+    const ability = event.target.value;
+    if (ability && !selectedAbilities[selectedCategory]?.includes(ability)) {
+      setSelectedAbilities((prev) => ({
+        ...prev,
+        [selectedCategory]: [...(prev[selectedCategory] || []), ability],
+      }));
+    }
+    setSelectedOption(ability);
+  };
+
+  const handleDelete = (category, ability) => {
+    setSelectedAbilities((prev) => ({
+      ...prev,
+      [category]: prev[category].filter((item) => item !== ability),
+    }));
   };
 
   return (
@@ -33,34 +48,36 @@ const SpecialAbilities = () => {
             <Typography className="text-primary-900 font-sans text-[16px] font-medium leading-6">
               {category}
             </Typography>
-            <Box className="flex items-start gap-2  w-full">
-              {specialAbilitiesData[category].map((ability) => (
-                <Box key={ability} className="flex-grow flex items-center relative">
-                  <Button
-                    onClick={() => handleSelect(ability)}
-                    variant={selectedAbilities.includes(ability) ? 'contained' : 'outlined'}
-                    color="primary"
-                    className={`w-full rounded-[4px] ${
-                      selectedAbilities.includes(ability) ? 'bg-primary-600 text-white' : 'border-primary-50 text-primary-900 text-[14px] font-normal'
-                    }`}
-                    style={{ minWidth: 'unset', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
-                  >
-                    <span className="text-[14px] font-normal" style={{  }}>{ability}</span>
-                    {selectedAbilities.includes(ability) && (
-                      <IconButton
-                        size="small"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleDelete(ability);
-                        }}
-                        className="p-0 text-white"
-                        style={{ backgroundColor: 'transparent' }}
-                      >
-                        <CloseIcon fontSize="inherit" style={{ fontSize: '1rem' }} />
-                      </IconButton>
-                    )}
-                  </Button>
-                </Box>
+            <Box className="w-full">
+              <FormControl fullWidth>
+                <InputLabel>{category} Seçiniz</InputLabel>
+                <Select
+                  value={selectedCategory === category ? selectedOption : ''}
+                  onChange={handleSelectOption}
+                  onOpen={() => setSelectedCategory(category)}
+                  label={`${category} Seçiniz`}
+                  className="rounded-xl"
+                >
+                  {specialAbilitiesData[category].map((ability) => (
+                    <MenuItem key={ability} value={ability}>
+                      {ability}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Box>
+            <Box className="flex flex-wrap gap-2">
+              {selectedAbilities[category]?.map((ability) => (
+                <Button
+                  key={ability}
+                  variant="contained"
+                  endIcon={<CloseIcon />}
+                  onClick={() => handleDelete(category, ability)}
+                  className="rounded-[4px] bg-primary-100 text-primary-900 text-[14px] font-normal hover:bg-primary-100"
+                  style={{ textTransform: 'none' }}
+                >
+                  {ability}
+                </Button>
               ))}
             </Box>
           </Box>

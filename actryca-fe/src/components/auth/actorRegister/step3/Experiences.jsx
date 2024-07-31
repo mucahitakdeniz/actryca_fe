@@ -38,9 +38,10 @@ const Experiences = () => {
             />
           </RadioGroup>
         </Box>
+        {selectedOption === 'hayir' && <SelectedNo />}
+        {selectedOption === 'evet' && <SelectedYes />}
       </Box>
-      {selectedOption === 'hayir' && <SelectedNo />}
-      {selectedOption === 'evet' && <SelectedYes />}
+
     </Box>
   );
 };

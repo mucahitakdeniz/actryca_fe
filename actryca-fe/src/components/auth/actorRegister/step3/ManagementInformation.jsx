@@ -38,9 +38,10 @@ const ManagementInformation = () => {
             />
           </RadioGroup>
         </Box>
-      </Box>
-      {selectedOption === 'hayir' && <ManagementNo />}
+        {selectedOption === 'hayir' && <ManagementNo />}
       {selectedOption === 'evet' && <ManagementYes />}
+      </Box>
+      
     </Box>
   );
 };

@@ -17,10 +17,10 @@ import step2 from "../../../../components/auth/actorRegister/svg/step2.svg";
 import step3 from "../../../../components/auth/actorRegister/svg/step3.svg";
 import Image from "next/image";
 import EducationSkills from "../../../../components/auth/actorRegister/step2/EducationSkills";
-import { LocalizationProvider, DatePicker, AdapterDateFns } from '@mui/x-date-pickers';
 import SpokenLanguage from "@/components/auth/actorRegister/step2/SpokenLanguage";
 import SpecialAbilities from "@/components/auth/actorRegister/step2/SpecialAbilities";
 import ProfessionalInfo from "@/components/auth/actorRegister/step3/ProfessionalInfo";
+import RegisterDone from "@/components/auth/actorRegister/registerDone/RegisterDone"
 
 const steps = [
   { label: "Kişisel Bilgiler", icon: step1 },
@@ -90,7 +90,11 @@ export default function ActorRegister() {
 
 
       default:
-        return "Bilinmeyen Adım";
+        return (
+          <Box>
+            <RegisterDone />
+          </Box>
+        );
     }
   };
 
@@ -124,9 +128,7 @@ export default function ActorRegister() {
         {renderStepContent(activeStep)}
         {activeStep === steps.length ? (
           <>
-            <Typography sx={{ mt: 2, mb: 1 }}>
-              Tüm adımlar tamamlandı - Bitirdiniz
-            </Typography>
+           
             <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
               <Box sx={{ flex: "1 1 auto" }} />
               <Button onClick={handleReset}>Sıfırla</Button>

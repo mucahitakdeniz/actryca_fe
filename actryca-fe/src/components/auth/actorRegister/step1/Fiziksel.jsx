@@ -1,4 +1,3 @@
-"use client";
 import React, { useState } from "react";
 import {
   Box,
@@ -6,8 +5,13 @@ import {
   TextField,
   Typography,
   ListSubheader,
+  Dialog,
+  DialogContent,
+  IconButton,
 } from "@mui/material";
 import { eyeColors, hairColors, genders } from "../actorspecial";
+import AboutMe from "./AboutMe";
+import { Edit2 } from 'lucide-react';
 
 const placeholderStyles = {
   color: "#E3DAF3",
@@ -43,7 +47,8 @@ const Fiziksel = () => {
   const [aboutText, setAboutText] = useState("");
   const [height, setHeight] = useState("1.74");
   const [weight, setWeight] = useState("70");
-  const maxChars = 250;
+  const [isAboutMeOpen, setIsAboutMeOpen] = useState(false);
+  const maxChars = 2500;
 
   const handleAboutTextChange = (event) => {
     setAboutText(event.target.value);
@@ -52,6 +57,14 @@ const Fiziksel = () => {
   const heights = ["1.72", "1.73", "1.74", "1.75", "1.76"];
   const weights = ["70", "71", "72", "73", "74"];
 
+  const handleAboutMeOpen = () => {
+    setIsAboutMeOpen(true);
+  };
+
+  const handleAboutMeClose = () => {
+    setIsAboutMeOpen(false);
+  };
+
   return (
     <Box component="form" className="w-full flex flex-col items-start">
       <Typography variant="h6" className="font-dm-serif-display font-bold">
@@ -59,8 +72,8 @@ const Fiziksel = () => {
       </Typography>
       <Box className="w-full flex flex-col items-center self-stretch border border-primary-100 rounded-2xl px-8 py-10">
         <Box className="flex flex-col items-start gap-6 self-stretch">
-          <Box className="flex flex-row items-center gap-2 w-full">
-            <Typography className="text-primary-900 font-sans text-[14px] font-medium leading-normal w-1/4">
+          <Box className="flex flex-row items-center  gap-2 w-1/2">
+            <Typography className="text-primary-900 font-sans text-[14px] font-medium leading-normal w-1/2">
               Cinsiyet:
             </Typography>
             <TextField
@@ -178,7 +191,7 @@ const Fiziksel = () => {
         <Typography className="text-primary-900 font-serif text-[18px] font-normal leading-6">
           Hakkımda:
         </Typography>
-        <Box className="w-full h-full flex flex-col border border-primary-100 rounded-2xl px-8 py-10">
+        <Box className="w-full h-full flex flex-col border border-primary-100 rounded-2xl px-8 py-10 relative">
           <TextField
             multiline
             rows={8}
@@ -189,13 +202,26 @@ const Fiziksel = () => {
             onChange={handleAboutTextChange}
             inputProps={{
               maxLength: maxChars,
-              style: { ...placeholderStyles, border: "none" },
+              style: { ...placeholderStyles, border: "none", color: "#36383C" },
               className: "text-primary-900",
+              sx: {
+                "&::-webkit-scrollbar": {
+                  width: "0px",
+                  height: "0px",
+                },
+                "&::-webkit-scrollbar-thumb": {
+                  background: "transparent",
+                },
+                "&::-webkit-scrollbar-track": {
+                  background: "transparent",
+                },
+              }
             }}
             sx={{
               height: "100%",
               width: "100%",
               border: "none",
+              color: "primary.darkest",
               "& .MuiOutlinedInput-notchedOutline": {
                 border: "none",
                 color: "primary.darkest"
@@ -205,8 +231,21 @@ const Fiziksel = () => {
           <Typography className="text-right text-red-500">
             {maxChars - aboutText.length}
           </Typography>
+          <IconButton
+            style={{ position: "absolute", top: 10, right: 10 }}
+            className="text-primary-600"
+            onClick={handleAboutMeOpen}
+          >
+            <Edit2 size={20} />
+          </IconButton>
         </Box>
       </Box>
+
+      <Dialog open={isAboutMeOpen} onClose={handleAboutMeClose}>
+        <DialogContent>
+          <AboutMe aboutText={aboutText} setAboutText={setAboutText} handleClose={handleAboutMeClose} />
+        </DialogContent>
+      </Dialog>
     </Box>
   );
 };

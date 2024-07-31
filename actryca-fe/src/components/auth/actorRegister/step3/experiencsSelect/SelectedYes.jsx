@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Button, TextField, Typography, MenuItem, Select, FormControl } from '@mui/material';
+import { Box, Button, TextField, Typography, MenuItem, Select, FormControl, FormHelperText } from '@mui/material';
 import { Check } from 'lucide-react';
 import { styled } from '@mui/material/styles';
 import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers';
@@ -100,7 +100,7 @@ const SelectedYes = () => {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <Box className="flex flex-col justify-center items-start gap-4 px-8 py-10 w-[519px] border border-primary-50 rounded-2xl">
+      <Box className="flex flex-col justify-center items-start gap-4 self-stretch">
         
         {projects.length > 0 && (
           <YesDetails 
@@ -170,18 +170,23 @@ const SelectedYes = () => {
           />
         </Box>
 
-        <Box className="w-full">
-          <Typography className="text-primary-900 font-sans text-[14px] font-medium leading-6 m5-[24px]">Açıklama (Tercihen):</Typography>
+        <Box className="w-full mb-4">
+          <Typography className="text-primary-900 font-sans text-[14px] font-medium leading-6">Açıklama (Tercihen):</Typography>
           <TextField
-            label="Açıklama (Tercihen)"
+            placeholder="Bihter rolünde, hırslı ve trajik bir karakteri canlandırdım. Adnan Ziyagil'in eşi olarak yasak bir aşk yaşayan Bihter'in iç dünyasını derinlemesine yansıttım"
             fullWidth
-            margin="normal"
-            multiline
             rows={4}
+            multiline
             value={description}
             onChange={handleDescriptionChange}
-            helperText={`${description.length}/150`}
+            helperText={
+              <FormHelperText className="text-red-600 text-right m-0 ">
+                {`${description.length}/150`}
+              </FormHelperText>
+            }
             inputProps={{ maxLength: 150 }}
+            className='placeholder:text-primary-50 gap-2 text-[16px] leading-6 h-auto overflow-auto'
+            sx={{ maxHeight: '150px' }}
           />
         </Box>
 
