@@ -39,7 +39,7 @@ const SelectedNo = () => {
     };
 
     return (
-        <Box className="flex flex-col items-start gap-6 px-8 py-10 border border-primary-100 rounded-2xl w-[519px]">
+        <Box className="flex flex-col justify-center items-start gap-1 self-stretch">
             <Typography className="text-primary-600 font-sans text-[16px] font-normal font-bold leading-6">
                 ENDİŞELENMEYİN!
             </Typography>
