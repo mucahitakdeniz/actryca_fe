@@ -1,6 +1,7 @@
 import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
+import StarRoundedIcon from "@mui/icons-material/StarRounded";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
@@ -34,14 +35,8 @@ const ActorCard = ({ actor }) => {
         )}
       </Box>
       <Box className="absolute bottom-16 w-full flex justify-end p-3">
-        <Typography className="center p-3 bg-star-color-100 w-16 h-8 rounded-lg text-primary-800 text-sm">
-          <Image
-            src="/images/star-fill.png"
-            width={20}
-            height={20}
-            alt="actor image"
-            className="w-5 h-auto"
-          />
+        <Typography className="center p-3 bg-star-color-100 w-16 h-8 rounded-lg text-star-color text-sm">
+          <StarRoundedIcon className=" w-5 h-auto" />
           &nbsp;{actor?.score}
         </Typography>
       </Box>

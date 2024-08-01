@@ -38,10 +38,9 @@ body {
 }
 
 .no-scrollbar {
-  -ms-overflow-style: none; 
-  scrollbar-width: none;  
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
-
 
 @keyframes slideIn {
   from {
@@ -58,7 +57,7 @@ body {
 }
 
 .link-underline-animation::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;

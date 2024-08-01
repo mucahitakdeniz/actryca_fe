@@ -4,7 +4,6 @@ import PopularArtists from "@/components/home/popular-artists/PopularArtists";
 import Reviews from "@/components/home/reviews/Reviews";
 import ServiceSection from "@/components/home/services/ServiceSection";
 import WhyActrycaSection from "@/components/home/why-actryca/WhyActrycaSection";
-import { Button } from "@mui/material";
 import { ChevronUp } from "lucide-react";
 import Link from "next/link";
 

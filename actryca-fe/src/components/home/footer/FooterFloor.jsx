@@ -13,7 +13,7 @@ const FooterFloor = () => {
           </Typography>
           <span className="bg-primary-600 w-10 h-[1px]"></span>
         </div>
-        <p className="leading-7 w-[555px] text-primary-900">
+        <p className="leading-7 w-[400px] md:w-[550px] text-primary-900 ">
           Actryca ailesine katılın! Yetenekli ve yaratıcı bir ekiple çalışarak
           kariyerinizi geliştirin. Tutkulu, yenilikçi ve motivasyonluysanız,
           sizinle tanışmak isteriz.

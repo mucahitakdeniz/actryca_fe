@@ -10,6 +10,7 @@ import {
   Menu,
   MenuItem,
   Button,
+  Box,
 } from "@mui/material";
 import {
   Menu as MenuIcon,
@@ -17,10 +18,11 @@ import {
   ChevronRight as ChevronRightIcon,
 } from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
-import Nav_item from "@/components/home/navbar/(nav-item)/Nav_item";
-import Section3 from "@/components/home/navbar/(nav-item)/Section3";
-import Logo from "@/components/home/navbar/(nav-item)/Logo";
-import navigation from "@/components/home/navbar/(nav-item)/navigation";
+import navItems from "@/components/home/navbar/navItems.json";
+import Image from "next/image";
+import Link from "next/link";
+import LoginSection from "./LoginSection";
+import NavItems from "./NavItems";
 
 export default function Example() {
   const theme = useTheme();
@@ -55,25 +57,33 @@ export default function Example() {
           backgroundColor: "white",
         }}
       >
-        <Logo />
-        <Nav_item />
-        <Section3 />
-        <IconButton
-          color="inherit"
-          aria-label="open drawer"
-          edge="start"
-          onClick={handleDrawerOpen}
-          className="sm:hidden"
-        >
-          <MenuIcon />
-        </IconButton>
+        <Link href="/">
+          <Image
+            src="/images/logo.svg"
+            alt="Your Company"
+            height={32}
+            width={128}
+          />
+        </Link>
+        <NavItems />
+        <Box className="flex gap-4">
+          <LoginSection />
+          <IconButton
+            color="primary"
+            aria-label="open drawer"
+            edge="start"
+            onClick={handleDrawerOpen}
+            sx={{ display: { sm: "flex", md: "none" } }}
+          >
+            <MenuIcon />
+          </IconButton>
+        </Box>
       </AppBar>
       <Drawer
         variant="temporary"
         open={drawerOpen}
         onClose={handleDrawerClose}
         anchor="right"
-        className="sm:hidden"
       >
         <div>
           <IconButton onClick={handleDrawerClose}>
@@ -85,7 +95,7 @@ export default function Example() {
           </IconButton>
         </div>
         <List>
-          {navigation.map((item) =>
+          {navItems.map((item) =>
             item.children ? (
               <div key={item.name}>
                 <Button
@@ -110,7 +120,7 @@ export default function Example() {
                 </Menu>
               </div>
             ) : (
-              <ListItem button key={item.name} component="a" href={item.href}>
+              <ListItem key={item.name} component="a" href={item.href}>
                 <ListItemText primary={item.name} />
               </ListItem>
             )
