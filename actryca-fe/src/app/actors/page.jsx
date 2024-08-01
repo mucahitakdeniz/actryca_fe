@@ -174,47 +174,201 @@ const Page = () => {
           <Typography variant="h6" className="text-center mb-4">
             Filtre
           </Typography>
-          <FormControl fullWidth className="gap-2">
-            <Typography>Ülke</Typography>
-            <Select value={filter} onChange={handleFilterChange}>
-              <MenuItem value="">Hepsi</MenuItem>
-              <MenuItem value="Turkey">Türkiye</MenuItem>
-              {/* Diğer filtreleme seçenekleri */}
-            </Select>
-            <Typography>Şehir</Typography>
-            <Select value={filter} onChange={handleFilterChange}>
-              <MenuItem value="">Hepsi</MenuItem>
-              <MenuItem value="Istanbul">İstanbul</MenuItem>
-              {/* Diğer filtreleme seçenekleri */}
-            </Select>
+          <Box className="flex flex-1 gap-8 ">
+            <Box className="w-3/5 flex gap-8">
+              <Box className="w-1/2">
+                <Typography className="mb-4 text-primary-500 border-b-2 border-primary-50">
+                  Kişisel Bilgiler
+                </Typography>
+                <FormControl fullWidth className="gap-1">
+                  <Typography>Ülke</Typography>
+                  <Select value={filter} onChange={handleFilterChange}>
+                    <MenuItem value="">Hepsi</MenuItem>
+                    <MenuItem value="Turkey">Türkiye</MenuItem>
+                    {/* Diğer filtreleme seçenekleri */}
+                  </Select>
+                  <Typography>Şehir</Typography>
+                  <Select value={filter} onChange={handleFilterChange}>
+                    <MenuItem value="">Hepsi</MenuItem>
+                    <MenuItem value="Istanbul">İstanbul</MenuItem>
+                    {/* Diğer filtreleme seçenekleri */}
+                  </Select>
+                  <Box className="flex items-center gap-4">
+                    <Typography>Cinsiyet</Typography>
+                    <Select
+                      fullWidth
+                      value={filter}
+                      onChange={handleFilterChange}
+                    >
+                      <MenuItem value="erkek">Erkek</MenuItem>
+                      <MenuItem value="kadın">Kadın</MenuItem>
+                      {/* Diğer filtreleme seçenekleri */}
+                    </Select>
+                  </Box>
 
-            <Typography>Cinsiyet</Typography>
-            <Select value={filter} onChange={handleFilterChange}>
-              <MenuItem value="">Hepsi</MenuItem>
-              <MenuItem value="Kadın">Kadın</MenuItem>
-              {/* Diğer filtreleme seçenekleri */}
-            </Select>
+                  <Typography>Yaş Aralığı</Typography>
+                  <Box className="flex gap-2 w-full">
+                    <TextField
+                      value={filter}
+                      onChange={handleFilterChange}
+                      type="number"
+                      label="En Az"
+                      variant="outlined"
+                      fullWidth
+                    />
+                    <TextField
+                      value={filter}
+                      onChange={handleFilterChange}
+                      type="number"
+                      label="En Çok"
+                      variant="outlined"
+                      fullWidth
+                    />
+                  </Box>
+                </FormControl>
+              </Box>
+              <Box className="w-1/2">
+                <Typography className="mb-4 text-primary-500 border-b-2 border-primary-50">
+                  Kişisel Özellikler
+                </Typography>
+                <FormControl fullWidth className="gap-1">
+                  <Typography>Boy Aralığı (cm)</Typography>
+                  <Box className="flex gap-2 w-full">
+                    <TextField
+                      value={filter}
+                      onChange={handleFilterChange}
+                      type="number"
+                      label="En Az"
+                      variant="outlined"
+                      fullWidth
+                    />
+                    <TextField
+                      value={filter}
+                      onChange={handleFilterChange}
+                      type="number"
+                      label="En Çok"
+                      variant="outlined"
+                      fullWidth
+                    />
+                  </Box>
 
-            <Typography>Yaş Aralığı</Typography>
-            <Box className="flex gap-2 w-full">
-              <TextField
-                value={filter}
-                onChange={handleFilterChange}
-                type="number"
-                label="En Az"
-                variant="outlined"
-                fullWidth
-              />
-              <TextField
-                value={filter}
-                onChange={handleFilterChange}
-                type="number"
-                label="En Çok"
-                variant="outlined"
-                fullWidth
-              />
+                  <Typography>Kilo Aralığı (kg)</Typography>
+                  <Box className="flex gap-2 w-full">
+                    <TextField
+                      value={filter}
+                      onChange={handleFilterChange}
+                      type="number"
+                      label="En Az"
+                      variant="outlined"
+                      fullWidth
+                    />
+                    <TextField
+                      value={filter}
+                      onChange={handleFilterChange}
+                      type="number"
+                      label="En Çok"
+                      variant="outlined"
+                      fullWidth
+                    />
+                  </Box>
+                  <Box className="flex items-center gap-4 my-4">
+                    <Typography>Saç Rengi</Typography>
+                    <Select
+                      fullWidth
+                      value={filter}
+                      onChange={handleFilterChange}
+                    >
+                      <MenuItem value="erkek">Erkek</MenuItem>
+                      <MenuItem value="kadın">Kadın</MenuItem>
+                      {/* Diğer filtreleme seçenekleri */}
+                    </Select>
+                  </Box>
+                  <Box className="flex items-center gap-4">
+                    <Typography>Göz Rengi</Typography>
+                    <Select
+                      fullWidth
+                      value={filter}
+                      onChange={handleFilterChange}
+                    >
+                      <MenuItem value="erkek">Erkek</MenuItem>
+                      <MenuItem value="kadın">Kadın</MenuItem>
+                      {/* Diğer filtreleme seçenekleri */}
+                    </Select>
+                  </Box>
+                </FormControl>
+              </Box>
             </Box>
-          </FormControl>
+            <Box className="w-2/5 ">
+              <Typography className="mb-4 text-primary-500 border-b-2 border-primary-50">
+                Özel Yetenekler
+              </Typography>
+              <FormControl fullWidth className="gap-1">
+                <Typography>Müzik Aleti</Typography>
+                <TextField
+                  value={filter}
+                  onChange={handleFilterChange}
+                  placeholder="Müzik aletini yazıp Enter'a bas."
+                  variant="outlined"
+                  fullWidth
+                />
+                <Typography>Dans</Typography>
+                <TextField
+                  value={filter}
+                  onChange={handleFilterChange}
+                  placeholder="Dans türünü yazıp Enter'a basın."
+                  variant="outlined"
+                  fullWidth
+                />{" "}
+                <Typography>Spor</Typography>
+                <TextField
+                  value={filter}
+                  onChange={handleFilterChange}
+                  placeholder="Spor türünü yazıp Enter'a basın."
+                  variant="outlined"
+                  fullWidth
+                />{" "}
+                <Typography>Sahne Sanatları</Typography>
+                <TextField
+                  value={filter}
+                  onChange={handleFilterChange}
+                  placeholder="Sahne sanatını yazıp Enter'a basın."
+                  variant="outlined"
+                  fullWidth
+                />
+              </FormControl>
+              <Typography className="my-4 text-primary-500 border-b-2 border-primary-50">
+                Konuşulan Diller
+              </Typography>
+              <Box className="flex justify-between gap-4 w-full ">
+                <Box className="w-full">
+                  <Typography>Konuşulan Diller</Typography>
+                  <Select
+                    fullWidth
+                    value={filter}
+                    onChange={handleFilterChange}
+                  >
+                    <MenuItem value="en">İngilizce</MenuItem>
+                    <MenuItem value="de">Almanca</MenuItem>
+                  </Select>
+                </Box>
+                <Box className="w-full">
+                  <Typography>Seviye</Typography>
+                  <Select
+                    fullWidth
+                    value={filter}
+                    onChange={handleFilterChange}
+                  >
+                    <MenuItem value="a1">A1</MenuItem>
+                    <MenuItem value="a2">A2</MenuItem>
+                    <MenuItem value="a1">B1</MenuItem>
+                    <MenuItem value="a2">B2</MenuItem>
+                    <MenuItem value="a1">C1</MenuItem>
+                    <MenuItem value="a2">C2</MenuItem>
+                  </Select>
+                </Box>
+              </Box>
+            </Box>
+          </Box>
           <Box className="flex justify-between mt-4">
             <Button onClick={handleClose}>Filtreyi Temizle</Button>
             <Button variant="contained" onClick={handleClose}>
