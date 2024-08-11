@@ -56,7 +56,7 @@ const Kisisel = () => {
   const phoneCodes = countries.map((country) => country.phoneCode);
 
   return (
-    <Box className="w-full flex flex-col items-start gap-" component="form">
+    <Box className="w-full flex flex-col items-start gap-6" component="form">
       <Typography variant="h6" className=" font-dm-serif-display font-bold">
         Temel Bilgiler:
       </Typography>
