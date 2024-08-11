@@ -10,7 +10,7 @@ import {
   FormControl,
 } from "@mui/material";
 import React from "react";
-import { countries } from "../actorspecial";
+import { countries } from "../../actorRegister/actorspecial";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
 const placeholderStyles = {
@@ -22,7 +22,7 @@ const placeholderStyles = {
   },
 };
 
-const Kisisel = () => {
+const MainInformation = () => {
   const [selectedCountry, setSelectedCountry] = React.useState("Turkey");
   const [phoneCode, setPhoneCode] = React.useState("+90");
   const [phoneNumber, setPhoneNumber] = React.useState("");
@@ -56,8 +56,8 @@ const Kisisel = () => {
   const phoneCodes = countries.map((country) => country.phoneCode);
 
   return (
-    <Box className="w-full flex flex-col items-start gap-6" component="form">
-      <Typography variant="h6" className=" font-dm-serif-display font-bold">
+    <Box className="w-[519px] flex flex-col items-start gap-6" component="form">
+      <Typography variant="h6" className=" font-dm-serif-display font-bold text-primary-900">
         Temel Bilgiler:
       </Typography>
       <Box className="flex flex-col gap-6 self-stretch shadow rounded-2xl p-8 h-full border border-primary-100">
@@ -168,4 +168,4 @@ const Kisisel = () => {
   );
 };
 
-export default Kisisel;
+export default MainInformation;
