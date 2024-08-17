@@ -33,7 +33,7 @@ const AboutMe = ({ aboutText, setAboutText, handleClose }) => {
                         maxLength: maxChars,
                         style: {
                             padding: "8px 4px",
-                            overflowY: 'auto', // Yatay kaydırma
+                            overflowY: 'auto', 
                         }
                     }}
                     sx={{
@@ -47,15 +47,15 @@ const AboutMe = ({ aboutText, setAboutText, handleClose }) => {
                         },
                         "& .MuiInputBase-input": {
                             padding: "0px",
-                            overflowY: 'auto', // Yatay kaydırma
+                            overflowY: 'auto', 
                             '&::-webkit-scrollbar': {
-                                display: 'none', // Scrollbar'ı gizle
+                                display: 'none', 
                             },
                             '&::-webkit-scrollbar-thumb': {
                                 backgroundColor: 'transparent',
                             },
-                            '-ms-overflow-style': 'none', /* IE ve Edge için scrollbar'ı gizle */
-                            'scrollbar-width': 'none', /* Firefox için scrollbar'ı gizle */
+                            '-ms-overflow-style': 'none', 
+                            'scrollbar-width': 'none', 
                         },
                     }}
                 />
