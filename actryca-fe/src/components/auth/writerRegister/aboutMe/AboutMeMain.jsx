@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import {
   Box,
@@ -9,7 +9,7 @@ import {
   IconButton,
 } from "@mui/material";
 import AboutMe from "./AboutMe";
-import { Edit2 } from 'lucide-react';
+import { Edit2 } from "lucide-react";
 
 const AboutMeMain = () => {
   const [aboutText, setAboutText] = useState("");
@@ -29,11 +29,18 @@ const AboutMeMain = () => {
   };
 
   return (
-    <Box className="flex flex-col gap-[10px] self-stretch h-full pt-6">
-      <Typography className="mb-2 text-primary-900 font-dm-serif-text text-[18px] font-bold leading-6">
+    <Box className="flex flex-col gap-[10px] self-stretch pt-6">
+      <Typography variant="h6" className=" font-dm-serif-display font-bold text-primary-900">
         Hakkımda:
       </Typography>
-      <Box className="w-full h-full flex flex-col border border-primary-100 rounded-2xl px-8 py-10 relative">
+      <Box
+        className="w-full flex flex-col border border-primary-100 rounded-2xl px-8 py-10 relative"
+        sx={{
+          height: "250px", 
+          maxHeight: "250px", 
+          overflow: "hidden", 
+        }}
+      >
         <TextField
           multiline
           rows={8}

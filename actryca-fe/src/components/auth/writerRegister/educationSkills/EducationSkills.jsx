@@ -76,7 +76,7 @@ const EducationSkills = () => {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <Box className='flex flex-col items-start gap-4 p-4 '>
-        <Typography className="mb-2 text-primary-900 font-dm-serif-text text-[18px] font-bold leading-6">Eğitim Bilgileri:</Typography>
+        <Typography variant="h6" className=" font-dm-serif-display font-bold text-primary-900">Eğitim Bilgileri:</Typography>
         <Box className="flex w-full flex-col justify-end items-left gap-[26px] px-8 py-10 border border-primary-100 rounded-lg" id="education-skills">
           {selectedOption === null || selectedOption === 'hayir' ? (
             <Box className="flex flex-col justify-center items-start gap-8">
@@ -96,7 +96,7 @@ const EducationSkills = () => {
                 />
               </RadioGroup>
               {selectedOption === 'hayir' && (
-                <Box id="no" className="flex flex-col justify-center items-center gap-4">
+                <Box id="no" className="flex flex-col justify-center  gap-4 ">
                   <Typography className='text-primary-600 font-sans text-[16px] font-medium leading-6'>Eğitiminiz yoksa endişelenmeyin!</Typography>
                   <Typography className='text-primary-900 font-sans text-[16px] font-400 leading-6'>Senaristlik kariyerinize başlamak için birçok farklı yol vardır. Formu doldurmaya devam ederek ilk adımı atın ve yeteneklerinizi keşfedin.</Typography>
                 </Box>
@@ -105,20 +105,21 @@ const EducationSkills = () => {
           ) : selectedOption === 'evet' || selectedOption === 'saved' ? (
             <Box className="flex flex-col justify-center items-center gap-4">
               {educationDetails.map((edu, index) => (
-                <>  <Box key={index} className="flex flex-col justify-center items-start w-full gap-3 px-8 py-10 border border-primary-100 rounded-lg bg-gray-50">
-                  <Typography className="text-primary-900 font-sans text-[16px] font-bold leading-6">{edu.name}</Typography>
-                  <Typography className="text-primary-900 font-sans text-[14px] font-medium leading-6">{edu.institution}</Typography>
-                  <Typography className="text-primary-900 font-sans text-[14px] italic font-normal leading-6">
-                    {`${edu.startDate ? new Date(edu.startDate).toLocaleDateString() : 'Başlangıç Tarihi'} - ${edu.endDate ? new Date(edu.endDate).toLocaleDateString() : 'Bitiş Tarihi'}`}
-                  </Typography>
-                  <Typography className="text-primary-900 font-sans text-[16px] font-normal leading-6">{edu.description}</Typography>
-                  <Box className="flex justify-end w-full">
-                    <Button color="primary" onClick={() => handleEdit(index)}>
-                      <Typography className="underline text-primary-900">Düzenle</Typography>
-                    </Button>
-                  </Box>
+                <>
+                  <Box key={index} className="flex flex-col justify-center items-start w-full gap-3 px-8 py-10 border border-primary-100 rounded-lg bg-gray-50">
+                    <Typography className="text-primary-900 font-sans text-[16px] font-bold leading-6">{edu.name}</Typography>
+                    <Typography className="text-primary-900 font-sans text-[14px] font-medium leading-6">{edu.institution}</Typography>
+                    <Typography className="text-primary-900 font-sans text-[14px] italic font-normal leading-6">
+                      {`${edu.startDate ? new Date(edu.startDate).toLocaleDateString() : 'Başlangıç Tarihi'} - ${edu.endDate ? new Date(edu.endDate).toLocaleDateString() : 'Bitiş Tarihi'}`}
+                    </Typography>
+                    <Typography className="text-primary-900 font-sans text-[16px] font-normal leading-6">{edu.description}</Typography>
+                    <Box className="flex justify-end w-full">
+                      <Button color="primary" onClick={() => handleEdit(index)}>
+                        <Typography className="underline text-primary-900">Düzenle</Typography>
+                      </Button>
+                    </Box>
 
-                </Box>
+                  </Box>
                   <Box className="flex justify-between w-full">
                     <Button variant="outlined" onClick={() => handleDelete(index)} className="px-3 py-[10px]">Sil</Button>
                     <Button variant="contained" color="primary" onClick={handleAddNew} className="px-3 py-[10px]">Ekle</Button>

@@ -20,7 +20,7 @@ import EducationSkills from "../../../../components/auth/actorRegister/step2/Edu
 import SpokenLanguage from "@/components/auth/actorRegister/step2/SpokenLanguage";
 import SpecialAbilities from "@/components/auth/actorRegister/step2/SpecialAbilities";
 import ProfessionalInfo from "@/components/auth/actorRegister/step3/ProfessionalInfo";
-import RegisterDone from "@/components/auth/actorRegister/registerDone/RegisterDone"
+import RegisterDone from "@/components/auth/actorRegister/registerDone/RegisterDone";
 
 const steps = [
   { label: "Kişisel Bilgiler", icon: step1 },
@@ -64,9 +64,13 @@ export default function ActorRegister() {
     switch (step) {
       case 0:
         return (
-          <Box className="flex flex-row items-start gap-9 pt-12" style={{ alignItems: "stretch" }}>
-            <Kisisel />
-            <Fiziksel />
+          <Box className="flex flex-row items-start gap-9 pt-12">
+            <Box className="w-1/2  ">
+              <Kisisel />
+            </Box>
+            <Box className="w-1/2 ">
+              <Fiziksel />
+            </Box>
           </Box>
         );
       case 1:
@@ -86,7 +90,7 @@ export default function ActorRegister() {
           <Box>
             <ProfessionalInfo />
           </Box>
-        )
+        );
 
 
       default:
@@ -128,7 +132,6 @@ export default function ActorRegister() {
         {renderStepContent(activeStep)}
         {activeStep === steps.length ? (
           <>
-           
             <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
               <Box sx={{ flex: "1 1 auto" }} />
               <Button onClick={handleReset}>Sıfırla</Button>

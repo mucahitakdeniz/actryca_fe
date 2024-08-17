@@ -66,7 +66,7 @@ const Fiziksel = () => {
   };
 
   return (
-    <Box component="form" className="w-full flex flex-col items-start">
+    <Box component="form" className="w-full h-[100vh] flex flex-col items-start gap-6">
       <Typography variant="h6" className="font-dm-serif-display font-bold">
         Fiziksel Özellikler:
       </Typography>
@@ -187,11 +187,11 @@ const Fiziksel = () => {
         </Box>
       </Box>
 
-      <Box className="flex flex-col gap-[10px] self-stretch h-full pt-6">
-        <Typography className="text-primary-900 font-serif text-[18px] font-normal leading-6">
+      <Box className="flex flex-col gap-[10px]  self-stretch  pt-6">
+        <Typography className=" font-dm-serif-display font-bold">
           Hakkımda:
         </Typography>
-        <Box className="w-full h-full flex flex-col border border-primary-100 rounded-2xl px-8 py-10 relative">
+        <Box className="w-full  flex flex-col border border-primary-100 rounded-2xl px-8 py-10 relative h-[79%]">
           <TextField
             multiline
             rows={8}
