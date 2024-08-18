@@ -17,7 +17,8 @@
     "@mui/material": "^5.16.4",
     "@mui/material-nextjs": "^5.15.11",
     "@mui/x-date-pickers": "^7.11.0",
-    "axios": "^1.7.2",
+    "@tanstack/react-query": "^5.51.23",
+    "axios": "^1.7.4",
     "date-fns": "^2.29.3",
     "dayjs": "^1.11.12",
     "formik": "^2.4.6",
@@ -26,7 +27,8 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.24.0",
-    "yup": "^1.4.0"
+    "yup": "^1.4.0",
+    "zustand": "^4.5.5"
   },
   "devDependencies": {
     "eslint": "^8",

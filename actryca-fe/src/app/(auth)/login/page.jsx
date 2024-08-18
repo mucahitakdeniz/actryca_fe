@@ -11,6 +11,9 @@ import ForgetPasswordDialog from "../../../components/auth/forgetpassword/Forget
 import VerificationCodeDialog from "../../../components/auth/forgetpassword/VerificationCode";
 import NewPasswordDialog from "../../../components/auth/forgetpassword/NewPasswordDialog";
 import UpdatedPasswordDialog from "../../../components/auth/forgetpassword/UpdatedPasswordDialog";
+import { login } from "@/services/auth";
+import { useMutation } from "@tanstack/react-query";
+import useAuthStore from "@/store/auth-store";
 
 export default function Page() {
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -18,6 +21,28 @@ export default function Page() {
   const [newPasswordDialogOpen, setNewPasswordDialogOpen] = useState(false);
   const [updatedPasswordDialogOpen, setUpdatedPasswordDialogOpen] =
     useState(false);
+
+  const { setUser, setTokens } = useAuthStore();
+
+  const { mutate, isPending, isError, error } = useMutation({
+    mutationFn: login,
+    onSuccess: (data) => {
+      setUser(data);
+      setTokens(data.accessToken);
+      localStorage.setItem("token", data.accessToken);   
+    },
+  });
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const userData = {
+      identifier: data.get("email"),
+      password: data.get("password"),
+    };
+
+    mutate(userData);
+  };
 
   const handleDialogOpen = () => {
     setDialogOpen(true);
@@ -64,15 +89,6 @@ export default function Page() {
 
   const handleUpdatedPasswordContinue = () => {
     setUpdatedPasswordDialogOpen(false);
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
   };
 
   return (
@@ -140,8 +156,9 @@ export default function Page() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              disabled={isPending}
             >
-              giriş yap
+              {isPending ? "Loading..." : "giriş yap"}
             </Button>
             <Box display="flex" alignItems="center">
               <Box flex="1" height="1px" bgcolor="info.main" mr={2} />
