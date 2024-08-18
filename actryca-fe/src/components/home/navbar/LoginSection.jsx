@@ -2,16 +2,20 @@ import React, { useState } from "react";
 import {
   Box,
   Button,
+  IconButton,
   Modal,
   TextField,
   Typography,
   useMediaQuery,
 } from "@mui/material";
-import { Search } from "lucide-react";
+import { Search, UserRound } from "lucide-react";
 import Link from "next/link";
+import useAuthStore from "@/store/auth-store";
 
 const LoginSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { user } = useAuthStore();
+  console.log(user);
 
   const handleSearchClick = () => {
     setIsModalOpen(true);
@@ -39,16 +43,23 @@ const LoginSection = () => {
           onClick={handleSearchClick}
           className="text-primary-800 cursor-pointer"
         />
+        {user ? (
+          <IconButton>
+            <Link href="/login">
+              <UserRound strokeWidth={1.5} />
+            </Link>
+          </IconButton>
+        ) : (
+          <Box display="flex" alignItems="center" gap={1}>
+            <Button>
+              <Link href="/login">Giriş Yap</Link>
+            </Button>
 
-        <Box display="flex" alignItems="center" gap={1}>
-          <Button>
-            <Link href="/login">Giriş Yap</Link>
-          </Button>
-
-          <Button variant="contained">
-            <Link href="/register">Üye Ol</Link>
-          </Button>
-        </Box>
+            <Button variant="contained">
+              <Link href="/register">Üye Ol</Link>
+            </Button>
+          </Box>
+        )}
 
         <Modal open={isModalOpen} onClose={handleCloseModal}>
           <Box
