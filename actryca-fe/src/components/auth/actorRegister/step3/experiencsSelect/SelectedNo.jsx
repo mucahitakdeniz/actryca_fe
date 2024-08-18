@@ -1,11 +1,20 @@
-import React, { useRef, useState } from 'react';
-import { Box, Button, Typography, TextField } from '@mui/material';
-import { Clapperboard, Notebook, Video, FileUp } from 'lucide-react';
+import React, { useRef, useState, useEffect } from 'react';
+import { Box, Typography, CircularProgress } from '@mui/material';
+import { FileUp, FileVideo2, Trash2, CircleCheck, RefreshCw } from 'lucide-react';
 
 const SelectedNo = () => {
     const fileInputRef = useRef(null);
     const [isDragging, setIsDragging] = useState(false);
     const [selectedFile, setSelectedFile] = useState(null);
+    const [uploadProgress, setUploadProgress] = useState(0);
+    const [uploadState, setUploadState] = useState('');
+    const [videoPreviewUrl, setVideoPreviewUrl] = useState(null);
+    const [errorMessage, setErrorMessage] = useState('');
+    const [showTrashIcon, setShowTrashIcon] = useState(false);
+    const [showPercentage, setShowPercentage] = useState(true);
+
+    const MAX_FILE_SIZE_MB = 10;
+    const MAX_FILE_SIZE = MAX_FILE_SIZE_MB * 1024 * 1024;
 
     const handleClick = () => {
         fileInputRef.current.click();
@@ -14,8 +23,14 @@ const SelectedNo = () => {
     const handleFileChange = (event) => {
         const file = event.target.files[0];
         if (file) {
+            if (file.size > MAX_FILE_SIZE) {
+                setErrorMessage(`Dosya boyutu ${MAX_FILE_SIZE_MB} MB'den büyük olamaz.`);
+                setUploadState('error');
+                return;
+            }
             setSelectedFile(file);
-            console.log(file);
+            setVideoPreviewUrl(URL.createObjectURL(file));
+            startUpload(file);
         }
     };
 
@@ -33,87 +48,185 @@ const SelectedNo = () => {
         setIsDragging(false);
         const files = event.dataTransfer.files;
         if (files.length > 0) {
-            setSelectedFile(files[0]);
-            console.log(files[0]);
+            const file = files[0];
+            if (file.size > MAX_FILE_SIZE) {
+                setErrorMessage(`Dosya boyutu ${MAX_FILE_SIZE_MB} MB'den büyük olamaz.`);
+                setUploadState('error');
+                return;
+            }
+            setSelectedFile(file);
+            setVideoPreviewUrl(URL.createObjectURL(file));
+            startUpload(file);
         }
     };
 
+    const handleRemoveFile = () => {
+        setSelectedFile(null);
+        setUploadProgress(0);
+        setUploadState('');
+        setVideoPreviewUrl(null);
+        setErrorMessage('');
+        setShowPercentage(true);
+    };
+
+    const startUpload = (file) => {
+        setUploadState('uploading');
+        setErrorMessage('');
+
+        const interval = setInterval(() => {
+            setUploadProgress((prev) => {
+                if (prev >= 100) {
+                    clearInterval(interval);
+                    setUploadState('success');
+                    setShowTrashIcon(false);
+                    setTimeout(() => {
+                        setShowTrashIcon(true);
+                    }, 1000);
+                    setTimeout(() => {
+                        setShowPercentage(false);
+                    }, 1000);
+                    return 100;
+                }
+                return prev + 10;
+            });
+        }, 500);
+
+        setTimeout(() => {
+            const shouldFail = Math.random() > 0.8;
+            if (shouldFail) {
+                clearInterval(interval);
+                setUploadState('error');
+            }
+        }, 5000);
+    };
+
+    const retryUpload = () => {
+        if (selectedFile) {
+            setUploadProgress(0);
+            setShowPercentage(true);
+            startUpload(selectedFile);
+        }
+    };
+
+    const formatFileSize = (size) => {
+        return `${(size / 1024).toFixed(2)} KB`;
+    };
+
+    const getProgressBarColor = () => {
+        switch (uploadState) {
+            case 'uploading':
+                return '#6f42c1';
+            case 'error':
+                return '#e74c3c';
+            case 'success':
+                return '#27ae60';
+            default:
+                return '#ddd';
+        }
+    };
+
+    const getIcon = () => {
+        switch (uploadState) {
+            case 'uploading':
+                return <CircularProgress size={20} />;
+            case 'error':
+                return <RefreshCw size={20} className="text-error-500 cursor-pointer text-primary-600" onClick={retryUpload} />;
+            case 'success':
+                return showTrashIcon ? (
+                    <Trash2 size={20} className="text-primary-600 cursor-pointer" onClick={handleRemoveFile} />
+                ) : (
+                    <CircleCheck size={20} className="text-success-500 text-green-500" />
+                );
+            default:
+                return <Trash2 size={20} className="text-primary-600" onClick={handleRemoveFile} />;
+        }
+    };
+
+    useEffect(() => {
+        if (videoPreviewUrl && selectedFile) {
+            // Video ön izlemesi oluşturulduğunda herhangi bir işlem yapılabilir.
+        }
+    }, [videoPreviewUrl, selectedFile]);
+
     return (
         <Box className="flex flex-col justify-center items-start gap-1 self-stretch">
-            <Typography className="text-primary-600 font-sans text-[16px] font-normal font-bold leading-6">
-                ENDİŞELENMEYİN!
-            </Typography>
-
-            <Box className="flex items-start gap-2 mb-2">
-                <Clapperboard size={24} className="text-primary-600" />
-                <Typography className="text-primary-900 font-sans text-[16px] font-normal leading-6">
-                    Eğer daha önceki projeleriniz yoksa, <strong>audition videosu</strong> yükleyerek kendinizi tanıtabilirsiniz.
-                </Typography>
-            </Box>
-
-            <Box className="flex items-start gap-2 mb-2">
-                <Notebook size={24} className="text-primary-600" />
-                <Typography className="text-primary-900 font-sans text-[14px] font-normal leading-normal">
-                    Kendi <span className="text-primary-600 font-medium">seçtiğiniz bir metni</span> ya da bizim sağladığımız örnek metinlerden birini kullanabilirsiniz.
-                </Typography>
-            </Box>
-
-            <Box className="flex flex-col gap-4 mb-4 w-full">
-                <Box className="flex items-center gap-4 w-full">
-                    <Button className="flex-1 rounded-lg border border-primary-50 bg-[#eee] text-primary-900">
-                        Örnek Metin 1
-                    </Button>
-                    <Button className="flex-1 rounded-lg border-primary-50 bg-[#fff] text-primary-900">
-                        Örnek Metin 2
-                    </Button>
-                </Box>
-
-                <Box className="flex flex-col items-start gap-3 mb-2">
-                    <Typography className="text-primary-900 font-sans text-[14px] font-normal leading-normal">
-                        Karakterin <strong>dramatik</strong> bir sahnedeki monologunu içerir.
-                    </Typography>
-                    <Box className="flex gap-3 items-center">
-                        <Typography className="text-primary-600 font-sans text-[14px] font-normal leading-normal underline cursor-pointer">
-                            Örnek Metin 1 indir
-                        </Typography>
-                        <FileUp className="text-primary-600" />
+            {selectedFile ? (
+                <Box className="w-full">
+                {uploadState === 'success' && videoPreviewUrl && (
+                        <Box className="w-full mt-4">
+                            
+                            <video
+                                src={videoPreviewUrl}
+                                controls
+                                className="w-full h-auto rounded-lg"
+                            />
+                        </Box>
+                    )}
+                    <Box className="flex items-center gap-2 mt-4 p-2 border border-primary-200 rounded-lg w-full">
+                        <FileVideo2 size={24} className="text-primary-600" />
+                        <Box className="flex-grow">
+                            <Typography className="text-primary-900 font-sans text-[14px] font-normal leading-normal">
+                                {selectedFile.name}
+                            </Typography>
+                            <Typography className="text-primary-600 font-sans text-[12px] font-normal leading-tight">
+                                {formatFileSize(selectedFile.size)}
+                            </Typography>
+                        </Box>
+                        {getIcon()}
                     </Box>
-                </Box>
 
-                <Box className="flex items-start gap-2 mb-2">
-                    <Video size={24} className="text-primary-600" />
+                   
+                    <Box className="w-full mt-4">
+                        <Box className="w-full h-2 rounded-lg" style={{ backgroundColor: '#f0f0f0' }}>
+                            <Box
+                                className="h-2 rounded-lg"
+                                style={{
+                                    width: `${uploadProgress}%`,
+                                    backgroundColor: getProgressBarColor(),
+                                    transition: 'width 0.3s ease',
+                                }}
+                            />
+                        </Box>
+                        {showPercentage && (
+                            <Typography className="text-primary-900 font-sans text-[12px] font-normal mt-1 leading-tight text-right">
+                                {uploadProgress}%
+                            </Typography>
+                        )}
+                        {errorMessage && (
+                            <Typography className="text-red-600 font-sans text-[12px] font-normal mt-1 leading-tight">
+                                {errorMessage}
+                            </Typography>
+                        )}
+                    </Box>
+
+                    
+                </Box>
+            ) : (
+                <Box
+                    onClick={handleClick}
+                    onDragOver={handleDragOver}
+                    onDragLeave={handleDragLeave}
+                    onDrop={handleDrop}
+                    className={`border border-dashed border-primary-200 rounded-lg p-6 w-full flex flex-col items-center justify-center text-center cursor-pointer ${
+                        isDragging ? 'bg-primary-50' : 'bg-white'
+                    }`}
+                >
+                    <FileUp size={48} className="text-primary-600 mb-4" />
                     <Typography className="text-primary-900 font-sans text-[14px] font-normal leading-normal mb-2">
-                        Videoda kendinizi <strong>kısaca tanıtın</strong> ve ardından seçtiğiniz metni oynayın. Video <strong>maksimum 3 dakika</strong> olmalıdır.
+                    Videoyu sürükleyin ya da <span className="text-primary-600 underline">yükleyin</span> 
                     </Typography>
+                    <Typography className="text-primary-300 font-sans text-[12px] font-normal leading-[18px] mt-2">
+                        Desteklenen dosya formatları: MP4, AVI, MOV.
+                    </Typography>
+                    <input
+                        type="file"
+                        ref={fileInputRef}
+                        onChange={handleFileChange}
+                        accept="video/*"
+                        style={{ display: 'none' }}
+                    />
                 </Box>
-            </Box>
-
-            <Box
-                className={`flex flex-col items-center justify-center p-6 border-dashed gap-[21px] border border-primary-300 rounded-2xl w-full ${isDragging ? 'bg-primary-100' : ''}`}
-                onDragOver={handleDragOver}
-                onDragLeave={handleDragLeave}
-                onDrop={handleDrop}
-            >
-                <FileUp size={48} className="text-primary-600 mb-2" />
-                <Typography className="text-primary-900 font-sans text-[14px] font-normal leading-normal mb-4">
-                    Videoyu sürükleyin ya da <span onClick={handleClick} className="text-primary-600 font-medium cursor-pointer underline">yükleyin</span>
-                </Typography>
-                <TextField
-                    inputRef={fileInputRef}
-                    type="file"
-                    inputProps={{ accept: 'video/*' }}
-                    style={{ display: 'none' }}
-                    onChange={handleFileChange}
-                />
-                {selectedFile && (
-                    <Typography className="text-primary-900 font-sans text-[14px] font-normal leading-normal mt-2">
-                        {selectedFile.name}
-                    </Typography>
-                )}
-                <Typography className="text-name-300 font-sans text-[12px] font-normal leading-[18px] mt-2">
-                    Desteklenen dosya formatları: MP4, AVI, MOV.
-                </Typography>
-            </Box>
+            )}
         </Box>
     );
 };
