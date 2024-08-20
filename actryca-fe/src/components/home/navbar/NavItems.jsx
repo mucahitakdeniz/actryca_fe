@@ -28,8 +28,9 @@ const NavItems = () => {
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
-        gap: "20px",
+        gap: "32px",
       }}
+      className="font-sans font-medium text-[16px]"
     >
       {navItems.map((item) => {
         return item.children ? (
