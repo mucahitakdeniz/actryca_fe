@@ -34,7 +34,7 @@ const LoginSection = () => {
           display: { xs: "none", sm: "flex" },
         }}
         alignItems="center"
-        gap={1}
+        gap="24px"
       >
         <Search
           width={20}
@@ -51,11 +51,11 @@ const LoginSection = () => {
           </IconButton>
         ) : (
           <Box display="flex" alignItems="center" gap={1}>
-            <Button>
+            <Button className="px-8 py-4 font-sans font-bold h-12 ">
               <Link href="/login">Giriş Yap</Link>
             </Button>
 
-            <Button variant="contained">
+            <Button  className="px-8 py-4 font-sans font-bold h-12 bg-primary-600 text-white hover:bg-primary-500">
               <Link href="/register">Üye Ol</Link>
             </Button>
           </Box>
