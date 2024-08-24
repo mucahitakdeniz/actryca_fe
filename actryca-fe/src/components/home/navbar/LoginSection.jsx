@@ -3,6 +3,8 @@ import {
   Box,
   Button,
   IconButton,
+  Menu,
+  MenuItem,
   Modal,
   TextField,
   Typography,
@@ -11,11 +13,26 @@ import {
 import { Search, UserRound } from "lucide-react";
 import Link from "next/link";
 import useAuthStore from "@/store/auth-store";
+import { AccountCircle } from "@mui/icons-material";
 
 const LoginSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { user } = useAuthStore();
-  console.log(user);
+  const { user, logout } = useAuthStore();
+  const [auth, setAuth] = useState(true);
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleLogout = (event) => {
+    logout();
+    localStorage.clear();
+  };
+
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   const handleSearchClick = () => {
     setIsModalOpen(true);
@@ -44,11 +61,36 @@ const LoginSection = () => {
           className="text-primary-800 cursor-pointer"
         />
         {user ? (
-          <IconButton>
-            <Link href="/login">
-              <UserRound strokeWidth={1.5} />
-            </Link>
-          </IconButton>
+          <div>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleMenu}
+              color="inherit"
+            >
+              <AccountCircle color="primary" />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorEl}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+            >
+              <MenuItem onClick={handleClose}>Profile</MenuItem>
+              <MenuItem onClick={handleLogout}>Logout</MenuItem>
+            </Menu>
+          </div>
         ) : (
           <Box display="flex" alignItems="center" gap={1}>
             <Button>
