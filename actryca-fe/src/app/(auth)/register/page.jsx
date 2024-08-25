@@ -7,18 +7,29 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { signUp } from "../../../services/auth"; 
 
 export default function Page() {
   const router = useRouter();
-  const handleSubmit = (event) => {
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    //const data = new FormData(event.currentTarget);
-    /*     console.log({
-      email: data.get("email"),
+    const data = new FormData(event.currentTarget);
+
+    const userData = {
+      user_name: data.get("username"),  
+      identifier: data.get("identifier"), 
       password: data.get("password"),
-      username: data.get("username"),
-    }); */
-    router.push("/user-register");
+    };
+
+    try {
+      const response = await signUp(userData);
+      if (response) {
+        router.push("/user-register");
+      }
+    } catch (error) {
+      console.error("Kayıt işlemi başarısız oldu", error);
+    }
   };
 
   return (
@@ -33,7 +44,7 @@ export default function Page() {
         </Typography>
       </Grid>
 
-      <Grid item xs={12} sm={8} md={5} className=" pr-24 pt-8 h-full ">
+      <Grid item xs={12} sm={8} md={5} className="pr-24 pt-8 h-full">
         <Box className="">
           <Typography variant="h4" className="font-dm-serif-text">
             Hoşgeldiniz!
@@ -56,15 +67,15 @@ export default function Page() {
             </Box>
             <Box className="mt-4">
               <Typography variant="subtitle2" color="primary.dark">
-                Telefon yada E-posta*
+                Telefon ya da E-posta*
               </Typography>
               <TextField
                 margin="normal"
                 required
                 fullWidth
-                id="email"
+                id="identifier"
                 placeholder="555 55 55 veya example@gmail.com"
-                name="email"
+                name="identifier" 
                 autoComplete="email"
                 autoFocus
               />
@@ -74,7 +85,6 @@ export default function Page() {
               <Typography variant="subtitle2" color="primary.dark">
                 Şifre*
               </Typography>
-
               <TextField
                 margin="normal"
                 required
@@ -102,9 +112,8 @@ export default function Page() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              onClick={handleSubmit}
             >
-              üye ol
+              Üye ol
             </Button>
             <Box display="flex" alignItems="center">
               <Box flex="1" height="1px" bgcolor="info.main" mr={2} />
