@@ -6,11 +6,13 @@ const url = process.env.NEXT_PUBLIC_HOST_API;
 export const signUp = async (data) => {
   try {
     console.log(data);
-    const response = await axios.post("/auth/register", data);
+    const response = await axios.post(
+      "https://actryca-backend.onrender.com/auth/register",
+      data
+    );
     return response.data;
   } catch (error) {
     console.error(error);
-    throw error;
   }
 };
 
