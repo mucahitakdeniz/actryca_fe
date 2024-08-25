@@ -14,6 +14,7 @@ import UpdatedPasswordDialog from "../../../components/auth/forgetpassword/Updat
 import { login } from "@/services/auth";
 import { useMutation } from "@tanstack/react-query";
 import useAuthStore from "@/store/auth-store";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -23,13 +24,15 @@ export default function Page() {
     useState(false);
 
   const { setUser, setTokens } = useAuthStore();
+  const router = useRouter();
 
   const { mutate, isPending, isError, error } = useMutation({
     mutationFn: login,
     onSuccess: (data) => {
       setUser(data);
       setTokens(data.accessToken);
-      localStorage.setItem("token", data.accessToken);   
+      localStorage.setItem("token", data.accessToken);
+      router.push("/");
     },
   });
 
