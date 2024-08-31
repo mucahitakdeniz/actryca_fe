@@ -167,7 +167,13 @@ const PopularArtists = () => {
       )}
 
       <div className="absolute left-0 -z-50">
-        <Image src="/images/shape-half.png" width={350} height={300} />
+        <Image
+          src="/images/shape-half.png"
+          width={350}
+          height={300}
+          alt=""
+          className="h-auto"
+        />
       </div>
     </section>
   );

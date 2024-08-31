@@ -60,9 +60,10 @@ export default function Example() {
         <Link href="/">
           <Image
             src="/images/logo.svg"
-            alt="Your Company"
+            alt="Actryca Logo"
             height={32}
             width={128}
+            className="h-auto"
           />
         </Link>
         <NavItems />

@@ -44,7 +44,13 @@ const Reviews = () => {
         </Grid>
       </Grid>
       <div className="absolute -z-50">
-        <Image src="/images/shape.png" width={1000} height={1000} />
+        <Image
+          src="/images/shape.png"
+          width={1000}
+          height={1000}
+          alt=""
+          className="h-auto"
+        />
       </div>
     </section>
   );
