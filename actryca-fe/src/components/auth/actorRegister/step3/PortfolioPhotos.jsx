@@ -2,14 +2,14 @@
 
 import React, { useState } from 'react';
 import { Typography, Box, Menu, MenuItem, IconButton } from '@mui/material';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz'; 
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import portfolioIcon from '../../../../../public/svg/profilePhotos/profilephotos.svg';
 
 const PortfolioPhotos = () => {
     const [selectedImages, setSelectedImages] = useState([null, null]);
-    const [anchorEl, setAnchorEl] = useState([null, null]); 
+    const [anchorEl, setAnchorEl] = useState([null, null]);
     const router = useRouter();
 
     const handleImageChange = (event, index) => {
@@ -28,12 +28,12 @@ const PortfolioPhotos = () => {
         const newImages = [...selectedImages];
         newImages[index] = null;
         setSelectedImages(newImages);
-        handleMenuClose(index); 
+        handleMenuClose(index);
     };
 
     const handleViewImage = (index) => {
         router.push('/portfolio/photo');
-        handleMenuClose(index); 
+        handleMenuClose(index);
     };
 
     const handleMenuOpen = (event, index) => {
@@ -50,25 +50,25 @@ const PortfolioPhotos = () => {
 
     const handleEditImage = (index) => {
         document.getElementById(`upload-photo-${index}`).click();
-        handleMenuClose(index); 
+        handleMenuClose(index);
     };
 
     return (
         <Box className='flex flex-col items-start gap-4 p-4 w-[519px]'>
-            <Typography className='text-primary-900 font-dm-serif-text text-[18px] font-normal leading-6'>
+            <Typography className="text-primary-900 font-dm-serif-text text-[18px] font-bold leading-6">
                 Portföy Fotoğrafları:
             </Typography>
-            <Box className="flex flex-row justify-center items-center gap-[54px] px-8 py-10 border border-primary-100 rounded-2xl">
+            <Box className="flex flex-row justify-center items-center gap-[54px] px-8 py-10 border border-primary-100 rounded-2xl w-[519px]">
                 {selectedImages.map((image, index) => (
-                    <Box key={index} className="flex flex-col justify-center items-center h-[182px] px-20 py-4 gap-[21px] border border-primary-100 rounded-2xl relative overflow-hidden">
+                    <Box key={index} className="flex flex-col justify-center items-center h-[182px] px-20 py-4 gap-[21px] border border-primary-100 rounded-2xl relative overflow-hidden w-[182px]">
                         {image ? (
                             <>
-                                <img 
-                                    src={image} 
-                                    alt="Portfolio" 
+                                <img
+                                    src={image}
+                                    alt="Portfolio"
                                     className="absolute inset-0 h-full w-full object-cover rounded-2xl"
                                 />
-                                <IconButton 
+                                <IconButton
                                     className="absolute top-0 right-0 m-2 text-white"
                                     aria-controls={`simple-menu-${index}`}
                                     aria-haspopup="true"
@@ -132,6 +132,7 @@ const PortfolioPhotos = () => {
                 ))}
             </Box>
         </Box>
+
     );
 };
 

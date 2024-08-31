@@ -46,7 +46,7 @@ const ProfilePhotos = () => {
     };
 
     return (
-        <Box className='flex  flex-col items-start gap-6 w-[519px] '>
+        <Box className="flex flex-col items-start gap-4 p-4">
             <Typography variant="h6" className="font-dm-serif-display font-bold text-primary-900">
                 Profil Fotoğrafı:
             </Typography>

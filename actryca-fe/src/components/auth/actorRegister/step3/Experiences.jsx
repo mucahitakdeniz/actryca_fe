@@ -12,7 +12,7 @@ const Experiences = () => {
 
   return (
     <Box className="flex flex-col items-start gap-4 p-4">
-      <Typography className="mb-4 text-primary-900 font-serif text-[18px] font-normal leading-6">
+      <Typography className=" text-primary-900 font-dm-serif-text text-[18px] font-bold leading-6">
         Deneyimler:
       </Typography>
       <Box className="flex flex-col w-[519px] px-8 py-10 justify-start items-start gap-[26px] border border-primary-100 rounded-2xl">

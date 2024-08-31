@@ -23,9 +23,9 @@ const OptionButton = ({
       gap: "32px",
       padding: "36px 24px",
       border: "1px solid",
-      borderColor:"primary.light",
+      borderColor: "primary.light",
       backgroundColor: selectedOption === option ? "primary.light" : "grey.100",
-      color:"primary.darkest",
+      color: "primary.darkest",
     }}
     className="rounded-2xl border-2 p-4 hover:bg-primary-100 hover:shadow-md hover:scale-[1.01] transition-all"
   >
@@ -75,8 +75,8 @@ const Page = () => {
   const handleContinue = () => {
     if (selectedOption === "actor") {
       router.push("/user-register/actor");
-    } else if (selectedOption === "writer") {
-      router.push("/user-register/writer");
+    } else if (selectedOption === "author") {
+      router.push("/user-register/author");
     } else if (selectedOption === "others") {
       router.push("/user-register/others");
     }
@@ -109,7 +109,7 @@ const Page = () => {
             handleOptionClick={handleOptionClick}
           />
           <OptionButton
-            option="writer"
+            option="author"
             icon={PenLine}
             title="Yazar"
             desc="Yeteneklerinizi sergileyin ve projelerde yer alın."
@@ -119,7 +119,7 @@ const Page = () => {
           <OptionButton
             option="others"
             icon={Star}
-            title="Diğerleri"
+            title="Diğer"
             desc="Yeteneklerinizi sergileyin ve projelerde yer alın."
             selectedOption={selectedOption}
             handleOptionClick={handleOptionClick}
