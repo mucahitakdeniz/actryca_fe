@@ -1,37 +1,58 @@
 import React, { useState } from 'react';
-import { Box, Typography, Button, IconButton, MenuItem, Select, FormControl, InputLabel } from '@mui/material';
+import { Box, Typography, Button, TextField } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
-const specialAbilitiesData = {
-  'Müzik Aleti': ['Gitar', 'Piyano', 'Flüt', 'Davul', 'Keman'],
-  'Dans': ['Bale', 'Hip Hop', 'Salsa', 'Tango'],
-  'Spor': ['Futbol', 'Basketbol', 'Dövüş', 'Yüzme'],
-  'Sahne Sanatları': ['Şan', 'Tiyatro', 'Sahne', 'Pandomim'],
-};
-
 const SpecialAbilities = () => {
-  const [selectedAbilities, setSelectedAbilities] = useState({});
-  const [selectedCategory, setSelectedCategory] = useState('');
-  const [selectedOption, setSelectedOption] = useState('');
+  const [abilities, setAbilities] = useState({
+    'Müzik Aleti': [],
+    'Dans': [],
+    'Spor': [],
+    'Sahne Sanatları': [],
+  });
 
-  const handleSelectCategory = (event) => {
-    setSelectedCategory(event.target.value);
-    setSelectedOption(''); // Her kategori değiştiğinde seçimi sıfırla
+  const [inputValues, setInputValues] = useState({
+    'Müzik Aleti': '',
+    'Dans': '',
+    'Spor': '',
+    'Sahne Sanatları': '',
+  });
+
+  const handleInputChange = (category) => (event) => {
+    const value = event.target.value;
+
+    // Harf ve boşluk kontrolü
+    if (/^[a-zA-Z\s]*$/.test(value)) {
+      // Çift boşlukları engelle
+      const cleanedValue = value.replace(/\s{2,}/g, ' ');
+
+      setInputValues({
+        ...inputValues,
+        [category]: cleanedValue,
+      });
+    }
   };
 
-  const handleSelectOption = (event) => {
-    const ability = event.target.value;
-    if (ability && !selectedAbilities[selectedCategory]?.includes(ability)) {
-      setSelectedAbilities((prev) => ({
+  const capitalizeWords = (str) => {
+    return str.replace(/\b\w/g, (char) => char.toUpperCase());
+  };
+
+  const handleAddAbility = (category) => (event) => {
+    if (event.key === 'Enter' && inputValues[category].trim()) {
+      const capitalizedValue = capitalizeWords(inputValues[category].trim());
+
+      setAbilities((prev) => ({
         ...prev,
-        [selectedCategory]: [...(prev[selectedCategory] || []), ability],
+        [category]: [...prev[category], capitalizedValue],
       }));
+      setInputValues({
+        ...inputValues,
+        [category]: '',
+      });
     }
-    setSelectedOption(ability);
   };
 
   const handleDelete = (category, ability) => {
-    setSelectedAbilities((prev) => ({
+    setAbilities((prev) => ({
       ...prev,
       [category]: prev[category].filter((item) => item !== ability),
     }));
@@ -42,38 +63,29 @@ const SpecialAbilities = () => {
       <Typography className="mb-2 text-primary-900 font-dm-serif-text text-[18px] font-bold leading-6">
         Özel Yetenekler: <span className="text-primary-900 text-[14px] italic leading-[130%] font-normal">(zorunlu değil)</span>
       </Typography>
-      <Box className="flex flex-col px-8 py-10 border border-primary-100 rounded-2xl gap-9">
-        {Object.keys(specialAbilitiesData).map((category) => (
-          <Box key={category} className="flex flex-col items-start gap-3 w-full">
-            <Typography className="text-primary-900 font-sans text-[16px] font-medium leading-6">
+      <Box className="flex flex-col px-8 py-[22px] border border-primary-100 rounded-2xl gap-2">
+        {Object.keys(abilities).map((category) => (
+          <Box key={category} className="flex flex-col items-start  w-full gap-[6px]">
+            <Typography className="text-primary-900 font-sans text-[14px] font-medium leading-6">
               {category}
             </Typography>
-            <Box className="w-full">
-              <FormControl fullWidth>
-                <InputLabel>{category} Seçiniz</InputLabel>
-                <Select
-                  value={selectedCategory === category ? selectedOption : ''}
-                  onChange={handleSelectOption}
-                  onOpen={() => setSelectedCategory(category)}
-                  label={`${category} Seçiniz`}
-                  className="rounded-xl"
-                >
-                  {specialAbilitiesData[category].map((ability) => (
-                    <MenuItem key={ability} value={ability}>
-                      {ability}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            </Box>
-            <Box className="flex flex-wrap gap-2">
-              {selectedAbilities[category]?.map((ability) => (
+            <TextField
+              fullWidth
+              value={inputValues[category]}
+              onChange={handleInputChange(category)}
+              onKeyPress={handleAddAbility(category)}
+              placeholder={`${category} yazıp Enter'a basın.`}
+              variant="outlined"
+              className="rounded-xl"
+            />
+            <Box className="flex flex-wrap gap-2 mt-2">
+              {abilities[category].map((ability, index) => (
                 <Button
-                  key={ability}
+                  key={index}
                   variant="contained"
                   endIcon={<CloseIcon />}
                   onClick={() => handleDelete(category, ability)}
-                  className="rounded-[4px] bg-primary-100 text-primary-900 text-[14px] font-normal hover:bg-primary-100"
+                  className="rounded-[8px] bg-primary-100 border border-primary-50 text-primary-900 text-[14px] font-medium leading-6 hover:bg-primary-100"
                   style={{ textTransform: 'none' }}
                 >
                   {ability}

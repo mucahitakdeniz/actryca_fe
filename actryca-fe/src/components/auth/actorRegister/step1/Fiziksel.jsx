@@ -54,8 +54,18 @@ const Fiziksel = () => {
     setAboutText(event.target.value);
   };
 
-  const heights = ["1.72", "1.73", "1.74", "1.75", "1.76"];
-  const weights = ["70", "71", "72", "73", "74"];
+  const heights = [];
+  const weights = [];
+
+ 
+  for (let i = 1.40; i <= 2.20; i += 0.01) {
+    heights.push(i.toFixed(2));
+  }
+
+
+  for (let i = 35; i <= 150; i++) {
+    weights.push(i.toString());
+  }
 
   const handleAboutMeOpen = () => {
     setIsAboutMeOpen(true);
@@ -72,7 +82,7 @@ const Fiziksel = () => {
       </Typography>
       <Box className="w-full flex flex-col items-center self-stretch border border-primary-100 rounded-2xl px-8 py-10">
         <Box className="flex flex-col items-start gap-6 self-stretch">
-          <Box className="flex flex-row items-center  gap-2 w-1/2">
+          <Box className="flex flex-row items-center gap-2 w-1/2">
             <Typography className="text-primary-900 font-sans text-[14px] font-medium leading-normal w-1/2">
               Cinsiyet:
             </Typography>
@@ -187,8 +197,8 @@ const Fiziksel = () => {
         </Box>
       </Box>
 
-      <Box className="flex flex-col gap-[10px]  self-stretch  pt-6">
-        <Typography className=" font-dm-serif-display font-bold">
+      <Box className="flex flex-col gap-[10px]  self-stretch  pt-3">
+        <Typography variant="h6" className="font-dm-serif-display font-bold">
           Hakkımda:
         </Typography>
         <Box className="w-full  flex flex-col border border-primary-100 rounded-2xl px-8 py-10 relative h-[79%]">

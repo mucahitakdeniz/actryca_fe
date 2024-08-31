@@ -65,29 +65,29 @@ export default function ActorRegister() {
       case 0:
         return (
           <Box className="flex flex-row items-start gap-9 pt-12">
-            <Box className="w-1/2  ">
+            <Box className="w-1/2">
               <Kisisel />
             </Box>
-            <Box className="w-1/2 ">
+            <Box className="w-1/2">
               <Fiziksel />
             </Box>
           </Box>
         );
       case 1:
         return (
-          <Box className="flex flex-row gap-9 pt-12" style={{ alignItems: 'stretch', height: '100%' }}>
-            <Box className="flex flex-col w-1/2 gap-9" style={{ height: '100%' }}>
+          <Box className="flex flex-row items-start gap-9 pt-12" >
+            <Box className="flex flex-col w-1/2 gap-12" >
               <EducationSkills />
               <SpokenLanguage />
             </Box>
-            <Box className="w-1/2" style={{ height: '100%' }}>
+            <Box className="w-1/2" >
               <SpecialAbilities />
             </Box>
           </Box>
         );
       case 2:
         return (
-          <Box>
+          <Box className="flex flex-row items-start gap-9 pt-12">
             <ProfessionalInfo />
           </Box>
         );

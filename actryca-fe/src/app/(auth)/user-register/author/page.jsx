@@ -21,7 +21,7 @@ const Page = () => {
                     className='flex flex-col justify-between items-center gap-[108px] ' 
                     sx={{ flexGrow: 0, flexShrink: 0 }}
                 >
-                    <Stack className="flex flex-col items-center gap-16 ">
+                    <Stack className="flex flex-col items-center gap-9">
                         <Typography 
                             className="text-primary-900 text-center font-dm-serif-text text-[32px] leading-normal font-bold"
                         >
@@ -29,14 +29,13 @@ const Page = () => {
                         </Typography>
                     </Stack>
                     <Stack 
-                        className="flex flex-row justify-between flex-start gap-[72px]" 
-                        sx={{ width: '100%' }}
+                        className="flex flex-row items-start gap-9"
                     >
-                        <Stack className="flex w-full flex-col items-start gap-6" sx={{ flexBasis: '48%' }}>
+                        <Stack className="w-1/2">
                             <MainInformation />
                             <AboutMeMain />
                         </Stack>
-                        <Stack className='flex w-full flex-col flex-start gap-6' sx={{ flexBasis: '48%' }}>
+                        <Stack className="w-1/2">
                             <ProfilePicture />
                             <EducationSkills />
                             <Experiences />
