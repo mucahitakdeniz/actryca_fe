@@ -139,7 +139,7 @@ const FirstSection = () => {
             }}
           >
             100.000+{" "}
-            <span class="text-primary-900 font-dm-sans text-[16px] font-normal font-semibold leading-[24px]">
+            <span className="text-primary-900 font-dm-sans text-[16px] font-normal font-semibold leading-[24px]">
               yetenekli oyuncu ve yazar bize katıldı.
             </span>
           </Typography>
@@ -152,7 +152,7 @@ const FirstSection = () => {
           alt="Your Company"
           width={600}
           height={600}
-          className=""
+          className="h-auto"
         />
       </Box>
     </Box>

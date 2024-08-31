@@ -36,7 +36,13 @@ export default function Page() {
     <Grid container component="main" className="background p-24 center mb-24">
       <Grid item xs={false} sm={4} md={7} className="py-12 h-full">
         <Box className="flex justify-center">
-          <Image src="/images/woman-in-shape.png" width={500} height={500} />
+          <Image
+            src="/images/woman-in-shape.png"
+            width={500}
+            height={500}
+            alt=""
+            className="h-auto"
+          />
         </Box>
         <Typography className="p-8 text-center font-bold">
           Hayallerinizi Gerçekleştirin! <br />
@@ -75,7 +81,7 @@ export default function Page() {
                 fullWidth
                 id="identifier"
                 placeholder="555 55 55 veya example@gmail.com"
-                name="identifier" 
+                name="identifier"
                 autoComplete="email"
                 autoFocus
               />
@@ -122,13 +128,18 @@ export default function Page() {
             </Box>
             <Box className="center !justify-between mt-4">
               <Link href="#" className="hover:scale-[1.05] transition-all">
-                <Image src="/images/facebook2.png" width={40} height={40} />
+                <Image
+                  src="/images/facebook2.png"
+                  width={40}
+                  height={40}
+                  alt=""
+                />
               </Link>
               <Link href="#" className="hover:scale-[1.05] transition-all">
-                <Image src="/images/google.png" width={40} height={40} />
+                <Image src="/images/google.png" width={40} height={40} alt="" />
               </Link>
               <Link href="#" className="hover:scale-[1.05] transition-all">
-                <Image src="/images/apple.png" width={40} height={40} />
+                <Image src="/images/apple.png" width={40} height={40} alt="" />
               </Link>
             </Box>
             <Typography color="primary.dark" className="flex mt-8">

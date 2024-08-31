@@ -64,7 +64,13 @@ const WhyActrycaSection = () => {
           zIndex: "-2",
         }}
       >
-        <Image src="/images/shape.png" width={496} height={552} />
+        <Image
+          src="/images/shape.png"
+          width={496}
+          height={552}
+          alt=""
+          className="h-auto"
+        />
       </Stack>
     </Box>
   );
