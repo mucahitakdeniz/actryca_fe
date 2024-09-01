@@ -42,7 +42,9 @@ export default function Page() {
         setUser(data);
         setTokens(data.accessToken);
         localStorage.setItem("token", data.accessToken);
-        router.push("/");
+        setTimeout(() => {
+          router.push("/");
+        }, 2000);
         setSeverity("success");
         setMessage("Login successful!");
         setOpen(true);

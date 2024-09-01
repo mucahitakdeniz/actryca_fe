@@ -152,7 +152,7 @@ const FirstSection = () => {
           alt="Your Company"
           width={600}
           height={600}
-          className="h-auto"
+          style={{ width: "auto" }}
         />
       </Box>
     </Box>

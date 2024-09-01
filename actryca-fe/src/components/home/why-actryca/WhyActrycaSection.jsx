@@ -69,7 +69,7 @@ const WhyActrycaSection = () => {
           width={496}
           height={552}
           alt=""
-          className="h-auto"
+          style={{ width: "auto" }}
         />
       </Stack>
     </Box>
