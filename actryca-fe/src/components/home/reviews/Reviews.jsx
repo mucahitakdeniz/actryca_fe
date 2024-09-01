@@ -49,7 +49,7 @@ const Reviews = () => {
           width={1000}
           height={1000}
           alt=""
-          className="h-auto"
+          style={{ width: "auto" }}
         />
       </div>
     </section>

@@ -10,7 +10,7 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
-import { Search, UserRound } from "lucide-react";
+import { Search } from "lucide-react";
 import Link from "next/link";
 import useAuthStore from "@/store/auth-store";
 import { AccountCircle } from "@mui/icons-material";
@@ -18,20 +18,20 @@ import { AccountCircle } from "@mui/icons-material";
 const LoginSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { user, logout } = useAuthStore();
-  const [auth, setAuth] = useState(true);
   const [anchorEl, setAnchorEl] = useState(null);
 
-  const handleLogout = (event) => {
+  const handleLogout = () => {
     logout();
     localStorage.clear();
+    handleClose(); // Logout olduktan sonra menü kapanacak
   };
 
   const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
+    setAnchorEl(event.currentTarget); // Sadece menü butonuna tıklandığında açılmasını sağlıyoruz
   };
 
   const handleClose = () => {
-    setAnchorEl(null);
+    setAnchorEl(null); // Menü kapatıldığında anchorEl'i sıfırlıyoruz
   };
 
   const handleSearchClick = () => {
@@ -67,7 +67,7 @@ const LoginSection = () => {
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
-              onClick={handleMenu}
+              onClick={handleMenu} // Menü sadece bu butona tıklandığında açılır
               color="inherit"
             >
               <AccountCircle color="primary" />
@@ -84,7 +84,7 @@ const LoginSection = () => {
                 vertical: "top",
                 horizontal: "right",
               }}
-              open={Boolean(anchorEl)}
+              open={Boolean(anchorEl)} // Eğer anchorEl null değilse menü açık olur
               onClose={handleClose}
             >
               <MenuItem onClick={handleClose}>Profile</MenuItem>
@@ -93,11 +93,11 @@ const LoginSection = () => {
           </div>
         ) : (
           <Box display="flex" alignItems="center" gap={1}>
-            <Button className="px-8 py-4 font-sans font-bold h-12 ">
+            <Button className="px-8 py-4 font-sans font-bold h-12">
               <Link href="/login">Giriş Yap</Link>
             </Button>
 
-            <Button  className="px-8 py-4 font-sans font-bold h-12 bg-primary-600 text-white hover:bg-primary-500">
+            <Button className="px-8 py-4 font-sans font-bold h-12 bg-primary-600 text-white hover:bg-primary-500">
               <Link href="/register">Üye Ol</Link>
             </Button>
           </Box>

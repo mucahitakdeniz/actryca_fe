@@ -173,6 +173,7 @@ const PopularArtists = () => {
           height={300}
           alt=""
           className="h-auto"
+          style={{ width: "auto" }}
         />
       </div>
     </section>
