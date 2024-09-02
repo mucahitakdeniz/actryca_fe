@@ -24,20 +24,28 @@ export default function Page() {
   const [newPasswordDialogOpen, setNewPasswordDialogOpen] = useState(false);
   const [updatedPasswordDialogOpen, setUpdatedPasswordDialogOpen] =
     useState(false);
-  const [open, setOpen] = useState(false);
-  const [message, setMessage] = useState("");
-  const [severity, setSeverity] = useState("");
+  const [alertProps, setAlertProps] = useState({
+    open: false,
+    message: "",
+    severity: "info",
+  });
 
   const { setUser, setTokens } = useAuthStore();
   const router = useRouter();
 
-  const handleClose = () => {
-    setOpen(false);
+  const handleAlertClose = () => {
+    setAlertProps((prev) => ({ ...prev, open: false }));
   };
 
   const { mutate, isPending, isError, error } = useMutation({
     mutationFn: login,
     onSuccess: (data) => {
+      const alertProps = {
+        severity: "success",
+        message: "Login successful!",
+        open: true,
+      };
+
       if (data?.accessToken) {
         setUser(data);
         setTokens(data.accessToken);
@@ -45,29 +53,35 @@ export default function Page() {
         setTimeout(() => {
           router.push("/");
         }, 2000);
-        setSeverity("success");
-        setMessage("Login successful!");
-        setOpen(true);
       } else {
-        setSeverity("error");
-        setMessage("Login failed: Access token is missing.");
-        setOpen(true);
+        alertProps.severity = "error";
+        alertProps.message = "Login failed: Access token is missing.";
       }
+
+      setAlertProps(alertProps);
     },
     onError: (error) => {
+      let errorMessage = "Beklenmeyen bir hata oluştu.";
+
       if (error.response?.data?.error === "User not found.") {
-        setSeverity("error");
-        setMessage("User not found.");
-        setOpen(true);
+        errorMessage = "Kullanıcı bulunamadı.";
       } else if (error.response?.data?.error === "Wrong password.") {
-        setSeverity("error");
-        setMessage("Wrong password.");
-        setOpen(true);
-      } else {
-        setSeverity("error");
-        setMessage("Unexpected error occurred.");
-        setOpen(true);
+        errorMessage = "Şifre yanlış. Lütfen tekrar deneyiniz.";
+      } else if (
+        error.response?.data?.error === "This account is not active."
+      ) {
+        errorMessage = "Bu hesap aktif değil.";
+      } else if (
+        error.response?.data?.error === "Please enter identifier and password."
+      ) {
+        errorMessage = "Kullanıcı adı, telefon ve şifre giriniz.";
       }
+
+      setAlertProps({
+        severity: "error",
+        message: errorMessage,
+        open: true,
+      });
     },
   });
 
@@ -131,12 +145,7 @@ export default function Page() {
 
   return (
     <>
-      <AlertBox
-        open={open}
-        handleClose={handleClose}
-        message={message}
-        severity={severity}
-      />
+      <AlertBox alertProps={alertProps} />
       <Grid
         container
         component="main"

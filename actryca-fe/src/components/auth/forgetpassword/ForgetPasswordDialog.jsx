@@ -9,8 +9,74 @@ import { Stack, TextField } from "@mui/material";
 import Image from "next/image";
 import lock from "./svg/lock.svg";
 import close from "./svg/close.svg";
+import { useMutation } from "@tanstack/react-query";
+import { getCode } from "@/services/password";
+import AlertBox from "@/components/ui/AlertBox";
+import usePasswordStore from "@/store/password-store";
 
 export default function ForgetPasswordDialog({ open, onClose, onContinue }) {
+  const setMail = usePasswordStore((state) => state.setMail);
+  const email = usePasswordStore((state) => state.email);
+
+  const [alertProps, setAlertProps] = React.useState({
+    open: false,
+    message: "",
+    severity: "info",
+  });
+  const { mutate, isPending, isError, error } = useMutation({
+    mutationFn: getCode,
+    onSuccess: (data) => {
+      const alertProps = {
+        severity: "success",
+        message: "Doğrulama kodu gönderildi!",
+        open: true,
+      };
+      if (!data?.error) {
+        setTimeout(() => {
+          onContinue();
+        }, 2000);
+      } else {
+        alertProps.severity = "error";
+        alertProps.message = "Login failed: Access token is missing.";
+      }
+
+      setAlertProps(alertProps);
+    },
+    onError: (error) => {
+      let errorMessage = "Beklenmeyen bir hata oluştu.";
+
+      if (error.response?.data?.error === "User not found.") {
+        errorMessage = "Kullanıcı bulunamadı.";
+      } else if (error.response?.data?.error === "Wrong password.") {
+        errorMessage = "Şifre yanlış. Lütfen tekrar deneyiniz.";
+      } else if (
+        error.response?.data?.error === "This account is not active."
+      ) {
+        errorMessage = "Bu hesap aktif değil.";
+      } else if (
+        error.response?.data?.error === "Please enter identifier and password."
+      ) {
+        errorMessage = "Kullanıcı adı, telefon ve şifre giriniz.";
+      }
+
+      setAlertProps({
+        severity: "error",
+        message: errorMessage,
+        open: true,
+      });
+    },
+  });
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const userData = {
+      email: data.get("email"),
+    };
+    setMail(userData.email);
+    mutate(userData);
+  };
+
   return (
     <Dialog
       onClose={onClose}
@@ -24,10 +90,10 @@ export default function ForgetPasswordDialog({ open, onClose, onContinue }) {
           borderRadius: "16px",
           overflow: "hidden",
           padding: "12px",
-
         },
       }}
     >
+      <AlertBox alertProps={alertProps} />
       <div className="w-full h-full bg-white relative ">
         <IconButton
           aria-label="close"
@@ -49,8 +115,11 @@ export default function ForgetPasswordDialog({ open, onClose, onContinue }) {
             </Typography>
             <Stack className="flex flex-col items-center gap-2 self-stretch">
               <Typography className="text-primary-900 font-sans text-[18px] font-normal leading-[26px] text-center">
-
-                Lütfen şifrenizi sıfırlamak için <span className='text-primary-600'> telefon numaranızı </span> veya <span className='text-primary-600'>e-posta adresinizi </span> girin.
+                Lütfen şifrenizi sıfırlamak için{" "}
+                <span className="text-primary-600"> telefon numaranızı </span>{" "}
+                veya{" "}
+                <span className="text-primary-600">e-posta adresinizi </span>{" "}
+                girin.
               </Typography>
               <Typography className="text-primary-900 font-sans text-[18px] font-normal leading-[26px] text-center">
                 Size bir sıfırlama bağlantısı göndereceğiz.
@@ -59,9 +128,16 @@ export default function ForgetPasswordDialog({ open, onClose, onContinue }) {
           </Stack>
         </DialogContent>
         <DialogActions className="flex w-full justify-center items-center">
-          <Stack className="flex flex-col items-start gap-[6px] w-full max-w-md">
-
-            <Typography variant="subtitle2" className='text-primary-900 font-sans text-[14px] font-medium leading-6'>
+          <Stack
+            className="flex flex-col items-start gap-[6px] w-full max-w-md"
+            component="form"
+            noValidate
+            onSubmit={handleSubmit}
+          >
+            <Typography
+              variant="subtitle2"
+              className="text-primary-900 font-sans text-[14px] font-medium leading-6"
+            >
               Telefon ya da E-posta*
             </Typography>
             <TextField
@@ -75,8 +151,7 @@ export default function ForgetPasswordDialog({ open, onClose, onContinue }) {
               autoFocus
             />
             <Stack className="w-full pt-6">
-              <Button onClick={onContinue} variant="contained" className="w-full">
-
+              <Button type="submit" variant="contained" className="w-full">
                 Devam Et
               </Button>
             </Stack>
