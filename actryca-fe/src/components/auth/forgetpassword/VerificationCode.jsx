@@ -1,15 +1,24 @@
-
 import * as React from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import { Stack, TextField, Button, DialogContent } from "@mui/material";
+import {
+  Stack,
+  TextField,
+  Button,
+  DialogContent,
+  CircularProgress,
+} from "@mui/material";
 import Image from "next/image";
 import close from "./svg/close.svg";
 import back from "./svg/back.svg";
 import letter1 from "./svg/letter1.svg";
 import letter2 from "./svg/letter2.svg";
+import AlertBox from "@/components/ui/AlertBox";
+import usePasswordStore from "@/store/password-store";
+import { useMutation } from "@tanstack/react-query";
+import { verifyCode } from "@/services/password";
 
 export default function VerificationCode({
   open,
@@ -18,6 +27,59 @@ export default function VerificationCode({
   onContinue,
 }) {
   const [code, setCode] = React.useState(["", "", "", ""]);
+  const email = usePasswordStore((state) => state.email);
+
+  const [alertProps, setAlertProps] = React.useState({
+    open: false,
+    message: "",
+    severity: "info",
+  });
+
+  const { mutate, isPending, isError, error } = useMutation({
+    mutationFn: verifyCode,
+    onSuccess: (data) => {
+      const alertProps = {
+        severity: "success",
+        message: "Doğrulama kodu başarıyla doğrulandı!",
+        open: true,
+      };
+      if (!data?.error) {
+        setTimeout(() => {
+          onContinue();
+        }, 2000);
+      } else {
+        alertProps.severity = "error";
+        alertProps.message = "Doğrulama başarısız oldu.";
+      }
+
+      setAlertProps(alertProps);
+    },
+    onError: (error) => {
+      let errorMessage = "Beklenmeyen bir hata oluştu.";
+
+      if (error.response?.data?.error === "User not found.") {
+        errorMessage = "Kullanıcı bulunamadı.";
+      }
+
+      setAlertProps({
+        severity: "error",
+        message: errorMessage,
+        open: true,
+      });
+    },
+  });
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const verificationCode = code.join(""); // Kodları birleştiriyoruz
+
+    const verifyData = {
+      email: email,
+      recall_password: verificationCode,
+    };
+
+    mutate(verifyData);
+  };
 
   const handleChange = (index) => (event) => {
     const value = event.target.value;
@@ -54,6 +116,7 @@ export default function VerificationCode({
         },
       }}
     >
+      <AlertBox alertProps={alertProps} />
       <div className="w-full h-full bg-white relative">
         <IconButton
           aria-label="close"
@@ -106,7 +169,12 @@ export default function VerificationCode({
           </Stack>
         </DialogContent>
         <DialogActions className="flex flex-col w-full justify-center gap-6 items-center pb-[200px]">
-          <Stack className="flex flex-row justify-between items-center self-stretch m-auto gap-3">
+          <Stack
+            component="form"
+            noValidate
+            onSubmit={handleSubmit}
+            className="flex flex-row justify-between items-center self-stretch m-auto gap-3"
+          >
             {[0, 1, 2, 3].map((index) => (
               <TextField
                 key={index}
@@ -136,10 +204,14 @@ export default function VerificationCode({
               />
             ))}
           </Stack>
-          <Button onClick={onContinue} variant="contained" className="w-72 ">
-            Doğrula
+          <Button
+            type="submit"
+            variant="contained"
+            className="w-72"
+            disabled={isPending}
+          >
+            {isPending ? <CircularProgress size={25} /> : "Doğrula"}
           </Button>
-
 
           <Typography className="text-primary-900 text-center font-sans text-[14px] font-normal leading-normal">
             Doğrulama kodunu henüz almadınız mı?<span> </span>
@@ -151,5 +223,4 @@ export default function VerificationCode({
       </div>
     </Dialog>
   );
-
 }
