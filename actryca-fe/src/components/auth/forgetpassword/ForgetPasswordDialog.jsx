@@ -5,7 +5,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import { Stack, TextField } from "@mui/material";
+import { CircularProgress, Stack, TextField } from "@mui/material";
 import Image from "next/image";
 import lock from "./svg/lock.svg";
 import close from "./svg/close.svg";
@@ -151,8 +151,13 @@ export default function ForgetPasswordDialog({ open, onClose, onContinue }) {
               autoFocus
             />
             <Stack className="w-full pt-6">
-              <Button type="submit" variant="contained" className="w-full">
-                Devam Et
+              <Button
+                type="submit"
+                variant="contained"
+                className="w-full"
+                disabled={isPending}
+              >
+                {isPending ? <CircularProgress size={25} /> : "Devam Et"}
               </Button>
             </Stack>
           </Stack>
