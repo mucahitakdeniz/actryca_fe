@@ -3,161 +3,214 @@
     "id": 1001,
     "name": "Melisa Zeynep Gelipgeçen",
     "birthDate": "10/02/1986",
+    "birthCity": "İstanbul",
+    "birthCountry": "Türkiye",
     "img": "/images/artists/actor5.jfif",
     "isBookmarked": true,
-    "score": 9.5
+    "score": 9.5,
+    "languages": ["Türkçe", "İngilizce"],
+    "education": "Sahne Sanatları Yüksek Lisansı",
+    "languageLevels": {
+      "Türkçe": "Ana Dil",
+      "İngilizce": "İleri"
+    }
   },
   {
     "id": 1002,
     "name": "Ömer Oktay",
     "birthDate": "11/02/1987",
+    "birthCity": "Ankara",
+    "birthCountry": "Türkiye",
     "img": "/images/artists/actor6.jfif",
-    "score": 9.0
+    "score": 9.0,
+    "languages": ["Türkçe", "İspanyolca"],
+    "education": "Tiyatro Çalışmaları Lisans",
+    "languageLevels": {
+      "Türkçe": "Ana Dil",
+      "İspanyolca": "Orta"
+    }
   },
   {
     "id": 1003,
     "name": "Burcu Özemir",
     "birthDate": "11/02/1988",
+    "birthCity": "İzmir",
+    "birthCountry": "Türkiye",
     "img": "/images/artists/actor7.jfif",
-    "score": 8.0
+    "score": 8.0,
+    "languages": ["Türkçe", "Fransızca"],
+    "education": "Performans Lisans Diploması",
+    "languageLevels": {
+      "Türkçe": "Ana Dil",
+      "Fransızca": "Orta"
+    }
   },
   {
     "id": 1004,
     "name": "Emircan Ali Kurtuluş",
     "birthDate": "11/02/1989",
+    "birthCity": "Antalya",
+    "birthCountry": "Türkiye",
     "isBookmarked": true,
     "img": "/images/artists/actor8.jfif",
-    "score": 8.5
+    "score": 8.5,
+    "languages": ["Türkçe", "Almanca"],
+    "education": "Drama Yüksek Lisans",
+    "languageLevels": {
+      "Türkçe": "Ana Dil",
+      "Almanca": "Başlangıç"
+    }
   },
   {
     "id": 1005,
     "name": "Melisa Zeynep Gelipgeçen",
     "birthDate": "10/02/1986",
+    "birthCity": "İstanbul",
+    "birthCountry": "Türkiye",
     "img": "/images/artists/actor5.jfif",
-    "score": 9.5
+    "score": 9.5,
+    "languages": ["Türkçe", "İngilizce"],
+    "education": "Sahne Sanatları Yüksek Lisansı",
+    "languageLevels": {
+      "Türkçe": "Ana Dil",
+      "İngilizce": "İleri"
+    }
   },
   {
     "id": 1006,
     "name": "Ömer Oktay",
     "birthDate": "11/02/1987",
+    "birthCity": "Ankara",
+    "birthCountry": "Türkiye",
     "isBookmarked": true,
     "img": "/images/artists/actor7.jfif",
-    "score": 9.0
+    "score": 9.0,
+    "languages": ["Türkçe", "İspanyolca"],
+    "education": "Tiyatro Çalışmaları Lisans",
+    "languageLevels": {
+      "Türkçe": "Ana Dil",
+      "İspanyolca": "Orta"
+    }
   },
   {
     "id": 1007,
     "name": "Burcu Özemir",
     "birthDate": "11/02/1988",
+    "birthCity": "İzmir",
+    "birthCountry": "Türkiye",
     "img": "/images/artists/actor8.jfif",
-    "score": 8.0
+    "score": 8.0,
+    "languages": ["Türkçe", "Fransızca"],
+    "education": "Performans Lisans Diploması",
+    "languageLevels": {
+      "Türkçe": "Ana Dil",
+      "Fransızca": "Orta"
+    }
   },
   {
     "id": 1008,
     "name": "Emircan Ali Kurtuluş",
     "birthDate": "11/02/1989",
+    "birthCity": "Antalya",
+    "birthCountry": "Türkiye",
     "img": "/images/artists/actor6.jfif",
-    "score": 8.5
+    "score": 8.5,
+    "languages": ["Türkçe", "Almanca"],
+    "education": "Drama Yüksek Lisans",
+    "languageLevels": {
+      "Türkçe": "Ana Dil",
+      "Almanca": "Başlangıç"
+    }
   },
   {
     "id": 1001,
     "name": "Melisa Zeynep Gelipgeçen",
     "birthDate": "10/02/1986",
-    "isBookmarked": true,
+    "birthCity": "İstanbul",
+    "birthCountry": "Türkiye",
     "img": "/images/artists/actor5.jfif",
-    "score": 9.5
+    "score": 9.5,
+    "languages": ["Türkçe", "İngilizce"],
+    "education": "Sahne Sanatları Yüksek Lisansı",
+    "languageLevels": {
+      "Türkçe": "Ana Dil",
+      "İngilizce": "İleri"
+    }
   },
   {
     "id": 1002,
     "name": "Ömer Oktay",
     "birthDate": "11/02/1987",
+    "birthCity": "Ankara",
+    "birthCountry": "Türkiye",
     "img": "/images/artists/actor7.jfif",
-    "score": 9.0
+    "score": 9.0,
+    "languages": ["Türkçe", "İspanyolca"],
+    "education": "Tiyatro Çalışmaları Lisans",
+    "languageLevels": {
+      "Türkçe": "Ana Dil",
+      "İspanyolca": "Orta"
+    }
   },
   {
     "id": 1003,
     "name": "Burcu Özemir",
     "birthDate": "11/02/1988",
+    "birthCity": "İzmir",
+    "birthCountry": "Türkiye",
     "img": "/images/artists/actor6.jfif",
-    "score": 8.0
+    "score": 8.0,
+    "languages": ["Türkçe", "Fransızca"],
+    "education": "Performans Lisans Diploması",
+    "languageLevels": {
+      "Türkçe": "Ana Dil",
+      "Fransızca": "Orta"
+    }
   },
   {
     "id": 1004,
     "name": "Emircan Ali Kurtuluş",
     "birthDate": "11/02/1989",
+    "birthCity": "Antalya",
+    "birthCountry": "Türkiye",
     "isBookmarked": true,
     "img": "/images/artists/actor8.jfif",
-    "score": 8.5
+    "score": 8.5,
+    "languages": ["Türkçe", "Almanca"],
+    "education": "Drama Yüksek Lisans",
+    "languageLevels": {
+      "Türkçe": "Ana Dil",
+      "Almanca": "Başlangıç"
+    }
   },
   {
     "id": 1005,
     "name": "Melisa Zeynep Gelipgeçen",
     "birthDate": "10/02/1986",
+    "birthCity": "İstanbul",
+    "birthCountry": "Türkiye",
     "img": "/images/artists/actor5.jfif",
-    "score": 9.5
+    "score": 9.5,
+    "languages": ["Türkçe", "İngilizce"],
+    "education": "Sahne Sanatları Yüksek Lisansı",
+    "languageLevels": {
+      "Türkçe": "Ana Dil",
+      "İngilizce": "İleri"
+    }
   },
   {
     "id": 1006,
     "name": "Ömer Oktay",
     "birthDate": "11/02/1987",
-    "isBookmarked": true,
+    "birthCity": "Ankara",
+    "birthCountry": "Türkiye",
     "img": "/images/artists/actor6.jfif",
-    "score": 9.0
-  },
-  {
-    "id": 1007,
-    "name": "Burcu Özemir",
-    "birthDate": "11/02/1988",
-    "isBookmarked": true,
-    "img": "/images/artists/actor7.jfif",
-    "score": 8.0
-  },
-  {
-    "id": 1008,
-    "name": "Emircan Ali Kurtuluş",
-    "birthDate": "11/02/1989",
-    "img": "/images/artists/actor8.jfif",
-    "score": 8.5
-  },
-  {
-    "id": 1001,
-    "name": "Melisa Zeynep Gelipgeçen",
-    "birthDate": "10/02/1986",
-    "img": "/images/artists/actor5.jfif",
-    "score": 9.5
-  },
-  {
-    "id": 1002,
-    "name": "Ömer Oktay",
-    "birthDate": "11/02/1987",
-    "img": "/images/artists/actor6.jfif",
-    "score": 9.0
-  },
-  {
-    "id": 1003,
-    "name": "Burcu Özemir",
-    "birthDate": "11/02/1988",
-    "img": "/images/artists/actor7.jfif",
-    "score": 8.0
-  },
-  {
-    "id": 1004,
-    "name": "Emircan Ali Kurtuluş",
-    "birthDate": "11/02/1989",
-    "img": "/images/artists/actor8.jfif",
-    "score": 8.5
-  },
-  {
-    "id": 1005,
-    "name": "Melisa Zeynep Gelipgeçen",
-    "birthDate": "10/02/1986",
-    "img": "/images/artists/actor5.jfif",
-    "score": 9.5
-  },
-  {
-    "id": 1006,
-    "name": "Ömer Oktay",
-    "birthDate": "11/02/1987",
-    "img": "/images/artists/actor6.jfif",
-    "score": 9.0
+    "score": 9.0,
+    "languages": ["Türkçe", "İspanyolca"],
+    "education": "Tiyatro Çalışmaları Lisans",
+    "languageLevels": {
+      "Türkçe": "Ana Dil",
+      "İspanyolca": "Orta"
+    }
   }
 ]
