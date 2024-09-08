@@ -4,6 +4,9 @@ import { Box, Typography, IconButton, Grid, Stack, Divider } from "@mui/material
 import { useParams, useRouter } from "next/navigation";
 import { ArrowLeft, ArrowRight, Bookmark, BookOpen, BriefcaseBusiness, Sparkles, Star } from "lucide-react";
 import actorsData from "../../../utils/actorsData.json";
+import Education from "@/components/actor-detail/Education";
+import Experiences from "@/components/actor-detail/Experiences";
+import SpeacialSkills from "@/components/actor-detail/SpeacialSkills";
 
 const calculateAge = (birthDate) => {
   const today = new Date();
@@ -57,7 +60,7 @@ const Page = () => {
     }
   };
 
-//  kontrol etmek için silmeyi unutma
+  //  kontrol etmek için silmeyi unutma
   console.log("Current Index:", currentIndex);
   console.log("Prev Actor ID:", prevActorId);
   console.log("Next Actor ID:", nextActorId);
@@ -84,6 +87,7 @@ const Page = () => {
                 height: "664px",
                 borderRadius: "8px",
               }}
+              
             />
             <Grid container spacing={1}>
               <Grid item xs={6}>
@@ -93,8 +97,7 @@ const Page = () => {
                   style={{
                     width: "100%",
                     height: "232px",
-                    aspectRatio: "1/1",
-                    objectFit: "cover",
+                    aspectRatio: "1/1",             
                     borderRadius: "4px",
                   }}
                 />
@@ -107,7 +110,6 @@ const Page = () => {
                     width: "100%",
                     height: "232px",
                     aspectRatio: "1/1",
-                    objectFit: "cover",
                     borderRadius: "4px",
                   }}
                 />
@@ -264,10 +266,17 @@ const Page = () => {
 
         {/* İçerik */}
         <Box className="w-full mt-4">
-          {activeTab === "egitimler" && <Typography variant="body1">Eğitimler içeriği burada...</Typography>}
-          {activeTab === "deneyimler" && <Typography variant="body1">Deneyimler içeriği burada...</Typography>}
-          {activeTab === "yetenekler" && <Typography variant="body1">Yetenekler içeriği burada...</Typography>}
+          {activeTab === "egitimler" && actor.education && (
+            <Education education={actor.education} actorId={params.id} />
+          )}
+          {activeTab === "deneyimler" && actor.experiences && (
+            <Experiences experiences={actor.experiences} actorId={params.id} />
+          )}
+          {activeTab === "yetenekler" && actor.specialSkills && (
+            <SpeacialSkills specialSkills={actor.specialSkills} actorId={params.id} />
+          )}
         </Box>
+
       </Box>
     </Box>
   );
