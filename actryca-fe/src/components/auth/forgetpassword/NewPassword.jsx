@@ -16,10 +16,10 @@ import {
 import Image from "next/image";
 import { Eye, EyeOff } from "lucide-react";
 
-import close from "./svg/close.svg";
-import back from "./svg/back.svg";
-import openlock from "./svg/openlock.svg";
-import openlock2 from "./svg/openlock2.svg";
+import close from "../../../../public/svg/close.svg";
+import back from "../../../../public/svg/back.svg";
+import openlock from "../../../../public/svg/openlock.svg";
+import openlock2 from "../../../../public/svg/openlock2.svg";
 
 export default function NewPassword({ open, onClose, onBack, onContinue }) {
   const [password, setPassword] = React.useState("");

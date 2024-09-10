@@ -11,10 +11,10 @@ import {
   CircularProgress,
 } from "@mui/material";
 import Image from "next/image";
-import close from "./svg/close.svg";
-import back from "./svg/back.svg";
-import letter1 from "./svg/letter1.svg";
-import letter2 from "./svg/letter2.svg";
+import close from "../../../../public/svg/close.svg";
+import back from "../../../../public/svg/back.svg";
+import letter1 from "../../../../public/svg/letter1.svg";
+import letter2 from "../../../../public/svg/letter2.svg";
 import AlertBox from "@/components/ui/AlertBox";
 import usePasswordStore from "@/store/password-store";
 import { useMutation } from "@tanstack/react-query";
@@ -38,6 +38,8 @@ export default function VerificationCode({
   const { mutate, isPending, isError, error } = useMutation({
     mutationFn: verifyCode,
     onSuccess: (data) => {
+      console.log(data);
+
       const alertProps = {
         severity: "success",
         message: "Doğrulama kodu başarıyla doğrulandı!",
@@ -71,12 +73,13 @@ export default function VerificationCode({
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const verificationCode = code.join(""); // Kodları birleştiriyoruz
+    const verificationCode = code.join("");
 
     const verifyData = {
       email: email,
       recall_password: verificationCode,
     };
+    console.log(verifyData);
 
     mutate(verifyData);
   };
@@ -203,15 +206,15 @@ export default function VerificationCode({
                 }}
               />
             ))}
+            <Button
+              type="submit"
+              variant="contained"
+              className="w-72"
+              disabled={isPending}
+            >
+              {isPending ? <CircularProgress size={25} /> : "Doğrula"}
+            </Button>
           </Stack>
-          <Button
-            type="submit"
-            variant="contained"
-            className="w-72"
-            disabled={isPending}
-          >
-            {isPending ? <CircularProgress size={25} /> : "Doğrula"}
-          </Button>
 
           <Typography className="text-primary-900 text-center font-sans text-[14px] font-normal leading-normal">
             Doğrulama kodunu henüz almadınız mı?<span> </span>
