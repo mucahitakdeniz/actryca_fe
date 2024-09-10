@@ -7,14 +7,14 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { CircularProgress, Stack, TextField } from "@mui/material";
 import Image from "next/image";
-import lock from "./svg/lock.svg";
-import close from "./svg/close.svg";
+import lock from "../../../../public/svg/lock.svg";
+import close from "../../../../public/svg/close.svg";
 import { useMutation } from "@tanstack/react-query";
 import { getCode } from "@/services/password";
 import AlertBox from "@/components/ui/AlertBox";
 import usePasswordStore from "@/store/password-store";
 
-export default function ForgetPasswordDialog({ open, onClose, onContinue }) {
+export default function ForgetPassword({ open, onClose, onContinue }) {
   const setMail = usePasswordStore((state) => state.setMail);
   const email = usePasswordStore((state) => state.email);
 

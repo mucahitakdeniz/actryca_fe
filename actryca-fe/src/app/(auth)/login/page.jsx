@@ -7,16 +7,16 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
 import { useState } from "react";
-import ForgetPasswordDialog from "../../../components/auth/forgetpassword/ForgetPasswordDialog";
-import VerificationCodeDialog from "../../../components/auth/forgetpassword/VerificationCode";
-import NewPasswordDialog from "../../../components/auth/forgetpassword/NewPasswordDialog";
-import UpdatedPasswordDialog from "../../../components/auth/forgetpassword/UpdatedPasswordDialog";
 import { login } from "@/services/auth";
 import { useMutation } from "@tanstack/react-query";
 import useAuthStore from "@/store/auth-store";
 import { useRouter } from "next/navigation";
 import { CircularProgress } from "@mui/material";
 import AlertBox from "@/components/ui/AlertBox";
+import ForgetPassword from "@/components/auth/forgetPassword/ForgetPassword";
+import VerificationCode from "../../../components/auth/forgetPassword/VerificationCode";
+import NewPassword from "@/components/auth/forgetPassword/NewPassword";
+import UpdatedPassword from "@/components/auth/forgetPassword/UpdatedPassword";
 
 export default function Page() {
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -271,24 +271,24 @@ export default function Page() {
             </Box>
           </Box>
         </Grid>
-        <ForgetPasswordDialog
+        <ForgetPassword
           open={dialogOpen}
           onClose={handleDialogClose}
           onContinue={handleContinue}
         />
-        <VerificationCodeDialog
+        <VerificationCode
           open={verificationDialogOpen}
           onClose={handleDialogClose}
           onBack={handleBack}
           onContinue={handleVerificationContinue}
         />
-        <NewPasswordDialog
+        <NewPassword
           open={newPasswordDialogOpen}
           onClose={handleDialogClose}
           onBack={handleNewPasswordBack}
           onContinue={handleNewPasswordContinue}
         />
-        <UpdatedPasswordDialog
+        <UpdatedPassword
           open={updatedPasswordDialogOpen}
           onClose={handleDialogClose}
           onBack={handleUpdatedPasswordBack}
