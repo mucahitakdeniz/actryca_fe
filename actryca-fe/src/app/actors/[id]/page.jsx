@@ -6,7 +6,8 @@ import { ArrowLeft, ArrowRight, Bookmark, BookOpen, BriefcaseBusiness, Sparkles,
 import actorsData from "../../../utils/actorsData.json";
 import Education from "@/components/actor-detail/Education";
 import Experiences from "@/components/actor-detail/Experiences";
-import SpeacialSkills from "@/components/actor-detail/SpeacialSkills";
+import SpecialSkills from "@/components/actor-detail/SpecialSkills";
+
 
 const calculateAge = (birthDate) => {
   const today = new Date();
@@ -86,18 +87,19 @@ const Page = () => {
                 width: "100%",
                 height: "664px",
                 borderRadius: "8px",
+                padding: "0px 97px"
               }}
-              
+
             />
-            <Grid container spacing={1}>
-              <Grid item xs={6}>
+            <Grid container spacing={1} className="px-[97px]">
+              <Grid item xs={6} >
                 <img
                   src={actor.img}
                   alt={actor.name}
                   style={{
-                    width: "100%",
+                    width: "311px",
                     height: "232px",
-                    aspectRatio: "1/1",             
+                    aspectRatio: "1/1",
                     borderRadius: "4px",
                   }}
                 />
@@ -107,10 +109,11 @@ const Page = () => {
                   src={actor.img}
                   alt={actor.name}
                   style={{
-                    width: "100%",
+                    width: "311px",
                     height: "232px",
                     aspectRatio: "1/1",
                     borderRadius: "4px",
+                    
                   }}
                 />
               </Grid>
@@ -130,12 +133,32 @@ const Page = () => {
             </Box>
 
             <Typography variant="subtitle1">
-              {age} yaşında, {actor.birthCity}, {actor.birthCountry}
+              {age} yaşında, {actor.birthCity}, <strong>{actor.birthCountry}</strong>
             </Typography>
 
             <Box className="flex flex-col items-start">
               <Divider className="w-full" />
+              <Box className="flex flex-row pr-4 w-full justify-between items-center mt-8 mb-8">
+                {[
+                  { label: "Boy", value: actor.height },
+                  { label: "Kilo", value: actor.weight },
+                  { label: "Göz", value: actor.eye },
+                  { label: "Saç", value: actor.hair },
+                ].map((item, index) => (
+                  <Box key={index} className="flex flex-col items-start gap-2">
+                    <Typography className="text-primary-900 text-[22px] font-sans font-normal leading-6">
+                      {item.label}
+                    </Typography>
+                    <Typography className="text-primary-500 text-[22px] font-sans font-medium leading-6">
+                      {item.value}
+                    </Typography>
+                  </Box>
+                ))}
+              </Box>
+
+              <Divider className="w-full" />
               <Box className="flex flex-row w-full justify-between mt-8">
+
                 <Box className="flex flex-col w-1/2 items-start gap-4">
                   <Typography
                     variant="h6"
@@ -162,7 +185,7 @@ const Page = () => {
                   <Box className="flex flex-row gap-1 flex-start items-center">
                     <Star className="text-primary-600" size={24} />
                     <Typography variant="h6" className="text-primary-600">
-                      Rate
+                      Puanla
                     </Typography>
                   </Box>
                 </Box>
@@ -265,7 +288,7 @@ const Page = () => {
         <Divider className="w-full" />
 
         {/* İçerik */}
-        <Box className="w-full mt-4">
+        <Box className="w-full mt-8 mb-8">
           {activeTab === "egitimler" && actor.education && (
             <Education education={actor.education} actorId={params.id} />
           )}
@@ -273,7 +296,7 @@ const Page = () => {
             <Experiences experiences={actor.experiences} actorId={params.id} />
           )}
           {activeTab === "yetenekler" && actor.specialSkills && (
-            <SpeacialSkills specialSkills={actor.specialSkills} actorId={params.id} />
+            <SpecialSkills specialSkills={actor.specialSkills} actorId={params.id} />
           )}
         </Box>
 

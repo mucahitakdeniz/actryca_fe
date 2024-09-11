@@ -20,9 +20,9 @@ const SpecialAbilities = () => {
   const handleInputChange = (category) => (event) => {
     const value = event.target.value;
 
-    // Harf ve boşluk kontrolü
+ 
     if (/^[a-zA-Z\s]*$/.test(value)) {
-      // Çift boşlukları engelle
+
       const cleanedValue = value.replace(/\s{2,}/g, ' ');
 
       setInputValues({

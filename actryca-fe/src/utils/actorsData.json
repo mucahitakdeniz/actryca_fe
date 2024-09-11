@@ -5,9 +5,16 @@
     "birthDate": "10/02/1986",
     "birthCity": "İstanbul",
     "birthCountry": "Türkiye",
+    "height": 1.74,
+    "weight": 62,
+    "eye": "Kahverengi",
+    "hair": "Siyah",
     "img": "/images/artists/actor5.jfif",
     "score": 9.5,
-    "languages": ["Türkçe", "İngilizce"],
+    "languages": [
+      "Türkçe",
+      "İngilizce"
+    ],
     "education": [
       {
         "name": "Sahne Sanatları Yüksek Lisansı",
@@ -38,6 +45,63 @@
         "description": "Tiyatro ve sahne sanatları üzerine yüksek lisans programı."
       }
     ],
+    "specialSkills": [
+      {
+        "category": "Müzik Aleti",
+        "talent": [
+          "Piyano",
+          "Keman"
+        ]
+      },
+      {
+        "category": "Spor",
+        "talent": [
+          "Futbol",
+          "Basketbol"
+        ]
+      },
+      {
+        "category": "Dans",
+        "talent": [
+          "Salsa",
+          "Tango"
+        ]
+      },
+      {
+        "category": "Sahne Sanatları",
+        "talent": [
+          "Bale",
+          "Opera"
+        ]
+      }
+    ],
+    "experiences": [
+      {
+        "projectName": "Migros",
+        "projectType": "Seslendirme",
+        "description": "Müşteri"
+      },
+      {
+        "projectName": "Migros",
+        "projectType": "Seslendirme",
+        "description": "Müşteri"
+      },
+      {
+        "projectName": "Hamlet",
+        "projectType": "Tiyatro",
+        "description": "Yardımcı Oyuncu"
+      },
+      {
+        "projectName": "Kayıp Şehir",
+        "projectType": "Dizi",
+        "description": "Yardımcı Oyuncu"
+      },
+      {
+        "projectName": "Güneşin Kızları",
+        "projectType": "Film",
+        "description": "Başrol"
+      }
+    ],
     "languageLevels": {
       "Türkçe": "Ana Dil",
       "İngilizce": "İleri"
@@ -49,9 +113,16 @@
     "birthDate": "11/02/1987",
     "birthCity": "Ankara",
     "birthCountry": "Türkiye",
+    "height": 1.80,
+    "weight": 75,
+    "eye": "Yeşil",
+    "hair": "Kumral",
     "img": "/images/artists/actor6.jfif",
     "score": 9.0,
-    "languages": ["Türkçe", "İspanyolca"],
+    "languages": [
+      "Türkçe",
+      "İspanyolca"
+    ],
     "education": [
       {
         "name": "Tiyatro Çalışmaları Lisans",
@@ -72,9 +143,16 @@
     "birthDate": "11/02/1988",
     "birthCity": "İzmir",
     "birthCountry": "Türkiye",
+    "height": 1.68,
+    "weight": 58,
+    "eye": "Mavi",
+    "hair": "Sarı",
     "img": "/images/artists/actor7.jfif",
     "score": 8.0,
-    "languages": ["Türkçe", "Fransızca"],
+    "languages": [
+      "Türkçe",
+      "Fransızca"
+    ],
     "education": [
       {
         "name": "Performans Lisans Diploması",
@@ -95,9 +173,16 @@
     "birthDate": "11/02/1989",
     "birthCity": "Antalya",
     "birthCountry": "Türkiye",
+    "height": 1.85,
+    "weight": 78,
+    "eye": "Kahverengi",
+    "hair": "Siyah",
     "img": "/images/artists/actor8.jfif",
     "score": 8.5,
-    "languages": ["Türkçe", "Almanca"],
+    "languages": [
+      "Türkçe",
+      "Almanca"
+    ],
     "education": [
       {
         "name": "Drama Yüksek Lisans",
@@ -118,9 +203,16 @@
     "birthDate": "10/02/1986",
     "birthCity": "İstanbul",
     "birthCountry": "Türkiye",
+    "height": 1.74,
+    "weight": 62,
+    "eye": "Kahverengi",
+    "hair": "Siyah",
     "img": "/images/artists/actor5.jfif",
     "score": 9.5,
-    "languages": ["Türkçe", "İngilizce"],
+    "languages": [
+      "Türkçe",
+      "İngilizce"
+    ],
     "education": [
       {
         "name": "Sahne Sanatları Yüksek Lisansı",
@@ -148,9 +240,16 @@
     "birthDate": "11/02/1987",
     "birthCity": "Ankara",
     "birthCountry": "Türkiye",
+    "height": 1.80,
+    "weight": 75,
+    "eye": "Yeşil",
+    "hair": "Kumral",
     "img": "/images/artists/actor6.jfif",
     "score": 9.0,
-    "languages": ["Türkçe", "İspanyolca"],
+    "languages": [
+      "Türkçe",
+      "İspanyolca"
+    ],
     "education": [
       {
         "name": "Tiyatro Çalışmaları Lisans",
@@ -171,9 +270,16 @@
     "birthDate": "11/02/1988",
     "birthCity": "İzmir",
     "birthCountry": "Türkiye",
+    "height": 1.68,
+    "weight": 58,
+    "eye": "Mavi",
+    "hair": "Sarı",
     "img": "/images/artists/actor8.jfif",
     "score": 8.0,
-    "languages": ["Türkçe", "Fransızca"],
+    "languages": [
+      "Türkçe",
+      "Fransızca"
+    ],
     "education": [
       {
         "name": "Performans Lisans Diploması",
@@ -194,9 +300,16 @@
     "birthDate": "11/02/1989",
     "birthCity": "Antalya",
     "birthCountry": "Türkiye",
+    "height": 1.68,
+    "weight": 58,
+    "eye": "Mavi",
+    "hair": "Sarı",
     "img": "/images/artists/actor6.jfif",
     "score": 8.5,
-    "languages": ["Türkçe", "Almanca"],
+    "languages": [
+      "Türkçe",
+      "Almanca"
+    ],
     "education": [
       {
         "name": "Drama Yüksek Lisans",
