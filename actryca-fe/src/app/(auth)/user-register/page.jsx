@@ -85,16 +85,16 @@ const Page = () => {
   };
 
   const { mutate, isLoading } = useMutation({
-    mutationFn: selectStatus,
+    mutationFn: (selectedOption) => selectStatus(selectedOption),  
     onSuccess: (data) => {
-      if (!data.error) { 
+      if (!data.error) {
         setStoreStatus(selectedOption); 
         setAlertProps({
           severity: "success",
           message: "Seçiminiz başarılı bir şekilde kaydedildi!",
           open: true,
         });
-        router.push(`/user-register/${selectedOption}`); 
+        router.push(`/user-register/${selectedOption}`);
       } else {
         setAlertProps({
           severity: "error",
@@ -103,7 +103,8 @@ const Page = () => {
         });
       }
     },
-    onError: () => {
+    onError: (error) => {
+      console.error(error.response?.data); 
       setAlertProps({
         severity: "error",
         message: "Bir hata oluştu. Lütfen tekrar deneyin.",
@@ -118,7 +119,7 @@ const Page = () => {
 
   const handleContinue = () => {
     if (selectedOption) {
-      mutate({ status: selectedOption }); 
+      mutate(selectedOption);  
     }
   };
 
