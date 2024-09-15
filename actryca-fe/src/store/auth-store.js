@@ -6,13 +6,15 @@ const useAuthStore = create(
     (set) => ({
       user: null,
       tokens: null,
+      status: null,
       setUser: (user) => set({ user }),
       setTokens: (tokens) => set({ tokens }),
-      logout: () => set({ user: null, tokens: null }),
+      setStatus: (status) => set({ status }), 
+      logout: () => set({ user: null, tokens: null, status: null }), 
     }),
     {
       name: "auth-store",
-      storage: createJSONStorage(() => localStorage),
+      storage: createJSONStorage(() => localStorage), 
     }
   )
 );
