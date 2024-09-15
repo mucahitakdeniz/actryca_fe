@@ -3,6 +3,10 @@ import { useState } from "react";
 import { Box, Button, Typography } from "@mui/material";
 import { Drama, PenLine, Star } from "lucide-react";
 import { useRouter } from "next/navigation";
+import AlertBox from "@/components/ui/AlertBox";
+import { useMutation } from "@tanstack/react-query";
+import { selectStatus } from "../../../services/auth";
+import useAuthStore from "@/store/auth-store";
 
 const OptionButton = ({
   option,
@@ -68,22 +72,59 @@ const OptionButton = ({
 
 const Page = () => {
   const [selectedOption, setSelectedOption] = useState(null);
+  const [alertProps, setAlertProps] = useState({
+    open: false,
+    message: "",
+    severity: "info",
+  });
+  const { setStatus: setStoreStatus } = useAuthStore(); 
   const router = useRouter();
-  const handleOptionClick = (option) => {
-    setSelectedOption(option);
+
+  const handleAlertClose = () => {
+    setAlertProps((prev) => ({ ...prev, open: false }));
   };
+
+  const { mutate, isLoading } = useMutation({
+    mutationFn: selectStatus,
+    onSuccess: (data) => {
+      if (!data.error) { 
+        setStoreStatus(selectedOption); 
+        setAlertProps({
+          severity: "success",
+          message: "Seçiminiz başarılı bir şekilde kaydedildi!",
+          open: true,
+        });
+        router.push(`/user-register/${selectedOption}`); 
+      } else {
+        setAlertProps({
+          severity: "error",
+          message: "Seçim işlemi başarısız oldu.",
+          open: true,
+        });
+      }
+    },
+    onError: () => {
+      setAlertProps({
+        severity: "error",
+        message: "Bir hata oluştu. Lütfen tekrar deneyin.",
+        open: true,
+      });
+    },
+  });
+
+  const handleOptionClick = (option) => {
+    setSelectedOption(option); 
+  };
+
   const handleContinue = () => {
-    if (selectedOption === "actor") {
-      router.push("/user-register/actor");
-    } else if (selectedOption === "author") {
-      router.push("/user-register/author");
-    } else if (selectedOption === "others") {
-      router.push("/user-register/others");
+    if (selectedOption) {
+      mutate({ status: selectedOption }); 
     }
   };
 
   return (
     <Box className="bg-white top-0 left-0 w-screen h-screen z-50 fixed padding center">
+      <AlertBox alertProps={alertProps} onClose={handleAlertClose} />
       <Box className="center-col">
         <Box>
           <Typography
@@ -131,10 +172,10 @@ const Page = () => {
             backgroundColor: selectedOption ? "primary.main" : "grey",
             width: "400px",
           }}
-          disabled={!selectedOption}
+          disabled={!selectedOption || isLoading} 
           onClick={handleContinue}
         >
-          devam et
+          {isLoading ? "Yükleniyor..." : "Devam et"}
         </Button>
       </Box>
     </Box>
