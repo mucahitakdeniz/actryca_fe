@@ -76,7 +76,10 @@ const Fiziksel = () => {
   };
 
   return (
-    <Box component="form" className="w-full h-[100vh] flex flex-col items-start gap-6">
+    <Box
+      component="form"
+      className="w-full h-[100vh] flex flex-col items-start gap-6"
+    >
       <Typography variant="h6" className="font-dm-serif-display font-bold">
         Fiziksel Özellikler:
       </Typography>
@@ -95,8 +98,8 @@ const Fiziksel = () => {
                 sx: { "::placeholder": placeholderStyles },
               }}
             >
-              {genders.map((option) => (
-                <MenuItem key={option.value} value={option.value}>
+              {genders.map((option, index) => (
+                <MenuItem key={index} value={option.value}>
                   {option.label}
                 </MenuItem>
               ))}
@@ -115,12 +118,14 @@ const Fiziksel = () => {
                 onChange={(e) => setHeight(e.target.value)}
                 InputProps={{
                   sx: { "::placeholder": placeholderStyles },
-                  renderValue: (value) => <span>{underlineText(value)} cm</span>,
+                  renderValue: (value) => (
+                    <span>{underlineText(value)} cm</span>
+                  ),
                 }}
               >
                 <ListSubheader>Bazı Yükseklikler</ListSubheader>
-                {heights.map((option) => (
-                  <MenuItem key={option} value={option}>
+                {heights.map((option, index) => (
+                  <MenuItem key={index} value={option}>
                     <span>{underlineText(option)} cm</span>
                   </MenuItem>
                 ))}
@@ -138,12 +143,14 @@ const Fiziksel = () => {
                 onChange={(e) => setWeight(e.target.value)}
                 InputProps={{
                   sx: { "::placeholder": placeholderStyles },
-                  renderValue: (value) => <span>{underlineText(value)} kg</span>,
+                  renderValue: (value) => (
+                    <span>{underlineText(value)} kg</span>
+                  ),
                 }}
               >
                 <ListSubheader>Bazı Kilolar</ListSubheader>
-                {weights.map((option) => (
-                  <MenuItem key={option} value={option}>
+                {weights.map((option, index) => (
+                  <MenuItem key={index} value={option}>
                     <span>{underlineText(option)} kg</span>
                   </MenuItem>
                 ))}
@@ -165,8 +172,8 @@ const Fiziksel = () => {
                   renderValue: (value) => <span>{underlineText(value)}</span>,
                 }}
               >
-                {hairColors.map((option) => (
-                  <MenuItem key={option.value} value={option.value}>
+                {hairColors.map((option, index) => (
+                  <MenuItem key={index} value={option.value}>
                     {option.label}
                   </MenuItem>
                 ))}
@@ -186,8 +193,8 @@ const Fiziksel = () => {
                   renderValue: (value) => <span>{underlineText(value)}</span>,
                 }}
               >
-                {eyeColors.map((option) => (
-                  <MenuItem key={option.value} value={option.value}>
+                {eyeColors.map((option, index) => (
+                  <MenuItem key={index} value={option.value}>
                     {option.label}
                   </MenuItem>
                 ))}
@@ -225,7 +232,7 @@ const Fiziksel = () => {
                 "&::-webkit-scrollbar-track": {
                   background: "transparent",
                 },
-              }
+              },
             }}
             sx={{
               height: "100%",
@@ -234,7 +241,7 @@ const Fiziksel = () => {
               color: "primary.darkest",
               "& .MuiOutlinedInput-notchedOutline": {
                 border: "none",
-                color: "primary.darkest"
+                color: "primary.darkest",
               },
             }}
           />
@@ -253,7 +260,11 @@ const Fiziksel = () => {
 
       <Dialog open={isAboutMeOpen} onClose={handleAboutMeClose}>
         <DialogContent>
-          <AboutMe aboutText={aboutText} setAboutText={setAboutText} handleClose={handleAboutMeClose} />
+          <AboutMe
+            aboutText={aboutText}
+            setAboutText={setAboutText}
+            handleClose={handleAboutMeClose}
+          />
         </DialogContent>
       </Dialog>
     </Box>

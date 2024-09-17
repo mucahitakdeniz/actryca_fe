@@ -83,10 +83,10 @@ const SpokenLanguage = () => {
             )}
             ListboxProps={{
               sx: {
-                '& .MuiAutocomplete-option:hover': {
-                  borderRight: '1px solid #E3DAF3',
-                  borderLeft: '1px solid #E3DAF3',
-                  backgroundColor: 'var(--Primary-50, #E3DAF3)',
+                "& .MuiAutocomplete-option:hover": {
+                  borderRight: "1px solid #E3DAF3",
+                  borderLeft: "1px solid #E3DAF3",
+                  backgroundColor: "var(--Primary-50, #E3DAF3)",
                 },
               },
             }}
@@ -98,8 +98,12 @@ const SpokenLanguage = () => {
             className="bg-white border border-primary-100 rounded "
             sx={{ minWidth: 120 }}
           >
-            {proficiencyLevels.map((level) => (
-              <MenuItem className='hover:bg-primary-50' key={level} value={level}>
+            {proficiencyLevels.map((level, index) => (
+              <MenuItem
+                className="hover:bg-primary-50"
+                key={index}
+                value={level}
+              >
                 {level}
               </MenuItem>
             ))}

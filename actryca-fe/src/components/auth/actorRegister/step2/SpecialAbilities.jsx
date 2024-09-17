@@ -61,11 +61,17 @@ const SpecialAbilities = () => {
   return (
     <Box>
       <Typography className="mb-2 text-primary-900 font-dm-serif-text text-[18px] font-bold leading-6">
-        Özel Yetenekler: <span className="text-primary-900 text-[14px] italic leading-[130%] font-normal">(zorunlu değil)</span>
+        Özel Yetenekler:{" "}
+        <span className="text-primary-900 text-[14px] italic leading-[130%] font-normal">
+          (zorunlu değil)
+        </span>
       </Typography>
       <Box className="flex flex-col px-8 py-[22px] border border-primary-100 rounded-2xl gap-2">
-        {Object.keys(abilities).map((category) => (
-          <Box key={category} className="flex flex-col items-start  w-full gap-[6px]">
+        {Object.keys(abilities).map((category, index) => (
+          <Box
+            key={index}
+            className="flex flex-col items-start  w-full gap-[6px]"
+          >
             <Typography className="text-primary-900 font-sans text-[14px] font-medium leading-6">
               {category}
             </Typography>
@@ -86,7 +92,7 @@ const SpecialAbilities = () => {
                   endIcon={<CloseIcon />}
                   onClick={() => handleDelete(category, ability)}
                   className="rounded-[8px] bg-primary-100 border border-primary-50 text-primary-900 text-[14px] font-medium leading-6 hover:bg-primary-100"
-                  style={{ textTransform: 'none' }}
+                  style={{ textTransform: "none" }}
                 >
                   {ability}
                 </Button>

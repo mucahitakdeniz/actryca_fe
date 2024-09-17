@@ -56,7 +56,10 @@ const Kisisel = () => {
   const phoneCodes = countries.map((country) => country.phoneCode);
 
   return (
-    <Box className="w-full h-[100vh] flex flex-col items-start gap-6" component="form">
+    <Box
+      className="w-full h-[100vh] flex flex-col items-start gap-6"
+      component="form"
+    >
       <Typography variant="h6" className=" font-dm-serif-display font-bold">
         Temel Bilgiler:
       </Typography>
@@ -84,8 +87,8 @@ const Kisisel = () => {
                 }
                 className="h-12 rounded-lg"
               >
-                {phoneCodes.map((code) => (
-                  <MenuItem key={code} value={code}>
+                {phoneCodes.map((code, index) => (
+                  <MenuItem key={index} value={code}>
                     {code}
                   </MenuItem>
                 ))}
@@ -131,9 +134,9 @@ const Kisisel = () => {
               value={selectedCountry}
               onChange={handleCountryChange}
             >
-              {countries.map((option) => (
+              {countries.map((option, index) => (
                 <MenuItem
-                  key={option.value}
+                  key={index}
                   value={option.value}
                   className="hover:bg-primary-50"
                 >
@@ -151,9 +154,9 @@ const Kisisel = () => {
               value={selectedCity}
               onChange={handleCityChange}
             >
-              {cities.map((city) => (
+              {cities.map((city, index) => (
                 <MenuItem
-                  key={city}
+                  key={index}
                   value={city}
                   className="hover:bg-primary-50"
                 >

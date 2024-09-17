@@ -101,35 +101,47 @@ const SelectedYes = () => {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <Box className="flex flex-col justify-center items-start gap-4 self-stretch">
-        
         {projects.length > 0 && (
-          <YesDetails 
-            projects={projects} 
-            onEdit={handleEdit} 
-            onDelete={handleDelete} 
+          <YesDetails
+            projects={projects}
+            onEdit={handleEdit}
+            onDelete={handleDelete}
             onAddNew={handleAddNew}
-            className="mb-4" 
+            className="mb-4"
           />
         )}
 
         <FormControl fullWidth>
           <Box className="flex flex-col justify-center items-start gap-1 w-1/2">
-            <Typography className="text-primary-900 font-sans text-[14px] font-medium leading-6 m5-[24px]">Proje Türü:</Typography>
+            <Typography className="text-primary-900 font-sans text-[14px] font-medium leading-6 m5-[24px]">
+              Proje Türü:
+            </Typography>
             <Select
               value={projectType}
               onChange={handleProjectTypeChange}
               displayEmpty
               renderValue={(selected) => {
                 if (!selected) {
-                  return 'Proje Türü Seçiniz';
+                  return "Proje Türü Seçiniz";
                 }
-                return projectTypes.find(type => type.value === selected)?.label;
+                return projectTypes.find((type) => type.value === selected)
+                  ?.label;
               }}
               className="w-full rounded-lg"
             >
-              {projectTypes.map((type) => (
-                <MenuItem key={type.value} value={type.value} className='hover:bg-primary-50 active:bg-primary-50'>
-                  <CustomCheckbox className="bg-pri" style={{ visibility: projectType === type.value ? 'visible' : 'hidden' }} />
+              {projectTypes.map((type, index) => (
+                <MenuItem
+                  key={index}
+                  value={type.value}
+                  className="hover:bg-primary-50 active:bg-primary-50"
+                >
+                  <CustomCheckbox
+                    className="bg-pri"
+                    style={{
+                      visibility:
+                        projectType === type.value ? "visible" : "hidden",
+                    }}
+                  />
                   {type.label}
                 </MenuItem>
               ))}
@@ -138,7 +150,9 @@ const SelectedYes = () => {
         </FormControl>
 
         <Box className="w-full">
-          <Typography className="text-primary-900 font-sans text-[14px] font-medium leading-6 m5-[24px]">Proje Adı:</Typography>
+          <Typography className="text-primary-900 font-sans text-[14px] font-medium leading-6 m5-[24px]">
+            Proje Adı:
+          </Typography>
           <TextField
             label="Proje Adı"
             fullWidth
@@ -149,7 +163,9 @@ const SelectedYes = () => {
         </Box>
 
         <Box className="w-full">
-          <Typography className="text-primary-900 font-sans text-[14px] font-medium leading-6 m5-[24px]">Rol:</Typography>
+          <Typography className="text-primary-900 font-sans text-[14px] font-medium leading-6 m5-[24px]">
+            Rol:
+          </Typography>
           <TextField
             label="Rol"
             fullWidth
@@ -160,7 +176,9 @@ const SelectedYes = () => {
         </Box>
 
         <Box className="w-full">
-          <Typography className="text-primary-900 font-sans text-[14px] font-medium leading-6 m5-[24px]">Yapımcı/Şirket Adı:</Typography>
+          <Typography className="text-primary-900 font-sans text-[14px] font-medium leading-6 m5-[24px]">
+            Yapımcı/Şirket Adı:
+          </Typography>
           <TextField
             label="Yapımcı/Şirket Adı"
             fullWidth
@@ -171,7 +189,9 @@ const SelectedYes = () => {
         </Box>
 
         <Box className="w-full mb-4">
-          <Typography className="text-primary-900 font-sans text-[14px] font-medium leading-6">Açıklama (Tercihen):</Typography>
+          <Typography className="text-primary-900 font-sans text-[14px] font-medium leading-6">
+            Açıklama (Tercihen):
+          </Typography>
           <TextField
             placeholder="Bihter rolünde, hırslı ve trajik bir karakteri canlandırdım. Adnan Ziyagil'in eşi olarak yasak bir aşk yaşayan Bihter'in iç dünyasını derinlemesine yansıttım"
             fullWidth
@@ -185,35 +205,54 @@ const SelectedYes = () => {
               </FormHelperText>
             }
             inputProps={{ maxLength: 150 }}
-            className='placeholder:text-primary-50 gap-2 text-[16px] leading-6 h-auto overflow-auto'
-            sx={{ maxHeight: '150px' }}
+            className="placeholder:text-primary-50 gap-2 text-[16px] leading-6 h-auto overflow-auto"
+            sx={{ maxHeight: "150px" }}
           />
         </Box>
 
         <Box className="flex gap-4 w-full">
           <Box className="w-full">
-            <Typography className="text-primary-900 font-sans text-[14px] font-medium leading-6 m5-[24px]">Başlangıç Tarihi:</Typography>
+            <Typography className="text-primary-900 font-sans text-[14px] font-medium leading-6 m5-[24px]">
+              Başlangıç Tarihi:
+            </Typography>
             <DatePicker
               value={startDate}
               onChange={(newValue) => setStartDate(newValue)}
-              renderInput={(params) => <TextField {...params} fullWidth margin="normal" />}
+              renderInput={(params) => (
+                <TextField {...params} fullWidth margin="normal" />
+              )}
             />
           </Box>
           <Box className="w-full">
-            <Typography className="text-primary-900 font-sans text-[14px] font-medium leading-6 m5-[24px]">Bitiş Tarihi:</Typography>
+            <Typography className="text-primary-900 font-sans text-[14px] font-medium leading-6 m5-[24px]">
+              Bitiş Tarihi:
+            </Typography>
             <DatePicker
               value={endDate}
               onChange={(newValue) => setEndDate(newValue)}
-              renderInput={(params) => <TextField {...params} fullWidth margin="normal" />}
+              renderInput={(params) => (
+                <TextField {...params} fullWidth margin="normal" />
+              )}
             />
           </Box>
         </Box>
 
         <Box className="flex justify-between w-full mt-4">
-          <Button variant="outlined" className="text-primary-600" onClick={handleAddNew}>Vazgeç</Button>
-          <Button variant="contained" color="primary" onClick={handleSaveProject}>Kaydet</Button>
+          <Button
+            variant="outlined"
+            className="text-primary-600"
+            onClick={handleAddNew}
+          >
+            Vazgeç
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleSaveProject}
+          >
+            Kaydet
+          </Button>
         </Box>
-
       </Box>
     </LocalizationProvider>
   );
