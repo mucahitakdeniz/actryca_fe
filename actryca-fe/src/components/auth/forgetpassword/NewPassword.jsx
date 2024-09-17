@@ -1,4 +1,3 @@
-
 import * as React from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -12,6 +11,7 @@ import {
   DialogContent,
   FormControl,
   FormLabel,
+  CircularProgress,
 } from "@mui/material";
 import Image from "next/image";
 import { Eye, EyeOff } from "lucide-react";
@@ -20,25 +20,83 @@ import close from "../../../../public/svg/close.svg";
 import back from "../../../../public/svg/back.svg";
 import openlock from "../../../../public/svg/openlock.svg";
 import openlock2 from "../../../../public/svg/openlock2.svg";
+import usePasswordStore from "@/store/password-store";
+import { useMutation } from "@tanstack/react-query";
+import { renewPassword } from "@/services/password";
+import AlertBox from "@/components/ui/AlertBox";
 
 export default function NewPassword({ open, onClose, onBack, onContinue }) {
   const [password, setPassword] = React.useState("");
   const [confirmPassword, setConfirmPassword] = React.useState("");
   const [showPassword, setShowPassword] = React.useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = React.useState(false);
-  const [error, setError] = React.useState(false);
+  const [errorText, setErrorText] = React.useState(false);
+
+  const email = usePasswordStore((state) => state.email);
+
+  const [alertProps, setAlertProps] = React.useState({
+    open: false,
+    message: "",
+    severity: "info",
+  });
+
+  const { mutate, isPending, isError, error } = useMutation({
+    mutationFn: renewPassword,
+    onSuccess: (data) => {
+      const alertProps = {
+        severity: "success",
+        message: "Şifreniz başarıyla değiştirildi!",
+        open: true,
+      };
+
+      if (!data?.error) {
+        alertProps.severity = "error";
+        alertProps.message = "Şifre değiştirme başarısız oldu.";
+      } else {
+        alertProps.severity = "error";
+        alertProps.message = "Şifre değiştirme başarısız oldu.";
+      }
+
+      setAlertProps(alertProps);
+    },
+    onError: (error) => {
+      let errorMessage = "Beklenmeyen bir hata oluştu.";
+
+      if (error.response?.data?.error === "User not found.") {
+        errorMessage = "Kullanıcı bulunamadı.";
+      }
+
+      setAlertProps({
+        severity: "error",
+        message: errorMessage,
+        open: true,
+      });
+    },
+  });
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const newPassword = {
+      new_password: verificationCode,
+    };
+    if (password === confirmPassword) {
+      mutate(newPassword);
+    } else {
+      setErrorText(true);
+    }
+  };
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
     if (event.target.value === confirmPassword) {
-      setError(false);
+      setErrorText(false);
     }
   };
 
   const handleConfirmPasswordChange = (event) => {
     setConfirmPassword(event.target.value);
     if (event.target.value === password) {
-      setError(false);
+      setErrorText(false);
     }
   };
 
@@ -48,14 +106,6 @@ export default function NewPassword({ open, onClose, onBack, onContinue }) {
 
   const toggleConfirmPasswordVisibility = () => {
     setShowConfirmPassword(!showConfirmPassword);
-  };
-
-  const handleContinue = () => {
-    if (password !== confirmPassword) {
-      setError(true);
-    } else {
-      onContinue();
-    }
   };
 
   return (
@@ -76,6 +126,7 @@ export default function NewPassword({ open, onClose, onBack, onContinue }) {
         },
       }}
     >
+      <AlertBox alertProps={alertProps} />
       <div className="w-full h-full bg-white relative">
         <IconButton
           aria-label="close"
@@ -133,7 +184,12 @@ export default function NewPassword({ open, onClose, onBack, onContinue }) {
             </Stack>
           </Stack>
         </DialogContent>
-        <DialogActions className="flex flex-col w-full justify-center gap-6 items-center">
+        <DialogActions
+          component="form"
+          noValidate
+          onSubmit={handleSubmit}
+          className="flex flex-col w-full justify-center gap-6 items-center"
+        >
           <Stack className="flex flex-col items-start self-stretch m-auto gap-4">
             <FormControl>
               <FormLabel className="text-primary-900 font-sans text-[14px] font-[500px] leading-6">
@@ -200,9 +256,9 @@ export default function NewPassword({ open, onClose, onBack, onContinue }) {
                     maxWidth: "420px",
                   },
                 }}
-                error={error}
+                error={errorText}
                 helperText={
-                  error ? (
+                  errorText ? (
                     <span
                       className="text-red text-[12px]"
                       style={{ minHeight: "1.5em", display: "inline-block" }}
@@ -223,15 +279,15 @@ export default function NewPassword({ open, onClose, onBack, onContinue }) {
           </Stack>
 
           <Button
-            onClick={handleContinue}
+            type="submit"
             variant="contained"
             className=" w-72 "
+            disabled={isPending}
           >
-            Şifreyi Yenile
+            {isPending ? <CircularProgress size={25} /> : "Şifreyi Yenile"}
           </Button>
         </DialogActions>
       </div>
     </Dialog>
   );
-
 }

@@ -115,7 +115,7 @@ export default function ActorRegister() {
       <Box className="w-full padding pt-12">
         <Stepper activeStep={activeStep}>
           {steps.map((step, index) => (
-            <Step key={step.label}>
+            <Step key={index}>
               <StepLabel
                 StepIconComponent={() => (
                   <StepIconComponent
