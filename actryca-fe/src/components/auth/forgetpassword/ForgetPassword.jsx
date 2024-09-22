@@ -15,9 +15,6 @@ import AlertBox from "@/components/ui/AlertBox";
 import usePasswordStore from "@/store/password-store";
 
 export default function ForgetPassword({ open, onClose, onContinue }) {
-  const setMail = usePasswordStore((state) => state.setMail);
-  const email = usePasswordStore((state) => state.email);
-
   const [alertProps, setAlertProps] = React.useState({
     open: false,
     message: "",
@@ -44,19 +41,19 @@ export default function ForgetPassword({ open, onClose, onContinue }) {
     },
     onError: (error) => {
       let errorMessage = "Beklenmeyen bir hata oluştu.";
+      console.log(error);
 
-      if (error.response?.data?.error === "User not found.") {
-        errorMessage = "Kullanıcı bulunamadı.";
-      } else if (error.response?.data?.error === "Wrong password.") {
-        errorMessage = "Şifre yanlış. Lütfen tekrar deneyiniz.";
-      } else if (
-        error.response?.data?.error === "This account is not active."
+      if (
+        error.response?.data?.message ===
+        "'identifier' (email or phone) is required."
       ) {
-        errorMessage = "Bu hesap aktif değil.";
+        errorMessage = "Email veya telefon numarası giriniz";
       } else if (
-        error.response?.data?.error === "Please enter identifier and password."
+        error.response?.data?.message ===
+        "Uyarı! undefined bu isimde kayıtlı bir e-mail bulunmamaktadır"
       ) {
-        errorMessage = "Kullanıcı adı, telefon ve şifre giriniz.";
+        errorMessage =
+          "Bu isimde kayıtlı bir e-mail veya telefon numarası bulunmamaktadır";
       }
 
       setAlertProps({
@@ -71,9 +68,8 @@ export default function ForgetPassword({ open, onClose, onContinue }) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const userData = {
-      email: data.get("email"),
+      identifier: data.get("identifier"),
     };
-    setMail(userData.email);
     mutate(userData);
   };
 
@@ -144,10 +140,10 @@ export default function ForgetPassword({ open, onClose, onContinue }) {
               margin="normal"
               required
               fullWidth
-              id="email"
+              id="identifier"
               label="Telefon ya da E-posta Giriniz"
-              name="email"
-              autoComplete="email"
+              name="identifier"
+              autoComplete="identifier"
               autoFocus
             />
             <Stack className="w-full pt-6">

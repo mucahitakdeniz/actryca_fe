@@ -18,7 +18,7 @@ export default function Page() {
   const [alertProps, setAlertProps] = useState({
     open: false,
     message: "",
-    severity: "info",
+    severity: "info"
   });
   const { setUser, setTokens } = useAuthStore();
   const router = useRouter();
@@ -27,58 +27,57 @@ export default function Page() {
     setAlertProps((prev) => ({ ...prev, open: false }));
   };
 
-const { mutate, isPending, isError, error } = useMutation({
-  mutationFn: register,
-  onSuccess: (data) => {
-    const alertProps = {
-      severity: "success",
-      message: "Login successful!",
-      open: true,
-    };
+  const { mutate, isPending, isError, error } = useMutation({
+    mutationFn: register,
+    onSuccess: (data) => {
+      const alertProps = {
+        severity: "success",
+        message: "Login successful!",
+        open: true,
+      };
 
-    if (data?.accessToken) {
-      setUser(data);
-      setTokens(data.accessToken);
-      localStorage.setItem("token", data.accessToken);
-      router.push("/user-register");
-    } else {
-      alertProps.severity = "error";
-      alertProps.message = "Login failed: Access token is missing.";
-    }
+      if (data?.accessToken) {
+        setUser(data);
+        setTokens(data.accessToken);
+        localStorage.setItem("token", data.accessToken);
+        router.push("/user-register");
+      } else {
+        alertProps.severity = "error";
+        alertProps.message = "Login failed: Access token is missing.";
+      }
 
-    setAlertProps(alertProps);
-  },
-  onError: (error) => {
-    let errorMessage = "Unexpected error occurred.";
+      setAlertProps(alertProps);
+    },
+    onError: (error) => {
+      let errorMessage = "Unexpected error occurred.";
 
-    switch (error.response?.data?.error) {
-      case "Identifier required":
-        errorMessage = "Email veya telefon zorunlu";
-        break;
-      case "Validation failed.":
-        errorMessage = "Şifre en az 8 karakter uzunluğunda olmalı";
-        break;
-      case "Username already exists.":
-        errorMessage = "Bu kullanıcı adı zaten mevcut.";
-        break;
-      case "Email already exists.":
-        errorMessage = "Bu email adresi zaten kayıtlı.";
-        break;
-      case "Phone number already exists.":
-        errorMessage = "Bu telefon numarası zaten kayıtlı.";
-        break;
-      default:
-        errorMessage = "Unexpected error occurred.";
-    }
+      switch (error.response?.data?.error) {
+        case "Identifier required":
+          errorMessage = "Email veya telefon zorunlu";
+          break;
+        case "Validation failed.":
+          errorMessage = "Şifre en az 8 karakter uzunluğunda olmalı";
+          break;
+        case "Username already exists.":
+          errorMessage = "Bu kullanıcı adı zaten mevcut.";
+          break;
+        case "Email already exists.":
+          errorMessage = "Bu email adresi zaten kayıtlı.";
+          break;
+        case "Phone number already exists.":
+          errorMessage = "Bu telefon numarası zaten kayıtlı.";
+          break;
+        default:
+          errorMessage = "Unexpected error occurred.";
+      }
 
-    setAlertProps({
-      severity: "error",
-      message: errorMessage,
-      open: true,
-    });
-  },
-});
-
+      setAlertProps({
+        severity: "error",
+        message: errorMessage,
+        open: true,
+      });
+    },
+  });
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -94,7 +93,7 @@ const { mutate, isPending, isError, error } = useMutation({
 
   return (
     <>
-      <AlertBox alertProps={alertProps} />
+      <AlertBox alertProps={alertProps} handleAlertClose={handleAlertClose} />
       <Grid container component="main" className="background p-24 center mb-24">
         <Grid item xs={false} sm={4} md={7} className="py-12 h-full">
           <Box className="flex justify-center">

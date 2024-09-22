@@ -1,20 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Snackbar from "@mui/material/Snackbar";
-import MuiAlert from "@mui/material/Alert";
+import Alert from "@mui/material/Alert";
 
-const AlertBox = ({ alertProps }) => {
-  const { open, message, severity, duration, onClose } = alertProps;
+const AlertBox = ({ alertProps, handleAlertClose }) => {
+  const { open, message, severity } = alertProps;
 
   return (
     <Snackbar
       open={open}
-      autoHideDuration={duration || 5000}
-      onClose={onClose}
+      autoHideDuration={5000}
       anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      onClose={handleAlertClose}
     >
-      <MuiAlert onClose={onClose} severity={severity}>
+      <Alert severity={severity} onClose={handleAlertClose}>
         {message}
-      </MuiAlert>
+      </Alert>
     </Snackbar>
   );
 };

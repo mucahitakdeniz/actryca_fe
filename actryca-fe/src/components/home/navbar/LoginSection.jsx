@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {
+  Avatar,
   Box,
   Button,
   IconButton,
@@ -10,10 +11,20 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
-import { Search } from "lucide-react";
+import {
+  Bookmark,
+  BookOpenText,
+  LogOut,
+  Search,
+  Settings,
+  SquareActivity,
+  UserCog,
+} from "lucide-react";
 import Link from "next/link";
 import useAuthStore from "@/store/auth-store";
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import { AccountCircle } from "@mui/icons-material";
+import { UserRoundPen } from "lucide-react";
 
 const LoginSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -61,34 +72,72 @@ const LoginSection = () => {
           className="text-primary-800 cursor-pointer"
         />
         {user ? (
-          <div>
+          <div className="center">
+            <IconButton className="text-primary-900">
+              <Bookmark strokeWidth={1.5} />
+            </IconButton>
+            <Typography className="text-primary-900 ml-3">
+              {user?.data?.user_name || "?"}
+            </Typography>
             <IconButton
-              size="large"
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
-              onClick={handleMenu} // Menü sadece bu butona tıklandığında açılır
+              onClick={handleMenu}
               color="inherit"
             >
-              <AccountCircle color="primary" />
+              <Avatar className="bg-primary-100 text-primary-900">
+                {user?.data?.user_name.toUpperCase()[0] || "?"}
+              </Avatar>
             </IconButton>
             <Menu
               id="menu-appbar"
               anchorEl={anchorEl}
               anchorOrigin={{
-                vertical: "top",
+                vertical: "bottom",
                 horizontal: "right",
               }}
               keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
+              sx={{
+                borderRadius: "32px",
               }}
-              open={Boolean(anchorEl)} // Eğer anchorEl null değilse menü açık olur
+              open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              <MenuItem onClick={handleClose}>Profile</MenuItem>
-              <MenuItem onClick={handleLogout}>Logout</MenuItem>
+              <MenuItem
+                className="hover:bg-primary-50 rounded-lg m-2"
+                onClick={handleClose}
+              >
+                <Link href="/" className="center gap-4 !justify-between ">
+                  <UserCog strokeWidth={1.5} />
+                  Kullanıcı Bilgileri
+                </Link>
+              </MenuItem>
+              <MenuItem
+                className="hover:bg-primary-50 rounded-lg m-2"
+                onClick={handleClose}
+              >
+                <Link href="/" className="center gap-4 !justify-between  ">
+                  <SquareActivity strokeWidth={1.5} />
+                  Hareketlerin
+                </Link>
+              </MenuItem>
+              <MenuItem
+                className="hover:bg-primary-50 rounded-lg m-2"
+                onClick={handleClose}
+              >
+                <Link href="/" className="center gap-4 !justify-between  ">
+                  <Settings strokeWidth={1.5} />
+                  Ayarlar
+                </Link>
+              </MenuItem>
+              <MenuItem
+                className="hover:bg-primary-50 rounded-lg m-2 gap-4 "
+                onClick={handleLogout}
+              >
+                <LogOut strokeWidth={1.5} />
+                Çıkış Yap
+              </MenuItem>
             </Menu>
           </div>
         ) : (
