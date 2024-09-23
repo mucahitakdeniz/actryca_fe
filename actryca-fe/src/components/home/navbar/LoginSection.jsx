@@ -31,6 +31,8 @@ const LoginSection = () => {
   const { user, logout } = useAuthStore();
   const [anchorEl, setAnchorEl] = useState(null);
 
+  console.log(user);
+  
   const handleLogout = () => {
     logout();
     localStorage.clear();
@@ -108,7 +110,7 @@ const LoginSection = () => {
                 className="hover:bg-primary-50 rounded-lg m-2"
                 onClick={handleClose}
               >
-                <Link href="/" className="center gap-4 !justify-between ">
+                <Link href="/profile" className="center gap-4 !justify-between ">
                   <UserCog strokeWidth={1.5} />
                   Kullanıcı Bilgileri
                 </Link>
