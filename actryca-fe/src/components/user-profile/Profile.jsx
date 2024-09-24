@@ -7,25 +7,28 @@ const Profile = () => {
   const { user } = useAuthStore();
 
   return (
-    <Paper elevation={3} sx={{ padding: 4 }}>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-start",
-        }}
-      >
-        <Typography variant="h4" gutterBottom>
-          {user?.name || "Ad Bilgisi Yok"}
-        </Typography>
-        <Typography variant="h6" gutterBottom>
-          Email: {user?.email || "Email Bilgisi Yok"}
-        </Typography>
-        <Typography variant="h6" gutterBottom>
-          Telefon: {user?.phone || "Telefon Bilgisi Yok"}
-        </Typography>
-      </Box>
-    </Paper>
+    <>
+      <Typography variant="h4">Kullanıcı Bilgileri</Typography>
+      <Paper elevation={3} sx={{ padding: 4, mt: 2 }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
+          }}
+        >
+          <Typography variant="h4" gutterBottom>
+            {user?.name || "Ad Bilgisi Yok"}
+          </Typography>
+          <Typography variant="h6" gutterBottom>
+            Email: {user?.email || "Email Bilgisi Yok"}
+          </Typography>
+          <Typography variant="h6" gutterBottom>
+            Telefon: {user?.phone || "Telefon Bilgisi Yok"}
+          </Typography>
+        </Box>
+      </Paper>
+    </>
   );
 };
 

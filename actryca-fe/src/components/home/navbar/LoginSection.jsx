@@ -110,7 +110,10 @@ const LoginSection = () => {
                 className="hover:bg-primary-50 rounded-lg m-2"
                 onClick={handleClose}
               >
-                <Link href="/profile" className="center gap-4 !justify-between ">
+                <Link
+                  href="/profile"
+                  className="center gap-4 !justify-between "
+                >
                   <UserCog strokeWidth={1.5} />
                   Kullanıcı Bilgileri
                 </Link>
@@ -119,7 +122,10 @@ const LoginSection = () => {
                 className="hover:bg-primary-50 rounded-lg m-2"
                 onClick={handleClose}
               >
-                <Link href="/" className="center gap-4 !justify-between  ">
+                <Link
+                  href="/profile"
+                  className="center gap-4 !justify-between  "
+                >
                   <SquareActivity strokeWidth={1.5} />
                   Hareketlerin
                 </Link>
@@ -128,7 +134,10 @@ const LoginSection = () => {
                 className="hover:bg-primary-50 rounded-lg m-2"
                 onClick={handleClose}
               >
-                <Link href="/" className="center gap-4 !justify-between  ">
+                <Link
+                  href="/profile"
+                  className="center gap-4 !justify-between  "
+                >
                   <Settings strokeWidth={1.5} />
                   Ayarlar
                 </Link>
