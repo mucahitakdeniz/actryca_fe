@@ -2,6 +2,7 @@ import axios from "axios";
 import useAuthStore from "@/store/auth-store";
 
 const url = process.env.NEXT_PUBLIC_HOST_API;
+const { tokens } = useAuthStore.getState(); 
 
 export const register = async (userData) => {
   try {
@@ -24,7 +25,6 @@ export const login = async (userData) => {
 
 export const selectStatus = async (status) => {
   try {
-    const { tokens } = useAuthStore.getState(); 
     const response = await axios.post(
       `${url}auth/selectstatus`,
       { status },
