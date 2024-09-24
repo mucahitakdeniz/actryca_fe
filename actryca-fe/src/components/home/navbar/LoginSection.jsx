@@ -25,26 +25,27 @@ import useAuthStore from "@/store/auth-store";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import { AccountCircle } from "@mui/icons-material";
 import { UserRoundPen } from "lucide-react";
+import LogoutDialog from "@/components/ui/LogoutDialog";
 
 const LoginSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [openLogoutDialog, setOpenLogoutDialog] = useState(false);
   const { user, logout } = useAuthStore();
   const [anchorEl, setAnchorEl] = useState(null);
 
-  console.log(user);
-  
   const handleLogout = () => {
     logout();
     localStorage.clear();
     handleClose(); // Logout olduktan sonra menü kapanacak
+    setOpenLogoutDialog(false);
   };
 
   const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget); // Sadece menü butonuna tıklandığında açılmasını sağlıyoruz
+    setAnchorEl(event.currentTarget);
   };
 
   const handleClose = () => {
-    setAnchorEl(null); // Menü kapatıldığında anchorEl'i sıfırlıyoruz
+    setAnchorEl(null);
   };
 
   const handleSearchClick = () => {
@@ -144,12 +145,17 @@ const LoginSection = () => {
               </MenuItem>
               <MenuItem
                 className="hover:bg-primary-50 rounded-lg m-2 gap-4 "
-                onClick={handleLogout}
+                onClick={() => setOpenLogoutDialog(true)}
               >
                 <LogOut strokeWidth={1.5} />
                 Çıkış Yap
               </MenuItem>
             </Menu>
+            <LogoutDialog
+              open={openLogoutDialog}
+              onClose={() => setOpenLogoutDialog(false)}
+              onConfirm={handleLogout}
+            />
           </div>
         ) : (
           <Box display="flex" alignItems="center" gap={1}>

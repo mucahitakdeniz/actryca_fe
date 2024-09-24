@@ -33,9 +33,9 @@ export default function Page() {
   const { setUser, setTokens } = useAuthStore();
   const router = useRouter();
 
- const handleAlertClose = () => {
-   setAlertProps((prev) => ({ ...prev, open: false }));
- };
+  const handleAlertClose = () => {
+    setAlertProps((prev) => ({ ...prev, open: false }));
+  };
 
   const { mutate, isPending, isError, error } = useMutation({
     mutationFn: login,

@@ -1,25 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import {
-  Grid,
-  Box,
-  List,
-  ListItem,
-  ListItemText,
-  Avatar,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogContentText,
-  DialogActions,
-  Button,
-} from "@mui/material";
+import { Grid, Box, List, ListItem, ListItemText, Avatar } from "@mui/material";
 import useAuthStore from "@/store/auth-store";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams, redirect } from "next/navigation";
 import Profile from "@/components/user-profile/Profile";
 import Movements from "@/components/user-profile/Movements";
 import { LogOut, Settings, SquareActivity, UserCog } from "lucide-react";
 import SettingsContent from "@/components/user-profile/SettingsContent";
+import LogoutDialog from "@/components/ui/LogoutDialog";
 
 const Page = () => {
   const { user, logout } = useAuthStore();
@@ -27,6 +15,10 @@ const Page = () => {
   const [openLogoutDialog, setOpenLogoutDialog] = useState(false);
   const searchParams = useSearchParams();
   const router = useRouter();
+
+  if (!user) {
+    redirect("/login");
+  }
 
   useEffect(() => {
     const tab = searchParams.get("tab");
@@ -45,8 +37,6 @@ const Page = () => {
 
   const menuClass =
     "hover:bg-primary-50 rounded-lg m-2 flex gap-3 text-primary-500 ";
-
-  const activeClass = "text-primary-800 ";
 
   return (
     <Grid container spacing={4} sx={{ my: 8 }}>
@@ -142,32 +132,11 @@ const Page = () => {
       </Grid>
 
       {/* Çıkış yapma onay dialogu */}
-      <Dialog
+      <LogoutDialog
         open={openLogoutDialog}
         onClose={handleLogoutCancel}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">Logout</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            Çıkış yapmak istediğinizden emin misiniz?
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleLogoutCancel} color="primary">
-            İptal
-          </Button>
-          <Button
-            onClick={handleLogoutConfirm}
-            variant="contained"
-            color="error"
-            autoFocus
-          >
-            Çıkış Yap
-          </Button>
-        </DialogActions>
-      </Dialog>
+        onConfirm={handleLogoutConfirm}
+      />
     </Grid>
   );
 };
