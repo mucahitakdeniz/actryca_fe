@@ -36,7 +36,7 @@ const Page = () => {
   };
 
   const menuClass =
-    "hover:bg-primary-50 rounded-lg m-2 flex gap-3 text-primary-500 ";
+  "hover:bg-primary-50 rounded-lg m-2 flex gap-3 text-primary-500 active:font-bold";
 
   return (
     <Grid container spacing={4} sx={{ my: 8 }}>
@@ -125,7 +125,7 @@ const Page = () => {
       </Grid>
 
       {/* Sağ ana içerik */}
-      <Grid item xs={10} md={7} lg={8} className="mx-auto">
+      <Grid item xs={10} md={7} lg={8} className="mx-auto flex flex-col items-start gap-[56px]">
         {activeTab === "profile" && <Profile />}
         {activeTab === "movements" && <Movements />}
         {activeTab === "settings" && <SettingsContent />}
