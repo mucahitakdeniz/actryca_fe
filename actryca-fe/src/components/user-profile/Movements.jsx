@@ -24,11 +24,12 @@ const Movements = () => {
             indicatorColor="primary"
             textColor="primary"
             variant="fullWidth"
+            
           >
             <Tab
               label="Favoriler"
               value="favourite"
-              icon={<Bookmark />}
+              icon={<Bookmark  fill="#614B8B" color="#614B8B"/>}
               iconPosition="start"  
             />
             <Tab
