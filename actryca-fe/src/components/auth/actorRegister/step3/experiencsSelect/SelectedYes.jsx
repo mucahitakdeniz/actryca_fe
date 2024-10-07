@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { Box, Button, TextField, Typography, MenuItem, Select, FormControl, FormHelperText } from '@mui/material';
-import { Check } from 'lucide-react';
-import { styled } from '@mui/material/styles';
 import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import YesDetails from "./YesDetails";
+import YesDetails from './YesDetails';
 
 const projectTypes = [
   { value: 'dizi', label: 'Dizi' },
@@ -15,16 +13,7 @@ const projectTypes = [
   { value: 'seslendirme', label: 'Seslendirme' }
 ];
 
-const CustomCheckbox = styled(Check)(({ theme }) => ({
-  '&.MuiSvgIcon-root': {
-    fontSize: 20,
-  },
-  '&:hover': {
-    backgroundColor: 'rgba(0, 0, 0, 0.04)',
-  },
-}));
-
-const SelectedYes = () => {
+const SelectedYes = ({ onSaveProjects }) => {
   const [projectType, setProjectType] = useState('');
   const [description, setDescription] = useState('');
   const [startDate, setStartDate] = useState(null);
@@ -62,6 +51,8 @@ const SelectedYes = () => {
       setProjects([...projects, newProject]);
     }
 
+    onSaveProjects([...projects, newProject]);
+
     setProjectType('');
     setProjectName('');
     setRole('');
@@ -84,18 +75,9 @@ const SelectedYes = () => {
   };
 
   const handleDelete = (index) => {
-    setProjects(projects.filter((_, i) => i !== index));
-  };
-
-  const handleAddNew = () => {
-    setEditIndex(-1);
-    setProjectType('');
-    setProjectName('');
-    setRole('');
-    setCompany('');
-    setDescription('');
-    setStartDate(null);
-    setEndDate(null);
+    const updatedProjects = projects.filter((_, i) => i !== index);
+    setProjects(updatedProjects);
+    onSaveProjects(updatedProjects); 
   };
 
   return (
@@ -106,152 +88,76 @@ const SelectedYes = () => {
             projects={projects}
             onEdit={handleEdit}
             onDelete={handleDelete}
-            onAddNew={handleAddNew}
-            className="mb-4"
           />
         )}
 
         <FormControl fullWidth>
-          <Box className="flex flex-col justify-center items-start gap-1 w-1/2">
-            <Typography className="text-primary-900 font-sans text-[14px] font-medium leading-6 m5-[24px]">
-              Proje Türü:
-            </Typography>
-            <Select
-              value={projectType}
-              onChange={handleProjectTypeChange}
-              displayEmpty
-              renderValue={(selected) => {
-                if (!selected) {
-                  return "Proje Türü Seçiniz";
-                }
-                return projectTypes.find((type) => type.value === selected)
-                  ?.label;
-              }}
-              className="w-full rounded-lg"
-            >
-              {projectTypes.map((type, index) => (
-                <MenuItem
-                  key={index}
-                  value={type.value}
-                  className="hover:bg-primary-50 active:bg-primary-50"
-                >
-                  <CustomCheckbox
-                    className="bg-pri"
-                    style={{
-                      visibility:
-                        projectType === type.value ? "visible" : "hidden",
-                    }}
-                  />
-                  {type.label}
-                </MenuItem>
-              ))}
-            </Select>
-          </Box>
+          <Typography className="text-primary-900 font-sans text-[14px] font-medium leading-6">
+            Proje Türü:
+          </Typography>
+          <Select
+            value={projectType}
+            onChange={handleProjectTypeChange}
+            displayEmpty
+            renderValue={(selected) => (selected ? selected : "Proje Türü Seçiniz")}
+            className="w-full rounded-lg"
+          >
+            {projectTypes.map((type, index) => (
+              <MenuItem key={index} value={type.value}>
+                {type.label}
+              </MenuItem>
+            ))}
+          </Select>
         </FormControl>
 
-        <Box className="w-full">
-          <Typography className="text-primary-900 font-sans text-[14px] font-medium leading-6 m5-[24px]">
-            Proje Adı:
-          </Typography>
-          <TextField
-            label="Proje Adı"
-            fullWidth
-            margin="normal"
-            value={projectName}
-            onChange={(e) => setProjectName(e.target.value)}
-          />
-        </Box>
+        <TextField
+          label="Proje Adı"
+          fullWidth
+          value={projectName}
+          onChange={(e) => setProjectName(e.target.value)}
+        />
+        <TextField
+          label="Rol"
+          fullWidth
+          value={role}
+          onChange={(e) => setRole(e.target.value)}
+        />
+        <TextField
+          label="Yapımcı/Şirket Adı"
+          fullWidth
+          value={company}
+          onChange={(e) => setCompany(e.target.value)}
+        />
 
-        <Box className="w-full">
-          <Typography className="text-primary-900 font-sans text-[14px] font-medium leading-6 m5-[24px]">
-            Rol:
-          </Typography>
-          <TextField
-            label="Rol"
-            fullWidth
-            margin="normal"
-            value={role}
-            onChange={(e) => setRole(e.target.value)}
-          />
-        </Box>
-
-        <Box className="w-full">
-          <Typography className="text-primary-900 font-sans text-[14px] font-medium leading-6 m5-[24px]">
-            Yapımcı/Şirket Adı:
-          </Typography>
-          <TextField
-            label="Yapımcı/Şirket Adı"
-            fullWidth
-            margin="normal"
-            value={company}
-            onChange={(e) => setCompany(e.target.value)}
-          />
-        </Box>
-
-        <Box className="w-full mb-4">
-          <Typography className="text-primary-900 font-sans text-[14px] font-medium leading-6">
-            Açıklama (Tercihen):
-          </Typography>
-          <TextField
-            placeholder="Bihter rolünde, hırslı ve trajik bir karakteri canlandırdım. Adnan Ziyagil'in eşi olarak yasak bir aşk yaşayan Bihter'in iç dünyasını derinlemesine yansıttım"
-            fullWidth
-            rows={4}
-            multiline
-            value={description}
-            onChange={handleDescriptionChange}
-            helperText={
-              <FormHelperText className="text-red-600 text-right m-0 ">
-                {`${description.length}/150`}
-              </FormHelperText>
-            }
-            inputProps={{ maxLength: 150 }}
-            className="placeholder:text-primary-50 gap-2 text-[16px] leading-6 h-auto overflow-auto"
-            sx={{ maxHeight: "150px" }}
-          />
-        </Box>
+        <TextField
+          label="Açıklama (Tercihen)"
+          fullWidth
+          multiline
+          rows={4}
+          value={description}
+          onChange={handleDescriptionChange}
+          helperText={`${description.length}/150`}
+          inputProps={{ maxLength: 150 }}
+        />
 
         <Box className="flex gap-4 w-full">
-          <Box className="w-full">
-            <Typography className="text-primary-900 font-sans text-[14px] font-medium leading-6 m5-[24px]">
-              Başlangıç Tarihi:
-            </Typography>
-            <DatePicker
-              value={startDate}
-              onChange={(newValue) => setStartDate(newValue)}
-              renderInput={(params) => (
-                <TextField {...params} fullWidth margin="normal" />
-              )}
-            />
-          </Box>
-          <Box className="w-full">
-            <Typography className="text-primary-900 font-sans text-[14px] font-medium leading-6 m5-[24px]">
-              Bitiş Tarihi:
-            </Typography>
-            <DatePicker
-              value={endDate}
-              onChange={(newValue) => setEndDate(newValue)}
-              renderInput={(params) => (
-                <TextField {...params} fullWidth margin="normal" />
-              )}
-            />
-          </Box>
+          <DatePicker
+            label="Başlangıç Tarihi"
+            value={startDate}
+            onChange={(newValue) => setStartDate(newValue)}
+            renderInput={(params) => <TextField {...params} />}
+          />
+          <DatePicker
+            label="Bitiş Tarihi"
+            value={endDate}
+            onChange={(newValue) => setEndDate(newValue)}
+            renderInput={(params) => <TextField {...params} />}
+          />
         </Box>
 
         <Box className="flex justify-between w-full mt-4">
-          <Button
-            variant="outlined"
-            className="text-primary-600"
-            onClick={handleAddNew}
-          >
-            Vazgeç
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={handleSaveProject}
-          >
-            Kaydet
-          </Button>
+          <Button variant="outlined" onClick={() => setEditIndex(-1)}>Vazgeç</Button>
+          <Button variant="contained" onClick={handleSaveProject}>Kaydet</Button>
         </Box>
       </Box>
     </LocalizationProvider>

@@ -1,3 +1,5 @@
+import dayjs from "dayjs";
+
 export const handleScroll = (e, href) => {
   e.preventDefault();
   const targetElement = document.getElementById(href.replace("#", ""));
@@ -11,4 +13,8 @@ export const handleScroll = (e, href) => {
       }
     }, 500);
   }
+};
+
+export const formatDate = (date) => {
+  return dayjs(date).format('YYYY-MM-DD');
 };

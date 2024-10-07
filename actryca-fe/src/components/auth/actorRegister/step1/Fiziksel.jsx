@@ -4,14 +4,15 @@ import {
   MenuItem,
   TextField,
   Typography,
-  ListSubheader,
   Dialog,
   DialogContent,
   IconButton,
+  Button,
 } from "@mui/material";
 import { eyeColors, hairColors, genders } from "../actorspecial";
 import AboutMe from "./AboutMe";
-import { Edit2 } from 'lucide-react';
+import { Edit2 } from "lucide-react";
+import useAuthStore from "@/store/auth-store";
 
 const placeholderStyles = {
   color: "#E3DAF3",
@@ -20,52 +21,40 @@ const placeholderStyles = {
   lineHeight: "24px",
 };
 
-const underlineText = (text) => {
-  const spanStyle = {
-    position: "relative",
-    display: "inline-block",
-    marginRight: "2px",
-  };
-  const afterStyle = {
-    content: '""',
-    position: "absolute",
-    left: 0,
-    right: 0,
-    bottom: "-2px",
-    borderBottom: "1px solid black",
-  };
-
-  return text.split("").map((char, index) => (
-    <span key={index} style={spanStyle}>
-      {char !== "." && char !== " " ? char : char}
-      {char !== "." && char !== " " && <span style={afterStyle}></span>}
-    </span>
-  ));
-};
-
 const Fiziksel = () => {
   const [aboutText, setAboutText] = useState("");
-  const [height, setHeight] = useState("1.74");
-  const [weight, setWeight] = useState("70");
+  const [height, setHeight] = useState(); 
+  const [weight, setWeight] = useState(); 
+  const [gender, setGender] = useState("");
+  const [hairColor, setHairColor] = useState("");
+  const [eyeColor, setEyeColor] = useState("");
   const [isAboutMeOpen, setIsAboutMeOpen] = useState(false);
   const maxChars = 2500;
 
-  const handleAboutTextChange = (event) => {
-    setAboutText(event.target.value);
+  const setPersonalInfo = useAuthStore((state) => state.setPersonalInfo);
+
+  const handleSave = () => {
+    const currentInfo = useAuthStore.getState().personalInfo;
+    const formattedGender = gender === "Kadın" ? "female" : "male"; 
+  
+    const formattedHeight = Math.round(parseFloat(height) * 100); 
+    const formattedWeight = parseInt(weight, 10); 
+    const physicalInfo = {
+      height: formattedHeight,
+      weight: formattedWeight,
+      gender: formattedGender,
+      hair_color: hairColor,
+      eye_color: eyeColor,
+      about: aboutText,
+    };
+  
+    setPersonalInfo({
+      ...currentInfo, 
+      ...physicalInfo, 
+    });
   };
-
-  const heights = [];
-  const weights = [];
-
- 
-  for (let i = 1.40; i <= 2.20; i += 0.01) {
-    heights.push(i.toFixed(2));
-  }
-
-
-  for (let i = 35; i <= 150; i++) {
-    weights.push(i.toString());
-  }
+  
+  
 
   const handleAboutMeOpen = () => {
     setIsAboutMeOpen(true);
@@ -75,28 +64,40 @@ const Fiziksel = () => {
     setIsAboutMeOpen(false);
   };
 
+  const heights = [];
+  const weights = [];
+
+
+  for (let i = 1.4; i <= 2.2; i += 0.01) {
+    heights.push(i.toFixed(2)); 
+  }
+
+  for (let i = 35; i <= 150; i++) {
+    weights.push(i.toString()); 
+  }
+
   return (
     <Box
       component="form"
-      className="w-full h-[100vh] flex flex-col items-start gap-6"
+      className="w-full h-full flex flex-col items-start gap-6"
     >
       <Typography variant="h6" className="font-dm-serif-display font-bold">
         Fiziksel Özellikler:
       </Typography>
+
       <Box className="w-full flex flex-col items-center self-stretch border border-primary-100 rounded-2xl px-8 py-10">
-        <Box className="flex flex-col items-start gap-6 self-stretch">
-          <Box className="flex flex-row items-center gap-2 w-1/2">
-            <Typography className="text-primary-900 font-sans text-[14px] font-medium leading-normal w-1/2">
+        {/* Cinsiyet */}
+        <Box className="flex flex-row justify-between items-center gap-2 w-full mb-4 flex-wrap md:flex-nowrap">
+          <Box className="flex flex-row items-center gap-2 w-full md:w-1/2">
+            <Typography className="text-primary-900 font-sans text-[14px] font-medium text-center leading-normal w-1/2">
               Cinsiyet:
             </Typography>
             <TextField
               select
               fullWidth
               variant="outlined"
-              defaultValue="Kadın"
-              InputProps={{
-                sx: { "::placeholder": placeholderStyles },
-              }}
+              value={gender}
+              onChange={(e) => setGender(e.target.value)}
             >
               {genders.map((option, index) => (
                 <MenuItem key={index} value={option.value}>
@@ -105,118 +106,104 @@ const Fiziksel = () => {
               ))}
             </TextField>
           </Box>
-          <Box className="flex flex-row justify-between items-center gap-2 w-full">
-            <Box className="flex flex-row items-center gap-2 w-1/2">
-              <Typography className="text-primary-900 font-sans text-[14px] font-medium text-center leading-normal w-1/2">
-                Boy:
-              </Typography>
-              <TextField
-                select
-                fullWidth
-                variant="outlined"
-                value={height}
-                onChange={(e) => setHeight(e.target.value)}
-                InputProps={{
-                  sx: { "::placeholder": placeholderStyles },
-                  renderValue: (value) => (
-                    <span>{underlineText(value)} cm</span>
-                  ),
-                }}
-              >
-                <ListSubheader>Bazı Yükseklikler</ListSubheader>
-                {heights.map((option, index) => (
-                  <MenuItem key={index} value={option}>
-                    <span>{underlineText(option)} cm</span>
-                  </MenuItem>
-                ))}
-              </TextField>
-            </Box>
-            <Box className="flex flex-row items-center gap-2 w-1/2">
-              <Typography className="text-primary-900 font-sans text-[14px] font-medium leading-normal w-1/2 text-right">
-                Kilo:
-              </Typography>
-              <TextField
-                select
-                fullWidth
-                variant="outlined"
-                value={weight}
-                onChange={(e) => setWeight(e.target.value)}
-                InputProps={{
-                  sx: { "::placeholder": placeholderStyles },
-                  renderValue: (value) => (
-                    <span>{underlineText(value)} kg</span>
-                  ),
-                }}
-              >
-                <ListSubheader>Bazı Kilolar</ListSubheader>
-                {weights.map((option, index) => (
-                  <MenuItem key={index} value={option}>
-                    <span>{underlineText(option)} kg</span>
-                  </MenuItem>
-                ))}
-              </TextField>
-            </Box>
+        </Box>
+
+        {/* Boy ve Kilo */}
+        <Box className="flex flex-row justify-between items-center gap-2 w-full mb-4 flex-wrap md:flex-nowrap">
+          <Box className="flex flex-row items-center gap-2 w-full md:w-1/2">
+            <Typography className="text-primary-900 font-sans text-[14px] font-medium text-center leading-normal w-1/2">
+              Boy:
+            </Typography>
+            <TextField
+              select
+              fullWidth
+              variant="outlined"
+              value={height}
+              onChange={(e) => setHeight(e.target.value)} 
+            >
+              {heights.map((option, index) => (
+                <MenuItem key={index} value={option}>
+                  {option} m
+                </MenuItem>
+              ))}
+            </TextField>
           </Box>
-          <Box className="flex flex-row justify-between items-center gap-2 w-full">
-            <Box className="flex flex-row items-center gap-2 w-1/2">
-              <Typography className="text-primary-900 font-sans text-[14px] font-medium text-center leading-normal w-1/2">
-                Saç Rengi:
-              </Typography>
-              <TextField
-                select
-                fullWidth
-                variant="outlined"
-                defaultValue="Kahverengi"
-                InputProps={{
-                  sx: { "::placeholder": placeholderStyles },
-                  renderValue: (value) => <span>{underlineText(value)}</span>,
-                }}
-              >
-                {hairColors.map((option, index) => (
-                  <MenuItem key={index} value={option.value}>
-                    {option.label}
-                  </MenuItem>
-                ))}
-              </TextField>
-            </Box>
-            <Box className="flex flex-row items-center gap-2 w-1/2">
-              <Typography className="text-primary-900 font-sans text-[14px] font-medium leading-normal w-1/2 text-right">
-                Göz Rengi:
-              </Typography>
-              <TextField
-                select
-                fullWidth
-                variant="outlined"
-                defaultValue="Kahverengi"
-                InputProps={{
-                  sx: { "::placeholder": placeholderStyles },
-                  renderValue: (value) => <span>{underlineText(value)}</span>,
-                }}
-              >
-                {eyeColors.map((option, index) => (
-                  <MenuItem key={index} value={option.value}>
-                    {option.label}
-                  </MenuItem>
-                ))}
-              </TextField>
-            </Box>
+          <Box className="flex flex-row items-center gap-2 w-full md:w-1/2">
+            <Typography className="text-primary-900 font-sans text-[14px] font-medium text-right leading-normal w-1/2">
+              Kilo:
+            </Typography>
+            <TextField
+              select
+              fullWidth
+              variant="outlined"
+              value={weight}
+              onChange={(e) => setWeight(e.target.value)} 
+            >
+              {weights.map((option, index) => (
+                <MenuItem key={index} value={option}>
+                  {option} kg
+                </MenuItem>
+              ))}
+            </TextField>
+          </Box>
+        </Box>
+
+        {/* Saç ve Göz Rengi */}
+        <Box className="flex flex-row justify-between items-center gap-2 w-full flex-wrap md:flex-nowrap">
+          <Box className="flex flex-row items-center gap-2 w-full md:w-1/2">
+            <Typography className="text-primary-900 font-sans text-[14px] font-medium text-center leading-normal w-1/2">
+              Saç Rengi:
+            </Typography>
+            <TextField
+              select
+              fullWidth
+              variant="outlined"
+              value={hairColor}
+              onChange={(e) => setHairColor(e.target.value)}
+            >
+              {hairColors.map((option, index) => (
+                <MenuItem key={index} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
+          </Box>
+
+          <Box className="flex flex-row items-center gap-2 w-full md:w-1/2">
+            <Typography className="text-primary-900 font-sans text-[14px] font-medium text-center leading-normal w-1/2">
+              Göz Rengi:
+            </Typography>
+            <TextField
+              select
+              fullWidth
+              variant="outlined"
+              value={eyeColor}
+              onChange={(e) => setEyeColor(e.target.value)}
+            >
+              {eyeColors.map((option, index) => (
+                <MenuItem key={index} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
           </Box>
         </Box>
       </Box>
 
-      <Box className="flex flex-col gap-[10px]  self-stretch  pt-3">
+      {/* Hakkımda */}
+      <Box className="flex flex-col gap-[10px] self-stretch">
         <Typography variant="h6" className="font-dm-serif-display font-bold">
           Hakkımda:
         </Typography>
-        <Box className="w-full  flex flex-col border border-primary-100 rounded-2xl px-8 py-10 relative h-[79%]">
+        <Box className="w-full flex flex-col border border-primary-100 rounded-2xl px-8 py-10 relative h-[79%]">
           <TextField
             multiline
             rows={8}
             fullWidth
             variant="outlined"
             value={aboutText}
-            placeholder="Hakkımda yazabilirsin."
-            onChange={handleAboutTextChange}
+            placeholder="Merhaba ben..."
+            onChange={(e) => setAboutText(e.target.value)}
             inputProps={{
               maxLength: maxChars,
               style: { ...placeholderStyles, border: "none", color: "#36383C" },
@@ -245,9 +232,6 @@ const Fiziksel = () => {
               },
             }}
           />
-          <Typography className="text-right text-red-500">
-            {maxChars - aboutText.length}
-          </Typography>
           <IconButton
             style={{ position: "absolute", top: 10, right: 10 }}
             className="text-primary-600"
@@ -256,8 +240,14 @@ const Fiziksel = () => {
             <Edit2 size={20} />
           </IconButton>
         </Box>
+        <Box className="flex justify-end w-full">
+          <Button variant="contained" color="primary" onClick={handleSave}>
+            Bu Adımı Tamamla
+          </Button>
+        </Box>
       </Box>
 
+      {/* AboutMe Dialog */}
       <Dialog open={isAboutMeOpen} onClose={handleAboutMeClose}>
         <DialogContent>
           <AboutMe

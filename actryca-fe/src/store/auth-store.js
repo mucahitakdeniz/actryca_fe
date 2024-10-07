@@ -7,14 +7,21 @@ const useAuthStore = create(
       user: null,
       tokens: null,
       status: null,
+      personalInfo: {},
+      educationSkills: {},
+      professionalInfo: {},
       setUser: (user) => set({ user }),
       setTokens: (tokens) => set({ tokens }),
-      setStatus: (status) => set({ status }), 
-      logout: () => set({ user: null, tokens: null, status: null }), 
+      setStatus: (status) => set({ status }),
+      setPersonalInfo: (info) => set({ personalInfo: info }),
+      setEducationSkills: (data) => set({ educationSkills: data }),
+      setProfessionalInfo: (data) => set({ professionalInfo: data }),
+      resetForm: () => set({ personalInfo: {}, educationSkills: {}, professionalInfo: {} }),
+      logout: () => set({ user: null, tokens: null, status: null, personalInfo: {} }), 
     }),
     {
       name: "auth-store",
-      storage: createJSONStorage(() => localStorage), 
+      storage: createJSONStorage(() => localStorage),
     }
   )
 );
