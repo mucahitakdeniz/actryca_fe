@@ -1,17 +1,25 @@
 import React from 'react';
 import { Box, TextField, Typography, Button } from '@mui/material';
+import useAuthStore from "@/store/auth-store"; 
 
 const AboutMe = ({ aboutText, setAboutText, handleClose }) => {
     const [draftText, setDraftText] = React.useState(aboutText);
     const maxChars = 2500;
+
+    const setPersonalInfo = useAuthStore((state) => state.setPersonalInfo); 
 
     const handleDraftTextChange = (event) => {
         setDraftText(event.target.value);
     };
 
     const handleSave = () => {
-        setAboutText(draftText);
-        handleClose();
+        setAboutText(draftText); 
+        setPersonalInfo((prevInfo) => ({
+            ...prevInfo,
+            about: draftText, 
+        }));
+
+        handleClose(); 
     };
 
     const handleCancel = () => {
@@ -33,7 +41,7 @@ const AboutMe = ({ aboutText, setAboutText, handleClose }) => {
                         maxLength: maxChars,
                         style: {
                             padding: "8px 4px",
-                            overflowY: 'auto', 
+                            overflowY: 'auto',
                         }
                     }}
                     sx={{
@@ -47,15 +55,15 @@ const AboutMe = ({ aboutText, setAboutText, handleClose }) => {
                         },
                         "& .MuiInputBase-input": {
                             padding: "0px",
-                            overflowY: 'auto', 
+                            overflowY: 'auto',
                             '&::-webkit-scrollbar': {
-                                display: 'none', 
+                                display: 'none',
                             },
                             '&::-webkit-scrollbar-thumb': {
                                 backgroundColor: 'transparent',
                             },
-                            '-ms-overflow-style': 'none', 
-                            'scrollbar-width': 'none', 
+                            '-ms-overflow-style': 'none',
+                            'scrollbar-width': 'none',
                         },
                     }}
                 />

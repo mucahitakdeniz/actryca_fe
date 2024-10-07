@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Typography, Button, TextField } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import useAuthStore from '@/store/auth-store'; 
 
 const SpecialAbilities = () => {
   const [abilities, setAbilities] = useState({
@@ -17,36 +18,30 @@ const SpecialAbilities = () => {
     'Sahne Sanatları': '',
   });
 
+  const setSpecialAbilities = useAuthStore((state) => state.setEducationSkills); 
+
   const handleInputChange = (category) => (event) => {
-    const value = event.target.value;
-
- 
-    if (/^[a-zA-Z\s]*$/.test(value)) {
-
-      const cleanedValue = value.replace(/\s{2,}/g, ' ');
-
-      setInputValues({
-        ...inputValues,
-        [category]: cleanedValue,
-      });
-    }
-  };
-
-  const capitalizeWords = (str) => {
-    return str.replace(/\b\w/g, (char) => char.toUpperCase());
+    setInputValues({
+      ...inputValues,
+      [category]: event.target.value,
+    });
   };
 
   const handleAddAbility = (category) => (event) => {
     if (event.key === 'Enter' && inputValues[category].trim()) {
-      const capitalizedValue = capitalizeWords(inputValues[category].trim());
-
       setAbilities((prev) => ({
         ...prev,
-        [category]: [...prev[category], capitalizedValue],
+        [category]: [...prev[category], inputValues[category].trim()],
       }));
       setInputValues({
         ...inputValues,
         [category]: '',
+      });
+
+      setSpecialAbilities({
+        musical_instrument: abilities['Müzik Aleti'],
+        sport: abilities['Spor'],
+        performing_arts: abilities['Sahne Sanatları'],
       });
     }
   };
@@ -70,7 +65,7 @@ const SpecialAbilities = () => {
         {Object.keys(abilities).map((category, index) => (
           <Box
             key={index}
-            className="flex flex-col items-start  w-full gap-[6px]"
+            className="flex flex-col items-start w-full gap-[6px]"
           >
             <Typography className="text-primary-900 font-sans text-[14px] font-medium leading-6">
               {category}
@@ -78,7 +73,7 @@ const SpecialAbilities = () => {
             <TextField
               fullWidth
               value={inputValues[category]}
-              onChange={handleInputChange(category)}
+              onChange={handleInputChange(category)} 
               onKeyPress={handleAddAbility(category)}
               placeholder={`${category} yazıp Enter'a basın.`}
               variant="outlined"

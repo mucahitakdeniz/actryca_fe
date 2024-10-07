@@ -9,7 +9,7 @@ import {
   StepLabel,
   Stepper,
 } from "@mui/material";
-import { ArrowBack, ArrowForward } from '@mui/icons-material';
+import { ArrowBack, ArrowForward } from "@mui/icons-material";
 import Kisisel from "../../../../components/auth/actorRegister/step1/Kisisel";
 import Fiziksel from "../../../../components/auth/actorRegister/step1/Fiziksel";
 import step1 from "../../../../components/auth/actorRegister/svg/step1.svg";
@@ -21,6 +21,8 @@ import SpokenLanguage from "@/components/auth/actorRegister/step2/SpokenLanguage
 import SpecialAbilities from "@/components/auth/actorRegister/step2/SpecialAbilities";
 import ProfessionalInfo from "@/components/auth/actorRegister/step3/ProfessionalInfo";
 import RegisterDone from "@/components/auth/actorRegister/registerDone/RegisterDone";
+import useAuthStore from "@/store/auth-store";
+import { registerActor } from "@/services/auth";
 
 const steps = [
   { label: "Kişisel Bilgiler", icon: step1 },
@@ -32,7 +34,9 @@ const StepIconComponent = (props) => {
   const { icon, completed } = props;
   return (
     <div
-      className={`flex items-center justify-center w-10 h-10 rounded-full ${completed ? "bg-primary-600" : ""}`}
+      className={`flex items-center justify-center w-10 h-10 rounded-full ${
+        completed ? "bg-primary-600" : ""
+      }`}
     >
       <Image
         src={icon}
@@ -47,9 +51,29 @@ const StepIconComponent = (props) => {
 
 export default function ActorRegister() {
   const [activeStep, setActiveStep] = useState(0);
+  const { personalInfo, educationSkills, professionalInfo } = useAuthStore();
+
+  const submitForm = async () => {
+    const formData = {
+      ...personalInfo,
+      ...educationSkills,
+      ...professionalInfo,
+    };
+
+    try {
+      const response = await registerActor(formData); 
+      console.log("Kayıt başarılı:", response);
+    } catch (error) {
+      console.error("Kayıt hatası:", error);
+    }
+  };
 
   const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    if (activeStep === steps.length - 1) {
+      submitForm(); 
+    } else {
+      setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    }
   };
 
   const handleBack = () => {
@@ -64,46 +88,42 @@ export default function ActorRegister() {
     switch (step) {
       case 0:
         return (
-          <Box className="flex flex-row items-start gap-9 pt-12">
-            <Box className="w-1/2">
+          <Box className="flex flex-col md:flex-row items-start gap-9 pt-12">
+            <Box className="w-full md:w-1/2">
               <Kisisel />
             </Box>
-            <Box className="w-1/2">
+            <Box className="w-full md:w-1/2">
               <Fiziksel />
             </Box>
           </Box>
         );
       case 1:
         return (
-          <Box className="flex flex-row items-start gap-9 pt-12" >
-            <Box className="flex flex-col w-1/2 gap-12" >
+          <Box className="flex flex-col md:flex-row items-start gap-9 pt-12">
+            <Box className="flex flex-col w-full md:w-1/2 gap-12">
               <EducationSkills />
               <SpokenLanguage />
             </Box>
-            <Box className="w-1/2" >
+            <Box className="w-full md:w-1/2">
               <SpecialAbilities />
             </Box>
           </Box>
         );
       case 2:
         return (
-          <Box className="flex flex-row items-start gap-9 pt-12">
-            <ProfessionalInfo />
+          <Box className="flex flex-col md:flex-row items-start gap-9 pt-12">
+            <Box className="w-full">
+              <ProfessionalInfo />
+            </Box>
           </Box>
         );
-
-
       default:
-        return (
-          <Box>
-            <RegisterDone />
-          </Box>
-        );
+        return <RegisterDone />;
     }
   };
 
   return (
-    <Stack className="w-4/5 h-full mx-auto mb-24">
+    <Stack className="w-full md:w-4/5 h-full mx-auto mb-24">
       <Typography
         id="page-title"
         variant="h4"
@@ -131,12 +151,10 @@ export default function ActorRegister() {
         </Stepper>
         {renderStepContent(activeStep)}
         {activeStep === steps.length ? (
-          <>
-            <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
-              <Box sx={{ flex: "1 1 auto" }} />
-              <Button onClick={handleReset}>Sıfırla</Button>
-            </Box>
-          </>
+          <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
+            <Box sx={{ flex: "1 1 auto" }} />
+            <Button onClick={handleReset}>Sıfırla</Button>
+          </Box>
         ) : (
           <Box className="mt-8 flex justify-between gap-4">
             <Button

@@ -1,17 +1,8 @@
 import React, { useState } from 'react';
-import {
-  TextField,
-  Chip,
-  Autocomplete,
-  Typography,
-  Box,
-  InputAdornment,
-  MenuItem,
-  Select,
-  Button,
-} from '@mui/material';
+import { Box, TextField, Button, Typography, Select, MenuItem, Chip, Autocomplete, InputAdornment } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import languages from '../languages';
+import useAuthStore from '@/store/auth-store'; 
 
 const proficiencyLevels = ['Başlangıç', 'Orta', 'İleri', 'Akıcı'];
 
@@ -20,23 +11,29 @@ const SpokenLanguage = () => {
   const [currentLanguage, setCurrentLanguage] = useState(null);
   const [currentLevel, setCurrentLevel] = useState(proficiencyLevels[0]);
 
-  const handleDelete = (languageToDelete) => {
-    setSelectedLanguages((languages) => languages.filter((lang) => lang.label !== languageToDelete.label));
-  };
+  const setLanguages = useAuthStore((state) => state.setEducationSkills); 
 
   const handleLanguageSelect = (event, newValue) => {
     if (newValue) {
-      setCurrentLanguage(newValue);
+      setCurrentLanguage(newValue); 
     }
   };
 
   const handleLevelChange = (event) => {
-    setCurrentLevel(event.target.value);
+    setCurrentLevel(event.target.value); 
+  };
+
+  const handleDelete = (languageToDelete) => {
+    setSelectedLanguages((languages) =>
+      languages.filter((lang) => lang.label !== languageToDelete.label)
+    );
   };
 
   const addLanguage = () => {
     if (currentLanguage) {
-      setSelectedLanguages((prev) => [...prev, { label: currentLanguage.label, level: currentLevel }]);
+      const updatedLanguages = [...selectedLanguages, { label: currentLanguage.label, level: currentLevel }];
+      setSelectedLanguages(updatedLanguages);
+      setLanguages(updatedLanguages); 
       setCurrentLanguage(null);
       setCurrentLevel(proficiencyLevels[0]);
     }
@@ -64,7 +61,7 @@ const SpokenLanguage = () => {
             options={languages}
             getOptionLabel={(option) => option.label}
             value={currentLanguage}
-            onChange={handleLanguageSelect}
+            onChange={handleLanguageSelect} 
             renderInput={(params) => (
               <TextField
                 {...params}
@@ -93,7 +90,7 @@ const SpokenLanguage = () => {
           />
           <Select
             value={currentLevel}
-            onChange={handleLevelChange}
+            onChange={handleLevelChange} 
             variant="outlined"
             className="bg-white border border-primary-100 rounded "
             sx={{ minWidth: 120 }}

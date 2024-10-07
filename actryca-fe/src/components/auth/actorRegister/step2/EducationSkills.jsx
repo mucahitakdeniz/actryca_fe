@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Box, Typography, TextField, Button, Radio, RadioGroup, FormControlLabel, FormHelperText } from '@mui/material';
 import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-
+import useAuthStore from '@/store/auth-store'; 
 
 const EducationSkills = () => {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -15,6 +15,8 @@ const EducationSkills = () => {
   const [educationDetails, setEducationDetails] = useState([]);
   const [currentEducation, setCurrentEducation] = useState(null);
 
+  const setEducationSkills = useAuthStore((state) => state.setEducationSkills); 
+
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
   };
@@ -25,12 +27,13 @@ const EducationSkills = () => {
 
   const handleSave = () => {
     const newEducation = {
-      name,
-      institution,
-      description,
-      startDate,
-      endDate,
+      education_name: name,
+      education_institution_name: institution,
+      education_description: description,
+      education_start_date: startDate,
+      education_end_date: endDate,
     };
+
     if (currentEducation !== null) {
       const updatedEducationDetails = educationDetails.map((edu, index) =>
         index === currentEducation ? newEducation : edu
@@ -40,27 +43,17 @@ const EducationSkills = () => {
     } else {
       setEducationDetails([...educationDetails, newEducation]);
     }
+
+
+    setEducationSkills([...educationDetails, newEducation]);
+
+
     setName('');
     setInstitution('');
     setDescription('');
     setStartDate(null);
     setEndDate(null);
     setSelectedOption('saved');
-  };
-
-  const handleEdit = (index) => {
-    const education = educationDetails[index];
-    setName(education.name);
-    setInstitution(education.institution);
-    setDescription(education.description);
-    setStartDate(education.startDate);
-    setEndDate(education.endDate);
-    setCurrentEducation(index);
-    setSelectedOption('evet');
-  };
-
-  const handleDelete = (index) => {
-    setEducationDetails(educationDetails.filter((_, i) => i !== index));
   };
 
   const handleAddNew = () => {
@@ -73,6 +66,23 @@ const EducationSkills = () => {
     setSelectedOption('evet');
   };
 
+  const handleEdit = (index) => {
+    const education = educationDetails[index];
+    setName(education.education_name);
+    setInstitution(education.education_institution_name);
+    setDescription(education.education_description);
+    setStartDate(education.education_start_date);
+    setEndDate(education.education_end_date);
+    setCurrentEducation(index);
+    setSelectedOption('evet');
+  };
+
+  const handleDelete = (index) => {
+    const updatedEducationDetails = educationDetails.filter((_, i) => i !== index);
+    setEducationDetails(updatedEducationDetails);
+    setEducationSkills(updatedEducationDetails); 
+  };
+
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <Box>
@@ -80,7 +90,9 @@ const EducationSkills = () => {
         <Box className="flex flex-col justify-end items-left gap-[26px] padding py-10 border border-primary-100 rounded-lg" id="education-skills">
           {selectedOption === null || selectedOption === 'hayir' ? (
             <Box className="flex flex-col justify-center items-start gap-8">
-              <Typography className='text-primary-900 font-sans text-[16px] font-medium leading-6'>Oyunculukla ilgili bir eğitim aldınız mı?</Typography>
+              <Typography className="text-primary-900 font-sans text-[16px] font-medium leading-6">
+                Oyunculukla ilgili bir eğitim aldınız mı?
+              </Typography>
               <RadioGroup row value={selectedOption} onChange={handleOptionChange} className="gap-3 w-full">
                 <FormControlLabel
                   value="evet"
@@ -97,36 +109,39 @@ const EducationSkills = () => {
               </RadioGroup>
               {selectedOption === 'hayir' && (
                 <Box id="no">
-                  <Typography className='text-primary-600 font-sans text-[16px] font-medium leading-6'>Eğitiminiz yoksa endişelenmeyin!</Typography>
-                  <Typography className='text-primary-900 font-sans text-[16px] font-400 leading-6'>Oyunculuk kariyerinize başlamak için birçok farklı yol vardır. Formu doldurmaya devam ederek ilk adımı atın ve yeteneklerinizi keşfedin.</Typography>
+                  <Typography className="text-primary-600 font-sans text-[16px] font-medium leading-6">Eğitiminiz yoksa endişelenmeyin!</Typography>
+                  <Typography className="text-primary-900 font-sans text-[16px] font-400 leading-6">
+                    Oyunculuk kariyerinize başlamak için birçok farklı yol vardır. Formu doldurmaya devam ederek ilk adımı atın ve yeteneklerinizi keşfedin.
+                  </Typography>
                 </Box>
               )}
             </Box>
           ) : selectedOption === 'evet' || selectedOption === 'saved' ? (
             <Box className="flex flex-col justify-center items-center gap-4">
               {educationDetails.map((edu, index) => (
-                <>  <Box key={index} className="flex flex-col justify-center items-start w-full gap-3 px-8 py-10 border border-primary-100 rounded-lg bg-gray-50">
-                  <Typography className="text-primary-900 font-sans text-[16px] font-bold leading-6">{edu.name}</Typography>
-                  <Typography className="text-primary-900 font-sans text-[14px] font-medium leading-6">{edu.institution}</Typography>
+                <Box key={index} className="flex flex-col justify-center items-start w-full gap-3 px-8 py-10 border border-primary-100 rounded-lg bg-gray-50">
+                  <Typography className="text-primary-900 font-sans text-[16px] font-bold leading-6">{edu.education_name}</Typography>
+                  <Typography className="text-primary-900 font-sans text-[14px] font-medium leading-6">{edu.education_institution_name}</Typography>
                   <Typography className="text-primary-900 font-sans text-[14px] italic font-normal leading-6">
-                    {`${edu.startDate ? new Date(edu.startDate).toLocaleDateString() : 'Başlangıç Tarihi'} - ${edu.endDate ? new Date(edu.endDate).toLocaleDateString() : 'Bitiş Tarihi'}`}
+                    {`${edu.education_start_date ? new Date(edu.education_start_date).toLocaleDateString() : 'Başlangıç Tarihi'} - ${edu.education_end_date ? new Date(edu.education_end_date).toLocaleDateString() : 'Bitiş Tarihi'}`}
                   </Typography>
-                  <Typography className="text-primary-900 font-sans text-[16px] font-normal leading-6">{edu.description}</Typography>
+                  <Typography className="text-primary-900 font-sans text-[16px] font-normal leading-6">{edu.education_description}</Typography>
                   <Box className="flex justify-end w-full">
                     <Button color="primary" onClick={() => handleEdit(index)}>
                       <Typography className="underline text-primary-900">Düzenle</Typography>
                     </Button>
                   </Box>
-
-                </Box>
                   <Box className="flex justify-between w-full">
-                    <Button variant="outlined" onClick={() => handleDelete(index)} className="px-3 py-[10px]">Sil</Button>
-                    <Button variant="contained" color="primary" onClick={handleAddNew} className="px-3 py-[10px]">Ekle</Button>
+                    <Button variant="outlined" onClick={() => handleDelete(index)} className="px-3 py-[10px]">
+                      Sil
+                    </Button>
+                    <Button variant="contained" color="primary" onClick={handleAddNew} className="px-3 py-[10px]">
+                      Ekle
+                    </Button>
                   </Box>
-
-                </>
-
+                </Box>
               ))}
+
               <Box className="w-full">
                 <Typography className="text-primary-900 text-sans text-[14px] font-medium leading-6">Eğitim Adı</Typography>
                 <TextField
@@ -135,9 +150,6 @@ const EducationSkills = () => {
                   placeholder="Oyunculuk Eğitimi"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  InputProps={{
-                    style: { color: 'var(--tw-color-primary-50)' }
-                  }}
                 />
               </Box>
               <Box className="w-full">
@@ -148,9 +160,6 @@ const EducationSkills = () => {
                   placeholder="İstanbul Üniversitesi"
                   value={institution}
                   onChange={(e) => setInstitution(e.target.value)}
-                  InputProps={{
-                    style: { color: 'var(--tw-color-primary-50)' }
-                  }}
                 />
               </Box>
               <Box className="w-full">
@@ -164,9 +173,6 @@ const EducationSkills = () => {
                   rows={4}
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
-                  InputProps={{
-                    style: { color: 'var(--tw-color-primary-50)' }
-                  }}
                   helperText={
                     <FormHelperText className="text-red-500" style={{ textAlign: 'right' }}>
                       {150 - charCount} karakter kaldı
@@ -174,27 +180,25 @@ const EducationSkills = () => {
                   }
                 />
               </Box>
+
               <Box className="flex gap-4 w-full pt-8">
                 <Box className="w-full">
                   <Typography>Başlangıç Tarihi</Typography>
-                  <DatePicker
-                    value={startDate}
-                    onChange={(newValue) => setStartDate(newValue)}
-                    renderInput={(params) => <TextField {...params} />}
-                  />
+                  <DatePicker value={startDate} onChange={(newValue) => setStartDate(newValue)} renderInput={(params) => <TextField {...params} />} />
                 </Box>
-                <Box className="w-full ">
+                <Box className="w-full">
                   <Typography>Bitiş Tarihi</Typography>
-                  <DatePicker
-                    value={endDate}
-                    onChange={(newValue) => setEndDate(newValue)}
-                    renderInput={(params) => <TextField {...params} />}
-                  />
+                  <DatePicker value={endDate} onChange={(newValue) => setEndDate(newValue)} renderInput={(params) => <TextField {...params} />} />
                 </Box>
               </Box>
+
               <Box className="flex justify-between w-full">
-                <Button variant="outlined" color="primary" onClick={() => setSelectedOption(null)}>Vazgeç</Button>
-                <Button variant="contained" color="primary" onClick={handleSave}>Kaydet</Button>
+                <Button variant="outlined" color="primary" onClick={() => setSelectedOption(null)}>
+                  Vazgeç
+                </Button>
+                <Button variant="contained" color="primary" onClick={handleSave}>
+                  Kaydet
+                </Button>
               </Box>
             </Box>
           ) : null}
@@ -202,6 +206,6 @@ const EducationSkills = () => {
       </Box>
     </LocalizationProvider>
   );
-}
+};
 
 export default EducationSkills;
