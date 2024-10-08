@@ -15,7 +15,8 @@ const EducationSkills = () => {
   const [educationDetails, setEducationDetails] = useState([]);
   const [currentEducation, setCurrentEducation] = useState(null);
 
-  const setEducationSkills = useAuthStore((state) => state.setEducationSkills); 
+  const setEducationSkills = useAuthStore((state) => state.setEducationSkills);
+  const currentSkills = useAuthStore((state) => state.educationSkills); 
 
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
@@ -25,29 +26,36 @@ const EducationSkills = () => {
     setCharCount(description.length);
   }, [description]);
 
+  
   const handleSave = () => {
     const newEducation = {
       education_name: name,
       education_institution_name: institution,
       education_description: description,
-      education_start_date: startDate,
-      education_end_date: endDate,
+      education_start_date: startDate ? startDate.toISOString().split('T')[0] : null, 
+      education_end_date: endDate ? endDate.toISOString().split('T')[0] : null,
     };
-
+  
+    let updatedEducationDetails = [];
+    
     if (currentEducation !== null) {
-      const updatedEducationDetails = educationDetails.map((edu, index) =>
+  
+      updatedEducationDetails = educationDetails.map((edu, index) =>
         index === currentEducation ? newEducation : edu
       );
-      setEducationDetails(updatedEducationDetails);
       setCurrentEducation(null);
     } else {
-      setEducationDetails([...educationDetails, newEducation]);
+
+      updatedEducationDetails = [...educationDetails, newEducation];
     }
+  
+    setEducationDetails(updatedEducationDetails);
 
-
-    setEducationSkills([...educationDetails, newEducation]);
-
-
+    setEducationSkills({
+      ...currentSkills, 
+      educations: updatedEducationDetails, 
+    });
+  
     setName('');
     setInstitution('');
     setDescription('');
@@ -55,6 +63,7 @@ const EducationSkills = () => {
     setEndDate(null);
     setSelectedOption('saved');
   };
+  
 
   const handleAddNew = () => {
     setName('');
@@ -71,8 +80,8 @@ const EducationSkills = () => {
     setName(education.education_name);
     setInstitution(education.education_institution_name);
     setDescription(education.education_description);
-    setStartDate(education.education_start_date);
-    setEndDate(education.education_end_date);
+    setStartDate(new Date(education.education_start_date));
+    setEndDate(new Date(education.education_end_date));
     setCurrentEducation(index);
     setSelectedOption('evet');
   };
@@ -80,7 +89,10 @@ const EducationSkills = () => {
   const handleDelete = (index) => {
     const updatedEducationDetails = educationDetails.filter((_, i) => i !== index);
     setEducationDetails(updatedEducationDetails);
-    setEducationSkills(updatedEducationDetails); 
+    setEducationSkills({
+      ...currentSkills, 
+      educations: updatedEducationDetails,
+    });
   };
 
   return (

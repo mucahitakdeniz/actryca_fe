@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Typography, Button, TextField } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import useAuthStore from '@/store/auth-store'; 
+import useAuthStore from '@/store/auth-store';
 
 const SpecialAbilities = () => {
   const [abilities, setAbilities] = useState({
@@ -18,7 +18,8 @@ const SpecialAbilities = () => {
     'Sahne Sanatları': '',
   });
 
-  const setSpecialAbilities = useAuthStore((state) => state.setEducationSkills); 
+  const setSpecialAbilities = useAuthStore((state) => state.setEducationSkills);
+  const currentSkills = useAuthStore((state) => state.educationSkills);
 
   const handleInputChange = (category) => (event) => {
     setInputValues({
@@ -33,15 +34,19 @@ const SpecialAbilities = () => {
         ...prev,
         [category]: [...prev[category], inputValues[category].trim()],
       }));
+
       setInputValues({
         ...inputValues,
         [category]: '',
       });
 
+      
       setSpecialAbilities({
-        musical_instrument: abilities['Müzik Aleti'],
-        sport: abilities['Spor'],
-        performing_arts: abilities['Sahne Sanatları'],
+        ...currentSkills,
+        musical_instrument: [...abilities['Müzik Aleti'], inputValues['Müzik Aleti'].trim()],
+        sport: [...abilities['Spor'], inputValues['Spor'].trim()],
+        performing_arts: [...abilities['Sahne Sanatları'], inputValues['Sahne Sanatları'].trim()],
+        dance: [...abilities['Dans'], inputValues['Dans'].trim()],
       });
     }
   };
@@ -51,6 +56,11 @@ const SpecialAbilities = () => {
       ...prev,
       [category]: prev[category].filter((item) => item !== ability),
     }));
+
+    setSpecialAbilities({
+      ...currentSkills,
+      [category]: abilities[category].filter((item) => item !== ability),
+    });
   };
 
   return (
@@ -73,7 +83,7 @@ const SpecialAbilities = () => {
             <TextField
               fullWidth
               value={inputValues[category]}
-              onChange={handleInputChange(category)} 
+              onChange={handleInputChange(category)}
               onKeyPress={handleAddAbility(category)}
               placeholder={`${category} yazıp Enter'a basın.`}
               variant="outlined"
