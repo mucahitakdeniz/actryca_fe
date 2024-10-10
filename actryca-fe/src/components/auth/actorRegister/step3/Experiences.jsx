@@ -3,7 +3,7 @@ import { Box, Typography, Radio, RadioGroup, FormControlLabel } from '@mui/mater
 import SelectedNo from './experiencsSelect/SelectedNo';
 import SelectedYes from './experiencsSelect/SelectedYes';
 
-const Experiences = ({ onSave }) => { 
+const Experiences = ({ onSave }) => {
   const [selectedOption, setSelectedOption] = useState('');
   const [experiences, setExperiences] = useState([]);
 
@@ -12,13 +12,14 @@ const Experiences = ({ onSave }) => {
   };
 
   const handleSaveProjects = (projects) => {
-    setExperiences(projects);
-    onSave(projects); 
+    console.log("Saved Projects:", projects); 
+    setExperiences(projects); 
+    onSave({ projects: projects }); 
   };
 
   const handleSaveVideo = (videoFile) => {
     setExperiences((prev) => ({ ...prev, video: videoFile }));
-    onSave({ ...experiences, video: videoFile }); 
+    onSave({ video: videoFile });
   };
 
   return (

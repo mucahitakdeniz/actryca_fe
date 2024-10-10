@@ -54,27 +54,36 @@ export default function ActorRegister() {
   const { personalInfo, educationSkills, professionalInfo } = useAuthStore();
 
   const submitForm = async () => {
+    const { personalInfo, educationSkills, professionalInfo } = useAuthStore.getState();
+  
     const formData = {
       ...personalInfo,
       ...educationSkills,
       ...professionalInfo,
     };
-
+  
     try {
       const response = await registerActor(formData); 
-      console.log("Kayıt başarılı:", response);
+      console.log("Kayıt başarılı:", response.data);
     } catch (error) {
       console.error("Kayıt hatası:", error);
     }
   };
+  
 
   const handleNext = () => {
     if (activeStep === steps.length - 1) {
+      console.log("Son adımda form verisi:", {
+        personalInfo,
+        educationSkills,
+        professionalInfo,
+      });
       submitForm(); 
     } else {
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
     }
   };
+  
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
