@@ -4,15 +4,21 @@ import SearchIcon from '@mui/icons-material/Search';
 import languages from '../languages';
 import useAuthStore from '@/store/auth-store';
 
-const proficiencyLevels = ["beginner", "intermediate", "advanced", "native"];
+const proficiencyLevels = [
+  { value: 'beginner', label: 'Başlangıç' },
+  { value: 'intermediate', label: 'Orta' },
+  { value: 'advanced', label: 'İleri' },
+  { value: 'native', label: 'Ana Dil' }
+];
 
 const SpokenLanguage = () => {
-  const [selectedLanguages, setSelectedLanguages] = useState([{ label: 'Turkish', level: 'Native' }]);
+  // Default selection set to Turkish with API value
+  const [selectedLanguages, setSelectedLanguages] = useState([{ label: 'Türkçe', value: 'Turkish', level: 'native' }]);
   const [currentLanguage, setCurrentLanguage] = useState(null);
-  const [currentLevel, setCurrentLevel] = useState(proficiencyLevels[0]);
+  const [currentLevel, setCurrentLevel] = useState(proficiencyLevels[0].value); // Default to 'beginner'
 
   const setLanguages = useAuthStore((state) => state.setEducationSkills);
-  const currentSkills = useAuthStore((state) => state.educationSkills); 
+  const currentSkills = useAuthStore((state) => state.educationSkills);
 
   const handleLanguageSelect = (event, newValue) => {
     if (newValue) {
@@ -32,20 +38,23 @@ const SpokenLanguage = () => {
 
   const addLanguage = () => {
     if (currentLanguage) {
-      const updatedLanguages = [...selectedLanguages, { label: currentLanguage.label, level: currentLevel }];
+      const updatedLanguages = [
+        ...selectedLanguages,
+        { label: currentLanguage.label, value: currentLanguage.value, level: currentLevel }
+      ];
       setSelectedLanguages(updatedLanguages);
 
-      
+      // Updating store for API submission
       setLanguages({
         ...currentSkills,
         languages: updatedLanguages.map((lang) => ({
-          language: lang.label,
-          proficiency: lang.level.toLowerCase(),
-        })),
+          language: lang.value, // Use the API-compatible 'value'
+          proficiency: lang.level // Use the English level from 'proficiencyLevels'
+        }))
       });
 
       setCurrentLanguage(null);
-      setCurrentLevel(proficiencyLevels[0]);
+      setCurrentLevel(proficiencyLevels[0].value); // Reset to 'beginner'
     }
   };
 
@@ -59,7 +68,7 @@ const SpokenLanguage = () => {
           {selectedLanguages.map((language, index) => (
             <Chip
               key={index}
-              label={`${language.label} (${language.level})`}
+              label={`${language.label} (${proficiencyLevels.find((level) => level.value === language.level)?.label})`}
               onDelete={() => handleDelete(language)}
               variant="outlined"
               className="rounded-[4px] bg-primary-100 text-primary-900 text-[14px] font-normal"
@@ -69,7 +78,7 @@ const SpokenLanguage = () => {
         <Box className="flex flex-row gap-4 items-center">
           <Autocomplete
             options={languages}
-            getOptionLabel={(option) => option.label}
+            getOptionLabel={(option) => option.label} // Display Turkish labels
             value={currentLanguage}
             onChange={handleLanguageSelect}
             renderInput={(params) => (
@@ -102,16 +111,16 @@ const SpokenLanguage = () => {
             value={currentLevel}
             onChange={handleLevelChange}
             variant="outlined"
-            className="bg-white border border-primary-100 rounded "
+            className="bg-white border border-primary-100 rounded"
             sx={{ minWidth: 120 }}
           >
             {proficiencyLevels.map((level, index) => (
               <MenuItem
                 className="hover:bg-primary-50"
                 key={index}
-                value={level}
+                value={level.value}
               >
-                {level}
+                {level.label} {/* Display Turkish level names */}
               </MenuItem>
             ))}
           </Select>

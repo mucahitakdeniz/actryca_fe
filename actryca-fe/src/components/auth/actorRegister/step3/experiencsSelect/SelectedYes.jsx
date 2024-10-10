@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
-import { Box, Button, TextField, Typography, MenuItem, Select, FormControl, FormHelperText } from '@mui/material';
+import { Box, Button, TextField, Typography, MenuItem, Select, FormControl } from '@mui/material';
 import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import YesDetails from './YesDetails';
+import { formatDate } from '@/utils/utils'; 
 
 const projectTypes = [
-  { value: 'dizi', label: 'Dizi' },
-  { value: 'film', label: 'Film' },
-  { value: 'tiyatro', label: 'Tiyatro' },
-  { value: 'reklam', label: 'Reklam' },
-  { value: 'kisaFilm', label: 'Kısa Film' },
-  { value: 'seslendirme', label: 'Seslendirme' }
+  { value: 'series', label: 'Dizi' },
+  { value: 'film_movie', label: 'Film' },
+  { value: 'theater', label: 'Tiyatro' },
+  { value: 'advertising', label: 'Reklam' },
+  { value: 'short_film', label: 'Kısa Film' },
+  { value: 'voiceover', label: 'Seslendirme' }
 ];
 
 const SelectedYes = ({ onSaveProjects }) => {
@@ -42,17 +43,28 @@ const SelectedYes = ({ onSaveProjects }) => {
       startDate,
       endDate,
     };
-    if (editIndex >= 0) {
-      const updatedProjects = [...projects];
-      updatedProjects[editIndex] = newProject;
-      setProjects(updatedProjects);
-      setEditIndex(-1);
-    } else {
-      setProjects([...projects, newProject]);
-    }
 
-    onSaveProjects([...projects, newProject]);
+    const updatedProjects = editIndex >= 0
+      ? projects.map((p, i) => (i === editIndex ? newProject : p))
+      : [...projects, newProject];
 
+    setProjects(updatedProjects); 
+
+ 
+    const formattedProjects = updatedProjects.map((project) => ({
+      project_type: project.projectType,
+      project_name: project.projectName,
+      role: project.role,
+      producer_company_name: project.company,
+      experience_description: project.description,
+      experience_start_date: project.startDate ? formatDate(project.startDate) : null,
+      experience_end_date: project.endDate ? formatDate(project.endDate) : null,
+    }));
+
+    
+    onSaveProjects(formattedProjects); 
+
+   
     setProjectType('');
     setProjectName('');
     setRole('');
@@ -60,7 +72,9 @@ const SelectedYes = ({ onSaveProjects }) => {
     setDescription('');
     setStartDate(null);
     setEndDate(null);
+    setEditIndex(-1);
   };
+
 
   const handleEdit = (index) => {
     const project = projects[index];
@@ -74,15 +88,27 @@ const SelectedYes = ({ onSaveProjects }) => {
     setEditIndex(index);
   };
 
+ 
   const handleDelete = (index) => {
     const updatedProjects = projects.filter((_, i) => i !== index);
     setProjects(updatedProjects);
-    onSaveProjects(updatedProjects); 
+    
+ 
+    onSaveProjects(updatedProjects.map((project) => ({
+      project_type: project.projectType,
+      project_name: project.projectName,
+      role: project.role,
+      producer_company_name: project.company,
+      experience_description: project.description,
+      experience_start_date: project.startDate ? formatDate(project.startDate) : null,
+      experience_end_date: project.endDate ? formatDate(project.endDate) : null,
+    })));
   };
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <Box className="flex flex-col justify-center items-start gap-4 self-stretch">
+
         {projects.length > 0 && (
           <YesDetails
             projects={projects}
@@ -97,7 +123,7 @@ const SelectedYes = ({ onSaveProjects }) => {
           </Typography>
           <Select
             value={projectType}
-            onChange={handleProjectTypeChange}
+            onChange={(event) => setProjectType(event.target.value)}
             displayEmpty
             renderValue={(selected) => (selected ? selected : "Proje Türü Seçiniz")}
             className="w-full rounded-lg"
@@ -110,32 +136,16 @@ const SelectedYes = ({ onSaveProjects }) => {
           </Select>
         </FormControl>
 
-        <TextField
-          label="Proje Adı"
-          fullWidth
-          value={projectName}
-          onChange={(e) => setProjectName(e.target.value)}
-        />
-        <TextField
-          label="Rol"
-          fullWidth
-          value={role}
-          onChange={(e) => setRole(e.target.value)}
-        />
-        <TextField
-          label="Yapımcı/Şirket Adı"
-          fullWidth
-          value={company}
-          onChange={(e) => setCompany(e.target.value)}
-        />
-
+        <TextField label="Proje Adı" fullWidth value={projectName} onChange={(e) => setProjectName(e.target.value)} />
+        <TextField label="Rol" fullWidth value={role} onChange={(e) => setRole(e.target.value)} />
+        <TextField label="Yapımcı/Şirket Adı" fullWidth value={company} onChange={(e) => setCompany(e.target.value)} />
         <TextField
           label="Açıklama (Tercihen)"
           fullWidth
           multiline
           rows={4}
           value={description}
-          onChange={handleDescriptionChange}
+          onChange={(e) => setDescription(e.target.value)}
           helperText={`${description.length}/150`}
           inputProps={{ maxLength: 150 }}
         />
