@@ -15,7 +15,10 @@ const Profile = () => {
         Hesap Bilgileri
       </Typography>
 
-      <Paper elevation={3} className="flex flex-col items-start gap-12 p-8 w-1/2 rounded-xl border border-primary-50">
+      <Paper
+        elevation={3}
+        className="flex flex-col items-start gap-12 p-8 w-1/2 rounded-xl border border-primary-50"
+      >
         <Typography
           variant="h6"
           className="text-primary-600 font-dm-sans text-[16px] font-semibold [leading-trim:both] [text-edge:cap]"
@@ -25,11 +28,14 @@ const Profile = () => {
 
         <Box className="flex flex-col items-start gap-6 w-full">
           <Box className="w-full flex flex-col gap-2 items-start">
-            <Typography variant="body2" className="text-primary-900 text-[14px] font-medium leading-6 font-sans">
+            <Typography
+              variant="body2"
+              className="text-primary-900 text-[14px] font-medium leading-6 font-sans"
+            >
               Kullanıcı Adı
             </Typography>
             <TextField
-              defaultValue={user?.name || "Ad Bilgisi Yok"}
+              defaultValue={user?.user?.user_name || "Ad Bilgisi Yok"}
               variant="outlined"
               fullWidth
               InputProps={{ disableUnderline: true }}
@@ -37,11 +43,14 @@ const Profile = () => {
           </Box>
 
           <Box className="w-full flex flex-col gap-2 items-start">
-            <Typography variant="body2" className="text-primary-900 text-[14px] font-medium leading-6 font-sans">
+            <Typography
+              variant="body2"
+              className="text-primary-900 text-[14px] font-medium leading-6 font-sans"
+            >
               E-posta
             </Typography>
             <TextField
-              defaultValue={user?.email || "Email Bilgisi Yok"}
+              defaultValue={user?.user?.email || "Email Bilgisi Yok"}
               variant="outlined"
               fullWidth
               InputProps={{ disableUnderline: true }}
@@ -49,22 +58,24 @@ const Profile = () => {
           </Box>
 
           <Box className="w-full flex flex-col gap-2 items-start">
-            <Typography variant="body2" className="text-primary-900 text-[14px] font-medium leading-6 font-sans">
+            <Typography
+              variant="body2"
+              className="text-primary-900 text-[14px] font-medium leading-6 font-sans"
+            >
               Telefon Numarası
             </Typography>
             <TextField
-              defaultValue={user?.phone || "+90 555 55 55"}
+              defaultValue={user?.user?.phone || "+90 000 00 00"}
               variant="outlined"
               fullWidth
               InputProps={{ disableUnderline: true }}
             />
           </Box>
 
-          <Button variant="contained" color="primary" className="w-full p-[10px] rounded-lg bg-primary-50 hover:bg-primary-500">
+          <Button variant="contained" color="primary" className="w-full">
             Güncelle
           </Button>
         </Box>
-
       </Paper>
     </>
   );

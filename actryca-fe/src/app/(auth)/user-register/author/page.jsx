@@ -1,11 +1,11 @@
 "use client"
 import React from 'react';
-import MainInformation from "../../../../components/auth/writerRegister/MainInformation/MainInformation";
 import { Stack, Typography } from '@mui/material';
 import AboutMeMain from '../../../../components/auth/writerRegister/aboutMe/AboutMeMain';
 import ProfilePicture from '../../../../components/auth/writerRegister/profilePicture/ProfilePicture';
 import EducationSkills from '@/components/auth/writerRegister/educationSkills/EducationSkills';
 import Experiences from '@/components/auth/writerRegister/experience/Experience';
+import MainInformation from '@/components/auth/writerRegister/mainInformation/MainInformation';
 
 const Page = () => {
     return (

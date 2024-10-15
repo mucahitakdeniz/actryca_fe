@@ -19,6 +19,8 @@ const Page = () => {
   if (!user) {
     redirect("/login");
   }
+  console.log(user?.user?.user_name);
+  
 
   useEffect(() => {
     const tab = searchParams.get("tab");
@@ -62,7 +64,7 @@ const Page = () => {
             sx={{ width: 150, height: 150, mb: 2 }}
             className="bg-primary-100 text-primary-900 text-6xl"
           >
-            {user?.data?.user_name.toUpperCase()[0] || "?"}
+            {user?.user?.user_name.toUpperCase()[0] || "?"}
           </Avatar>
           <List component="nav">
             <Box className="my-6 py-6 border-y border-y-primary-50 ">
@@ -81,6 +83,64 @@ const Page = () => {
                   }
                 />
               </ListItem>
+
+              <ListItem
+                button
+                onClick={() => setActiveTab("profile")}
+                className={`${menuClass}`}
+              >
+                <ListItemText
+                  primary="Kullanıcı Bilgileri"
+                  className={`ml-9 ${
+                    activeTab === "profile"
+                      ? "text-primary-800 font-bold"
+                      : "text-primary-600"
+                  }`}
+                />
+              </ListItem>
+              <ListItem
+                button
+                onClick={() => setActiveTab("profile")}
+                className={`${menuClass}`}
+              >
+                <ListItemText
+                  primary="Kişisel Bilgileri"
+                  className={`ml-9 ${
+                    activeTab === "profile"
+                      ? "text-primary-800 font-bold"
+                      : "text-primary-600"
+                  }`}
+                />
+              </ListItem>
+              <ListItem
+                button
+                onClick={() => setActiveTab("profile")}
+                className={`${menuClass}`}
+              >
+                <ListItemText
+                  primary="Eğitim ve Yetenekler"
+                  className={`ml-9 ${
+                    activeTab === "profile"
+                      ? "text-primary-800 font-bold"
+                      : "text-primary-600"
+                  }`}
+                />
+              </ListItem>
+              <ListItem
+                button
+                onClick={() => setActiveTab("profile")}
+                className={`${menuClass}`}
+              >
+                <ListItemText
+                  primary="Profesyonel Bilgiler"
+                  className={`ml-9 ${
+                    activeTab === "profile"
+                      ? "text-primary-800 font-bold"
+                      : "text-primary-600"
+                  }`}
+                />
+              </ListItem>
+
               <ListItem
                 button
                 onClick={() => setActiveTab("movements")}
@@ -125,7 +185,13 @@ const Page = () => {
       </Grid>
 
       {/* Sağ ana içerik */}
-      <Grid item xs={10} md={7} lg={8} className="mx-auto flex flex-col items-start gap-[56px]">
+      <Grid
+        item
+        xs={10}
+        md={7}
+        lg={8}
+        className="mx-auto flex flex-col items-start gap-[56px]"
+      >
         {activeTab === "profile" && <Profile />}
         {activeTab === "movements" && <Movements />}
         {activeTab === "settings" && <SettingsContent />}

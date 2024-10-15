@@ -74,7 +74,7 @@ export default function Example() {
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerOpen}
-            sx={{ display: { sm: "flex", md: "none" } }}
+            sx={{ display: { sm: "none" } }}
           >
             <MenuIcon />
           </IconButton>
