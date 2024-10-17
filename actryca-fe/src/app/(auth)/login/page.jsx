@@ -13,10 +13,10 @@ import useAuthStore from "@/store/auth-store";
 import { useRouter } from "next/navigation";
 import { CircularProgress } from "@mui/material";
 import AlertBox from "@/components/ui/AlertBox";
-import ForgetPassword from "@/components/auth/forgetPassword/ForgetPassword";
+import ForgetPassword from "../../../components/auth/forgetPassword/ForgetPassword";
 import VerificationCode from "../../../components/auth/forgetPassword/VerificationCode";
-import NewPassword from "@/components/auth/forgetPassword/NewPassword";
-import UpdatedPassword from "@/components/auth/forgetPassword/UpdatedPassword";
+import NewPassword from "../../../components/auth/forgetPassword/NewPassword";
+import UpdatedPassword from "../../../components/auth/forgetPassword/UpdatedPassword";
 
 export default function Page() {
   const [dialogOpen, setDialogOpen] = useState(false);
