@@ -19,8 +19,6 @@ const Page = () => {
   if (!user) {
     redirect("/login");
   }
-  console.log(user?.user?.user_name);
-  
 
   useEffect(() => {
     const tab = searchParams.get("tab");
@@ -38,7 +36,7 @@ const Page = () => {
   };
 
   const menuClass =
-  "hover:bg-primary-50 rounded-lg m-2 flex gap-3 text-primary-500 active:font-bold";
+    "hover:bg-primary-50 rounded-lg m-2 flex gap-3 text-primary-500 active:font-bold";
 
   return (
     <Grid container spacing={4} sx={{ my: 8 }}>

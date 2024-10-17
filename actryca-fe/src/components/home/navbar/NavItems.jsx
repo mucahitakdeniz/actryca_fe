@@ -60,6 +60,7 @@ const NavItems = () => {
               sx={{
                 borderRadius: "32px",
               }}
+              disableScrollLock
             >
               {item.children.map((child) => (
                 <MenuItem

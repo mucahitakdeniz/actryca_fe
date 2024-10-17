@@ -107,6 +107,7 @@ const LoginSection = () => {
               }}
               open={Boolean(anchorEl)}
               onClose={handleClose}
+              disableScrollLock
             >
               <MenuItem
                 className="hover:bg-primary-50 rounded-lg m-2"
@@ -160,11 +161,11 @@ const LoginSection = () => {
           </div>
         ) : (
           <Box display="flex" alignItems="center" gap={1}>
-            <Button className="px-8 py-4 font-sans font-bold h-12">
+            <Button variant="outlined" sx={{ width: 100 }}>
               <Link href="/login">Giriş Yap</Link>
             </Button>
 
-            <Button className="px-8 py-4 font-sans font-bold h-12 bg-primary-600 text-white hover:bg-primary-500">
+            <Button variant="contained" sx={{ width: 100 }}>
               <Link href="/register">Üye Ol</Link>
             </Button>
           </Box>

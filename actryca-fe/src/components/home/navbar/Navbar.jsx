@@ -112,6 +112,7 @@ export default function Example() {
                   keepMounted
                   open={Boolean(menuAnchor)}
                   onClose={handleMenuClose}
+                  disableScrollLock
                 >
                   {item.children.map((child) => (
                     <MenuItem key={child.name} onClick={handleMenuClose}>
