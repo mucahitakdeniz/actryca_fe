@@ -20,12 +20,7 @@ import usePasswordStore from "@/store/password-store";
 import { useMutation } from "@tanstack/react-query";
 import { verifyCode } from "@/services/password";
 
-export default function VerificationCode({
-  open,
-  onClose,
-  onBack,
-  onContinue,
-}) {
+const VerificationCode = ({ open, onClose, onBack, onContinue }) => {
   const [code, setCode] = React.useState(["", "", "", ""]);
   const email = usePasswordStore((state) => state.email);
 
@@ -226,4 +221,6 @@ export default function VerificationCode({
       </div>
     </Dialog>
   );
-}
+};
+
+export default VerificationCode;

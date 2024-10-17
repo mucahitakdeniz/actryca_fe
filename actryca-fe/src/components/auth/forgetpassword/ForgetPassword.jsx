@@ -12,9 +12,8 @@ import close from "../../../../public/svg/close.svg";
 import { useMutation } from "@tanstack/react-query";
 import { getCode } from "@/services/password";
 import AlertBox from "@/components/ui/AlertBox";
-import usePasswordStore from "@/store/password-store";
 
-export default function ForgetPassword({ open, onClose, onContinue }) {
+const ForgetPassword = ({ open, onClose, onContinue }) => {
   const [alertProps, setAlertProps] = React.useState({
     open: false,
     message: "",
@@ -161,4 +160,6 @@ export default function ForgetPassword({ open, onClose, onContinue }) {
       </div>
     </Dialog>
   );
-}
+};
+
+export default ForgetPassword;

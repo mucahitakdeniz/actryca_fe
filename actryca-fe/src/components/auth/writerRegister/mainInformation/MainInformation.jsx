@@ -57,7 +57,10 @@ const MainInformation = () => {
 
   return (
     <Box className="w-[519px] flex flex-col items-start gap-6" component="form">
-      <Typography variant="h6" className=" font-dm-serif-display font-bold text-primary-900">
+      <Typography
+        variant="h6"
+        className=" font-dm-serif-display font-bold text-primary-900"
+      >
         Temel Bilgiler:
       </Typography>
       <Box className="flex flex-col gap-6 self-stretch shadow rounded-2xl p-8 h-full border border-primary-100">

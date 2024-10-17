@@ -10,12 +10,7 @@ import close from "../../../../public/svg/close.svg";
 import back from "../../../../public/svg/back.svg";
 import success from "../../../../public/svg/success.svg";
 
-export default function UpdatedPassword({
-  open,
-  onClose,
-  onBack,
-  onContinue,
-}) {
+const UpdatedPassword = ({ open, onClose, onBack, onContinue }) => {
   return (
     <Dialog
       onClose={onClose}
@@ -88,5 +83,6 @@ export default function UpdatedPassword({
       </div>
     </Dialog>
   );
+};
 
-}
+export default UpdatedPassword;

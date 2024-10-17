@@ -25,7 +25,7 @@ import { useMutation } from "@tanstack/react-query";
 import { renewPassword } from "@/services/password";
 import AlertBox from "@/components/ui/AlertBox";
 
-export default function NewPassword({ open, onClose, onBack, onContinue }) {
+const NewPassword = ({ open, onClose, onBack, onContinue }) => {
   const [password, setPassword] = React.useState("");
   const [confirmPassword, setConfirmPassword] = React.useState("");
   const [showPassword, setShowPassword] = React.useState(false);
@@ -290,4 +290,6 @@ export default function NewPassword({ open, onClose, onBack, onContinue }) {
       </div>
     </Dialog>
   );
-}
+};
+
+export default NewPassword;
