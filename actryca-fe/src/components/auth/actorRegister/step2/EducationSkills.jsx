@@ -140,7 +140,7 @@ const EducationSkills = () => {
                   <Typography className="text-primary-900 font-sans text-[16px] font-normal leading-6">{edu.education_description}</Typography>
                   <Box className="flex justify-end w-full">
                     <Button color="primary" onClick={() => handleEdit(index)}>
-                      <Typography className="underline text-primary-900">Düzenle</Typography>
+                      <Typography className="underline italic text-primary-900">Düzenle</Typography>
                     </Button>
                   </Box>
                   <Box className="flex justify-between w-full">
