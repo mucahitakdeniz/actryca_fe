@@ -1,4 +1,13 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  async rewrites() {
+    return [
+      {
+        source: "/api/:path*",
+        destination: "http://3.120.147.238:8000/:path*", // HTTP proxy
+      },
+    ];
+  },
+};
 
-export default nextConfig;
+module.exports = nextConfig;
