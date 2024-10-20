@@ -10,12 +10,10 @@ const ProfessionalInfo = () => {
   const setProfessionalInfo = useAuthStore((state) => state.setProfessionalInfo);
 
   const saveProfessionalInfo = (data) => {
-    setProfessionalInfo((prevState) => ({
-      ...prevState,
-      projects: [...(prevState.projects || []), ...(data.projects || [])], 
-    }));
+    console.log("Gelen profesyonel bilgiler: ", data); 
+    setProfessionalInfo(data);
   };
-
+  
   return (
     <Box className="flex flex-row">
       <Box className="padding">
