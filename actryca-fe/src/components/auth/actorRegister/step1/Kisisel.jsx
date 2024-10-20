@@ -79,7 +79,7 @@ const Kisisel = () => {
 
   return (
     <Box
-      className="w-full h-[100vh] flex flex-col items-start gap-6"
+      className="w-full h-full flex flex-col items-start gap-6"
       component="form"
     >
       <Typography variant="h6" className=" font-dm-serif-display font-bold">
@@ -205,11 +205,11 @@ const Kisisel = () => {
         
         <Box className="flex justify-end w-full mt-4">
           <Button
-            variant="contained"
+            variant="outlined"
             color="primary"
             onClick={handleSave}
           >
-            Bu Adımı Tamamla
+            Tamamla
           </Button>
         </Box>
       </Box>

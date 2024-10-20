@@ -79,7 +79,7 @@ const Fiziksel = () => {
   return (
     <Box
       component="form"
-      className="w-full h-full flex flex-col items-start gap-6"
+      className="w-full h-full flex flex-col items-start gap-4"
     >
       <Typography variant="h6" className="font-dm-serif-display font-bold">
         Fiziksel Özellikler:
@@ -89,7 +89,7 @@ const Fiziksel = () => {
         {/* Cinsiyet */}
         <Box className="flex flex-row justify-between items-center gap-2 w-full mb-4 flex-wrap md:flex-nowrap">
           <Box className="flex flex-row items-center gap-2 w-full md:w-1/2">
-            <Typography className="text-primary-900 font-sans text-[14px] font-medium text-center leading-normal w-1/2">
+            <Typography className="text-primary-900 font-sans text-[14px] font-medium text-right leading-normal w-1/2">
               Cinsiyet:
             </Typography>
             <TextField
@@ -111,7 +111,7 @@ const Fiziksel = () => {
         {/* Boy ve Kilo */}
         <Box className="flex flex-row justify-between items-center gap-2 w-full mb-4 flex-wrap md:flex-nowrap">
           <Box className="flex flex-row items-center gap-2 w-full md:w-1/2">
-            <Typography className="text-primary-900 font-sans text-[14px] font-medium text-center leading-normal w-1/2">
+            <Typography className="text-primary-900 font-sans text-[14px] font-medium text-right leading-normal w-1/2">
               Boy:
             </Typography>
             <TextField
@@ -151,7 +151,7 @@ const Fiziksel = () => {
         {/* Saç ve Göz Rengi */}
         <Box className="flex flex-row justify-between items-center gap-2 w-full flex-wrap md:flex-nowrap">
           <Box className="flex flex-row items-center gap-2 w-full md:w-1/2">
-            <Typography className="text-primary-900 font-sans text-[14px] font-medium text-center leading-normal w-1/2">
+            <Typography className="text-primary-900 font-sans text-[14px] font-medium text-right leading-normal w-1/2">
               Saç Rengi:
             </Typography>
             <TextField
@@ -170,7 +170,7 @@ const Fiziksel = () => {
           </Box>
 
           <Box className="flex flex-row items-center gap-2 w-full md:w-1/2">
-            <Typography className="text-primary-900 font-sans text-[14px] font-medium text-center leading-normal w-1/2">
+            <Typography className="text-primary-900 font-sans text-[14px] font-medium text-right leading-normal w-1/2">
               Göz Rengi:
             </Typography>
             <TextField
@@ -195,7 +195,7 @@ const Fiziksel = () => {
         <Typography variant="h6" className="font-dm-serif-display font-bold">
           Hakkımda:
         </Typography>
-        <Box className="w-full flex flex-col border border-primary-100 rounded-2xl px-8 py-10 relative h-[79%]">
+        <Box className="w-full flex flex-col border border-primary-100 rounded-2xl px-8 py-10 relative">
           <TextField
             multiline
             rows={8}
@@ -241,8 +241,8 @@ const Fiziksel = () => {
           </IconButton>
         </Box>
         <Box className="flex justify-end w-full">
-          <Button variant="contained" color="primary" onClick={handleSave}>
-            Bu Adımı Tamamla
+          <Button variant="outlined" color="primary" onClick={handleSave}>
+            Tamamla
           </Button>
         </Box>
       </Box>

@@ -12,7 +12,6 @@ const Experiences = ({ onSave }) => {
   };
 
   const handleSaveProjects = (projects) => {
-    console.log("Kaydedilen projeler:", projects); 
     setExperiences(projects); 
     onSave({ projects }); 
   };
