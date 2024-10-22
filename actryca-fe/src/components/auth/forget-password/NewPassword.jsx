@@ -15,7 +15,6 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 import { Eye, EyeOff } from "lucide-react";
-
 import close from "../../../../public/svg/close.svg";
 import back from "../../../../public/svg/back.svg";
 import openlock from "../../../../public/svg/openlock.svg";
@@ -31,8 +30,7 @@ const NewPassword = ({ open, onClose, onBack, onContinue }) => {
   const [showPassword, setShowPassword] = React.useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = React.useState(false);
   const [errorText, setErrorText] = React.useState(false);
-
-  const email = usePasswordStore((state) => state.email);
+  const token = usePasswordStore((state) => state.token); 
 
   const [alertProps, setAlertProps] = React.useState({
     open: false,
@@ -41,7 +39,7 @@ const NewPassword = ({ open, onClose, onBack, onContinue }) => {
   });
 
   const { mutate, isPending, isError, error } = useMutation({
-    mutationFn: renewPassword,
+    mutationFn: ({ userData, token }) => renewPassword(userData, token),
     onSuccess: (data) => {
       const alertProps = {
         severity: "success",
@@ -50,8 +48,9 @@ const NewPassword = ({ open, onClose, onBack, onContinue }) => {
       };
 
       if (!data?.error) {
-        alertProps.severity = "error";
-        alertProps.message = "Şifre değiştirme başarısız oldu.";
+        setTimeout(() => {
+          onContinue();
+        }, 1000);
       } else {
         alertProps.severity = "error";
         alertProps.message = "Şifre değiştirme başarısız oldu.";
@@ -61,6 +60,7 @@ const NewPassword = ({ open, onClose, onBack, onContinue }) => {
     },
     onError: (error) => {
       let errorMessage = "Beklenmeyen bir hata oluştu.";
+      console.log(error);
 
       if (error.response?.data?.error === "User not found.") {
         errorMessage = "Kullanıcı bulunamadı.";
@@ -75,12 +75,14 @@ const NewPassword = ({ open, onClose, onBack, onContinue }) => {
   });
 
   const handleSubmit = async (event) => {
+    
     event.preventDefault();
     const newPassword = {
-      new_password: verificationCode,
+      new_password: password,
     };
+
     if (password === confirmPassword) {
-      mutate(newPassword);
+       mutate({ userData: newPassword, token });
     } else {
       setErrorText(true);
     }
@@ -125,6 +127,7 @@ const NewPassword = ({ open, onClose, onBack, onContinue }) => {
           padding: "12px",
         },
       }}
+      disableScrollLock
     >
       <AlertBox alertProps={alertProps} />
       <div className="w-full h-full bg-white relative">
@@ -184,108 +187,108 @@ const NewPassword = ({ open, onClose, onBack, onContinue }) => {
             </Stack>
           </Stack>
         </DialogContent>
-        <DialogActions
-          component="form"
-          noValidate
-          onSubmit={handleSubmit}
-          className="flex flex-col w-full justify-center gap-6 items-center"
-        >
-          <Stack className="flex flex-col items-start self-stretch m-auto gap-4">
-            <FormControl>
-              <FormLabel className="text-primary-900 font-sans text-[14px] font-[500px] leading-6">
-                Şifre
-              </FormLabel>
-              <TextField
-                id="new-password"
-                margin="normal"
-                required
-                type={showPassword ? "text" : "password"}
-                value={password}
-                onChange={handlePasswordChange}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton onClick={togglePasswordVisibility} edge="end">
-                        {showPassword ? (
-                          <EyeOff size={24} className="text-primary-600" />
-                        ) : (
-                          <Eye size={24} className="text-primary-600" />
-                        )}
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-                sx={{
-                  "& .MuiInputBase-root": {
-                    width: "420px",
-                    maxWidth: "420px",
-                  },
-                }}
-              />
-            </FormControl>
-            <FormControl>
-              <FormLabel className="text-primary-900 font-sans text-[14px] font-[500px] leading-6">
-                Şifreyi Tekrar Gir
-              </FormLabel>
-              <TextField
-                id="confirm-password"
-                margin="normal"
-                required
-                type={showConfirmPassword ? "text" : "password"}
-                value={confirmPassword}
-                onChange={handleConfirmPasswordChange}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                        onClick={toggleConfirmPasswordVisibility}
-                        edge="end"
+        <DialogActions className="flex flex-col w-full justify-center gap-6 items-center">
+          <Stack component="form" noValidate onSubmit={handleSubmit}>
+            <Stack className="flex flex-col items-start self-stretch m-auto gap-4">
+              <FormControl>
+                <FormLabel className="text-primary-900 font-sans text-[14px] font-[500px] leading-6">
+                  Şifre
+                </FormLabel>
+                <TextField
+                  id="new-password"
+                  margin="normal"
+                  required
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={handlePasswordChange}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          onClick={togglePasswordVisibility}
+                          edge="end"
+                        >
+                          {showPassword ? (
+                            <EyeOff size={24} className="text-primary-600" />
+                          ) : (
+                            <Eye size={24} className="text-primary-600" />
+                          )}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                  sx={{
+                    "& .MuiInputBase-root": {
+                      width: "420px",
+                      maxWidth: "420px",
+                    },
+                  }}
+                />
+              </FormControl>
+              <FormControl>
+                <FormLabel className="text-primary-900 font-sans text-[14px] font-[500px] leading-6">
+                  Şifreyi Tekrar Gir
+                </FormLabel>
+                <TextField
+                  id="confirm-password"
+                  margin="normal"
+                  required
+                  type={showConfirmPassword ? "text" : "password"}
+                  value={confirmPassword}
+                  onChange={handleConfirmPasswordChange}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          onClick={toggleConfirmPasswordVisibility}
+                          edge="end"
+                        >
+                          {showConfirmPassword ? (
+                            <EyeOff size={24} className="text-primary-600" />
+                          ) : (
+                            <Eye size={24} className="text-primary-600" />
+                          )}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                  sx={{
+                    "& .MuiInputBase-root": {
+                      width: "420px",
+                      maxWidth: "420px",
+                    },
+                  }}
+                  error={errorText}
+                  helperText={
+                    errorText ? (
+                      <span
+                        className="text-red text-[12px]"
+                        style={{ minHeight: "1.5em", display: "inline-block" }}
                       >
-                        {showConfirmPassword ? (
-                          <EyeOff size={24} className="text-primary-600" />
-                        ) : (
-                          <Eye size={24} className="text-primary-600" />
-                        )}
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-                sx={{
-                  "& .MuiInputBase-root": {
-                    width: "420px",
-                    maxWidth: "420px",
-                  },
-                }}
-                error={errorText}
-                helperText={
-                  errorText ? (
-                    <span
-                      className="text-red text-[12px]"
-                      style={{ minHeight: "1.5em", display: "inline-block" }}
-                    >
-                      Şifreler eşleşmiyor. Lütfen aynı şifreyi tekrar
-                      girdiğinizden emin olun.
-                    </span>
-                  ) : (
-                    <span
-                      style={{ minHeight: "1.5em", display: "inline-block" }}
-                    >
-                      &nbsp;
-                    </span>
-                  )
-                }
-              />
-            </FormControl>
-          </Stack>
+                        Şifreler eşleşmiyor. Lütfen aynı şifreyi tekrar
+                        girdiğinizden emin olun.
+                      </span>
+                    ) : (
+                      <span
+                        style={{ minHeight: "1.5em", display: "inline-block" }}
+                      >
+                        &nbsp;
+                      </span>
+                    )
+                  }
+                />
+              </FormControl>
+            </Stack>
 
-          <Button
-            type="submit"
-            variant="contained"
-            className=" w-72 "
-            disabled={isPending}
-          >
-            {isPending ? <CircularProgress size={25} /> : "Şifreyi Yenile"}
-          </Button>
+            <Button
+              type="submit"
+              variant="contained"
+              className=" w-72 "
+              disabled={isPending}
+            >
+              {isPending ? <CircularProgress size={25} /> : "Şifreyi Yenile"}
+            </Button>
+          </Stack>
         </DialogActions>
       </div>
     </Dialog>

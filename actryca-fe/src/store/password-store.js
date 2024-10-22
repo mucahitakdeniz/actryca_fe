@@ -2,7 +2,9 @@ const { create } = require("zustand");
 
 const usePasswordStore = create((set) => ({
   email: null,
-  setMail: (email) => set(() => ({ email: email })),
+  token: null,
+  setEmail: (email) => set(() => ({ email: email })),
+  setToken: (token) => set(() => ({ token: token })),
 }));
 
 export default usePasswordStore;

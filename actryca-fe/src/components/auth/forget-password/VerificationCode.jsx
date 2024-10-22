@@ -23,6 +23,7 @@ import { verifyCode } from "@/services/password";
 const VerificationCode = ({ open, onClose, onBack, onContinue }) => {
   const [code, setCode] = React.useState(["", "", "", ""]);
   const email = usePasswordStore((state) => state.email);
+  const setToken = usePasswordStore((state) => state.setToken);
 
   const [alertProps, setAlertProps] = React.useState({
     open: false,
@@ -33,8 +34,8 @@ const VerificationCode = ({ open, onClose, onBack, onContinue }) => {
   const { mutate, isPending, isError, error } = useMutation({
     mutationFn: verifyCode,
     onSuccess: (data) => {
-      console.log(data);
-
+      console.log(data?.token);
+      setToken(data?.token);
       const alertProps = {
         severity: "success",
         message: "Doğrulama kodu başarıyla doğrulandı!",
@@ -43,7 +44,7 @@ const VerificationCode = ({ open, onClose, onBack, onContinue }) => {
       if (!data?.error) {
         setTimeout(() => {
           onContinue();
-        }, 2000);
+        }, 1000);
       } else {
         alertProps.severity = "error";
         alertProps.message = "Doğrulama başarısız oldu.";
@@ -71,16 +72,14 @@ const VerificationCode = ({ open, onClose, onBack, onContinue }) => {
     const verificationCode = code.join("");
 
     const verifyData = {
-      email: email,
+      identifier: email,
       recall_password: verificationCode,
     };
-    console.log(verifyData);
-
     mutate(verifyData);
   };
 
   const handleChange = (index) => (event) => {
-    const value = event.target.value;
+    const value = event.target.value.toUpperCase();
     if (value.length <= 1) {
       const newCode = [...code];
       newCode[index] = value;
@@ -113,6 +112,7 @@ const VerificationCode = ({ open, onClose, onBack, onContinue }) => {
           padding: "12px",
         },
       }}
+      disableScrollLock
     >
       <AlertBox alertProps={alertProps} />
       <div className="w-full h-full bg-white relative">
