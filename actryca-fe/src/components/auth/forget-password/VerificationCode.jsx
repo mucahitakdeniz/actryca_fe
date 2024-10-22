@@ -20,14 +20,10 @@ import usePasswordStore from "@/store/password-store";
 import { useMutation } from "@tanstack/react-query";
 import { verifyCode } from "@/services/password";
 
-export default function VerificationCode({
-  open,
-  onClose,
-  onBack,
-  onContinue,
-}) {
+const VerificationCode = ({ open, onClose, onBack, onContinue }) => {
   const [code, setCode] = React.useState(["", "", "", ""]);
   const email = usePasswordStore((state) => state.email);
+  const setToken = usePasswordStore((state) => state.setToken);
 
   const [alertProps, setAlertProps] = React.useState({
     open: false,
@@ -38,8 +34,8 @@ export default function VerificationCode({
   const { mutate, isPending, isError, error } = useMutation({
     mutationFn: verifyCode,
     onSuccess: (data) => {
-      console.log(data);
-
+      console.log(data?.token);
+      setToken(data?.token);
       const alertProps = {
         severity: "success",
         message: "Doğrulama kodu başarıyla doğrulandı!",
@@ -48,7 +44,7 @@ export default function VerificationCode({
       if (!data?.error) {
         setTimeout(() => {
           onContinue();
-        }, 2000);
+        }, 1000);
       } else {
         alertProps.severity = "error";
         alertProps.message = "Doğrulama başarısız oldu.";
@@ -76,16 +72,14 @@ export default function VerificationCode({
     const verificationCode = code.join("");
 
     const verifyData = {
-      email: email,
+      identifier: email,
       recall_password: verificationCode,
     };
-    console.log(verifyData);
-
     mutate(verifyData);
   };
 
   const handleChange = (index) => (event) => {
-    const value = event.target.value;
+    const value = event.target.value.toUpperCase();
     if (value.length <= 1) {
       const newCode = [...code];
       newCode[index] = value;
@@ -118,6 +112,7 @@ export default function VerificationCode({
           padding: "12px",
         },
       }}
+      disableScrollLock
     >
       <AlertBox alertProps={alertProps} />
       <div className="w-full h-full bg-white relative">
@@ -226,4 +221,6 @@ export default function VerificationCode({
       </div>
     </Dialog>
   );
-}
+};
+
+export default VerificationCode;

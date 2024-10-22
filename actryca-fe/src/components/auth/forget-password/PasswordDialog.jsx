@@ -27,7 +27,7 @@ const PasswordDialog = ({ open, onClose }) => {
   };
 
   return (
-    <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
+    <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth disableScrollLock>
       {renderStep()}
     </Dialog>
   );

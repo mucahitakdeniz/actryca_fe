@@ -1,24 +1,31 @@
-import React from 'react'
-import ProfilePhotos from './ProfilePhotos'
-import { Box } from '@mui/material'
-import Experinces from './Experiences'
-import PortfolioPhotos from './PortfolioPhotos'
-import ManagementInformation from './ManagementInformation'
+import React from 'react';
+import { Box } from '@mui/material';
+import ProfilePhotos from './ProfilePhotos';
+import Experiences from './Experiences';
+import PortfolioPhotos from './PortfolioPhotos';
+import ManagementInformation from './ManagementInformation';
+import useAuthStore from '@/store/auth-store';
 
 const ProfessionalInfo = () => {
+  const setProfessionalInfo = useAuthStore((state) => state.setProfessionalInfo);
+
+  const saveProfessionalInfo = (data) => {
+    console.log("Gelen profesyonel bilgiler: ", data); 
+    setProfessionalInfo(data);
+  };
+  
   return (
     <Box className="flex flex-row">
       <Box className="padding">
-        <ProfilePhotos />
-        <Experinces />
+        <ProfilePhotos onSave={saveProfessionalInfo} />
+        <Experiences onSave={saveProfessionalInfo} /> 
       </Box>
       <Box>
-        <PortfolioPhotos />
-        <ManagementInformation />
+        <PortfolioPhotos onSave={saveProfessionalInfo} />
+        <ManagementInformation onSave={saveProfessionalInfo} />
       </Box>
     </Box>
+  );
+};
 
-  )
-}
-
-export default ProfessionalInfo
+export default ProfessionalInfo;

@@ -55,6 +55,7 @@ export default function Example() {
           justifyContent: "space-between",
           alignItems: "center",
           backgroundColor: "white",
+          width: 1,
         }}
       >
         <Link href="/">
@@ -74,7 +75,7 @@ export default function Example() {
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerOpen}
-            sx={{ display: { sm: "flex", md: "none" } }}
+            sx={{ display: { sm: "none" } }}
           >
             <MenuIcon />
           </IconButton>
@@ -112,6 +113,7 @@ export default function Example() {
                   keepMounted
                   open={Boolean(menuAnchor)}
                   onClose={handleMenuClose}
+                  disableScrollLock
                 >
                   {item.children.map((child) => (
                     <MenuItem key={child.name} onClick={handleMenuClose}>

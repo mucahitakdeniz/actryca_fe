@@ -8,10 +8,14 @@ import {
   InputAdornment,
   Select,
   FormControl,
+  Button,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { countries } from "../actorspecial";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import useAuthStore from "@/store/auth-store";
+import { formatDate } from "@/utils/utils";
+ 
 
 const placeholderStyles = {
   "::placeholder": {
@@ -23,11 +27,17 @@ const placeholderStyles = {
 };
 
 const Kisisel = () => {
-  const [selectedCountry, setSelectedCountry] = React.useState("Turkey");
-  const [phoneCode, setPhoneCode] = React.useState("+90");
-  const [phoneNumber, setPhoneNumber] = React.useState("");
-  const [selectedCity, setSelectedCity] = React.useState("");
+  const [selectedCountry, setSelectedCountry] = useState("Turkey");
+  const [phoneCode, setPhoneCode] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [selectedCity, setSelectedCity] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [birthDate, setBirthDate] = useState(null); 
 
+  const setPersonalInfo = useAuthStore((state) => state.setPersonalInfo);
+
+ 
   const handleCountryChange = (event) => {
     const selectedCountry = event.target.value;
     setSelectedCountry(selectedCountry);
@@ -38,17 +48,29 @@ const Kisisel = () => {
     setSelectedCity("");
   };
 
-  const handlePhoneCodeChange = (event) => {
-    setPhoneCode(event.target.value);
-  };
+ 
 
-  const handlePhoneNumberChange = (event) => {
-    setPhoneNumber(event.target.value);
-  };
 
-  const handleCityChange = (event) => {
-    setSelectedCity(event.target.value);
+  const handleSave = () => {
+    const fullPhoneNumber = `${phoneCode}${phoneNumber}`;
+    const formattedDate = formatDate(birthDate);
+    const currentInfo = useAuthStore.getState().personalInfo;
+  
+    const formData = {
+      full_name: fullName,
+      email: email,
+      phone: fullPhoneNumber,
+      birth_date: formattedDate,
+      country: selectedCountry,
+      city: selectedCity,
+    };
+  
+    setPersonalInfo({
+      ...currentInfo, // Eski veriler
+      ...formData,    // Yeni veriler
+    });
   };
+  
 
   const cities =
     countries.find((country) => country.value === selectedCountry)?.cities ||
@@ -57,35 +79,40 @@ const Kisisel = () => {
 
   return (
     <Box
-      className="w-full h-[100vh] flex flex-col items-start gap-6"
+      className="w-full h-full flex flex-col items-start gap-6"
       component="form"
     >
       <Typography variant="h6" className=" font-dm-serif-display font-bold">
         Temel Bilgiler:
       </Typography>
       <Box className="flex flex-col gap-6 self-stretch shadow rounded-2xl p-8 h-full border border-primary-100">
+        {/* Ad Soyad */}
         <Box className="flex flex-col w-full">
           <Typography className="text-secondary-500">Ad Soyad</Typography>
           <TextField
             fullWidth
             variant="outlined"
             placeholder="Adı Soyadı"
+            value={fullName}
+            onChange={(e) => setFullName(e.target.value)}
             inputProps={{
               sx: placeholderStyles,
             }}
           />
         </Box>
+
+        {/* Telefon */}
         <Box className="flex flex-col w-full">
           <Typography>Telefon</Typography>
           <Stack direction="row" spacing={2} width="100%">
             <FormControl variant="outlined" className="w-1/4">
               <Select
                 value={phoneCode}
-                onChange={handlePhoneCodeChange}
                 startAdornment={
                   <InputAdornment position="start">+</InputAdornment>
                 }
                 className="h-12 rounded-lg"
+                onChange={(e) => setPhoneCode(e.target.value)} 
               >
                 {phoneCodes.map((code, index) => (
                   <MenuItem key={index} value={code}>
@@ -99,28 +126,40 @@ const Kisisel = () => {
               variant="outlined"
               placeholder="555 55 55"
               value={phoneNumber}
-              onChange={handlePhoneNumberChange}
+              onChange={(e) => setPhoneNumber(e.target.value)}
               InputProps={{
                 sx: placeholderStyles,
               }}
             />
           </Stack>
         </Box>
+
+        {/* E-posta */}
         <Box className="flex flex-col w-full">
           <Typography>E-posta</Typography>
           <TextField
             fullWidth
             variant="outlined"
             placeholder="example@gmail.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             inputProps={{
               sx: placeholderStyles,
             }}
           />
         </Box>
+
+        {/* Doğum Tarihi */}
         <Box className="flex flex-col w-full">
           <Typography className="text-secondary-500">Doğum Tarihi</Typography>
-          <DatePicker sx={{ color: "primary" }} />
+          <DatePicker
+            value={birthDate}
+            onChange={(newDate) => setBirthDate(newDate)}
+            sx={{ color: "primary" }}
+          />
         </Box>
+
+        {/* Ülke ve Şehir */}
         <Box className="flex flex-row justify-between items-center w-full gap-2">
           <Box
             className="flex flex-col justify-between items-start w-1/2"
@@ -152,19 +191,26 @@ const Kisisel = () => {
               fullWidth
               variant="outlined"
               value={selectedCity}
-              onChange={handleCityChange}
+              onChange={(e) => setSelectedCity(e.target.value)}
             >
               {cities.map((city, index) => (
-                <MenuItem
-                  key={index}
-                  value={city}
-                  className="hover:bg-primary-50"
-                >
+                <MenuItem key={index} value={city}>
                   {city}
                 </MenuItem>
               ))}
             </TextField>
           </Box>
+        </Box>
+
+        
+        <Box className="flex justify-end w-full mt-4">
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={handleSave}
+          >
+            Tamamla
+          </Button>
         </Box>
       </Box>
     </Box>

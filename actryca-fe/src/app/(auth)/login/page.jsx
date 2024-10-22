@@ -13,10 +13,11 @@ import useAuthStore from "@/store/auth-store";
 import { useRouter } from "next/navigation";
 import { CircularProgress } from "@mui/material";
 import AlertBox from "@/components/ui/AlertBox";
-import ForgetPassword from "@/components/auth/forgetPassword/ForgetPassword";
-import VerificationCode from "../../../components/auth/forgetPassword/VerificationCode";
-import NewPassword from "@/components/auth/forgetPassword/NewPassword";
-import UpdatedPassword from "@/components/auth/forgetPassword/UpdatedPassword";
+import ForgetPassword from "@/components/auth/forget-password/ForgetPassword";
+import VerificationCode from "@/components/auth/forget-password/VerificationCode";
+import NewPassword from "@/components/auth/forget-password/NewPassword";
+import UpdatedPassword from "@/components/auth/forget-password/UpdatedPassword";
+
 
 export default function Page() {
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -293,7 +294,7 @@ export default function Page() {
           onClose={handleDialogClose}
           onBack={handleUpdatedPasswordBack}
           onContinue={handleUpdatedPasswordContinue}
-        />{" "}
+        />
         {/* add updated password dialog */}
       </Grid>
     </>

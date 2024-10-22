@@ -14,7 +14,8 @@ import { getCode } from "@/services/password";
 import AlertBox from "@/components/ui/AlertBox";
 import usePasswordStore from "@/store/password-store";
 
-export default function ForgetPassword({ open, onClose, onContinue }) {
+const ForgetPassword = ({ open, onClose, onContinue }) => {
+  const setEmail = usePasswordStore((state) => state.setEmail);
   const [alertProps, setAlertProps] = React.useState({
     open: false,
     message: "",
@@ -31,7 +32,7 @@ export default function ForgetPassword({ open, onClose, onContinue }) {
       if (!data?.error) {
         setTimeout(() => {
           onContinue();
-        }, 2000);
+        }, 1000);
       } else {
         alertProps.severity = "error";
         alertProps.message = "Login failed: Access token is missing.";
@@ -67,6 +68,7 @@ export default function ForgetPassword({ open, onClose, onContinue }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    setEmail(data.get("identifier"));
     const userData = {
       identifier: data.get("identifier"),
     };
@@ -88,6 +90,7 @@ export default function ForgetPassword({ open, onClose, onContinue }) {
           padding: "12px",
         },
       }}
+      disableScrollLock
     >
       <AlertBox alertProps={alertProps} />
       <div className="w-full h-full bg-white relative ">
@@ -161,4 +164,6 @@ export default function ForgetPassword({ open, onClose, onContinue }) {
       </div>
     </Dialog>
   );
-}
+};
+
+export default ForgetPassword;

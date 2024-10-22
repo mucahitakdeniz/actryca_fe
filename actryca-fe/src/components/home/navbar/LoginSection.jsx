@@ -12,6 +12,7 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import {
+  Bell,
   Bookmark,
   BookOpenText,
   LogOut,
@@ -77,10 +78,10 @@ const LoginSection = () => {
         {user ? (
           <div className="center">
             <IconButton className="text-primary-900">
-              <Bookmark strokeWidth={1.5} />
+              <Bell strokeWidth={1.5} />
             </IconButton>
             <Typography className="text-primary-900 ml-3">
-              {user?.data?.user_name || "?"}
+              {user?.user?.user_name || "?"}
             </Typography>
             <IconButton
               aria-label="account of current user"
@@ -90,7 +91,7 @@ const LoginSection = () => {
               color="inherit"
             >
               <Avatar className="bg-primary-100 text-primary-900">
-                {user?.data?.user_name.toUpperCase()[0] || "?"}
+                {user?.user?.user_name.toUpperCase()[0] || "?"}
               </Avatar>
             </IconButton>
             <Menu
@@ -106,6 +107,7 @@ const LoginSection = () => {
               }}
               open={Boolean(anchorEl)}
               onClose={handleClose}
+              disableScrollLock
             >
               <MenuItem
                 className="hover:bg-primary-50 rounded-lg m-2"
@@ -159,11 +161,11 @@ const LoginSection = () => {
           </div>
         ) : (
           <Box display="flex" alignItems="center" gap={1}>
-            <Button className="px-8 py-4 font-sans font-bold h-12">
+            <Button variant="outlined" sx={{ width: 100 }}>
               <Link href="/login">Giriş Yap</Link>
             </Button>
 
-            <Button className="px-8 py-4 font-sans font-bold h-12 bg-primary-600 text-white hover:bg-primary-500">
+            <Button variant="contained" sx={{ width: 100 }}>
               <Link href="/register">Üye Ol</Link>
             </Button>
           </Box>
