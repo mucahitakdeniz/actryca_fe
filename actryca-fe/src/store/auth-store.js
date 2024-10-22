@@ -15,7 +15,12 @@ const useAuthStore = create(
       setStatus: (status) => set({ status }),
       setPersonalInfo: (info) => set({ personalInfo: info }),
       setEducationSkills: (data) => set({ educationSkills: data }),
-      setProfessionalInfo: (data) => set({ professionalInfo: data }),
+      setProfessionalInfo: (data) => set((state) => ({
+        professionalInfo: {
+          ...state.professionalInfo,
+          ...data,
+        }
+      })),
       resetForm: () => set({ personalInfo: {}, educationSkills: {}, professionalInfo: {} }),
       logout: () => set({ user: null, tokens: null, status: null, personalInfo: {} }), 
     }),

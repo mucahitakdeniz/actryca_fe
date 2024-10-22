@@ -62,6 +62,8 @@ export default function ActorRegister() {
       ...professionalInfo,
     };
   
+    console.log("API'ye Gönderilecek Veri:", formData); 
+  
     try {
       const response = await registerActor(formData); 
       console.log("Kayıt başarılı:", response.data);
@@ -69,6 +71,7 @@ export default function ActorRegister() {
       console.error("Kayıt hatası:", error);
     }
   };
+  
   
 
   const handleNext = () => {

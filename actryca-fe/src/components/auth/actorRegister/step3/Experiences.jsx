@@ -12,14 +12,8 @@ const Experiences = ({ onSave }) => {
   };
 
   const handleSaveProjects = (projects) => {
-    console.log("Saved Projects:", projects); 
     setExperiences(projects); 
-    onSave({ projects: projects }); 
-  };
-
-  const handleSaveVideo = (videoFile) => {
-    setExperiences((prev) => ({ ...prev, video: videoFile }));
-    onSave({ video: videoFile });
+    onSave({ projects }); 
   };
 
   return (
@@ -36,7 +30,7 @@ const Experiences = ({ onSave }) => {
           <FormControlLabel value="hayir" control={<Radio />} label="Hayır" />
         </RadioGroup>
         {selectedOption === 'evet' && <SelectedYes onSaveProjects={handleSaveProjects} />}
-        {selectedOption === 'hayir' && <SelectedNo onSaveVideo={handleSaveVideo} />}
+        {selectedOption === 'hayir' && <SelectedNo />}
       </Box>
     </Box>
   );

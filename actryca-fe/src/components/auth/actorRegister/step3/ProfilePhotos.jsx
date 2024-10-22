@@ -28,7 +28,7 @@ const ProfilePhotos = ({ onSave }) => {
       <Typography className=" text-primary-900 font-dm-serif-text text-[18px] font-bold leading-6">
         Profil Fotoğrafı:
       </Typography>
-      <Box className="flex flex-row justify-center items-center gap-[54px] px-8 py-10 border border-primary-100 rounded-2xl">
+      <Box className="flex flex-row  w-[519px] justify-center items-center gap-[54px] px-8 py-10 border border-primary-100 rounded-2xl">
         <Box className="flex flex-col justify-center items-center h-[182px]  px-20 py-4 gap-[21px] border border-primary-100 rounded-2xl relative overflow-hidden">
           {selectedImage ? (
             <>
@@ -90,6 +90,9 @@ const ProfilePhotos = ({ onSave }) => {
             </>
           )}
         </Box>
+        <Typography className="text-[#f42500] font-sans text-[14px] italic font-medium leading-[130%]">
+        Yüzünüz net bir şekilde görünmelidir.
+        </Typography>
       </Box>
     </Box>
   );
