@@ -3,7 +3,7 @@ import { Box, Typography, Radio, RadioGroup, FormControlLabel } from '@mui/mater
 import ManagementYes from './managementSelect/ManagementYes';
 import ManagementNo from './managementSelect/ManagementNo';
 
-const ManagementInformation = ({ onSave }) => { 
+const ManagementInformation = ({ onSave }) => {
   const [selectedOption, setSelectedOption] = useState('');
 
   const handleOptionChange = (event) => {
@@ -11,7 +11,7 @@ const ManagementInformation = ({ onSave }) => {
   };
 
   const handleSaveManager = (data) => {
-    onSave(data); 
+    onSave({ management: data.manager_name }); 
   };
 
   return (
