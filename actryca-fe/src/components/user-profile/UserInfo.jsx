@@ -3,7 +3,7 @@ import React from "react";
 import { Box, Typography, Paper, TextField, Button } from "@mui/material";
 import useAuthStore from "@/store/auth-store";
 
-const Profile = () => {
+const UserInfo = () => {
   const { user } = useAuthStore();
 
   return (
@@ -38,7 +38,7 @@ const Profile = () => {
               defaultValue={user?.user?.user_name || "Ad Bilgisi Yok"}
               variant="outlined"
               fullWidth
-              InputProps={{ disableUnderline: true }}
+              InputProps={{ disableunderline: true }}
             />
           </Box>
 
@@ -53,7 +53,7 @@ const Profile = () => {
               defaultValue={user?.user?.email || "Email Bilgisi Yok"}
               variant="outlined"
               fullWidth
-              InputProps={{ disableUnderline: true }}
+              InputProps={{ disableunderline: true }}
             />
           </Box>
 
@@ -68,7 +68,7 @@ const Profile = () => {
               defaultValue={user?.user?.phone || "+90 000 00 00"}
               variant="outlined"
               fullWidth
-              InputProps={{ disableUnderline: true }}
+              InputProps={{ disableunderline: true }}
             />
           </Box>
 
@@ -81,4 +81,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default UserInfo;
