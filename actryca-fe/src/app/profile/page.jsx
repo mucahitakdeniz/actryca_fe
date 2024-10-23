@@ -1,25 +1,37 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Grid, Box, List, ListItem, ListItemText, Avatar } from "@mui/material";
+import {
+  Grid,
+  Box,
+  List,
+  Avatar,
+  Typography,
+  ListItem,
+  ListItemText,
+} from "@mui/material";
 import useAuthStore from "@/store/auth-store";
 import { useRouter, useSearchParams, redirect } from "next/navigation";
-import Profile from "@/components/user-profile/Profile";
 import Movements from "@/components/user-profile/Movements";
 import { LogOut, Settings, SquareActivity, UserCog } from "lucide-react";
 import SettingsContent from "@/components/user-profile/SettingsContent";
 import LogoutDialog from "@/components/ui/LogoutDialog";
+import UserInfo from "@/components/user-profile/UserInfo";
+import MemberInfo from "@/components/user-profile/MemberInfo";
+import PersonalInfo from "@/components/user-profile/PersonalInfo";
+import EducationInfo from "@/components/user-profile/EducationInfo";
+import ProfessionalInfo from "@/components/user-profile/ProfessionalInfo";
 
 const Page = () => {
   const { user, logout } = useAuthStore();
-  const [activeTab, setActiveTab] = useState("profile");
+  const [activeTab, setActiveTab] = useState("memberInfo");
   const [openLogoutDialog, setOpenLogoutDialog] = useState(false);
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  if (!user) {
+  /*   if (!user) {
     redirect("/login");
   }
-
+ */
   useEffect(() => {
     const tab = searchParams.get("tab");
     tab && setActiveTab(tab);
@@ -35,11 +47,11 @@ const Page = () => {
     setOpenLogoutDialog(false);
   };
 
-  const menuClass =
-    "hover:bg-primary-50 rounded-lg m-2 flex gap-3 text-primary-500 active:font-bold";
+  const getClassName = (tab) =>
+    activeTab === tab ? "text-primary-900 font-bold" : "text-primary-500";
 
   return (
-    <Grid container spacing={4} sx={{ my: 8 }}>
+    <Grid container spacing={4} sx={{ my: 8 }} >
       {/* Sol menü */}
       <Grid
         item
@@ -60,137 +72,87 @@ const Page = () => {
             src={user?.avatar || "/default-avatar.png"}
             alt="User Avatar"
             sx={{ width: 150, height: 150, mb: 2 }}
-            className="bg-primary-100 text-primary-900 text-6xl"
           >
             {user?.user?.user_name.toUpperCase()[0] || "?"}
           </Avatar>
           <List component="nav">
             <Box className="my-6 py-6 border-y border-y-primary-50 ">
-              <ListItem
-                button
-                onClick={() => setActiveTab("profile")}
-                className={`${menuClass}`}
-              >
-                <UserCog strokeWidth={1.5} />
+              <ListItem button onClick={() => setActiveTab("memberInfo")}>
+                <UserCog
+                  strokeWidth={1.5}
+                  className={getClassName("memberInfo")}
+                />
                 <ListItemText
                   primary="Kullanıcı Bilgileri"
-                  className={
-                    activeTab === "profile"
-                      ? "text-primary-800 font-bold"
-                      : "text-primary-600"
-                  }
+                  className={`ml-2 ${getClassName("memberInfo")}`}
                 />
               </ListItem>
 
-              <ListItem
-                button
-                onClick={() => setActiveTab("profile")}
-                className={`${menuClass}`}
-              >
+              <ListItem button onClick={() => setActiveTab("memberInfo")}>
                 <ListItemText
-                  primary="Kullanıcı Bilgileri"
-                  className={`ml-9 ${
-                    activeTab === "profile"
-                      ? "text-primary-800 font-bold"
-                      : "text-primary-600"
-                  }`}
+                  primary="Üyelik Bilgileri"
+                  className={`ml-8 ${getClassName("memberInfo")}`}
                 />
               </ListItem>
-              <ListItem
-                button
-                onClick={() => setActiveTab("profile")}
-                className={`${menuClass}`}
-              >
+
+              <ListItem button onClick={() => setActiveTab("personalInfo")}>
                 <ListItemText
-                  primary="Kişisel Bilgileri"
-                  className={`ml-9 ${
-                    activeTab === "profile"
-                      ? "text-primary-800 font-bold"
-                      : "text-primary-600"
-                  }`}
+                  primary="Kişisel Bilgiler"
+                  className={`ml-8 ${getClassName("personalInfo")}`}
                 />
               </ListItem>
-              <ListItem
-                button
-                onClick={() => setActiveTab("profile")}
-                className={`${menuClass}`}
-              >
+
+              <ListItem button onClick={() => setActiveTab("educationInfo")}>
                 <ListItemText
                   primary="Eğitim ve Yetenekler"
-                  className={`ml-9 ${
-                    activeTab === "profile"
-                      ? "text-primary-800 font-bold"
-                      : "text-primary-600"
-                  }`}
-                />
-              </ListItem>
-              <ListItem
-                button
-                onClick={() => setActiveTab("profile")}
-                className={`${menuClass}`}
-              >
-                <ListItemText
-                  primary="Profesyonel Bilgiler"
-                  className={`ml-9 ${
-                    activeTab === "profile"
-                      ? "text-primary-800 font-bold"
-                      : "text-primary-600"
-                  }`}
+                  className={`ml-8 ${getClassName("educationInfo")}`}
                 />
               </ListItem>
 
-              <ListItem
-                button
-                onClick={() => setActiveTab("movements")}
-                className={`${menuClass} `}
-              >
-                <SquareActivity strokeWidth={1.5} />
+              <ListItem button onClick={() => setActiveTab("professionalInfo")}>
                 <ListItemText
-                  primary="Hareketlerin"
-                  className={
-                    activeTab === "movements"
-                      ? "text-primary-800 font-bold"
-                      : "text-primary-600"
-                  }
+                  primary="Profesyonel Bilgiler"
+                  className={`ml-8 ${getClassName("professionalInfo")}`}
                 />
               </ListItem>
-              <ListItem
-                button
-                onClick={() => setActiveTab("settings")}
-                className={`${menuClass}`}
-              >
-                <Settings strokeWidth={1.5} />
+
+              <ListItem button onClick={() => setActiveTab("movements")}>
+                <SquareActivity
+                  strokeWidth={1.5}
+                  className={getClassName("memberInfo")}
+                />
+                <ListItemText
+                  primary="Hareketlerin"
+                  className={`ml-2 ${getClassName("movements")}`}
+                />
+              </ListItem>
+
+              <ListItem button onClick={() => setActiveTab("settings")}>
+                <Settings
+                  strokeWidth={1.5}
+                  className={getClassName("memberInfo")}
+                />
                 <ListItemText
                   primary="Ayarlar"
-                  className={
-                    activeTab === "settings"
-                      ? "text-primary-800 font-bold"
-                      : "text-primary-600"
-                  }
+                  className={`ml-2 ${getClassName("settings")}`}
                 />
               </ListItem>
             </Box>
-            <ListItem
-              button
-              onClick={() => setOpenLogoutDialog(true)}
-              className={menuClass}
-            >
+
+            <ListItem button onClick={() => setOpenLogoutDialog(true)}>
               <LogOut strokeWidth={1.5} />
-              <ListItemText primary="Çıkış Yap" className="font-bold" />
+              <ListItemText primary="Çıkış Yap" className="font-bold ml-2" />
             </ListItem>
           </List>
         </Box>
       </Grid>
 
       {/* Sağ ana içerik */}
-      <Grid
-        item
-        xs={10}
-        md={7}
-        lg={8}
-        className="mx-auto flex flex-col items-start gap-[56px]"
-      >
-        {activeTab === "profile" && <Profile />}
+      <Grid item xs={10} md={7} lg={8} className="mx-auto">
+        {activeTab === "memberInfo" && <MemberInfo />}
+        {activeTab === "personalInfo" && <PersonalInfo className="bg-red-200"/>}
+        {activeTab === "educationInfo" && <EducationInfo />}
+        {activeTab === "professionalInfo" && <ProfessionalInfo />}
         {activeTab === "movements" && <Movements />}
         {activeTab === "settings" && <SettingsContent />}
       </Grid>
