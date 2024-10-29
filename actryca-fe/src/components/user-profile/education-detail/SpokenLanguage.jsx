@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, TextField, Button, Typography, Select, MenuItem, Chip, Autocomplete, InputAdornment } from '@mui/material';
+import { Box, TextField, Button, Typography, Select, MenuItem, Chip, Autocomplete, InputAdornment, Paper } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
 import useAuthStore from '@/store/auth-store';
@@ -60,16 +60,23 @@ const SpokenLanguage = () => {
   };
 
   return (
-    <Box className="w-full">
-      <Typography className="mb-2 text-primary-900 font-dm-serif-text text-[18px] font-bold leading-6">
+    <Paper elevation={3} className="p-8 rounded-lg">
+      <Typography
+        variant="h6"
+        className="text-primary-600 font-dm-sans text-[16px] font-semibold [leading-trim:both] [text-edge:cap] mb-6"
+      >
         Konuşulan Diller:
       </Typography>
-      <Box className="flex flex-col items-left gap-6 padding py-10 px-8 border border-primary-100 rounded-lg">
+      <Box className="flex flex-col items-left gap-6">
         <Box className="flex flex-wrap items-center gap-2">
           {selectedLanguages.map((language, index) => (
             <Chip
               key={index}
-              label={`${language.label} (${proficiencyLevels.find((level) => level.value === language.level)?.label})`}
+              label={`${language.label} (${
+                proficiencyLevels.find(
+                  (level) => level.value === language.level
+                )?.label
+              })`}
               onDelete={() => handleDelete(language)}
               variant="outlined"
               className="rounded-[4px] bg-primary-100 text-primary-900 text-[14px] font-normal"
@@ -78,9 +85,7 @@ const SpokenLanguage = () => {
         </Box>
         <Box className="flex flex-row gap-4 items-center">
           <Box className="flex flex-col gap-2">
-            <Typography>
-              Konuşulan Diller
-            </Typography>
+            <Typography>Konuşulan Diller</Typography>
             <Autocomplete
               options={languages}
               getOptionLabel={(option) => option.label}
@@ -114,9 +119,7 @@ const SpokenLanguage = () => {
             />
           </Box>
           <Box className="flex flex-col gap-2">
-            <Typography>
-              Seviye
-            </Typography>
+            <Typography>Seviye</Typography>
             <Select
               value={currentLevel}
               onChange={handleLevelChange}
@@ -142,11 +145,9 @@ const SpokenLanguage = () => {
           >
             Ekle
           </Button>
-
-
         </Box>
       </Box>
-    </Box>
+    </Paper>
   );
 };
 

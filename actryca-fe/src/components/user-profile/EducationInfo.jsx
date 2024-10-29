@@ -18,11 +18,13 @@ const EducationInfo = () => {
       </Typography>
 
       <Box className="w-full flex flex-1 gap-x-8">
-        <Box className="flex flex-col gap-y-8 w-1/2"><EducationSkills /><SpokenLanguage /></Box>
-        <Box className="w-1/2"><SpecialAbilities /></Box>
-        
-        
-        
+        <Box className="flex flex-col gap-y-8 w-1/2">
+          <EducationSkills />
+          <SpokenLanguage />
+        </Box>
+        <Box className="w-1/2">
+          <SpecialAbilities />
+        </Box>
       </Box>
     </div>
   );

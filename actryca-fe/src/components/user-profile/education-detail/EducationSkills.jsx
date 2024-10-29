@@ -97,57 +97,112 @@ const EducationSkills = () => {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <Paper elevation={3}>
-        <Typography className="mb-2 text-primary-900 font-dm-serif-text text-[18px] font-bold leading-6">Eğitim Bilgileri:</Typography>
-        <Box className="flex flex-col justify-end items-left gap-[26px] padding py-10 rounded-lg" id="education-skills">
-          {selectedOption === null || selectedOption === 'hayir' ? (
+      <Paper elevation={3} className="p-8 rounded-lg">
+        <Typography
+          variant="h6"
+          className="text-primary-600 font-dm-sans text-[16px] font-semibold [leading-trim:both] [text-edge:cap] mb-6"
+        >
+          Eğitimler
+        </Typography>
+        <Box
+          className="flex flex-col justify-end items-left"
+          id="education-skills"
+        >
+          {selectedOption === null || selectedOption === "hayir" ? (
             <Box className="flex flex-col justify-center items-start gap-8">
               <Typography className="text-primary-900 font-sans text-[16px] font-medium leading-6">
                 Oyunculukla ilgili bir eğitim aldınız mı?
               </Typography>
-              <RadioGroup row value={selectedOption} onChange={handleOptionChange} className="gap-3 w-full">
+              <RadioGroup
+                row
+                value={selectedOption}
+                onChange={handleOptionChange}
+                className="gap-3 w-full"
+              >
                 <FormControlLabel
                   value="evet"
                   control={<Radio />}
                   label="Evet"
-                  className={`border ${selectedOption === 'evet' ? 'border-primary-50' : 'border-gray-300'} rounded-[8px] px-3`}
+                  className={`border ${
+                    selectedOption === "evet"
+                      ? "border-primary-50"
+                      : "border-gray-300"
+                  } rounded-[8px] px-3`}
                 />
                 <FormControlLabel
                   value="hayir"
                   control={<Radio />}
                   label="Hayır"
-                  className={`border ${selectedOption === 'hayir' ? 'border-primary-100' : 'border-gray-300'} rounded-md px-3`}
+                  className={`border ${
+                    selectedOption === "hayir"
+                      ? "border-primary-100"
+                      : "border-gray-300"
+                  } rounded-md px-3`}
                 />
               </RadioGroup>
-              {selectedOption === 'hayir' && (
+              {selectedOption === "hayir" && (
                 <Box id="no">
-                  <Typography className="text-primary-600 font-sans text-[16px] font-medium leading-6">Eğitiminiz yoksa endişelenmeyin!</Typography>
+                  <Typography className="text-primary-600 font-sans text-[16px] font-medium leading-6">
+                    Eğitiminiz yoksa endişelenmeyin!
+                  </Typography>
                   <Typography className="text-primary-900 font-sans text-[16px] font-400 leading-6">
-                    Oyunculuk kariyerinize başlamak için birçok farklı yol vardır. Formu doldurmaya devam ederek ilk adımı atın ve yeteneklerinizi keşfedin.
+                    Oyunculuk kariyerinize başlamak için birçok farklı yol
+                    vardır. Formu doldurmaya devam ederek ilk adımı atın ve
+                    yeteneklerinizi keşfedin.
                   </Typography>
                 </Box>
               )}
             </Box>
-          ) : selectedOption === 'evet' || selectedOption === 'saved' ? (
+          ) : selectedOption === "evet" || selectedOption === "saved" ? (
             <Box className="flex flex-col justify-center items-center gap-4">
               {educationDetails.map((edu, index) => (
-                <Box key={index} className="flex flex-col justify-center items-start w-full gap-3 px-8 py-10 border border-primary-100 rounded-lg bg-gray-50">
-                  <Typography className="text-primary-900 font-sans text-[16px] font-bold leading-6">{edu.education_name}</Typography>
-                  <Typography className="text-primary-900 font-sans text-[14px] font-medium leading-6">{edu.education_institution_name}</Typography>
-                  <Typography className="text-primary-900 font-sans text-[14px] italic font-normal leading-6">
-                    {`${edu.education_start_date ? new Date(edu.education_start_date).toLocaleDateString() : 'Başlangıç Tarihi'} - ${edu.education_end_date ? new Date(edu.education_end_date).toLocaleDateString() : 'Bitiş Tarihi'}`}
+                <Box
+                  key={index}
+                  className="flex flex-col justify-center items-start w-full gap-3 px-8 py-10 border border-primary-100 rounded-lg bg-gray-50"
+                >
+                  <Typography className="text-primary-900 font-sans text-[16px] font-bold leading-6">
+                    {edu.education_name}
                   </Typography>
-                  <Typography className="text-primary-900 font-sans text-[16px] font-normal leading-6">{edu.education_description}</Typography>
+                  <Typography className="text-primary-900 font-sans text-[14px] font-medium leading-6">
+                    {edu.education_institution_name}
+                  </Typography>
+                  <Typography className="text-primary-900 font-sans text-[14px] italic font-normal leading-6">
+                    {`${
+                      edu.education_start_date
+                        ? new Date(
+                            edu.education_start_date
+                          ).toLocaleDateString()
+                        : "Başlangıç Tarihi"
+                    } - ${
+                      edu.education_end_date
+                        ? new Date(edu.education_end_date).toLocaleDateString()
+                        : "Bitiş Tarihi"
+                    }`}
+                  </Typography>
+                  <Typography className="text-primary-900 font-sans text-[16px] font-normal leading-6">
+                    {edu.education_description}
+                  </Typography>
                   <Box className="flex justify-end w-full">
                     <Button color="primary" onClick={() => handleEdit(index)}>
-                      <Typography className="underline italic text-primary-900">Düzenle</Typography>
+                      <Typography className="underline italic text-primary-900">
+                        Düzenle
+                      </Typography>
                     </Button>
                   </Box>
                   <Box className="flex justify-between w-full">
-                    <Button variant="outlined" onClick={() => handleDelete(index)} className="px-3 py-[10px]">
+                    <Button
+                      variant="outlined"
+                      onClick={() => handleDelete(index)}
+                      className="px-3 py-[10px]"
+                    >
                       Sil
                     </Button>
-                    <Button variant="contained" color="primary" onClick={handleAddNew} className="px-3 py-[10px]">
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={handleAddNew}
+                      className="px-3 py-[10px]"
+                    >
                       Ekle
                     </Button>
                   </Box>
@@ -155,7 +210,9 @@ const EducationSkills = () => {
               ))}
 
               <Box className="w-full">
-                <Typography className="text-primary-900 text-sans text-[14px] font-medium leading-6">Eğitim Adı</Typography>
+                <Typography className="text-primary-900 text-sans text-[14px] font-medium leading-6">
+                  Eğitim Adı
+                </Typography>
                 <TextField
                   variant="outlined"
                   fullWidth
@@ -186,7 +243,10 @@ const EducationSkills = () => {
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   helperText={
-                    <FormHelperText className="text-red-500" style={{ textAlign: 'right' }}>
+                    <FormHelperText
+                      className="text-red-500"
+                      style={{ textAlign: "right" }}
+                    >
                       {150 - charCount} karakter kaldı
                     </FormHelperText>
                   }
@@ -196,19 +256,35 @@ const EducationSkills = () => {
               <Box className="flex gap-4 w-full pt-8">
                 <Box className="w-full">
                   <Typography>Başlangıç Tarihi</Typography>
-                  <DatePicker value={startDate} onChange={(newValue) => setStartDate(newValue)} renderInput={(params) => <TextField {...params} />} />
+                  <DatePicker
+                    value={startDate}
+                    onChange={(newValue) => setStartDate(newValue)}
+                    renderInput={(params) => <TextField {...params} />}
+                  />
                 </Box>
                 <Box className="w-full">
                   <Typography>Bitiş Tarihi</Typography>
-                  <DatePicker value={endDate} onChange={(newValue) => setEndDate(newValue)} renderInput={(params) => <TextField {...params} />} />
+                  <DatePicker
+                    value={endDate}
+                    onChange={(newValue) => setEndDate(newValue)}
+                    renderInput={(params) => <TextField {...params} />}
+                  />
                 </Box>
               </Box>
 
               <Box className="flex justify-between w-full">
-                <Button variant="outlined" color="primary" onClick={() => setSelectedOption(null)}>
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  onClick={() => setSelectedOption(null)}
+                >
                   Vazgeç
                 </Button>
-                <Button variant="contained" color="primary" onClick={handleSave}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={handleSave}
+                >
                   Kaydet
                 </Button>
               </Box>
