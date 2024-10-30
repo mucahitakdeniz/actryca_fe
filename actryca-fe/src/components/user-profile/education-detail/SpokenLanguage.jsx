@@ -1,20 +1,32 @@
-import React, { useState } from 'react';
-import { Box, TextField, Button, Typography, Select, MenuItem, Chip, Autocomplete, InputAdornment, Paper } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
+import React, { useState } from "react";
+import {
+  Box,
+  TextField,
+  Button,
+  Typography,
+  Select,
+  MenuItem,
+  Chip,
+  Autocomplete,
+  InputAdornment,
+  Paper,
+} from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
 
-import useAuthStore from '@/store/auth-store';
-import languages from '@/components/auth/actorRegister/languages';
+import useAuthStore from "@/store/auth-store";
+import languages from "@/components/auth/actorRegister/languages";
 
 const proficiencyLevels = [
-  { value: 'beginner', label: 'Başlangıç' },
-  { value: 'intermediate', label: 'Orta' },
-  { value: 'advanced', label: 'İleri' },
-  { value: 'native', label: 'Ana Dil' }
+  { value: "beginner", label: "Başlangıç" },
+  { value: "intermediate", label: "Orta" },
+  { value: "advanced", label: "İleri" },
+  { value: "native", label: "Ana Dil" },
 ];
 
 const SpokenLanguage = () => {
-
-  const [selectedLanguages, setSelectedLanguages] = useState([{ label: 'Türkçe', value: 'Turkish', level: 'native' }]);
+  const [selectedLanguages, setSelectedLanguages] = useState([
+    { label: "Türkçe", value: "Turkish", level: "native" },
+  ]);
   const [currentLanguage, setCurrentLanguage] = useState(null);
   const [currentLevel, setCurrentLevel] = useState(proficiencyLevels[0].value);
 
@@ -41,17 +53,20 @@ const SpokenLanguage = () => {
     if (currentLanguage) {
       const updatedLanguages = [
         ...selectedLanguages,
-        { label: currentLanguage.label, value: currentLanguage.value, level: currentLevel }
+        {
+          label: currentLanguage.label,
+          value: currentLanguage.value,
+          level: currentLevel,
+        },
       ];
       setSelectedLanguages(updatedLanguages);
-
 
       setLanguages({
         ...currentSkills,
         languages: updatedLanguages.map((lang) => ({
           language: lang.value,
-          proficiency: lang.level
-        }))
+          proficiency: lang.level,
+        })),
       });
 
       setCurrentLanguage(null);
@@ -97,14 +112,6 @@ const SpokenLanguage = () => {
                   variant="outlined"
                   label="Konuşulan Diller"
                   placeholder="Dil Ekle"
-                  InputProps={{
-                    ...params.InputProps,
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <SearchIcon className="text-primary-600" />
-                      </InputAdornment>
-                    ),
-                  }}
                 />
               )}
               ListboxProps={{
@@ -124,7 +131,7 @@ const SpokenLanguage = () => {
               value={currentLevel}
               onChange={handleLevelChange}
               variant="outlined"
-              className="bg-white border border-primary-100 rounded"
+              size="small"
               sx={{ minWidth: 120 }}
             >
               {proficiencyLevels.map((level, index) => (
@@ -139,10 +146,7 @@ const SpokenLanguage = () => {
             </Select>
           </Box>
 
-          <Button
-            onClick={addLanguage}
-            className="mt-6 py-2 px-4 bg-primary-500 text-white rounded hover:bg-primary-600"
-          >
+          <Button onClick={addLanguage} variant="contained" className="mt-6">
             Ekle
           </Button>
         </Box>

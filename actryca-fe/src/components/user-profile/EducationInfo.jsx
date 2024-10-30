@@ -10,11 +10,8 @@ const EducationInfo = () => {
       <Typography variant="h4" className="text-primary-900 font-dm-serif-text">
         Kullanıcı Bilgileri
       </Typography>
-      <Typography
-        variant="h5"
-        className="text-primary-900 font-dm-serif-text my-8"
-      >
-        Üyelik Bilgileri
+      <Typography variant="h5" className="text-primary-600 font-semibold my-4">
+        Eğitim ve Yetenekler
       </Typography>
 
       <Box className="w-full flex flex-1 gap-x-8">
