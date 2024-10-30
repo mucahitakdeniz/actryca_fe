@@ -23,8 +23,13 @@ const Movements = () => {
 
   return (
     <>
-      <Typography variant="h4">Hareketler</Typography>
-      <Paper elevation={3} sx={{ padding: 4, mt: 2, width: '100%' }}>
+      <Typography variant="h4" className="text-primary-900 font-dm-serif-text">
+        Hareketler
+      </Typography>
+      <Paper
+        elevation={3}
+        className="flex flex-col items-start gap-12 p-8 rounded-xl border border-primary-50"
+      >
         <Box sx={{ display: "flex", flexDirection: "column" }}>
           <Tabs
             value={activeTab}
@@ -36,20 +41,38 @@ const Movements = () => {
             <Tab
               label="Favoriler"
               value="favourite"
-              icon={<Bookmark  fill="#614B8B" color="#614B8B"/>}
-              iconPosition="start"  
+              icon={
+                activeTab == "favourite" ? (
+                  <Bookmark fill="#614B8B" color="#614B8B" />
+                ) : (
+                  <Bookmark />
+                )
+              }
+              iconPosition="start"
             />
             <Tab
               label="Değerlendirmeler"
               value="rating"
-              icon={<Star />}
-              iconPosition="start"  
+              icon={
+                activeTab == "rating" ? (
+                  <Star fill="#614B8B" color="#614B8B" />
+                ) : (
+                  <Star />
+                )
+              }
+              iconPosition="start"
             />
             <Tab
               label="Yorumlar"
               value="comments"
-              icon={<MessageCircle />}
-              iconPosition="start"  
+              icon={
+                activeTab == "comments" ? (
+                  <MessageCircle fill="#614B8B" color="#614B8B" />
+                ) : (
+                  <MessageCircle />
+                )
+              }
+              iconPosition="start"
             />
           </Tabs>
 
@@ -64,7 +87,7 @@ const Movements = () => {
             )}
             {activeTab === "comments" && (
               <Comments
-                actorsData={actorsData} 
+                actorsData={actorsData}
                 onEdit={handleEdit}
                 onDelete={handleDelete}
               />
