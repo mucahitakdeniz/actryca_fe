@@ -12,10 +12,7 @@ const MemberInfo = () => {
         Kullanıcı Bilgileri
       </Typography>
 
-      <Typography
-        variant="h5"
-        className="text-primary-900 font-dm-serif-text my-8"
-      >
+      <Typography variant="h5" className="text-primary-600 font-semibold my-4">
         Üyelik Bilgileri
       </Typography>
 

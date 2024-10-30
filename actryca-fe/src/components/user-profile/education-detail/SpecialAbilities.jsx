@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Typography, Button, TextField } from '@mui/material';
+import { Box, Typography, Button, TextField, Paper } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import useAuthStore from '@/store/auth-store';
 
@@ -64,14 +64,17 @@ const SpecialAbilities = () => {
   };
 
   return (
-    <Box>
-      <Typography className="mb-2 text-primary-900 font-dm-serif-text text-[18px] font-bold leading-6">
-        Özel Yetenekler:{" "}
+    <Paper elevation={3} className="p-8 rounded-lg">
+      <Typography
+        variant="h6"
+        className="text-primary-600 font-dm-sans text-[16px] font-semibold [leading-trim:both] [text-edge:cap] mb-6"
+      >
+        Özel Yetenekler:
         <span className="text-primary-900 text-[14px] italic leading-[130%] font-normal">
           (zorunlu değil)
         </span>
       </Typography>
-      <Box className="flex flex-col px-8 py-[22px] border border-primary-100 rounded-2xl gap-2">
+      <Box className="flex flex-col px-8 py-[22px]  rounded-2xl gap-2">
         {Object.keys(abilities).map((category, index) => (
           <Box
             key={index}
@@ -106,7 +109,7 @@ const SpecialAbilities = () => {
           </Box>
         ))}
       </Box>
-    </Box>
+    </Paper>
   );
 };
 

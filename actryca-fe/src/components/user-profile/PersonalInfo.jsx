@@ -107,10 +107,7 @@ const PersonalInfo = () => {
         Kullanıcı Bilgileri
       </Typography>
 
-      <Typography
-        variant="h5"
-        className="text-primary-900 font-dm-serif-text my-8"
-      >
+      <Typography variant="h5" className="text-primary-600 font-semibold my-4">
         Kişisel Bilgiler
       </Typography>
       <Box className="flex gap-8">
@@ -357,10 +354,10 @@ const PersonalInfo = () => {
             elevation={3}
             className="flex flex-col items-start gap-12 p-8 rounded-xl border border-primary-50"
           >
-            <Box className="flex flex-col gap-[10px] self-stretch">
+            <Box className="flex flex-col self-stretch">
               <Typography
                 variant="h6"
-                className="font-dm-serif-display font-bold"
+                className="text-primary-600 font-dm-sans text-[16px] font-semibold [leading-trim:both] [text-edge:cap] mb-6"
               >
                 Hakkımda:
               </Typography>
@@ -414,7 +411,11 @@ const PersonalInfo = () => {
                 </IconButton>
               </Box>
               <Box className="flex justify-end w-full">
-                <Button variant="contained" color="primary" onClick={handleSave}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={handleSave}
+                >
                   Tamamla
                 </Button>
               </Box>
