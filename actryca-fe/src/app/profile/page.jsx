@@ -51,7 +51,7 @@ const Page = () => {
     activeTab === tab ? "text-primary-900 font-bold" : "text-primary-500";
 
   return (
-    <Grid container spacing={4} sx={{ my: 8 }} >
+    <Grid container sx={{ my: 8 }} >
       {/* Sol menü */}
       <Grid
         item

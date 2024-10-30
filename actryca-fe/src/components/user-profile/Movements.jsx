@@ -23,7 +23,7 @@ const Movements = () => {
 
   return (
     <>
-      <Typography variant="h4" className="text-primary-900 font-dm-serif-text">
+      <Typography variant="h4" className="text-primary-900 font-dm-serif-text mb-8">
         Hareketler
       </Typography>
       <Paper
