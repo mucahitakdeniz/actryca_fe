@@ -15,7 +15,7 @@ export const register = async (userData) => {
 export const login = async (userData) => {
   try {
     const response = await axios.post(`${url}auth/login`, userData);
-    console.log(response.data.accessToken);
+    console.log(response);
     return response.data;
   } catch (error) {
     throw error;
@@ -24,13 +24,13 @@ export const login = async (userData) => {
 
 export const selectStatus = async (status) => {
   try {
-    const { tokens } = useAuthStore.getState(); 
+    const { tokens } = useAuthStore.getState();
     const response = await axios.post(
       `${url}auth/selectstatus`,
       { status },
       {
         headers: {
-          Authorization: `Bearer ${tokens}`, 
+          Authorization: `Bearer ${tokens}`,
         },
       }
     );
@@ -42,10 +42,10 @@ export const selectStatus = async (status) => {
 
 export const registerActor = async (actorData) => {
   try {
-    const { tokens } = useAuthStore.getState(); 
+    const { tokens } = useAuthStore.getState();
     const response = await axios.post(`${url}actors/register`, actorData, {
       headers: {
-        Authorization: `Bearer ${tokens}`, 
+        Authorization: `Bearer ${tokens}`,
       },
     });
     return response.data;

@@ -6,9 +6,9 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { login } from "@/services/auth";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import useAuthStore from "@/store/auth-store";
 import { useRouter } from "next/navigation";
 import { CircularProgress } from "@mui/material";
@@ -17,14 +17,17 @@ import ForgetPassword from "@/components/auth/forget-password/ForgetPassword";
 import VerificationCode from "@/components/auth/forget-password/VerificationCode";
 import NewPassword from "@/components/auth/forget-password/NewPassword";
 import UpdatedPassword from "@/components/auth/forget-password/UpdatedPassword";
-
+import { getUserData } from "@/services/user";
+import useUserStore from "@/store/user-store";
 
 export default function Page() {
+  const setUserData = useUserStore((state) => state.setUserData);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [verificationDialogOpen, setVerificationDialogOpen] = useState(false);
   const [newPasswordDialogOpen, setNewPasswordDialogOpen] = useState(false);
   const [updatedPasswordDialogOpen, setUpdatedPasswordDialogOpen] =
     useState(false);
+  const [userId, setUserId] = useState(null);
   const [alertProps, setAlertProps] = useState({
     open: false,
     message: "",
@@ -37,6 +40,12 @@ export default function Page() {
   const handleAlertClose = () => {
     setAlertProps((prev) => ({ ...prev, open: false }));
   };
+
+  const { data: userData, refetch: fetchUserData } = useQuery({
+    queryKey: ["userData", userId],
+    queryFn: () => getUserData(userId),
+    enabled: false,
+  });
 
   const { mutate, isPending, isError, error } = useMutation({
     mutationFn: login,
@@ -57,6 +66,18 @@ export default function Page() {
       } else {
         alertProps.severity = "error";
         alertProps.message = "Login failed: Access token is missing.";
+      }
+
+      const userId = data?.user?._id;
+      console.log(data);
+
+      if (userId) {
+        fetchUserData(userId).then((userData) => {
+          console.log(userData);
+          
+          setUserData(userData);
+          router.push("/profile");
+        });
       }
 
       setAlertProps(alertProps);
@@ -85,6 +106,12 @@ export default function Page() {
       });
     },
   });
+
+  useEffect(() => {
+    if (userId) {
+      fetchUserData();
+    }
+  }, [userId]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
