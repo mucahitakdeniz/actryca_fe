@@ -1,13 +1,64 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { Box, Typography, Paper, TextField, Button } from "@mui/material";
 import useAuthStore from "@/store/auth-store";
+import { useMutation } from "@tanstack/react-query";
+import { userUpdatePut } from "@/services/user";
+import AlertBox from "../ui/AlertBox";
+import useUserStore from "@/store/user-store";
 
 const MemberInfo = () => {
   const { user } = useAuthStore();
+  const userData = useUserStore((state) => state.userData);
+  console.log(userData);
+
+  const [formData, setFormData] = useState({
+    user_name: user?.user?.user_name || "",
+    email: user?.user?.email || "",
+    phone: user?.user?.phone || "",
+  });
+
+  const [alertProps, setAlertProps] = useState({
+    open: false,
+    message: "",
+    severity: "info",
+  });
+
+  const updateUserMutation = useMutation({
+    mutationFn: (updatedData) => userUpdatePut(user?.user?._id, updatedData),
+    onSuccess: () => {
+      setAlertProps({
+        open: true,
+        message: "Bilgiler başarıyla güncellendi!",
+        severity: "success",
+      });
+    },
+    onError: (error) => {
+      console.log(error);
+      setAlertProps({
+        open: true,
+        message: "Güncelleme işlemi başarısız oldu!",
+        severity: "error",
+      });
+    },
+  });
+
+  const handleUpdate = () => {
+    updateUserMutation.mutate(formData);
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleAlertClose = () => {
+    setAlertProps((prev) => ({ ...prev, open: false }));
+  };
 
   return (
     <>
+      <AlertBox alertProps={alertProps} handleAlertClose={handleAlertClose} />
       <Typography variant="h4" className="text-primary-900 font-dm-serif-text">
         Kullanıcı Bilgileri
       </Typography>
@@ -36,10 +87,11 @@ const MemberInfo = () => {
               Kullanıcı Adı
             </Typography>
             <TextField
-              defaultValue={user?.user?.user_name || "Ad Bilgisi Yok"}
+              name="user_name"
+              value={user?.user?.user_name}
+              onChange={handleInputChange}
               variant="outlined"
               fullWidth
-              InputProps={{ disableunderline: true }}
             />
           </Box>
 
@@ -51,10 +103,11 @@ const MemberInfo = () => {
               E-posta
             </Typography>
             <TextField
-              defaultValue={user?.user?.email || "Email Bilgisi Yok"}
+              name="email"
+              value={user?.user?.email}
+              onChange={handleInputChange}
               variant="outlined"
               fullWidth
-              InputProps={{ disableunderline: true }}
             />
           </Box>
 
@@ -66,14 +119,20 @@ const MemberInfo = () => {
               Telefon Numarası
             </Typography>
             <TextField
-              defaultValue={user?.user?.phone || "+90 000 00 00"}
+              name="phone"
+              value={user?.user?.phone}
+              onChange={handleInputChange}
               variant="outlined"
               fullWidth
-              InputProps={{ disableunderline: true }}
             />
           </Box>
 
-          <Button variant="contained" color="primary" className="w-full">
+          <Button
+            variant="contained"
+            color="primary"
+            className="w-full"
+            onClick={handleUpdate}
+          >
             Güncelle
           </Button>
         </Box>

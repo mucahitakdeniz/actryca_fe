@@ -5,17 +5,15 @@ import {
   Box,
   List,
   Avatar,
-  Typography,
   ListItem,
   ListItemText,
 } from "@mui/material";
 import useAuthStore from "@/store/auth-store";
-import { useRouter, useSearchParams, redirect } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Movements from "@/components/user-profile/Movements";
 import { LogOut, Settings, SquareActivity, UserCog } from "lucide-react";
 import SettingsContent from "@/components/user-profile/SettingsContent";
 import LogoutDialog from "@/components/ui/LogoutDialog";
-import UserInfo from "@/components/user-profile/UserInfo";
 import MemberInfo from "@/components/user-profile/MemberInfo";
 import PersonalInfo from "@/components/user-profile/PersonalInfo";
 import EducationInfo from "@/components/user-profile/EducationInfo";

@@ -31,6 +31,7 @@ const ProfessionalInfo = () => {
                 width={200}
                 height={150}
                 className="rounded-xl w-full h-full bg-cover"
+                alt=""
               />
             </Box>
           </Paper>
@@ -77,12 +78,14 @@ const ProfessionalInfo = () => {
                 width={200}
                 height={150}
                 className="rounded-xl w-40 h-40 bg-cover"
+                alt=""
               />
               <Image
                 src="/images/artists/actor1.jfif"
                 width={200}
                 height={150}
                 className="rounded-xl w-40 h-40 bg-cover"
+                alt=""
               />
             </Box>
           </Paper>
