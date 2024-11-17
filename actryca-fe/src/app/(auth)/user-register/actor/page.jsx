@@ -66,7 +66,7 @@ export default function ActorRegister() {
   
     try {
       const response = await registerActor(formData); 
-      console.log("Kayıt başarılı:", response.data);
+      console.log("Kayıt başarılı:", response);
     } catch (error) {
       console.error("Kayıt hatası:", error);
     }

@@ -157,7 +157,7 @@ const Page = () => {
       <Grid container rowSpacing={4} className="flex justify-evenly w-full ">
         {paginatedData.map((actor, index) => (
           <Grid item key={index}>
-            <ActorCard actor={actor} />,,0,
+            <ActorCard actor={actor} />
           </Grid>
         ))}
       </Grid>
