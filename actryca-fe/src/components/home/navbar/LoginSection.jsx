@@ -147,7 +147,7 @@ const LoginSection = () => {
               </MenuItem>
               <MenuItem
                 className="hover:bg-primary-50 rounded-lg m-2 gap-4 "
-                onClick={() => setOpenLogoutDialog(true)}
+                onClick={handleLogout}
               >
                 <LogOut strokeWidth={1.5} />
                 Çıkış Yap

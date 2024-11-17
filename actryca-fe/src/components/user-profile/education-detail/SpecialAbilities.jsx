@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Typography, Button, TextField } from '@mui/material';
+import { Box, Typography, Button, TextField, Paper } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import useAuthStore from '@/store/auth-store';
 
@@ -30,27 +30,26 @@ const SpecialAbilities = () => {
 
   const handleAddAbility = (category) => (event) => {
     if (event.key === 'Enter' && inputValues[category].trim()) {
-      const updatedAbilities = {
-        ...abilities,
-        [category]: [...abilities[category], inputValues[category].trim()],
-      };
-      setAbilities(updatedAbilities);
-  
+      setAbilities((prev) => ({
+        ...prev,
+        [category]: [...prev[category], inputValues[category].trim()],
+      }));
+
       setInputValues({
         ...inputValues,
         [category]: '',
       });
-  
+
+      
       setSpecialAbilities({
         ...currentSkills,
-        musical_instrument: updatedAbilities['Müzik Aleti'],
-        sport: updatedAbilities['Spor'],
-        performing_arts: updatedAbilities['Sahne Sanatları'],
-        dance: updatedAbilities['Dans'],
+        musical_instrument: [...abilities['Müzik Aleti'], inputValues['Müzik Aleti'].trim()],
+        sport: [...abilities['Spor'], inputValues['Spor'].trim()],
+        performing_arts: [...abilities['Sahne Sanatları'], inputValues['Sahne Sanatları'].trim()],
+        dance: [...abilities['Dans'], inputValues['Dans'].trim()],
       });
     }
   };
-  
 
   const handleDelete = (category, ability) => {
     setAbilities((prev) => ({
@@ -65,14 +64,17 @@ const SpecialAbilities = () => {
   };
 
   return (
-    <Box>
-      <Typography className="mb-2 text-primary-900 font-dm-serif-text text-[18px] font-bold leading-6">
-        Özel Yetenekler:{" "}
+    <Paper elevation={3} className="p-8 rounded-lg">
+      <Typography
+        variant="h6"
+        className="text-primary-600 font-dm-sans text-[16px] font-semibold [leading-trim:both] [text-edge:cap] mb-6"
+      >
+        Özel Yetenekler:
         <span className="text-primary-900 text-[14px] italic leading-[130%] font-normal">
           (zorunlu değil)
         </span>
       </Typography>
-      <Box className="flex flex-col px-8 py-[22px] border border-primary-100 rounded-2xl gap-2">
+      <Box className="flex flex-col px-8 py-[22px]  rounded-2xl gap-2">
         {Object.keys(abilities).map((category, index) => (
           <Box
             key={index}
@@ -107,7 +109,7 @@ const SpecialAbilities = () => {
           </Box>
         ))}
       </Box>
-    </Box>
+    </Paper>
   );
 };
 

@@ -128,6 +128,7 @@ const Page = () => {
                 borderBottom: "none",
               },
             }}
+          
           >
             <InputLabel>Sırala</InputLabel>
             <Select
@@ -135,6 +136,7 @@ const Page = () => {
               onChange={handleSortChange}
               label="Sırala"
               className="h-10"
+              disableScrollLock
             >
               <MenuItem className="hover:bg-primary-100" value="newest">
                 En Yeni
@@ -169,7 +171,12 @@ const Page = () => {
         />
       </Stack>
 
-      <Modal open={open} onClose={handleClose} className="center">
+      <Modal
+        open={open}
+        onClose={handleClose}
+        className="center"
+        disableScrollLock
+      >
         <Box className="bg-white w-3/5 rounded-2xl p-8 flex flex-col gap-4">
           <Typography variant="h6" className="text-center mb-4">
             Filtre

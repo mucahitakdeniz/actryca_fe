@@ -55,6 +55,7 @@ export default function Example() {
           justifyContent: "space-between",
           alignItems: "center",
           backgroundColor: "white",
+          width: 1,
         }}
       >
         <Link href="/">

@@ -12,8 +12,10 @@ import close from "../../../../public/svg/close.svg";
 import { useMutation } from "@tanstack/react-query";
 import { getCode } from "@/services/password";
 import AlertBox from "@/components/ui/AlertBox";
+import usePasswordStore from "@/store/password-store";
 
 const ForgetPassword = ({ open, onClose, onContinue }) => {
+  const setEmail = usePasswordStore((state) => state.setEmail);
   const [alertProps, setAlertProps] = React.useState({
     open: false,
     message: "",
@@ -30,7 +32,7 @@ const ForgetPassword = ({ open, onClose, onContinue }) => {
       if (!data?.error) {
         setTimeout(() => {
           onContinue();
-        }, 2000);
+        }, 1000);
       } else {
         alertProps.severity = "error";
         alertProps.message = "Login failed: Access token is missing.";
@@ -66,6 +68,7 @@ const ForgetPassword = ({ open, onClose, onContinue }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    setEmail(data.get("identifier"));
     const userData = {
       identifier: data.get("identifier"),
     };
@@ -87,6 +90,7 @@ const ForgetPassword = ({ open, onClose, onContinue }) => {
           padding: "12px",
         },
       }}
+      disableScrollLock
     >
       <AlertBox alertProps={alertProps} />
       <div className="w-full h-full bg-white relative ">

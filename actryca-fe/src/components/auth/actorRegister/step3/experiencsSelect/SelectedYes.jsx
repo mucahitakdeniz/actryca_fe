@@ -20,7 +20,7 @@ const projectTypes = [
   { value: 'voiceover', label: 'Seslendirme' }
 ];
 
-const SelectedYes = () => {
+const SelectedYes = ({ onSaveProjects }) => {
   const [projectType, setProjectType] = useState('');
   const [projectName, setProjectName] = useState('');
   const [role, setRole] = useState('');
@@ -29,6 +29,7 @@ const SelectedYes = () => {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [projects, setProjects] = useState([]);
+  const [editingIndex, setEditingIndex] = useState(null);
   const maxChars = 150;
 
   const handleSaveProject = () => {
@@ -42,9 +43,21 @@ const SelectedYes = () => {
       experience_end_date: endDate,
     };
 
-    const updatedProjects = [...projects, newProject];
+    let updatedProjects;
+    if (editingIndex !== null) {
+      updatedProjects = projects.map((project, index) =>
+        index === editingIndex ? newProject : project
+      );
+      setEditingIndex(null); 
+    } else {
+      updatedProjects = [...projects, newProject];
+    }
+
     setProjects(updatedProjects);
+    onSaveProjects(updatedProjects);
+    clearForm();
   };
+  
 
   const handleEditProject = (index) => {
     const projectToEdit = projects[index];
@@ -55,14 +68,22 @@ const SelectedYes = () => {
     setDescription(projectToEdit.experience_description);
     setStartDate(projectToEdit.experience_start_date);
     setEndDate(projectToEdit.experience_end_date);
+    setEditingIndex(index); 
   };
+  
 
   const handleDeleteProject = (index) => {
     const updatedProjects = projects.filter((_, i) => i !== index);
     setProjects(updatedProjects);
+    onSaveProjects(updatedProjects);
   };
 
   const handleAddNew = () => {
+    clearForm();
+    setEditingIndex(null);
+  };
+
+  const clearForm = () => {
     setProjectType('');
     setProjectName('');
     setRole('');
@@ -143,7 +164,7 @@ const SelectedYes = () => {
             Vazgeç
           </Button>
           <Button variant="contained" color="primary" onClick={handleSaveProject}>
-            Kaydet
+            {editingIndex !== null ? 'Güncelle' : 'Kaydet'}
           </Button>
         </Box>
 

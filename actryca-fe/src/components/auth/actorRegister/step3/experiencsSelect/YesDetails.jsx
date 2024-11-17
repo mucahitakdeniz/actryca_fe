@@ -1,6 +1,20 @@
 import React from 'react';
 import { Box, Typography, Button } from '@mui/material';
 
+const getProjectTypeLabel = (projectType) => {
+  const projectTypes = [
+    { value: 'series', label: 'Dizi' },
+    { value: 'film_movie', label: 'Film' },
+    { value: 'theater', label: 'Tiyatro' },
+    { value: 'advertising', label: 'Reklam' },
+    { value: 'short_film', label: 'Kısa Film' },
+    { value: 'voiceover', label: 'Seslendirme' }
+  ];
+
+  const foundType = projectTypes.find((type) => type.value === projectType);
+  return foundType ? foundType.label : projectType; 
+};
+
 const YesDetails = ({ projects, onEdit, onDelete, onAddNew }) => {
   return (
     <Box className="w-full">
@@ -13,7 +27,7 @@ const YesDetails = ({ projects, onEdit, onDelete, onAddNew }) => {
             {project.project_name}
           </Typography>
           <Typography className="text-primary-900 font-sans text-[16px] font-medium leading-6 capitalize">
-            {project.project_type}
+          {getProjectTypeLabel(project.project_type)}
           </Typography>
           <Typography className="text-primary-900 font-sans text-[14px] italic font-normal leading-6">
             {`${project.experience_start_date ? new Date(project.experience_start_date).toLocaleDateString() : 'Başlangıç Tarihi'} - ${project.experience_end_date ? new Date(project.experience_end_date).toLocaleDateString() : 'Bitiş Tarihi'

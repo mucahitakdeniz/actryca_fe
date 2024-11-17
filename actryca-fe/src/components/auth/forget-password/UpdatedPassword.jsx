@@ -28,6 +28,7 @@ const UpdatedPassword = ({ open, onClose, onBack, onContinue }) => {
           padding: "12px",
         },
       }}
+      disableScrollLock
     >
       <div className="w-full h-full bg-white relative">
         <IconButton
