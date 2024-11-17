@@ -30,26 +30,27 @@ const SpecialAbilities = () => {
 
   const handleAddAbility = (category) => (event) => {
     if (event.key === 'Enter' && inputValues[category].trim()) {
-      setAbilities((prev) => ({
-        ...prev,
-        [category]: [...prev[category], inputValues[category].trim()],
-      }));
-
+      const updatedAbilities = {
+        ...abilities,
+        [category]: [...abilities[category], inputValues[category].trim()],
+      };
+      setAbilities(updatedAbilities);
+  
       setInputValues({
         ...inputValues,
         [category]: '',
       });
-
-      
+  
       setSpecialAbilities({
         ...currentSkills,
-        musical_instrument: [...abilities['Müzik Aleti'], inputValues['Müzik Aleti'].trim()],
-        sport: [...abilities['Spor'], inputValues['Spor'].trim()],
-        performing_arts: [...abilities['Sahne Sanatları'], inputValues['Sahne Sanatları'].trim()],
-        dance: [...abilities['Dans'], inputValues['Dans'].trim()],
+        musical_instrument: updatedAbilities['Müzik Aleti'],
+        sport: updatedAbilities['Spor'],
+        performing_arts: updatedAbilities['Sahne Sanatları'],
+        dance: updatedAbilities['Dans'],
       });
     }
   };
+  
 
   const handleDelete = (category, ability) => {
     setAbilities((prev) => ({
