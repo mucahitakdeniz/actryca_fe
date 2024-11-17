@@ -114,17 +114,30 @@ export const registerActor = async (actorData) => {
 
 export const registerScreenwriter = async (screenwriterData) => {
   try {
-    const { tokens } = useAuthStore.getState();
-    const response = await axios.post(`${url}screenwriters`, screenwriterData, {
+    const { tokens } = useAuthStore.getState(); // Kullanıcı token'ını alıyoruz
 
-    const { tokens } = useAuthStore.getState();
-    const response = await axios.post(`${url}actors/register`, actorData, {
+    const response = await axios.post(`${url}screenwriters`, screenwriterData, {
       headers: {
-        Authorization: `Bearer ${tokens}`,
+        Authorization: `Bearer ${tokens}`, // Yetkilendirme başlığı
       },
     });
-    return response.data;
+
+    return response.data; // Başarılı yanıtı döndürüyoruz
   } catch (error) {
-    throw error;
+    console.error("Error in registerScreenwriter:", error);
+
+    // Hata durumunda daha fazla bilgi sağlıyoruz
+    if (error.response) {
+      console.error("Response data:", error.response.data); // Backend'ten dönen hata mesajı
+      console.error("Status code:", error.response.status); // HTTP durum kodu
+      console.error("Headers:", error.response.headers); // HTTP başlıkları
+    } else if (error.request) {
+      console.error("Request made but no response received:", error.request);
+    } else {
+      console.error("Error setting up request:", error.message);
+    }
+
+    throw error; // Hata fırlatılıyor
   }
 };
+
